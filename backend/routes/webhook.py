@@ -78,7 +78,15 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     ).first()
     
     if not worker:
-        return {"detail": "unknown_worker", "telegram_id": telegram_id}
+        # DEMO MODE: Allow unregistered users to test with the demo business
+        demo_worker = db.query(Worker).filter(
+            Worker.business_id == 2,  # Precision HVAC demo
+            Worker.is_active == True
+        ).first()
+        if demo_worker:
+            worker = demo_worker
+        else:
+            return {"detail": "unknown_worker", "telegram_id": telegram_id}
     
     business_id = worker.business_id
     
