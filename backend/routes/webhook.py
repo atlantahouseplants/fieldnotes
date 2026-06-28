@@ -102,24 +102,16 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     # 4. Match account
     account_hint = (parsed.get("account_hint") or "").lower()
     account_id = None
-    account_name = text[:40]  # fallback: first bit of message
+    account_name = account_hint or text[:40]
     
     # Try exact match first
     if account_hint in account_map:
         account_id = account_map[account_hint]
         account_name = account_hint
-    else:
-        # Try partial match against all accounts
-        for name, aid in account_map.items():
-            if name in text.lower():
-                account_id = aid
-                account_name = name
-                break
     
-    # If still no match, still log it — owner can re-assign later
-    if not account_id and accounts:
-        account_id = None  # Will create an "uncategorized" entry
-        account_name = "uncategorized"
+    # If still no match, leave as uncategorized — owner can re-assign
+    if not account_id:
+        account_name = account_hint if account_hint else "uncategorized"
     
     # 5. Create service log
     log = ServiceLog(

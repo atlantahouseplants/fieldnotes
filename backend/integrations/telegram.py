@@ -56,3 +56,16 @@ async def delete_webhook() -> dict:
             f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/deleteWebhook"
         )
         return resp.json()
+
+
+async def get_updates(offset: int = 0, timeout: int = 10) -> dict:
+    """Poll for new messages (dev mode — no HTTPS needed)."""
+    if not TELEGRAM_BOT_TOKEN:
+        return {"ok": False, "error": "TELEGRAM_BOT_TOKEN not configured"}
+    
+    async with httpx.AsyncClient(timeout=timeout + 5) as client:
+        resp = await client.post(
+            f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates",
+            json={"offset": offset, "timeout": timeout}
+        )
+        return resp.json()
