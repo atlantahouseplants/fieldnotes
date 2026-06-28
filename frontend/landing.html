@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes — Voice-First Field Service Logging</title>
+<meta name="description" content="Your workers talk to Telegram. FieldNotes turns it into service logs, action queues, and daily summaries. No apps, no forms, no training.">
+<style>
+  :root {
+    --bg: #fafbfc;
+    --card: #fff;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --orange: #ea580c;
+    --orange-light: #fff7ed;
+    --red: #dc2626;
+    --border: #e5e7eb;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+  
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #0891b2 100%); color: white; padding: 100px 20px 80px; text-align: center; }
+  .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; line-height: 1.15; max-width: 800px; margin: 0 auto 16px; letter-spacing: -0.5px; }
+  .hero p { font-size: clamp(16px, 2.5vw, 20px); opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+  .hero .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: white; color: #2563eb; }
+  .btn-primary:hover { background: #f0f4ff; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .btn-outline:hover { border-color: white; }
+
+  /* Sections */
+  .section { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+  .section h2 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 12px; letter-spacing: -0.3px; }
+  .section .subtitle { text-align: center; color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto 48px; }
+
+  /* How It Works */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .step { background: var(--card); padding: 32px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; }
+  .step .num { width: 40px; height: 40px; background: var(--blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; margin-bottom: 16px; }
+  .step h3 { font-size: 18px; margin-bottom: 8px; }
+  .step p { color: var(--muted); font-size: 14px; }
+
+  /* Problem/Solution */
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 700px) { .pain-grid { grid-template-columns: 1fr; } }
+  .pain-card { background: var(--card); padding: 28px; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .pain-card h3 { font-size: 16px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .pain-card ul { list-style: none; }
+  .pain-card li { padding: 8px 0; font-size: 14px; color: var(--muted); }
+  .pain-card li::before { content: "✗ "; color: var(--red); font-weight: bold; }
+  .solution-card li::before { content: "✓ "; color: var(--green); font-weight: bold; }
+
+  /* Pricing */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+  .pricing-card { background: var(--card); padding: 36px; border-radius: var(--radius); box-shadow: var(--shadow); text-align: center; border: 2px solid var(--border); }
+  .pricing-card.featured { border-color: var(--blue); transform: scale(1.03); }
+  .pricing-card h3 { font-size: 20px; margin-bottom: 4px; }
+  .pricing-card .price { font-size: 42px; font-weight: 800; margin: 16px 0 4px; }
+  .pricing-card .price span { font-size: 16px; font-weight: 400; color: var(--muted); }
+  .pricing-card .desc { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  .pricing-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+  .pricing-card li { padding: 6px 0; font-size: 14px; }
+  .pricing-card li::before { content: "✓ "; color: var(--green); }
+
+  /* Social Proof */
+  .testimonial { background: var(--card); padding: 36px; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 700px; margin: 0 auto; text-align: center; }
+  .testimonial blockquote { font-size: 18px; font-style: italic; margin-bottom: 12px; }
+  .testimonial .author { color: var(--muted); font-size: 14px; }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); color: white; text-align: center; padding: 80px 20px; }
+  .cta-section h2 { font-size: 36px; margin-bottom: 16px; }
+  .cta-section p { font-size: 18px; opacity: 0.9; margin-bottom: 32px; }
+
+  /* Footer */
+  footer { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 14px; }
+
+  /* Badge */
+  .beta-badge { display: inline-block; background: var(--orange-light); color: var(--orange); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>Your workers talk to their phone.<br>FieldNotes does the rest.</h1>
+  <p>Voice-first field service logging. Workers send a quick voice note between stops. AI turns it into service logs, action queues, and daily owner summaries. Zero apps, zero forms.</p>
+  <div class="cta-group">
+    <a href="#pricing" class="btn btn-primary">Start Free Trial</a>
+    <a href="#how-it-works" class="btn btn-outline">See How It Works →</a>
+  </div>
+</section>
+
+<section class="section" id="how-it-works">
+  <h2>10 seconds between stops</h2>
+  <p class="subtitle">Your workers already use their phone. FieldNotes adds one step: a 10-second voice note after each stop.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>Worker talks</h3>
+      <p>Between stops, the worker opens Telegram and says: "Acme Office: all good, replaced filter, need more filters next time." Or types it. 10 seconds max.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>AI processes</h3>
+      <p>FieldNotes identifies the account, extracts issues, logs the service, and populates the action queue. No forms, no menus, no tapping through screens.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>Owner sees everything</h3>
+      <p>End of day: a clean summary lands in your inbox. Stops completed, issues flagged, supplies needed, stops missed. Full visibility with zero effort.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: white;">
+  <h2>You're already paying for the problem</h2>
+  <p class="subtitle">How much does a missed follow-up, forgotten supply run, or unlogged issue cost you?</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <h3>❌ Without FieldNotes</h3>
+      <ul>
+        <li>Workers "forget" to tell you about problems</li>
+        <li>Text messages buried in your inbox, lost forever</li>
+        <li>End-of-week "what happened?" is a guessing game</li>
+        <li>Supply runs because nobody flagged low inventory</li>
+        <li>Clients follow up on requests you never heard about</li>
+        <li>Expensive field service software workers refuse to use</li>
+      </ul>
+    </div>
+    <div class="pain-card solution-card">
+      <h3>✅ With FieldNotes</h3>
+      <ul>
+        <li>Every stop logged automatically — who, where, what</li>
+        <li>Issues flagged in real-time — nothing slips through</li>
+        <li>Daily summary in your inbox — 60 seconds to read</li>
+        <li>Supply list auto-generated from worker notes</li>
+        <li>Missed-stop detection — know what didn't get done</li>
+        <li>No apps to install, no forms to fill, no training needed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <h2>Simple pricing. Real value.</h2>
+  <p class="subtitle">Less than the cost of one missed follow-up.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Solo</h3>
+      <div class="price">$39<span>/mo</span></div>
+      <p class="desc">For the owner-operator</p>
+      <ul>
+        <li>1 worker</li>
+        <li>Unlimited accounts</li>
+        <li>Daily email summaries</li>
+        <li>Action queue</li>
+        <li>30-day free trial</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width:100%;text-align:center">Start Free Trial</a>
+    </div>
+    <div class="pricing-card featured">
+      <h3>Team <span class="beta-badge">Popular</span></h3>
+      <div class="price">$79<span>/mo</span></div>
+      <p class="desc">Small crew, full visibility</p>
+      <ul>
+        <li>Up to 5 workers</li>
+        <li>Unlimited accounts</li>
+        <li>Daily email summaries</li>
+        <li>Action queue + priorities</li>
+        <li>Missed-stop detection</li>
+        <li>Worker-level tracking</li>
+        <li>30-day free trial</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width:100%;text-align:center;background:var(--blue);color:white">Start Free Trial</a>
+    </div>
+    <div class="pricing-card">
+      <h3>Crew</h3>
+      <div class="price">$149<span>/mo</span></div>
+      <p class="desc">Growing business</p>
+      <ul>
+        <li>Up to 15 workers</li>
+        <li>Everything in Team</li>
+        <li>Priority support</li>
+        <li>CSV/PDF exports</li>
+        <li>Custom integrations</li>
+        <li>30-day free trial</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="width:100%;text-align:center">Start Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<section style="background: white;">
+  <div class="section">
+    <h2>Built by someone who actually does the work</h2>
+    <p class="subtitle">FieldNotes isn't a startup's guess at what service businesses need. It's built by a service business owner who's been in the field for 20+ years.</p>
+    <div class="testimonial">
+      <blockquote>"I run 17 commercial accounts solo. Every stop generates notes, issues, supply needs, and follow-ups. I built FieldNotes because I needed it — and now every service business owner who manages field workers needs it too."</blockquote>
+      <p class="author">— Geoff Wall, 20+ years in commercial interiorscape</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Not another bloated app</h2>
+  <p class="subtitle">FieldNotes is the opposite of the software your workers hate.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="num" style="background:var(--green)">✓</div>
+      <h3>No app to download</h3>
+      <p>Workers use the messaging app already on their phone. Telegram, SMS, WhatsApp — whatever they already have.</p>
+    </div>
+    <div class="step">
+      <div class="num" style="background:var(--green)">✓</div>
+      <h3>No forms to fill out</h3>
+      <p>Voice notes. 10 seconds. That's it. No dropdowns, no checkboxes, no "required fields."</p>
+    </div>
+    <div class="step">
+      <div class="num" style="background:var(--green)">✓</div>
+      <h3>No training required</h3>
+      <p>"Talk to the bot like you're texting the boss." If they can send a text message, they can use FieldNotes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Try FieldNotes free for 30 days</h2>
+  <p>No credit card. No setup fees. Workers up and running in 5 minutes.</p>
+  <a href="#" class="btn btn-primary" style="font-size:18px;padding:18px 36px">Start Your Free Trial →</a>
+</section>
+
+<footer>
+  <p>FieldNotes — Voice-first field service logging &copy; 2026</p>
+  <p style="margin-top:4px">Questions? <a href="mailto:geoff@fieldnotes.ai" style="color:var(--blue)">geoff@fieldnotes.ai</a></p>
+</footer>
+
+</body>
+</html>
