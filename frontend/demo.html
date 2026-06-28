@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes Demo — Precision HVAC</title>
+<style>
+  :root {
+    --bg: #f5f6fa; --card: #fff; --text: #2c3e50; --muted: #7f8c8d;
+    --green: #27ae60; --orange: #e67e22; --red: #e74c3c; --blue: #3498db;
+    --border: #ecf0f1; --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  header { background: var(--card); padding: 24px 30px; border-radius: var(--radius); margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 22px; font-weight: 700; }
+  .demo-badge { background: var(--blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); padding: 20px; border-radius: var(--radius); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .stat-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .stat-card .value { font-size: 32px; font-weight: 700; }
+  .section { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .badge.all_good { background: #eaf7ea; color: var(--green); }
+  .badge.urgent { background: #fdecea; color: var(--red); }
+  .badge.issues_found { background: #fef9e7; color: var(--orange); }
+  .badge.needs_supplies { background: #e3f2fd; color: var(--blue); }
+  .cta { background: linear-gradient(135deg, #1e3a5f, #2563eb); color: white; text-align: center; padding: 32px; border-radius: var(--radius); margin-top: 24px; }
+  .cta h3 { font-size: 20px; margin-bottom: 8px; }
+  .cta p { opacity: 0.9; margin-bottom: 16px; }
+  .btn { display: inline-block; padding: 14px 28px; background: white; color: var(--blue); border-radius: 8px; font-weight: 700; text-decoration: none; }
+  .live-indicator { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>📋 Precision HVAC <span class="demo-badge">DEMO</span></h1>
+      <span style="color:var(--muted);font-size:14px"><span class="live-indicator"></span>Live demo — try it yourself</span>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:14px;color:var(--muted)">Mike Torres, Owner</div>
+      <div style="font-size:12px;color:var(--muted)">5 techs · 12 accounts</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="stat-card">
+      <div class="label">Stops Today</div>
+      <div class="value" style="color:var(--green)">4/4</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Issues Flagged</div>
+      <div class="value" style="color:var(--orange)">1</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Actions Pending</div>
+      <div class="value" style="color:var(--red)">6</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Missed Stops</div>
+      <div class="value" style="color:var(--green)">0</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📝 Today's Activity</h2>
+    <table>
+      <tr><th>Time</th><th>Account</th><th>Worker</th><th>Status</th><th>Note</th></tr>
+      <tr><td>8:30 AM</td><td>Riverside Office Park</td><td>James Wilson</td><td><span class="badge all_good">all good</span></td><td>Riverside: all good, replaced 2 filters</td></tr>
+      <tr><td>9:45 AM</td><td>Grand Hotel Downtown</td><td>Mike Torres</td><td><span class="badge issues_found">issues</span></td><td>Grand Hotel: chiller unit making noise, client wants upgrade quote</td></tr>
+      <tr><td>11:00 AM</td><td>Mercy Medical Center</td><td>Maria Garcia</td><td><span class="badge all_good">all good</span></td><td>Mercy Medical: all units serviced, clean</td></tr>
+      <tr><td>1:15 PM</td><td>Westgate Shopping Plaza</td><td>David Kim</td><td><span class="badge needs_supplies">needs supplies</span></td><td>Westgate: food court AC struggling, need belt + refrigerant</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📌 Pending Actions</h2>
+    <table>
+      <tr><th>Priority</th><th>Account</th><th>Action</th></tr>
+      <tr><td><span class="badge urgent">urgent</span></td><td>Lakeview Restaurant</td><td>Compressor replacement — order part</td></tr>
+      <tr><td><span class="badge issues_found">this week</span></td><td>Grand Hotel</td><td>Diagnostic on chiller unit</td></tr>
+      <tr><td><span class="badge issues_found">this week</span></td><td>Westgate Plaza</td><td>Order replacement belt for food court AC</td></tr>
+      <tr><td><span class="badge needs_supplies">next visit</span></td><td>Riverside Park</td><td>Order more filters</td></tr>
+      <tr><td><span class="badge needs_supplies">next visit</span></td><td>Greenfield Elementary</td><td>Air filters for classroom wing</td></tr>
+      <tr><td><span class="badge needs_supplies">next visit</span></td><td>Crestview Retirement</td><td>HEPA filters for assisted living</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>📍 Accounts (12)</h2>
+    <table>
+      <tr><th>Name</th><th>Shorthand</th><th>Route Day</th></tr>
+      <tr><td>Riverside Office Park</td><td><code>riverside</code></td><td>Mon, Thu</td></tr>
+      <tr><td>Grand Hotel Downtown</td><td><code>grandhotel</code></td><td>Mon, Fri</td></tr>
+      <tr><td>Mercy Medical Center</td><td><code>mercy</code></td><td>Mon, Fri</td></tr>
+      <tr><td>Westgate Shopping Plaza</td><td><code>westgate</code></td><td>Tue, Fri</td></tr>
+      <tr><td>Oakwood Apartments</td><td><code>oakwood</code></td><td>Tue</td></tr>
+      <tr><td>City Public Library</td><td><code>library</code></td><td>Tue</td></tr>
+      <tr><td>Pinnacle Bank HQ</td><td><code>pinnacle</code></td><td>Tue, Fri</td></tr>
+      <tr><td>Greenfield Elementary</td><td><code>greenfield</code></td><td>Wed</td></tr>
+      <tr><td>Summit Corporate Center</td><td><code>summit</code></td><td>Wed</td></tr>
+      <tr><td>Lakeview Restaurant</td><td><code>lakeview</code></td><td>Wed</td></tr>
+      <tr><td>Brighton Manufacturing</td><td><code>brighton</code></td><td>Thu</td></tr>
+      <tr><td>Crestview Retirement</td><td><code>crestview</code></td><td>Thu</td></tr>
+    </table>
+  </div>
+
+  <div class="cta">
+    <h3>Try it yourself — right now</h3>
+    <p>Open Telegram, search <strong>@Field_notesbot_bot</strong>, and send a note like:</p>
+    <p style="font-family:monospace;font-size:16px;background:rgba(255,255,255,0.1);display:inline-block;padding:8px 16px;border-radius:8px;margin:12px 0">riverside: all good, replaced filter, need more filters</p>
+    <p style="margin-top:16px">Your note appears on this dashboard instantly. No signup. No app.</p>
+    <a href="https://t.me/Field_notesbot_bot" class="btn" style="margin-top:12px">Open in Telegram →</a>
+  </div>
+
+  <div style="text-align:center;padding:24px;color:var(--muted);font-size:13px">
+    <p><strong>$79/mo</strong> for up to 5 workers · 30-day free trial · No credit card</p>
+    <p style="margin-top:4px"><a href="https://fieldnotes-livid.vercel.app" style="color:var(--blue)">Learn more</a> · <a href="mailto:geoff@fieldnotes.ai" style="color:var(--blue)">geoff@fieldnotes.ai</a></p>
+  </div>
+</div>
+</body>
+</html>
