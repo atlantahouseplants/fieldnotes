@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes — Dashboard</title>
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --card: #fff;
+    --text: #2c3e50;
+    --muted: #7f8c8d;
+    --green: #27ae60;
+    --orange: #e67e22;
+    --red: #e74c3c;
+    --blue: #3498db;
+    --border: #ecf0f1;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  header { background: var(--card); padding: 24px 30px; border-radius: var(--radius); margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 22px; font-weight: 700; }
+  header .date { color: var(--muted); font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); padding: 20px; border-radius: var(--radius); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .stat-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .stat-card .value { font-size: 32px; font-weight: 700; }
+  .stat-card .value.green { color: var(--green); }
+  .stat-card .value.orange { color: var(--orange); }
+  .stat-card .value.red { color: var(--red); }
+  .section { background: var(--card); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .badge.all_good { background: #eaf7ea; color: var(--green); }
+  .badge.urgent { background: #fdecea; color: var(--red); }
+  .badge.issues_found { background: #fef9e7; color: var(--orange); }
+  .badge.pending { background: #eee; color: #666; }
+  .badge.in_progress { background: #e3f2fd; color: var(--blue); }
+  .badge.completed { background: #eaf7ea; color: var(--green); }
+  .empty { color: var(--muted); font-style: italic; padding: 20px; text-align: center; }
+  .refresh-btn { background: var(--blue); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .refresh-btn:hover { opacity: 0.9; }
+  .loading { text-align: center; padding: 40px; color: var(--muted); }
+  .error { background: #fdecea; color: var(--red); padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div>
+      <h1>📋 FieldNotes</h1>
+      <span id="biz-name" class="date"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span id="current-date" class="date"></span>
+      <button class="refresh-btn" onclick="loadDashboard()">Refresh</button>
+    </div>
+  </header>
+
+  <div id="error" class="error" style="display:none"></div>
+
+  <div class="grid">
+    <div class="stat-card">
+      <div class="label">Stops Today</div>
+      <div id="stops" class="value green">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Issues Flagged</div>
+      <div id="issues" class="value orange">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Actions Pending</div>
+      <div id="actions" class="value red">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Missed Stops</div>
+      <div id="missed" class="value red">—</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📝 Today's Activity</h2>
+    <div id="logs-container"><div class="loading">Loading...</div></div>
+  </div>
+
+  <div class="section">
+    <h2>📌 Pending Actions</h2>
+    <div id="actions-container"><div class="loading">Loading...</div></div>
+  </div>
+
+  <div class="section">
+    <h2>📍 Accounts</h2>
+    <div id="accounts-container"><div class="loading">Loading...</div></div>
+  </div>
+</div>
+
+<script>
+const API = '';
+const BIZ_ID = new URLSearchParams(window.location.search).get('biz') || '1';
+
+document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+async function api(path) {
+  const resp = await fetch(`${API}${path}${path.includes('?') ? '&' : '?'}business_id=${BIZ_ID}`);
+  if (!resp.ok) throw new Error(`${resp.status}: ${await resp.text()}`);
+  return resp.json();
+}
+
+async function loadDashboard() {
+  document.getElementById('error').style.display = 'none';
+  try {
+    const [summary, logs, accounts] = await Promise.all([
+      api('/summary/today'),
+      api('/logs/today'),
+      api('/accounts/')
+    ]);
+
+    // Stats
+    document.getElementById('stops').textContent = `${summary.stops_completed}/${summary.stops_expected || '—'}`;
+    document.getElementById('issues').textContent = summary.issues_flagged;
+    document.getElementById('actions').textContent = summary.actions_pending;
+    document.getElementById('missed').textContent = summary.stops_missed?.length || 0;
+    document.getElementById('biz-name').textContent = summary.business_name || '';
+
+    // Logs
+    if (logs.length === 0) {
+      document.getElementById('logs-container').innerHTML = '<div class="empty">No activity logged today</div>';
+    } else {
+      let html = '<table><tr><th>Time</th><th>Account</th><th>Worker</th><th>Status</th><th>Note</th></tr>';
+      logs.forEach(log => {
+        const time = new Date(log.timestamp).toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+        html += `<tr>
+          <td>${time}</td>
+          <td>${log.account_id || '—'}</td>
+          <td>${log.worker_id || '—'}</td>
+          <td><span class="badge ${log.parsed_status || ''}">${log.parsed_status || 'pending'}</span></td>
+          <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${log.raw_note}</td>
+        </tr>`;
+      });
+      html += '</table>';
+      document.getElementById('logs-container').innerHTML = html;
+    }
+
+    // Actions (from summary)
+    document.getElementById('actions-container').innerHTML = summary.supplies_needed?.length > 0
+      ? '<ul>' + summary.supplies_needed.map(s => `<li>📦 ${s}</li>`).join('') + '</ul>'
+      : '<div class="empty">No pending actions</div>';
+
+    // Accounts
+    if (accounts.length === 0) {
+      document.getElementById('accounts-container').innerHTML = '<div class="empty">No accounts configured</div>';
+    } else {
+      let html = '<table><tr><th>Name</th><th>Shorthand</th><th>Address</th></tr>';
+      accounts.forEach(a => {
+        html += `<tr><td>${a.name}</td><td><code>${a.shorthand || ''}</code></td><td>${a.address || '—'}</td></tr>`;
+      });
+      html += '</table>';
+      document.getElementById('accounts-container').innerHTML = html;
+    }
+
+  } catch (e) {
+    document.getElementById('error').style.display = 'block';
+    document.getElementById('error').textContent = 'Error loading data: ' + e.message;
+  }
+}
+
+loadDashboard();
+</script>
+</body>
+</html>
