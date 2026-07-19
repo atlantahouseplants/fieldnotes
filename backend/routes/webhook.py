@@ -120,6 +120,12 @@ async def handle_start(db: Session, telegram_id: str, text: str, chat: dict) -> 
         f"<b>Have an invite link from your boss?</b> Tap it to connect to your company.\n"
         f"<b>Want FieldNotes for your crew?</b> https://fieldnotesapp.io"
     )
+    return {"ok": True, "detail": "welcome_sent"}
+
+
+async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
+    """Process a single worker note end-to-end."""
+
     # 1. Find worker
     worker = db.query(Worker).filter(
         Worker.telegram_id == telegram_id,
@@ -140,6 +146,12 @@ async def handle_start(db: Session, telegram_id: str, text: str, chat: dict) -> 
             return {"detail": "unknown_worker", "telegram_id": telegram_id}
 
     business_id = worker.business_id
+
+    # 2. Get known accounts for matching
+    accounts = db.query(Account).filter(
+        Account.business_id == business_id,
+        Account.is_active == True
+    ).all()
     account_hints = [a.shorthand or a.name for a in accounts]
     
     # Build mapping: shorthand/name → account.id
