@@ -3,6 +3,7 @@ FieldNotes — FastAPI Application
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import os
 
@@ -49,7 +50,8 @@ async def startup():
 
 @app.get("/")
 async def root():
-    return {"status": "ok", "service": "FieldNotes API", "version": "0.1.0"}
+    """Root → marketing landing page. API status lives at /health."""
+    return RedirectResponse(url="/app/index.html")
 
 
 @app.get("/health")
