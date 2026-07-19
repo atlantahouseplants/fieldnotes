@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes — Live Dashboard</title>
+<style>
+:root {
+  --bg: #f5f6fa; --card: #fff; --text: #2c3e50; --muted: #7f8c8d;
+  --green: #27ae60; --orange: #e67e22; --red: #e74c3c; --blue: #3498db;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+header { background: var(--card); padding: 20px 24px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+header h1 { font-size: 20px; }
+.badge { background: var(--green); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.log-list { list-style: none; }
+.log-item { background: var(--card); padding: 16px 20px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); border-left: 4px solid var(--green); display: flex; justify-content: space-between; align-items: flex-start; }
+.log-item.issues { border-left-color: var(--orange); }
+.log-item.urgent { border-left-color: var(--red); }
+.log-item.needs { border-left-color: var(--blue); }
+.log-worker { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.log-account { color: var(--muted); font-size: 13px; }
+.log-note { margin-top: 6px; font-size: 14px; color: var(--text); }
+.log-time { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 16px; }
+.log-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-top: 4px; }
+.log-status.all_good { background: #d4edda; color: var(--green); }
+.log-status.issues_found { background: #ffeaa7; color: #d68910; }
+.log-status.needs_supplies { background: #d6eaf8; color: var(--blue); }
+.log-status.urgent { background: #fadbd8; color: var(--red); }
+.log-actions { margin-top: 8px; }
+.action-tag { display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px 4px 2px 0; color: #555; }
+.empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty h3 { font-size: 18px; margin-bottom: 8px; }
+.refresh { cursor: pointer; font-size: 14px; color: var(--blue); text-decoration: underline; }
+.loading { text-align: center; padding: 40px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📋 FieldNotes — Live Dashboard</h1>
+    <span class="badge">🔴 LIVE</span>
+  </header>
+  <div id="logs">
+    <div class="loading">Loading...</div>
+  </div>
+</div>
+
+<script>
+async function loadLogs() {
+  document.getElementById('logs').innerHTML = '<div class="loading">Loading...</div>';
+  try {
+    const res = await fetch('/api/logs?limit=20');
+    const logs = await res.json();
+    
+    if (!logs.length) {
+      document.getElementById('logs').innerHTML = '<div class="empty"><h3>No service logs yet</h3><p>Send a note via Telegram to see it here.</p><p style="margin-top:12px"><span class="refresh" onclick="loadLogs()">↻ Refresh</span></p></div>';
+      return;
+    }
+
+    const statusLabels = { all_good: 'All Good', issues_found: 'Issues', needs_supplies: 'Needs Supplies', follow_up_needed: 'Follow-Up', urgent: '⚠️ Urgent' };
+    
+    let html = '<ul class="log-list">';
+    for (const log of logs) {
+      const cssClass = log.status === 'urgent' ? 'urgent' : log.status === 'issues_found' ? 'issues' : log.status === 'needs_supplies' ? 'needs' : '';
+      const time = new Date(log.timestamp + 'Z').toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      const issues = JSON.parse(log.issues || '[]');
+      const supplies = JSON.parse(log.supplies || '[]');
+      
+      html += `<li class="log-item ${cssClass}">
+        <div style="flex:1">
+          <div class="log-worker">${log.worker || 'Unknown'}</div>
+          <div class="log-account">📍 ${log.account || 'Uncategorized'}</div>
+          <div class="log-note">${log.raw_note || ''}</div>
+          <div class="log-actions">`;
+      
+      for (const i of issues) html += `<span class="action-tag">⚠️ ${i}</span>`;
+      for (const s of supplies) html += `<span class="action-tag">📦 ${s}</span>`;
+      
+      html += `</div>
+          <span class="log-status ${log.status}">${statusLabels[log.status] || log.status}</span>
+        </div>
+        <div class="log-time">${time}</div>
+      </li>`;
+    }
+    html += '</ul>';
+    document.getElementById('logs').innerHTML = html;
+  } catch (e) {
+    document.getElementById('logs').innerHTML = '<div class="empty"><h3>API Error</h3><p>Make sure the server is running at localhost:8765</p><p style="margin-top:12px"><span class="refresh" onclick="loadLogs()">↻ Retry</span></p></div>';
+  }
+}
+
+// Auto-refresh every 10 seconds
+loadLogs();
+setInterval(loadLogs, 10000);
+</script>
+</body>
+</html>

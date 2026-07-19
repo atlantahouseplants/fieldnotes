@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 
 from .models import init_db
-from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding
+from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api
 
 app = FastAPI(
     title="FieldNotes",
@@ -31,6 +31,9 @@ app.include_router(webhook.router)
 app.include_router(summary.router)
 app.include_router(routes.router)
 app.include_router(onboarding.router)
+app.include_router(billing.router)
+app.include_router(hiring.router)
+app.include_router(dashboard_api.router)
 
 # Serve frontend dashboard
 frontend_dir = os.path.join(os.path.dirname(__file__), "..", "frontend")

@@ -8,8 +8,10 @@ import os
 import httpx
 from typing import Optional
 
-# Provider selection — prefer DeepSeek (cheapest), fall back to others
-LLM_PROVIDER = os.getenv("FIELDNOTES_LLM_PROVIDER", "deepseek")
+# Provider selection — prefer xAI/Grok, fall back to DeepSeek/OpenAI
+LLM_PROVIDER = os.getenv("FIELDNOTES_LLM_PROVIDER", "xai")
+XAI_API_KEY = os.getenv("XAI_API_KEY", "")
+XAI_BASE = "https://api.x.ai/v1"
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 DEEPSEEK_BASE = "https://api.deepseek.com/v1"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
@@ -64,17 +66,48 @@ async def parse_note(worker_note: str, known_accounts: Optional[list[str]] = Non
         )
     
     try:
-        result = await _call_deepseek(prompt)
+        if XAI_API_KEY:
+            result = await _call_xai(prompt)
+        else:
+            result = await _call_deepseek(prompt)
     except Exception as e:
         try:
-            result = await _call_openai(prompt)
+            result = await _call_deepseek(prompt)
         except Exception:
-            # Graceful fallback: basic extraction without AI
-            result = _basic_parse(worker_note)
+            try:
+                result = await _call_openai(prompt)
+            except Exception:
+                # Graceful fallback: basic extraction without AI
+                result = _basic_parse(worker_note)
     
     elapsed_ms = int((time.time() - t0) * 1000)
     result["processing_time_ms"] = elapsed_ms
     return result
+
+
+async def _call_xai(prompt: str) -> dict:
+    """Call xAI Grok API for parsing."""
+    if not XAI_API_KEY:
+        raise ValueError("XAI_API_KEY not set")
+    
+    async with httpx.AsyncClient(timeout=15) as client:
+        resp = await client.post(
+            f"{XAI_BASE}/chat/completions",
+            headers={
+                "Authorization": f"Bearer {XAI_API_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "grok-4.5",
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.1,
+                "max_tokens": 500,
+                "response_format": {"type": "json_object"}
+            }
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return json.loads(data["choices"][0]["message"]["content"])
 
 
 async def _call_deepseek(prompt: str) -> dict:

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes — Get Started</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0a0a0a; color: #e0e0e0; }
+.container { max-width: 560px; margin: 80px auto; padding: 0 24px; }
+.logo { text-align: center; font-size: 1.5rem; font-weight: 700; color: #4ade80; margin-bottom: 48px; }
+h1 { font-size: 1.8rem; color: #fff; margin-bottom: 8px; text-align: center; }
+p.sub { color: #888; text-align: center; margin-bottom: 40px; }
+.steps { counter-reset: step; }
+.step { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 28px; margin-bottom: 20px; position: relative; }
+.step-num { position: absolute; top: -14px; left: 20px; background: #4ade80; color: #0a0a0a; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+.step h3 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
+.step p { color: #888; font-size: 0.9rem; line-height: 1.5; }
+.step code { background: #1a1a1a; padding: 2px 8px; border-radius: 4px; color: #4ade80; font-size: 0.85rem; }
+.step a { color: #4ade80; }
+.btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+.btn-primary { background: #4ade80; color: #0a0a0a; }
+.input-group { margin-top: 16px; }
+.input-group label { display: block; color: #999; font-size: 0.85rem; margin-bottom: 6px; }
+.input-group input { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 0.95rem; }
+.input-group input:focus { outline: none; border-color: #4ade80; }
+.telegram-link { display: inline-block; margin-top: 12px; padding: 10px 20px; background: #0088cc; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="logo">🌿 FieldNotes</div>
+<h1>Get started in 3 minutes</h1>
+<p class="sub">No apps, no training, no credit card.</p>
+
+<div class="steps">
+<div class="step">
+<div class="step-num">1</div>
+<h3>Connect your Telegram bot</h3>
+<p>We use Telegram — the app your workers already have. Create a free bot with <a href="https://t.me/botfather" target="_blank">@BotFather</a> on Telegram, then paste the token here.</p>
+<div class="input-group"><label>Bot token from @BotFather</label><input type="text" placeholder="1234567890:ABCdefGHIjkl..."></div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<h3>Add your accounts</h3>
+<p>Paste your client list (one per line). We'll set up each location so your workers can log stops by name.</p>
+<div class="input-group"><label>Accounts (one per line)</label><input type="text" placeholder="Acme Office&#10;Big Corp HQ&#10;City Hall"></div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<h3>Invite your workers</h3>
+<p>Share your bot link with your team. They open Telegram, start the bot, and send their first note. No install, no login, no password.</p>
+<a href="#" class="telegram-link">🤖 Open in Telegram</a>
+</div>
+</div>
+
+<div style="text-align:center; margin-top: 32px;">
+<a href="pricing.html" class="btn btn-primary">Start 14-Day Free Trial</a>
+<p style="color: #555; margin-top: 16px; font-size: 0.85rem;">No credit card required. Cancel anytime.</p>
+</div>
+</div>
+</body>
+</html>

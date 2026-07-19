@@ -92,7 +92,7 @@ class ServiceLog(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     business_id = Column(Integer, ForeignKey("businesses.id"), nullable=False)
-    account_id = Column(Integer, ForeignKey("accounts.id"), nullable=False)
+    account_id = Column(Integer, ForeignKey("accounts.id"), nullable=True)  # nullable for uncategorized
     worker_id = Column(Integer, ForeignKey("workers.id"), nullable=False)
     raw_note = Column(Text, nullable=False)           # original worker message
     parsed_status = Column(String)                     # "all good", "issues found", etc.
@@ -106,6 +106,32 @@ class ServiceLog(Base):
     business = relationship("Business", back_populates="service_logs")
     account = relationship("Account", back_populates="service_logs")
     worker = relationship("Worker", back_populates="service_logs")
+
+    def get_issues(self):
+        import json
+        try:
+            return json.loads(self.parsed_issues) if self.parsed_issues else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    def get_supplies(self):
+        import json
+        try:
+            return json.loads(self.parsed_supplies) if self.parsed_supplies else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    def get_followups(self):
+        import json
+        try:
+            return json.loads(self.parsed_followups) if self.parsed_followups else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    def account_name(self):
+        if self.account:
+            return self.account.name
+        return "uncategorized"
 
 class Action(Base):
     """An action item generated from a service log."""

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FieldNotes — Pricing</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
+.logo { font-size: 1.4rem; font-weight: 700; color: #4ade80; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { color: #999; text-decoration: none; font-size: 0.95rem; }
+.nav-links a:hover { color: #fff; }
+h1 { font-size: 2.5rem; margin-bottom: 16px; color: #fff; }
+.subtitle { color: #888; font-size: 1.1rem; margin-bottom: 60px; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.plan { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 32px; }
+.plan.recommended { border-color: #4ade80; position: relative; }
+.badge { position: absolute; top: -12px; right: 24px; background: #4ade80; color: #0a0a0a; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.plan-name { font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+.plan-price { font-size: 2.8rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.plan-price span { font-size: 1rem; color: #666; font-weight: 400; }
+.plan-desc { color: #888; margin-bottom: 24px; font-size: 0.95rem; }
+.plan ul { list-style: none; margin-bottom: 32px; }
+.plan li { padding: 8px 0; color: #bbb; font-size: 0.95rem; border-bottom: 1px solid #1a1a1a; }
+.plan li:last-child { border-bottom: none; }
+.plan li:before { content: "\2713 "; color: #4ade80; font-weight: 700; }
+.btn { display: block; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; }
+.btn-primary { background: #4ade80; color: #0a0a0a; }
+.btn-primary:hover { background: #22c55e; }
+.btn-outline { background: transparent; color: #fff; border: 1px solid #333; }
+.btn-outline:hover { border-color: #4ade80; }
+.faq { margin-top: 80px; }
+.faq h2 { font-size: 1.8rem; color: #fff; margin-bottom: 32px; }
+.faq-item { margin-bottom: 24px; }
+.faq-q { color: #fff; font-weight: 600; margin-bottom: 8px; }
+.faq-a { color: #888; font-size: 0.95rem; }
+footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; }
+@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+<nav><span class="logo">🌿 FieldNotes</span>
+<div class="nav-links"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="pricing.html">Pricing</a></div></nav>
+<h1>Simple, transparent pricing</h1>
+<p class="subtitle">One plan. Everything included. 14-day free trial. No credit card required.</p>
+<div class="plans">
+<div class="plan recommended">
+<div class="badge">BEST VALUE</div>
+<div class="plan-name">Team</div>
+<div class="plan-price">$79<span>/month</span></div>
+<p class="plan-desc">For service businesses with up to 5 field workers.</p>
+<ul>
+<li>Unlimited service logs</li>
+<li>AI-powered note parsing (Grok 4.5)</li>
+<li>Auto-generated action queues</li>
+<li>Daily owner summary email</li>
+<li>Missed stop detection</li>
+<li>Up to 5 workers</li>
+<li>Unlimited accounts & locations</li>
+<li>Web dashboard for owners</li>
+<li>14-day free trial</li>
+</ul>
+<a href="#" class="btn btn-primary">Start Free Trial</a>
+</div>
+<div class="plan">
+<div class="plan-name">Solo</div>
+<div class="plan-price">$39<span>/month</span></div>
+<p class="plan-desc">For owner-operators running routes solo.</p>
+<ul>
+<li>Unlimited service logs</li>
+<li>AI-powered note parsing</li>
+<li>Auto-generated action queues</li>
+<li>Daily owner summary email</li>
+<li>1 worker (the owner)</li>
+<li>Unlimited accounts</li>
+<li>Web dashboard</li>
+<li>14-day free trial</li></ul>
+<a href="#" class="btn btn-outline">Start Free Trial</a>
+</div></div>
+<div class="faq"><h2>Frequently asked questions</h2>
+<div class="faq-item"><div class="faq-q">Do my workers need to install an app?</div>
+<div class="faq-a">No. They use Telegram — the messaging app already on their phone. Zero training, zero installs.</div></div>
+<div class="faq-item"><div class="faq-q">Can I cancel anytime?</div>
+<div class="faq-a">Yes. No contracts, no cancellation fees. You own your data — export anytime.</div></div>
+<div class="faq-item"><div class="faq-q">What if I have more than 5 workers?</div>
+<div class="faq-a">Crew plan at $149/month for up to 15 workers with priority support. Contact us.</div></div>
+<div class="faq-item"><div class="faq-q">How does the free trial work?</div>
+<div class="faq-a">14 days, full access, no credit card required. At the end of the trial, choose a plan or your account pauses — no charges.</div></div>
+</div>
+<footer><p>FieldNotes — Built by a service business owner, for service business owners.</p></footer>
+</div></body></html>

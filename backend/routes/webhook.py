@@ -10,6 +10,8 @@ import json
 from ..models import SessionLocal, Worker, Account, ServiceLog
 from ..services.parser import parse_note
 from ..services.actions import create_action, bulk_create_actions
+from ..services.action_queue import add_action as queue_add
+from ..services.ahp_pipeline import run_pipeline
 from ..integrations.telegram import send_confirmation
 
 router = APIRouter(prefix="/webhook", tags=["webhook"])
@@ -121,10 +123,10 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     if not account_id:
         account_name = account_hint if account_hint else "uncategorized"
     
-    # 5. Create service log
+    # 5. Create service log (use None for uncategorized accounts)
     log = ServiceLog(
         business_id=business_id,
-        account_id=account_id,
+        account_id=account_id or None,  # Allow uncategorized
         worker_id=worker.id,
         raw_note=text,
         parsed_status=parsed.get("status", ""),
@@ -169,7 +171,10 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
         )
         actions_created.append(action.description)
     
-    # 7. Send confirmation to worker
+    # 7. Run deterministic execution pipeline
+    pipeline_result = run_pipeline(db, log)
+
+    # 8. Send confirmation to worker
     await send_confirmation(
         chat_id=telegram_id,
         account_name=account_name,
@@ -183,5 +188,6 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
         "status": parsed.get("status"),
         "summary": parsed.get("summary", text[:100]),
         "actions_created": actions_created,
-        "processing_ms": parsed.get("processing_time_ms", 0)
+        "processing_ms": parsed.get("processing_time_ms", 0),
+        "pipeline": pipeline_result,
     }
