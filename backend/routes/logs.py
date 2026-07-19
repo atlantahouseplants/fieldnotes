@@ -6,8 +6,9 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from datetime import date
 
-from ..models import SessionLocal, ServiceLog, Account, Worker
+from ..models import SessionLocal, ServiceLog
 from ..schemas import ServiceLogOut
+from ..deps import verify_business_key
 
 router = APIRouter(prefix="/logs", tags=["logs"])
 
@@ -23,12 +24,14 @@ def get_db():
 @router.get("/", response_model=List[ServiceLogOut])
 def list_logs(
     business_id: int,
+    key: str = "",
     account_id: Optional[int] = None,
     worker_id: Optional[int] = None,
     date_str: Optional[str] = Query(None, alias="date"),
     limit: int = 50,
     db: Session = Depends(get_db)
 ):
+    verify_business_key(business_id, key, db)
     q = db.query(ServiceLog).filter(ServiceLog.business_id == business_id)
 
     if account_id:
@@ -44,8 +47,9 @@ def list_logs(
 
 
 @router.get("/today", response_model=List[ServiceLogOut])
-def today_logs(business_id: int, db: Session = Depends(get_db)):
+def today_logs(business_id: int, key: str = "", db: Session = Depends(get_db)):
     """Get all logs for today."""
+    verify_business_key(business_id, key, db)
     today = date.today().isoformat()
     return db.query(ServiceLog).filter(
         ServiceLog.business_id == business_id,
@@ -54,8 +58,9 @@ def today_logs(business_id: int, db: Session = Depends(get_db)):
 
 
 @router.get("/{log_id}", response_model=ServiceLogOut)
-def get_log(log_id: int, db: Session = Depends(get_db)):
+def get_log(log_id: int, key: str = "", db: Session = Depends(get_db)):
     log = db.query(ServiceLog).filter(ServiceLog.id == log_id).first()
     if not log:
         raise HTTPException(status_code=404, detail="Log not found")
+    verify_business_key(log.business_id, key, db)
     return log

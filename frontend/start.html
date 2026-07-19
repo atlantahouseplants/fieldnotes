@@ -91,6 +91,16 @@
       </div>
       <a id="dash-open" href="#" class="btn" style="text-align:center;text-decoration:none">Open Dashboard →</a>
     </div>
+
+    <div class="card">
+      <div class="step-emoji">👑</div>
+      <h3>5 · Get your daily summary</h3>
+      <p class="hint">Tap this link yourself (don't share it — it's just for the owner). Every evening the bot messages you the day's stops, missed stops, and issues.</p>
+      <div class="linkbox">
+        <input id="ownerlink" readonly>
+        <button class="copybtn" onclick="copyField('ownerlink', this)">Copy</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -125,6 +135,7 @@ async function signup() {
     document.getElementById('success-sub').textContent =
       `${d.business_name} is registered with ${d.accounts_created} account${d.accounts_created === 1 ? '' : 's'}.`;
     document.getElementById('invite').value = d.invite_link;
+    document.getElementById('ownerlink').value = d.owner_link;
     document.getElementById('dash').value = d.dashboard_url;
     document.getElementById('dash-open').href = d.dashboard_url;
     window.scrollTo(0, 0);

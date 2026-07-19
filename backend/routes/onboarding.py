@@ -80,6 +80,7 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
         "business_name": biz.name,
         "accounts_created": len(created),
         "invite_link": f"https://t.me/{BOT_USERNAME}?start=invite_{biz.invite_token}",
+        "owner_link": f"https://t.me/{BOT_USERNAME}?start=owner_{biz.invite_token}",
         "dashboard_url": f"{BASE_URL}/app/dashboard.html?biz={biz.id}&key={biz.dashboard_key}",
     }
 

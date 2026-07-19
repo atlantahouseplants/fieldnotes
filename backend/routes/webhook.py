@@ -84,6 +84,25 @@ async def handle_start(db: Session, telegram_id: str, text: str, chat: dict) -> 
     payload = parts[1].strip() if len(parts) > 1 else ""
     first_name = chat.get("first_name") or chat.get("username") or "there"
 
+    if payload.startswith("owner_"):
+        token = payload[len("owner_"):]
+        biz = db.query(Business).filter(Business.invite_token == token).first()
+        if not biz:
+            await send_message(telegram_id, "⚠️ That owner link isn't valid. Generate a fresh one from your dashboard.")
+            return {"ok": True, "detail": "invalid_owner_link"}
+
+        biz.owner_telegram_id = telegram_id
+        db.commit()
+
+        await send_message(
+            telegram_id,
+            f"👑 You're linked as the owner of <b>{biz.name}</b>!\n\n"
+            f"Every evening I'll send you a daily summary here: stops completed, "
+            f"missed stops, issues flagged, and open actions.\n\n"
+            f"Your dashboard: https://fieldnotesapp.io/app/dashboard.html?biz={biz.id}&key={biz.dashboard_key}"
+        )
+        return {"ok": True, "detail": "owner_linked", "business": biz.name}
+
     if payload.startswith("invite_"):
         token = payload[len("invite_"):]
         biz = db.query(Business).filter(Business.invite_token == token).first()
