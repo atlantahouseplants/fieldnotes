@@ -42,6 +42,7 @@ async def create_checkout_session(plan: str = "team"):
                 "line_items[0][price]": price_id,
                 "line_items[0][quantity]": 1,
                 "subscription_data[trial_period_days]": "30",
+                "payment_method_collection": "if_required",
                 "metadata[plan]": plan,
                 "subscription_data[metadata][plan]": plan,
                 "success_url": "https://fieldnotesapp.io/app/start.html",

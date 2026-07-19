@@ -69,7 +69,7 @@ class WorkerOut(BaseModel):
 
 class ServiceLogOut(BaseModel):
     id: int
-    account_id: int
+    account_id: Optional[int]  # nullable: uncategorized notes save without an account
     worker_id: int
     raw_note: str
     parsed_status: Optional[str]

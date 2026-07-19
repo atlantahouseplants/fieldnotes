@@ -46,7 +46,7 @@ footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; 
 <nav><span class="logo">🌿 FieldNotes</span>
 <div class="nav-links"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="pricing.html">Pricing</a></div></nav>
 <h1>Simple, transparent pricing</h1>
-<p class="subtitle">One plan. Everything included. 14-day free trial. No credit card required.</p>
+<p class="subtitle">Every plan. Everything included. 30-day free trial. No credit card required.</p>
 <div class="plans">
 <div class="plan recommended">
 <div class="badge">BEST VALUE</div>
@@ -57,14 +57,14 @@ footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; 
 <li>Unlimited service logs</li>
 <li>AI-powered note parsing (Grok 4.5)</li>
 <li>Auto-generated action queues</li>
-<li>Daily owner summary email</li>
+<li>Daily owner summary (Telegram)</li>
 <li>Missed stop detection</li>
 <li>Up to 5 workers</li>
 <li>Unlimited accounts & locations</li>
 <li>Web dashboard for owners</li>
-<li>14-day free trial</li>
+<li>30-day free trial</li>
 </ul>
-<a href="#" class="btn btn-primary">Start Free Trial</a>
+<a href="#" class="btn btn-primary" onclick="return checkout('team')">Start Free Trial</a>
 </div>
 <div class="plan">
 <div class="plan-name">Solo</div>
@@ -74,12 +74,12 @@ footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; 
 <li>Unlimited service logs</li>
 <li>AI-powered note parsing</li>
 <li>Auto-generated action queues</li>
-<li>Daily owner summary email</li>
+<li>Daily owner summary (Telegram)</li>
 <li>1 worker (the owner)</li>
 <li>Unlimited accounts</li>
 <li>Web dashboard</li>
-<li>14-day free trial</li></ul>
-<a href="#" class="btn btn-outline">Start Free Trial</a>
+<li>30-day free trial</li></ul>
+<a href="#" class="btn btn-outline" onclick="return checkout('solo')">Start Free Trial</a>
 </div></div>
 <div class="faq"><h2>Frequently asked questions</h2>
 <div class="faq-item"><div class="faq-q">Do my workers need to install an app?</div>
@@ -89,7 +89,18 @@ footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; 
 <div class="faq-item"><div class="faq-q">What if I have more than 5 workers?</div>
 <div class="faq-a">Crew plan at $149/month for up to 15 workers with priority support. Contact us.</div></div>
 <div class="faq-item"><div class="faq-q">How does the free trial work?</div>
-<div class="faq-a">14 days, full access, no credit card required. At the end of the trial, choose a plan or your account pauses — no charges.</div></div>
+<div class="faq-a">30 days, full access, no credit card required. At the end of the trial, choose a plan or your account pauses — no charges.</div></div>
 </div>
 <footer><p>FieldNotes — Built by a service business owner, for service business owners.</p></footer>
-</div></body></html>
+</div>
+<script>
+async function checkout(plan) {
+  try {
+    const r = await fetch('/billing/checkout?plan=' + encodeURIComponent(plan), { method: 'POST' });
+    const d = await r.json();
+    if (d.url) { window.location.href = d.url; } else { alert('Checkout unavailable — please try again.'); }
+  } catch (e) { alert('Checkout unavailable — please try again.'); }
+  return false;
+}
+</script>
+</body></html>

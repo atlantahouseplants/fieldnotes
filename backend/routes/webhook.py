@@ -6,6 +6,10 @@ from fastapi import APIRouter, Request, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
 import json
+import os
+import secrets as _secrets
+
+TELEGRAM_SECRET = os.getenv("TELEGRAM_SECRET", "")
 
 from ..models import SessionLocal, Worker, Account, ServiceLog, Business
 from ..services.parser import parse_note
@@ -45,6 +49,12 @@ async def telegram_webhook(request: Request):
     6. Generate action items
     7. Send confirmation to worker
     """
+    # Verify the update actually came from Telegram (secret_token set at setWebhook)
+    if TELEGRAM_SECRET:
+        sent = request.headers.get("x-telegram-bot-api-secret-token", "")
+        if not _secrets.compare_digest(sent, TELEGRAM_SECRET):
+            raise HTTPException(status_code=403, detail="Forbidden")
+
     body = await request.json()
     
     # Extract message from Telegram update
