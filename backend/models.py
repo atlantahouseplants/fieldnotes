@@ -45,6 +45,7 @@ class Business(Base):
     phone = Column(String)
     tier = Column(String, default="solo")
     dashboard_key = Column(String)  # secret token for dashboard access
+    invite_token = Column(String)   # secret token for worker invite links
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     is_active = Column(Boolean, default=True)
 
