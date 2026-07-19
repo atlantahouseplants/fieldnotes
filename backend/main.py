@@ -7,6 +7,9 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import os
 
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
+
 from .models import init_db
 from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api
 
