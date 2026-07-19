@@ -1,15 +1,19 @@
-from fastapi import APIRouter, Query
-from ..models import SessionLocal, ServiceLog, Account, Worker
+from fastapi import APIRouter, Query, HTTPException
+from ..models import SessionLocal, ServiceLog, Account, Worker, Business
 
 router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
 
 @router.get("/logs")
-def dashboard_logs(limit: int = Query(20)):
+def dashboard_logs(business_id: int = Query(...), key: str = Query(...), limit: int = Query(20)):
     db = SessionLocal()
     try:
-        logs = db.query(ServiceLog).order_by(
-            ServiceLog.timestamp.desc()
-        ).limit(limit).all()
+        biz = db.query(Business).filter(Business.id == business_id).first()
+        if not biz or not biz.dashboard_key or biz.dashboard_key != key:
+            raise HTTPException(status_code=403, detail="Invalid dashboard key")
+
+        logs = db.query(ServiceLog).filter(
+            ServiceLog.business_id == business_id
+        ).order_by(ServiceLog.timestamp.desc()).limit(limit).all()
 
         result = []
         for log in logs:

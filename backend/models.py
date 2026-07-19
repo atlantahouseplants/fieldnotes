@@ -44,6 +44,7 @@ class Business(Base):
     owner_name = Column(String, nullable=False)
     phone = Column(String)
     tier = Column(String, default="solo")
+    dashboard_key = Column(String)  # secret token for dashboard access
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     is_active = Column(Boolean, default=True)
 

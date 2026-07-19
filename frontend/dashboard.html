@@ -102,12 +102,13 @@
 
 <script>
 const API = '';
-const BIZ_ID = new URLSearchParams(window.location.search).get('biz') || '1';
+const BIZ_ID = new URLSearchParams(window.location.search).get('biz') || '2';
+const DASH_KEY = new URLSearchParams(window.location.search).get('key') || '';
 
 document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
 
 async function api(path) {
-  const resp = await fetch(`${API}${path}${path.includes('?') ? '&' : '?'}business_id=${BIZ_ID}`);
+  const resp = await fetch(`${API}${path}${path.includes('?') ? '&' : '?'}business_id=${BIZ_ID}&key=${encodeURIComponent(DASH_KEY)}`);
   if (!resp.ok) throw new Error(`${resp.status}: ${await resp.text()}`);
   return resp.json();
 }
