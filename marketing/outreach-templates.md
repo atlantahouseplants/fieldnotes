@@ -16,7 +16,7 @@ Quick one — I run a service business too (commercial interiorscape, 17 account
 
 My workers text me between stops. "Acme done, need filters." "Big Corp — leaking pipe in conference room."
 
-Those texts used to get buried in my inbox. Now they automatically become service logs, action items, and a daily summary in my inbox.
+Those texts used to get buried and forgotten. Now they automatically become service logs, action items, and a daily summary Telegrammed to me every evening.
 
 I built a simple tool called FieldNotes that does this. Workers don't install anything — they just keep texting like they always do. The system does the rest.
 

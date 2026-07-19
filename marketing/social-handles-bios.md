@@ -18,7 +18,7 @@
 **X / Instagram (160 chars):**
 > Field crews talk. We do the paperwork. Voice notes → service logs, action queues & daily summaries. No apps, no forms, no training. 🎙️
 >
-> Link: fieldnotes.io
+> Link: fieldnotesapp.io
 
 **LinkedIn tagline:**
 > Voice-first service logging for field service teams — no apps, no forms, no training.

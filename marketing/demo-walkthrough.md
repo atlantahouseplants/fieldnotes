@@ -22,7 +22,7 @@ Watch the dashboard update in real-time. New log appears. Action created ("maint
 
 ### Minute 3-4: Owner Value
 Switch to summary view:
-> "End of day, Mike gets this in his inbox. 4 stops. 1 issue. Supply list. Missed-stop check. He reads it in 60 seconds and knows exactly what happened — and what needs to happen tomorrow."
+> "End of day, Mike gets this on Telegram. 4 stops. 1 issue. Supply list. Missed-stop check. He reads it in 60 seconds and knows exactly what happened — and what needs to happen tomorrow."
 
 ### Minute 4-5: The Close
 > "Mike pays $79/mo for this. Less than one missed follow-up call. Your crew already texts you — this just makes those texts useful."

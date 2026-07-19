@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
+import os
 import re
 import secrets
 
@@ -86,6 +87,23 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
 
     db.commit()
     db.refresh(biz)
+
+    # Alert the founder (fire-and-forget — never block a signup on this)
+    founder_chat = os.getenv("FIELDNOTES_FOUNDER_CHAT_ID")
+    bot_token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    if founder_chat and bot_token:
+        try:
+            import httpx
+            plan_info = f" ({biz.tier} trial)" if biz.stripe_subscription_id else " (no checkout yet)"
+            httpx.post(
+                f"https://api.telegram.org/bot{bot_token}/sendMessage",
+                json={"chat_id": founder_chat, "parse_mode": "HTML",
+                      "text": f"🌱 <b>New FieldNotes signup!</b>\n<b>{biz.name}</b> — {biz.owner_name}{plan_info}\n"
+                              f"{len(created)} accounts · biz #{biz.id}"},
+                timeout=5,
+            )
+        except Exception:
+            pass
 
     return {
         "business_id": biz.id,

@@ -19,7 +19,7 @@
 - 3 simple steps:
   1. Worker talks (Telegram, 10 sec)
   2. AI processes (accounts, issues, supplies)
-  3. Owner sees everything (daily email summary)
+  3. Owner sees everything (daily Telegram summary)
 
 ## Slide 4: Product Demo (60 seconds)
 - Live screen share

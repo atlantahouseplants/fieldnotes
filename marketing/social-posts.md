@@ -12,7 +12,7 @@ But you know what they don't hate? Sending a text message.
 
 That's the entire insight behind FieldNotes.
 
-Workers send a 10-second voice note between stops — same app they already use. AI turns it into service logs, action items, and a daily summary in your inbox.
+Workers send a 10-second voice note between stops — same app they already use. AI turns it into service logs, action items, and a daily summary on your phone.
 
 No apps. No forms. No training.
 
@@ -84,7 +84,7 @@ Try it: [link]
 
 ## Post 5: The Beta Invite (LinkedIn, Local Business Groups)
 
-Looking for 5 service business owners to try FieldNotes — free for 3 months.
+Looking for 5 service business owners to try FieldNotes — free for 30 days.
 
 What you need:
 - 2-10 field workers
@@ -129,7 +129,7 @@ The competition isn't other software. It's chaos.
 | Post | Image Idea |
 |------|-----------|
 | Post 1 | Phone screen showing a voice note being sent |
-| Post 2 | Screenshot of the daily summary email |
+| Post 2 | Screenshot of the daily Telegram summary |
 | Post 3 | Photo of Geoff on a job site (authentic!) |
 | Post 4 | Simple graphic: "No apps. No forms. No training." |
 | Post 5 | "5 spots" countdown graphic |
