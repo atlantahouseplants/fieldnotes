@@ -7,6 +7,7 @@
 | X | **[@FieldNotesAppio](https://x.com/FieldNotesAppio)** (display: "Field Notes") | ✅ LIVE Jul 18 — bio + profile pic set |
 | Instagram | **[@fieldnotesappio](https://www.instagram.com/fieldnotesappio/)** | ✅ LIVE Jul 18 |
 | Threads | **[@fieldnotesappio](https://www.threads.com/@fieldnotesappio)** | ✅ LIVE Jul 18 |
+| Facebook | **[FieldNotes](https://www.facebook.com/profile.php?id=61592249453892)** | ✅ LIVE Jul 18 |
 | LinkedIn | **[company/fieldnotesapp](https://www.linkedin.com/company/fieldnotesapp/)** | ✅ LIVE Jul 18 |
 
 *Note: @FieldNotesApp was taken on X — appended "io" matching the domain. Keep the same pattern across platforms for consistency.*
