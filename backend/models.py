@@ -47,6 +47,9 @@ class Business(Base):
     dashboard_key = Column(String)  # secret token for dashboard access
     invite_token = Column(String)   # secret token for worker invite links
     owner_telegram_id = Column(String)  # owner's Telegram chat ID (daily summaries)
+    stripe_customer_id = Column(String)      # Stripe customer (linked via webhook + signup email)
+    stripe_subscription_id = Column(String)  # active Stripe subscription
+    subscription_status = Column(String, default="none")  # none|trialing|active|past_due|canceled
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     is_active = Column(Boolean, default=True)
 
@@ -166,6 +169,18 @@ class RouteEntry(Base):
     is_active = Column(Boolean, default=True)
 
     account = relationship("Account", back_populates="route_entries")
+
+class PendingSubscription(Base):
+    """A Stripe checkout that completed before the business signed up.
+    Linked to a Business at /onboarding/signup by owner_email."""
+    __tablename__ = "pending_subscriptions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String, nullable=False, index=True)  # lowercased customer email
+    plan = Column(String, default="team")  # solo|team|crew
+    stripe_customer_id = Column(String)
+    stripe_subscription_id = Column(String)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 def init_db():
     Base.metadata.create_all(bind=engine)

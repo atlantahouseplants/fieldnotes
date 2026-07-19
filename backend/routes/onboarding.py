@@ -9,7 +9,7 @@ from typing import List, Optional
 import re
 import secrets
 
-from ..models import SessionLocal, Business, Account
+from ..models import SessionLocal, Business, Account, PendingSubscription
 
 router = APIRouter(tags=["onboarding"])
 
@@ -60,6 +60,18 @@ def signup(data: SignupRequest, db: Session = Depends(get_db)):
     )
     db.add(biz)
     db.flush()  # get biz.id
+
+    # Link a Stripe subscription that checked out before signup (matched by email)
+    pend = db.query(PendingSubscription).filter(
+        PendingSubscription.email == data.owner_email.strip().lower()
+    ).order_by(PendingSubscription.created_at.desc()).first()
+    if pend:
+        biz.stripe_customer_id = pend.stripe_customer_id
+        biz.stripe_subscription_id = pend.stripe_subscription_id
+        biz.subscription_status = "trialing"
+        if pend.plan in ("solo", "team", "crew"):
+            biz.tier = pend.plan
+        db.delete(pend)
 
     # Create accounts from pasted list
     created = []
