@@ -8,6 +8,7 @@
 | Instagram | **[@fieldnotesappio](https://www.instagram.com/fieldnotesappio/)** | ✅ LIVE Jul 18 |
 | Threads | **[@fieldnotesappio](https://www.threads.com/@fieldnotesappio)** | ✅ LIVE Jul 18 |
 | Facebook | **[FieldNotes](https://www.facebook.com/profile.php?id=61592249453892)** | ✅ LIVE Jul 18 |
+| TikTok | **[@fieldnotes053](https://www.tiktok.com/@fieldnotes053)** | ✅ LIVE Jul 18 ⚠️ handle off-pattern |
 | LinkedIn | **[company/fieldnotesapp](https://www.linkedin.com/company/fieldnotesapp/)** | ✅ LIVE Jul 18 |
 
 *Note: @FieldNotesApp was taken on X — appended "io" matching the domain. Keep the same pattern across platforms for consistency.*
