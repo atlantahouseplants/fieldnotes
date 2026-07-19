@@ -4,7 +4,7 @@
 
 | Platform | Handle | Status |
 |----------|--------|--------|
-| X | **@FieldNotesAppio** (display: "Field Notes") | ✅ CLAIMED Jul 18 |
+| X | **[@FieldNotesAppio](https://x.com/FieldNotesAppio)** (display: "Field Notes") | ✅ LIVE Jul 18 — bio + profile pic set |
 | Instagram | @fieldnotesappio (match X pattern) | ⬜ to claim |
 | LinkedIn | company page "FieldNotes" → linkedin.com/company/fieldnotesapp | ⬜ to create |
 
