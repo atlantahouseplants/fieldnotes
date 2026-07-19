@@ -2,11 +2,13 @@
 
 ## Handles (priority order)
 
-| Platform | Primary | Fallback 1 | Fallback 2 |
-|----------|---------|------------|------------|
-| X | @FieldNotesApp | @TryFieldNotes | @FieldNotesHQ |
-| Instagram | @fieldnotesapp | @tryfieldnotes | @fieldnoteshq |
-| LinkedIn | company page "FieldNotes" | linkedin.com/company/fieldnotes-app | — |
+| Platform | Handle | Status |
+|----------|--------|--------|
+| X | **@FieldNotesAppio** (display: "Field Notes") | ✅ CLAIMED Jul 18 |
+| Instagram | @fieldnotesappio (match X pattern) | ⬜ to claim |
+| LinkedIn | company page "FieldNotes" → linkedin.com/company/fieldnotesapp | ⬜ to create |
+
+*Note: @FieldNotesApp was taken on X — appended "io" matching the domain. Keep the same pattern across platforms for consistency.*
 
 ## Bios
 
