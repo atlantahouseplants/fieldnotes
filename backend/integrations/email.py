@@ -1,13 +1,16 @@
 """
-FieldNotes — Resend Email Integration
+FieldNotes — Email Integration
 Sends daily summary emails to business owners.
+Transport: AgentMail (primary, fieldnotesapp@agentmail.to) → Resend (fallback).
 """
 import os
 import httpx
 from typing import Optional
 
+AGENTMAIL_API_KEY = os.getenv("AGENTMAIL_API_KEY", "")
+AGENTMAIL_INBOX = os.getenv("AGENTMAIL_INBOX", "fieldnotesapp@agentmail.to")
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
-FROM_EMAIL = "FieldNotes <fieldnotes@fieldnotes.ai>"
+FROM_EMAIL = f"FieldNotes <{AGENTMAIL_INBOX}>"
 
 
 async def send_email(
@@ -16,29 +19,56 @@ async def send_email(
     html_body: str,
     reply_to: Optional[str] = None
 ) -> dict:
-    """Send an email via Resend API."""
-    if not RESEND_API_KEY:
-        return {"ok": False, "error": "RESEND_API_KEY not configured"}
-    
-    payload = {
-        "from": FROM_EMAIL,
-        "to": [to_email],
-        "subject": subject,
-        "html": html_body
-    }
-    if reply_to:
-        payload["reply_to"] = reply_to
-    
-    async with httpx.AsyncClient(timeout=10) as client:
-        resp = await client.post(
-            "https://api.resend.com/emails",
-            headers={
-                "Authorization": f"Bearer {RESEND_API_KEY}",
-                "Content-Type": "application/json"
-            },
-            json=payload
-        )
-        return resp.json()
+    """Send an email — AgentMail first, Resend as fallback."""
+    if AGENTMAIL_API_KEY:
+        payload = {
+            "to": [to_email],
+            "subject": subject,
+            "html": html_body,
+            "labels": ["fieldnotes", "daily-summary"],
+        }
+        if reply_to:
+            payload["reply_to"] = [reply_to]
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.post(
+                f"https://api.agentmail.to/v0/inboxes/{AGENTMAIL_INBOX}/messages/send",
+                headers={
+                    "Authorization": f"Bearer {AGENTMAIL_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json=payload
+            )
+            if resp.status_code < 300:
+                return {"ok": True, "provider": "agentmail", "result": resp.json()}
+            # fall through to Resend on AgentMail failure
+            agentmail_err = f"{resp.status_code}: {resp.text[:200]}"
+    else:
+        agentmail_err = "AGENTMAIL_API_KEY not configured"
+
+    if RESEND_API_KEY:
+        payload = {
+            "from": FROM_EMAIL,
+            "to": [to_email],
+            "subject": subject,
+            "html": html_body
+        }
+        if reply_to:
+            payload["reply_to"] = reply_to
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.post(
+                "https://api.resend.com/emails",
+                headers={
+                    "Authorization": f"Bearer {RESEND_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json=payload
+            )
+            out = resp.json()
+            out["ok"] = resp.status_code < 300
+            out["provider"] = "resend"
+            return out
+
+    return {"ok": False, "error": f"no working email provider (agentmail: {agentmail_err}; resend: {'not configured' if not RESEND_API_KEY else 'failed'})"}
 
 
 async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
