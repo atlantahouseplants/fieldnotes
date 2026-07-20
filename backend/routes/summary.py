@@ -143,8 +143,9 @@ async def email_summary(business_id: int, key: str = "", db: Session = Depends(g
 async def send_daily(secret: str = "", business_id: Optional[int] = None,
                      db: Session = Depends(get_db)):
     """
-    Nightly cron entry point: Telegram the daily summary to each owner
-    who has linked their Telegram (owner_telegram_id set).
+    Nightly cron entry point: daily summary to each active business.
+    EMAIL is the primary channel (owner_email, via AgentMail);
+    Telegram is a secondary mirror when owner_telegram_id is linked.
     Protected by FIELDNOTES_CRON_SECRET (env). Optionally scope to one business.
     """
     import secrets as _secrets
@@ -153,22 +154,42 @@ async def send_daily(secret: str = "", business_id: Optional[int] = None,
 
     q = db.query(Business).filter(
         Business.is_active == True,
-        Business.owner_telegram_id.isnot(None),
-        Business.owner_telegram_id != ""
+        (Business.owner_email.isnot(None)) | (Business.owner_telegram_id.isnot(None))
     )
     if business_id:
         q = q.filter(Business.id == business_id)
 
     sent, failed = [], []
     for biz in q.all():
+        channels, errors = [], []
         try:
             summary = _build_today_summary(db, biz.id)
-            result = await send_message(biz.owner_telegram_id,
-                                        _format_summary_message(summary))
-            if result.get("ok"):
-                sent.append(biz.name)
+
+            # PRIMARY: email
+            if biz.owner_email:
+                r = await send_daily_summary(
+                    to_email=biz.owner_email,
+                    summary_data=summary.model_dump()
+                )
+                if r.get("ok"):
+                    channels.append("email")
+                else:
+                    errors.append(f"email: {r.get('error', r)}")
+
+            # SECONDARY: Telegram mirror
+            if biz.owner_telegram_id:
+                r = await send_message(biz.owner_telegram_id,
+                                       _format_summary_message(summary))
+                if r.get("ok"):
+                    channels.append("telegram")
+                else:
+                    errors.append(f"telegram: {r}")
+
+            if channels:
+                sent.append({"business": biz.name, "channels": channels,
+                             **({"warnings": errors} if errors else {})})
             else:
-                failed.append({"business": biz.name, "error": result})
+                failed.append({"business": biz.name, "error": errors or "no channel"})
         except Exception as e:
             failed.append({"business": biz.name, "error": str(e)})
 
