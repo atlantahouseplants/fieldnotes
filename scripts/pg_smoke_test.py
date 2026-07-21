@@ -162,11 +162,12 @@ def main():
     sock = socket.socket(); sock.bind(("127.0.0.1", 0))
     port = sock.getsockname()[1]; sock.close()
     print(f"[smoke] booting uvicorn on :{port} for /health check ...")
+    srvlog = tempfile.NamedTemporaryFile(prefix="fn_smoke_uvicorn_", suffix=".log", delete=False)
     server = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "backend.main:app",
          "--host", "127.0.0.1", "--port", str(port)],
         env=env, cwd=str(REPO_ROOT),
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        stdout=srvlog, stderr=subprocess.STDOUT,
     )
     try:
         health = None
@@ -179,6 +180,8 @@ def main():
                 time.sleep(0.5)
         if not health or health.get("db") != "ok":
             print(f"[smoke] FAILED — /health did not report db=ok: {health}")
+            srvlog.flush()
+            print(open(srvlog.name).read()[-2500:])
             sys.exit(1)
         print(f"[smoke] /health against PG: {health}")
     finally:

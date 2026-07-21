@@ -10,8 +10,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
 
-from .models import init_db, SessionLocal
-from sqlalchemy import text
+from .models import init_db, SessionLocal, engine, DATABASE_URL
+from sqlalchemy import text, inspect
+from pathlib import Path
 from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api
 
 app = FastAPI(
@@ -46,10 +47,36 @@ if os.path.exists(frontend_dir):
     app.mount("/app", StaticFiles(directory=frontend_dir, html=True), name="frontend")
 
 
+def _alembic_config():
+    """Programmatic Alembic config — env.py resolves DATABASE_URL the same way the app does."""
+    from alembic.config import Config
+    cfg = Config()
+    cfg.set_main_option("script_location", str(Path(__file__).resolve().parent.parent / "alembic"))
+    return cfg
+
+
 @app.on_event("startup")
 async def startup():
-    """Initialize database on startup."""
-    init_db()
+    """Schema management: Alembic owns Postgres; create_all is fine for local SQLite.
+
+    Three states handled uniformly:
+      - fresh DB (no tables)        → alembic upgrade head (PG) / create_all (sqlite)
+      - legacy DB (tables, no alembic_version) → stamp head, then upgrade
+      - migrated DB                 → upgrade head (applies any pending migrations)
+    """
+    from alembic import command
+    insp = inspect(engine)
+    has_tables = insp.has_table("businesses")
+    has_alembic = insp.has_table("alembic_version")
+    if DATABASE_URL.startswith("sqlite"):
+        init_db()
+        if has_tables and not has_alembic:
+            command.stamp(_alembic_config(), "head")
+    else:
+        if has_tables and not has_alembic:
+            # PG created by pre-Alembic create_all — adopt it instead of crashing on re-CREATE
+            command.stamp(_alembic_config(), "head")
+        command.upgrade(_alembic_config(), "head")
 
 
 @app.get("/")
