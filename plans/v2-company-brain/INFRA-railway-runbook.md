@@ -89,7 +89,7 @@ CNAME `fieldnotesapp.io` → `<your>.up.railway.app` + add the custom domain in 
 ## STOP — Task 6 gates (before ANY webhook flip)
 
 - [ ] Railway app verified serving migrated data (Step 7)
-- [ ] **Only then:** Telegram `setWebhook` → Railway URL (tunnel webhook dies immediately — this is the single-server rule, no overlap)
+- [ ] **Only then:** Telegram `setWebhook` → Railway URL — use `python3 scripts/cutover_telegram_webhook.py --railway-url <url>` (pre-flight health check, flip, post-flip verify, `--rollback` built in; `--check-only` safe anytime)
 - [ ] Stripe dashboard: endpoint `we_1Tv3KaI5nMxajhKyOcOt8D1V` URL → Railway URL (same signing secret)
 - [ ] Keep tunnel processes alive 24h as fallback, but NOT serving webhooks
 - [ ] UptimeRobot (Task 7): monitor `https://fieldnotesapp.io/health` every 5 min → alert Geoff
