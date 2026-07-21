@@ -16,6 +16,7 @@ from ..services.parser import parse_note
 from ..services.actions import create_action, bulk_create_actions
 from ..services.action_queue import add_action as queue_add
 from ..services.ahp_pipeline import run_pipeline
+from ..services.qa import looks_like_question, answer_question
 from ..integrations.telegram import send_confirmation, send_message
 
 router = APIRouter(prefix="/webhook", tags=["webhook"])
@@ -174,7 +175,25 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
         else:
             return {"detail": "unknown_worker", "telegram_id": telegram_id}
 
-    business_id = worker.business_id
+    business_id = int(worker.business_id)
+
+    # ── Ask FieldNotes: questions get answers, not service logs ──
+    if looks_like_question(text):
+        qa = await answer_question(db, business_id, worker, text)
+        await send_message(telegram_id, qa["answer"])
+        if is_demo:
+            await send_message(
+                telegram_id,
+                "🧪 <i>Demo mode — answered from our sample business, Precision HVAC. "
+                "Want this for your crew? https://fieldnotesapp.io</i>"
+            )
+        return {
+            "worker": worker.name,
+            "intent": "question",
+            "answer": qa["answer"],
+            "sources": qa["sources"],
+            "clarification": qa["clarification"],
+        }
 
     # 2. Get known accounts for matching
     accounts = db.query(Account).filter(

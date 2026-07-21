@@ -4,12 +4,12 @@
 
 | Phase | Name | Status | Owner agent | Last touched |
 |-------|------|--------|-------------|--------------|
-| P1 | Q&A Assistant ("Ask FieldNotes") | 🔨 IN PROGRESS | hermes-tui-session (Jul 20) | 2026-07-20 |
+| P1 | Q&A Assistant ("Ask FieldNotes") | ✅ DONE (Jul 20) — E2E verified, live in prod | hermes-tui-session | 2026-07-20 |
 | P2 | Rich Client Import (CSV) | 🔲 NOT STARTED | — | — |
 | P3 | SMS Channel (AgentPhone) | ⏳ BLOCKED — 10DLC in review (filed 2026-07-20) | — | — |
 | P4 | Route Awareness (schedules) | 🔲 NOT STARTED | — | — |
 | P5 | Tiering & Feature Gates | 🔲 NOT STARTED | — | — |
-| INFRA | Paying-Client Infrastructure | 🔨 IN PROGRESS (tasks 1-3 only: /health, DATABASE_URL, ILIKE audit) | hermes-tui-session (Jul 20) | 2026-07-20 |
+| INFRA | Paying-Client Infrastructure | 🔨 tasks 1-3 ✅ (/health live, DATABASE_URL, PG audit) · tasks 4-9 need Geoff cost approval (~$12/mo) | hermes-tui-session | 2026-07-20 |
 
 Legend: 🔲 not started · 🔨 in progress · ✅ done · ⏳ blocked
 

@@ -10,11 +10,12 @@ from sqlalchemy import create_engine, Column, String, Integer, DateTime, Boolean
 from sqlalchemy.orm import DeclarativeBase, relationship, sessionmaker
 import enum
 
-# Determine the base directory of this file
-BASE_DIR = Path(__file__).resolve().parent
+# Determine the repo root (this file lives in backend/)
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Database URL from environment variable, default to SQLite
-# Ensure SQLite path is absolute to avoid CWD issues
+# Ensure SQLite path is absolute to avoid CWD issues — anchored at the REPO ROOT
+# so the existing fieldnotes.db (created when uvicorn ran from the repo root) is preserved.
 _DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///fieldnotes.db")
 if _DATABASE_URL.startswith("sqlite:///"):
     db_file = Path(_DATABASE_URL.replace("sqlite:///", ""))
