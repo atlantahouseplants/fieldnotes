@@ -17,6 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Ensure SQLite path is absolute to avoid CWD issues — anchored at the REPO ROOT
 # so the existing fieldnotes.db (created when uvicorn ran from the repo root) is preserved.
 _DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///fieldnotes.db")
+# Normalize legacy "postgres://" scheme (Heroku/Railway-style) — SQLAlchemy 2.0 requires "postgresql://"
+if _DATABASE_URL.startswith("postgres://"):
+    _DATABASE_URL = "postgresql://" + _DATABASE_URL[len("postgres://"):]
 if _DATABASE_URL.startswith("sqlite:///"):
     db_file = Path(_DATABASE_URL.replace("sqlite:///", ""))
     if not db_file.is_absolute():

@@ -1,0 +1,3 @@
+# Local dev/test only — NOT deployed
+pgserver==0.1.*
+pytest==9.*
