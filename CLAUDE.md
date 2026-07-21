@@ -1,7 +1,10 @@
 # FieldNotes — Build Context
 
+## ACTIVE PROGRAM: v2 "Company Brain" (as of 2026-07-21)
+**Read `plans/v2-company-brain/README.md` BEFORE any new work.** Status board, phase docs (P1 Q&A, P2 CSV import, P3 SMS, P4 routes, P5 tiering, INFRA managed-host migration), and multi-agent coordination rules live there. Claim phases on the status board, git pull first, commit after every session.
+
 ## What We're Building
-FieldNotes: A SaaS that lets field service workers dictate voice/text notes between stops via Telegram. AI processes them into structured service logs, action queues, and daily owner summaries. No apps, no forms, no training.
+FieldNotes: A SaaS that lets field service workers dictate voice/text notes between stops via Telegram. AI processes them into structured service logs, action queues, and daily owner summaries. No apps, no forms, no training. v2 adds the "company brain": workers ASK questions (gate codes, history, routes) and get answers from the tenant's own data.
 
 ## Tech Stack
 - **Backend:** Python + FastAPI
