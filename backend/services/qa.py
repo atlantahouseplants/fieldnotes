@@ -189,6 +189,10 @@ def _route_intent(question: str):
     return None
 
 
+# Public alias — webhook.py uses this for P5 feature gating
+route_intent = _route_intent
+
+
 def _route_answer(db: Session, business_id: int, kind: str, target) -> dict:
     from .schedule import route_for_date, missed_this_week, format_route_message
     if kind == "route":
@@ -302,7 +306,10 @@ async def answer_question(db: Session, business_id: int, worker: Optional[Worker
         return {"answer": answer, "sources": [a.name for a in matched], "clarification": True}
 
     has_data = bool(ctx["logs"] or ctx["open_actions"] or any(
-        v for a in ctx["accounts"] for v in (a.get("notes"), a.get("address"), a.get("contact_name"))
+        v for a in ctx["accounts"] for v in (
+            a.get("notes"), a.get("address"), a.get("contact_name"), a.get("contact_phone"),
+            a.get("gate_code"), a.get("access_notes"), a.get("schedule"),
+        )
     ))
 
     sources = ([a["name"] for a in ctx["accounts"][:3]]

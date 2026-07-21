@@ -6,88 +6,147 @@
 <title>FieldNotes — Pricing</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
-.container { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
-.logo { font-size: 1.4rem; font-weight: 700; color: #4ade80; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #1A1D21; color: #e8e8e8; line-height: 1.6; }
+.container { max-width: 1080px; margin: 0 auto; padding: 48px 24px 60px; }
+nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 64px; }
+.logo { font-size: 1.4rem; font-weight: 700; color: #C6F135; }
 .nav-links { display: flex; gap: 24px; }
 .nav-links a { color: #999; text-decoration: none; font-size: 0.95rem; }
 .nav-links a:hover { color: #fff; }
-h1 { font-size: 2.5rem; margin-bottom: 16px; color: #fff; }
-.subtitle { color: #888; font-size: 1.1rem; margin-bottom: 60px; }
-.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.plan { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 32px; }
-.plan.recommended { border-color: #4ade80; position: relative; }
-.badge { position: absolute; top: -12px; right: 24px; background: #4ade80; color: #0a0a0a; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-.plan-name { font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
-.plan-price { font-size: 2.8rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-.plan-price span { font-size: 1rem; color: #666; font-weight: 400; }
-.plan-desc { color: #888; margin-bottom: 24px; font-size: 0.95rem; }
-.plan ul { list-style: none; margin-bottom: 32px; }
-.plan li { padding: 8px 0; color: #bbb; font-size: 0.95rem; border-bottom: 1px solid #1a1a1a; }
+h1 { font-size: 2.5rem; margin-bottom: 14px; color: #fff; }
+.subtitle { color: #9aa0a6; font-size: 1.1rem; margin-bottom: 48px; }
+.subtitle b { color: #C6F135; font-weight: 600; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.plan { background: #22262b; border: 1px solid #2e3339; border-radius: 14px; padding: 30px 26px; display: flex; flex-direction: column; }
+.plan.recommended { border-color: #C6F135; position: relative; }
+.badge { position: absolute; top: -13px; right: 20px; background: #C6F135; color: #1A1D21; padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.4px; }
+.plan-name { font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+.plan-price { font-size: 2.6rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.plan-price span { font-size: 0.95rem; color: #777; font-weight: 400; }
+.plan-desc { color: #9aa0a6; margin-bottom: 22px; font-size: 0.92rem; min-height: 44px; }
+.plan ul { list-style: none; margin-bottom: 28px; flex: 1; }
+.plan li { padding: 7px 0; color: #c4c9cf; font-size: 0.92rem; border-bottom: 1px solid #2a2f35; }
 .plan li:last-child { border-bottom: none; }
-.plan li:before { content: "\2713 "; color: #4ade80; font-weight: 700; }
-.btn { display: block; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; font-size: 1rem; text-decoration: none; }
-.btn-primary { background: #4ade80; color: #0a0a0a; }
-.btn-primary:hover { background: #22c55e; }
-.btn-outline { background: transparent; color: #fff; border: 1px solid #333; }
-.btn-outline:hover { border-color: #4ade80; }
-.faq { margin-top: 80px; }
-.faq h2 { font-size: 1.8rem; color: #fff; margin-bottom: 32px; }
-.faq-item { margin-bottom: 24px; }
-.faq-q { color: #fff; font-weight: 600; margin-bottom: 8px; }
-.faq-a { color: #888; font-size: 0.95rem; }
-footer { margin-top: 80px; text-align: center; color: #555; font-size: 0.85rem; }
-@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+.plan li:before { content: "\2713 "; color: #C6F135; font-weight: 700; }
+.plan li.no { color: #5c6167; }
+.plan li.no:before { content: "\2014 "; color: #454a50; }
+.plan li.new { color: #e8e8e8; }
+.plan li.new:after { content: "  NEW"; color: #C6F135; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px; }
+.btn { display: block; text-align: center; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 0.98rem; text-decoration: none; border: none; cursor: pointer; }
+.btn-primary { background: #C6F135; color: #1A1D21; }
+.btn-primary:hover { background: #d4f75a; }
+.btn-outline { background: transparent; color: #fff; border: 1px solid #3a4046; }
+.btn-outline:hover { border-color: #C6F135; }
+.matrix { margin-top: 64px; overflow-x: auto; }
+.matrix h2 { font-size: 1.6rem; color: #fff; margin-bottom: 20px; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { text-align: left; padding: 12px 14px; font-size: 0.92rem; border-bottom: 1px solid #2a2f35; }
+th { color: #9aa0a6; font-weight: 600; }
+td { color: #c4c9cf; }
+td.c, th.c { text-align: center; }
+.yes { color: #C6F135; font-weight: 700; }
+.no { color: #454a50; }
+.beta { margin-top: 48px; background: #22262b; border: 1px solid #C6F135; border-radius: 12px; padding: 24px 28px; }
+.beta b { color: #C6F135; }
+.beta p { color: #c4c9cf; font-size: 0.95rem; }
+.faq { margin-top: 64px; }
+.faq h2 { font-size: 1.6rem; color: #fff; margin-bottom: 28px; }
+.faq-item { margin-bottom: 22px; }
+.faq-q { color: #fff; font-weight: 600; margin-bottom: 6px; }
+.faq-a { color: #9aa0a6; font-size: 0.93rem; }
+footer { margin-top: 72px; text-align: center; color: #5c6167; font-size: 0.85rem; }
+@media (max-width: 860px) { .plans { grid-template-columns: 1fr; } .plan-desc { min-height: 0; } }
 </style>
 </head>
 <body>
 <div class="container">
 <nav><span class="logo">🌿 FieldNotes</span>
 <div class="nav-links"><a href="index.html">Home</a><a href="demo.html">Demo</a><a href="pricing.html">Pricing</a></div></nav>
-<h1>Simple, transparent pricing</h1>
-<p class="subtitle">Every plan. Everything included. 30-day free trial. No credit card required.</p>
+
+<h1>Never call the office again.</h1>
+<p class="subtitle">Your crew texts FieldNotes — it logs the work <b>and answers from your own client data</b>. Every plan starts with a 30-day free trial. No credit card required.</p>
+
 <div class="plans">
-<div class="plan recommended">
-<div class="badge">BEST VALUE</div>
-<div class="plan-name">Team</div>
-<div class="plan-price">$79<span>/month</span></div>
-<p class="plan-desc">For service businesses with up to 5 field workers.</p>
-<ul>
-<li>Unlimited service logs</li>
-<li>AI-powered note parsing (Grok 4.5)</li>
-<li>Auto-generated action queues</li>
-<li>Daily owner summary (Telegram)</li>
-<li>Missed stop detection</li>
-<li>Up to 5 workers</li>
-<li>Unlimited accounts & locations</li>
-<li>Web dashboard for owners</li>
-<li>30-day free trial</li>
-</ul>
-<a href="#" class="btn btn-primary" onclick="return checkout('team')">Start Free Trial</a>
-</div>
 <div class="plan">
 <div class="plan-name">Solo</div>
 <div class="plan-price">$39<span>/month</span></div>
 <p class="plan-desc">For owner-operators running routes solo.</p>
 <ul>
-<li>Unlimited service logs</li>
+<li>Unlimited service logs (voice or text)</li>
 <li>AI-powered note parsing</li>
 <li>Auto-generated action queues</li>
-<li>Daily owner summary (Telegram)</li>
-<li>1 worker (the owner)</li>
-<li>Unlimited accounts</li>
+<li>Daily owner summary (email + Telegram)</li>
+<li>Missed-stop detection</li>
 <li>Web dashboard</li>
-<li>30-day free trial</li></ul>
+<li>1 worker (the owner)</li>
+<li class="no">Ask FieldNotes Q&amp;A</li>
+<li class="no">Client list import</li>
+<li class="no">Route awareness &amp; morning push</li>
+</ul>
 <a href="#" class="btn btn-outline" onclick="return checkout('solo')">Start Free Trial</a>
-</div></div>
+</div>
+
+<div class="plan recommended">
+<div class="badge">MOST POPULAR</div>
+<div class="plan-name">Team</div>
+<div class="plan-price">$79<span>/month</span></div>
+<p class="plan-desc">For crews up to 5 workers. The company brain in the truck.</p>
+<ul>
+<li>Everything in Solo</li>
+<li class="new">Ask FieldNotes — "gate code for the Johnson house?" answered from YOUR client data</li>
+<li class="new">Client list import (CSV or paste — gate codes, contacts, schedules)</li>
+<li>Up to 5 workers</li>
+<li>Unlimited accounts &amp; locations</li>
+<li class="no">Route awareness &amp; morning push</li>
+<li class="no">SMS channel</li>
+</ul>
+<a href="#" class="btn btn-primary" onclick="return checkout('team')">Start Free Trial</a>
+</div>
+
+<div class="plan">
+<div class="plan-name">Crew</div>
+<div class="plan-price">$149<span>/month</span></div>
+<p class="plan-desc">For bigger crews that run tight routes.</p>
+<ul>
+<li>Everything in Team</li>
+<li class="new">Route awareness — "what's my route today?" "did we skip anyone?"</li>
+<li class="new">Morning route push to every worker, 7am sharp</li>
+<li class="new">SMS channel — workers text notes, no app at all <i>(when carrier approval clears)</i></li>
+<li>Unlimited workers</li>
+<li>Priority support</li>
+</ul>
+<a href="#" class="btn btn-outline" onclick="return checkout('crew')">Start Free Trial</a>
+</div>
+</div>
+
+<div class="matrix">
+<h2>Compare plans</h2>
+<table>
+<tr><th>Feature</th><th class="c">Solo $39</th><th class="c">Team $79</th><th class="c">Crew $149</th></tr>
+<tr><td>Voice/text service logging</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>AI parsing + action queues</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>Daily owner summaries</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>Web dashboard</td><td class="c yes">✓</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>Ask FieldNotes (Q&amp;A over your client data)</td><td class="c no">—</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>Client list import (gate codes, contacts, schedules)</td><td class="c no">—</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+<tr><td>Route awareness + missed-stop answers</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+<tr><td>Morning route push</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+<tr><td>SMS channel</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+<tr><td>Workers</td><td class="c">1</td><td class="c">5</td><td class="c">Unlimited</td></tr>
+</table>
+</div>
+
+<div class="beta">
+<p>🚀 <b>Beta offer:</b> our first 10 customers use code <b>BETA49</b> at checkout for <b>$30 off forever</b> — and beta tenants get every feature unlocked while we fine-tune the plans.</p>
+</div>
+
 <div class="faq"><h2>Frequently asked questions</h2>
 <div class="faq-item"><div class="faq-q">Do my workers need to install an app?</div>
-<div class="faq-a">No. They use Telegram — the messaging app already on their phone. Zero training, zero installs.</div></div>
+<div class="faq-a">No. They use Telegram — the messaging app already on their phone. Zero training, zero installs. (SMS coming on Crew.)</div></div>
+<div class="faq-item"><div class="faq-q">What is "Ask FieldNotes"?</div>
+<div class="faq-a">Your crew asks the bot anything — gate codes, access notes, when a client was last serviced, open issues — and it answers from YOUR accounts and service history. The product gets smarter the more you use it.</div></div>
 <div class="faq-item"><div class="faq-q">Can I cancel anytime?</div>
 <div class="faq-a">Yes. No contracts, no cancellation fees. You own your data — export anytime.</div></div>
-<div class="faq-item"><div class="faq-q">What if I have more than 5 workers?</div>
-<div class="faq-a">Crew plan at $149/month for up to 15 workers with priority support. Contact us.</div></div>
 <div class="faq-item"><div class="faq-q">How does the free trial work?</div>
 <div class="faq-a">30 days, full access, no credit card required. At the end of the trial, choose a plan or your account pauses — no charges.</div></div>
 </div>

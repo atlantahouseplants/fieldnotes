@@ -54,8 +54,8 @@ def main():
 
         # Seed tenant: business + worker + scheduled accounts, directly in DB
         db = sqlite3.connect(DB_PATH)
-        db.execute("INSERT INTO businesses (name, slug, owner_email, owner_name, owner_telegram_id, dashboard_key, invite_token, subscription_status, tier, is_active, created_at) "
-                   "VALUES ('Route Co','route-co','r@r.com','Rick','999001','k','it','active','team',1,datetime('now'))")
+        db.execute("INSERT INTO businesses (name, slug, owner_email, owner_name, owner_telegram_id, dashboard_key, invite_token, subscription_status, tier, beta_all_access, is_active, created_at) "
+                   "VALUES ('Route Co','route-co','r@r.com','Rick','999001','k','it','active','crew',0,1,datetime('now'))")
         db.execute("INSERT INTO workers (business_id, name, telegram_id, is_active, created_at) "
                    "VALUES (1,'Rick','999001',1,datetime('now'))")
         today = date.today()
@@ -116,8 +116,8 @@ def main():
 
         # 7. tenant isolation
         db = sqlite3.connect(DB_PATH)
-        db.execute("INSERT INTO businesses (name, slug, owner_email, owner_name, dashboard_key, invite_token, subscription_status, tier, is_active, created_at) "
-                   "VALUES ('Other Co','other-co','o@o.com','Olive','k2','it2','active','team',1,datetime('now'))")
+        db.execute("INSERT INTO businesses (name, slug, owner_email, owner_name, dashboard_key, invite_token, subscription_status, tier, beta_all_access, is_active, created_at) "
+                   "VALUES ('Other Co','other-co','o@o.com','Olive','k2','it2','active','crew',0,1,datetime('now'))")
         db.execute("INSERT INTO workers (business_id, name, telegram_id, is_active, created_at) "
                    "VALUES (2,'Olive','999002',1,datetime('now'))")
         db.commit(); db.close()

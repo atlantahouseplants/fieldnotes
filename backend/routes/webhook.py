@@ -16,10 +16,30 @@ from ..services.parser import parse_note
 from ..services.actions import create_action, bulk_create_actions
 from ..services.action_queue import add_action as queue_add
 from ..services.ahp_pipeline import run_pipeline
-from ..services.qa import looks_like_question, answer_question
+from ..services.qa import looks_like_question, answer_question, route_intent
 from ..integrations.telegram import send_confirmation, send_message
+from ..deps import has_feature, upgrade_message
 
 router = APIRouter(prefix="/webhook", tags=["webhook"])
+
+
+def _record_gated_attempt(db: Session, business_id: int, worker, question: str, feature: str) -> None:
+    """P5 telemetry: record gated feature attempts as upgrade-intent signal.
+    Never let telemetry break the reply path."""
+    from ..models import QaEvent
+    try:
+        ev = QaEvent(
+            business_id=business_id,
+            worker_id=worker.id if worker else None,
+            question=question,
+            answer=f"[GATED:{feature}] upgrade prompt shown",
+            sources=json.dumps({"gated": True, "feature": feature}),
+            created_at=datetime.utcnow(),
+        )
+        db.add(ev)
+        db.commit()
+    except Exception:
+        db.rollback()
 
 
 def get_db():
@@ -179,6 +199,22 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
 
     # ── Ask FieldNotes: questions get answers, not service logs ──
     if looks_like_question(text):
+        # P5: feature gate — route questions need Crew, other Q&A needs Team.
+        # Beta tenants (beta_all_access) pass everything. Gated attempts are
+        # recorded in qa_events as upgrade-intent signal (no answer given).
+        biz = db.query(Business).filter(Business.id == business_id).first()
+        feature = "routes" if route_intent(text) else "qa"
+        if biz and not has_feature(biz, feature):
+            msg = upgrade_message(feature, biz)
+            await send_message(telegram_id, msg)
+            _record_gated_attempt(db, business_id, worker, text, feature)
+            return {
+                "worker": worker.name,
+                "intent": "question",
+                "gated": True,
+                "feature": feature,
+                "answer": msg,
+            }
         qa = await answer_question(db, business_id, worker, text)
         await send_message(telegram_id, qa["answer"])
         if is_demo:

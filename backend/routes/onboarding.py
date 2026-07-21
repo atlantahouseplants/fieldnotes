@@ -159,6 +159,10 @@ async def import_csv(request: Request, db: Session = Depends(get_db)):
 
     biz = verify_business_key(business_id, key, db)
 
+    # P5: CSV import is a Team-tier feature
+    from ..deps import require_feature
+    require_feature(biz, "csv_import")
+
     headers, rows = parse_csv_text(csv_text)
     if not headers or not rows:
         raise HTTPException(status_code=400, detail="No CSV rows found — need a header row plus at least one data row")

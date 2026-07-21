@@ -223,8 +223,13 @@ async def route_push(secret: str = "", business_id: Optional[int] = None,
 
     today = date.today()
     sent, skipped = [], []
+    from ..deps import has_feature
     for biz in q.all():
         try:
+            # P5: morning route push is a Crew-tier feature
+            if not has_feature(biz, "morning_push"):
+                skipped.append({"business": biz.name, "reason": "morning_push gated (tier)"})
+                continue
             stops = route_for_date(db, biz.id, today)
             if not stops:
                 skipped.append({"business": biz.name, "reason": "no stops today"})
