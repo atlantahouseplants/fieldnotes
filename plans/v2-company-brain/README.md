@@ -11,7 +11,7 @@
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
 | P6 | Dashboard Home Base (owner UX) | 🔲 NOT STARTED — build P6a at 4 PM session Jul 21 | — | — |
 | P7 | Account Tasks (delegation loop) | 🔲 NOT STARTED — builds on P6a (needs account page) | — | — |
-| INFRA | Paying-Client Infrastructure | 🔨 tasks 1-3 ⚠️ STALE (pre-P2/P4/P5 schema) — REDOING: Alembic baseline + migration script against current models · tasks 4-9 need Geoff cost approval (~$12/mo) | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
+| INFRA | Paying-Client Infrastructure | 🔨 tasks 1,2,3,5 ✅ REDONE vs current schema (DATABASE_URL+PG smoke, Alembic baseline 8 tables, SQLite→PG migration verified on real data, /health 503-hardened) · tasks 4,6,7,8 await Geoff cost approval + Railway login | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
 
 Also read: `USE-CASE-MAP.md` (every workflow moment, tagged live/planned/concept).
 

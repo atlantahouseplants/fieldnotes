@@ -85,20 +85,18 @@ async def root():
     return RedirectResponse(url="/app/index.html")
 
 
-@app.get("/health", status_code=200)
+@app.get("/health")
 async def health(response: Response):
-    db_status = "down"
-    db = None  # Initialize db to None
+    """Liveness + readiness: 200 only when the DB actually answers. 503 otherwise."""
+    db = None
     try:
         db = SessionLocal()
-        # Perform a trivial query to check connectivity
         db.execute(text("SELECT 1"))
-        db_status = "ok"
+        return {"status": "healthy", "db": "ok"}
     except Exception as e:
-        print(f"Database connection failed: {e}")
-        response.status_code = 500
+        print(f"/health DB check failed: {e}")
+        response.status_code = 503
+        return {"status": "unhealthy", "db": "down"}
     finally:
-        if db: # Only close if db was successfully created
+        if db:
             db.close()
-
-    return {"status": "healthy", "db": db_status}
