@@ -213,16 +213,6 @@ class QaEvent(Base):
     business = relationship("Business", back_populates="qa_events")
     worker = relationship("Worker", back_populates="qa_events")
 
-# Add relationship to Business model
-Base.metadata.tables["businesses"].columns.append(
-    relationship("QaEvent", back_populates="business", cascade="all, delete-orphan")
-)
-
-# Add relationship to Worker model
-Base.metadata.tables["workers"].columns.append(
-    relationship("QaEvent", back_populates="worker")
-)
-
 def init_db():
     Base.metadata.create_all(bind=engine)
 
