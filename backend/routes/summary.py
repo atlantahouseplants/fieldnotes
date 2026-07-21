@@ -200,3 +200,54 @@ def _get_week_type() -> str:
     """Determine if this is Week A or Week B based on ISO week number."""
     week_num = date.today().isocalendar()[1]
     return "week_a" if week_num % 2 == 0 else "week_b"
+
+
+# --- P4: morning route push ---
+
+@router.post("/route-push")
+async def route_push(secret: str = "", business_id: Optional[int] = None,
+                     db: Session = Depends(get_db)):
+    """
+    Morning cron entry point: today's route to every active worker (Telegram),
+    owner gets the same message. Protected by FIELDNOTES_CRON_SECRET.
+    """
+    import secrets as _secrets
+    if not CRON_SECRET or not _secrets.compare_digest(CRON_SECRET, secret or ""):
+        raise HTTPException(status_code=403, detail="Invalid secret")
+
+    from ..services.schedule import route_for_date, format_route_message
+
+    q = db.query(Business).filter(Business.is_active == True)
+    if business_id:
+        q = q.filter(Business.id == business_id)
+
+    today = date.today()
+    sent, skipped = [], []
+    for biz in q.all():
+        try:
+            stops = route_for_date(db, biz.id, today)
+            if not stops:
+                skipped.append({"business": biz.name, "reason": "no stops today"})
+                continue
+            msg = format_route_message(biz.name, today, stops)
+            targets = []
+            workers = db.query(Worker).filter(
+                Worker.business_id == biz.id, Worker.is_active == True,
+                Worker.telegram_id.isnot(None)).all()
+            for w in workers:
+                if str(w.telegram_id).isdigit():
+                    targets.append(str(w.telegram_id))
+            if biz.owner_telegram_id and str(biz.owner_telegram_id) not in targets:
+                targets.append(str(biz.owner_telegram_id))
+
+            delivered = 0
+            for tg in targets:
+                r = await send_message(tg, msg)
+                if r.get("ok"):
+                    delivered += 1
+            sent.append({"business": biz.name, "stops": len(stops),
+                         "delivered": delivered, "targets": len(targets)})
+        except Exception as e:
+            skipped.append({"business": biz.name, "error": str(e)})
+
+    return {"ok": True, "date": today.isoformat(), "sent": sent, "skipped": skipped}

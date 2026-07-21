@@ -2,7 +2,7 @@
 FieldNotes — Business Onboarding Routes
 Create/manage business accounts + self-serve signup.
 """
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
@@ -122,6 +122,69 @@ def resolve_invite(token: str, db: Session = Depends(get_db)):
     if not biz:
         raise HTTPException(status_code=404, detail="Invalid invite link")
     return {"business_id": biz.id, "business_name": biz.name}
+
+
+# --- P2: CSV client-list import ---
+
+from ..deps import verify_business_key
+from ..services.csv_import import parse_csv_text, map_headers, map_headers_llm, import_accounts
+
+
+class CsvImportRequest(BaseModel):
+    business_id: int
+    key: str
+    csv_text: str
+
+
+@router.post("/onboarding/import-csv")
+async def import_csv(request: Request, db: Session = Depends(get_db)):
+    """
+    Import a client list with rich fields (address, gate codes, contacts, schedule).
+    Accepts JSON {business_id, key, csv_text} OR multipart form (business_id, key, file).
+    Key-locked per tenant. LLM maps HEADERS ONLY — data rows never leave the server.
+    """
+    content_type = request.headers.get("content-type", "")
+    if "multipart/form-data" in content_type:
+        form = await request.form()
+        business_id = int(form.get("business_id", 0))
+        key = str(form.get("key", ""))
+        upload = form.get("file")
+        if upload is None:
+            raise HTTPException(status_code=400, detail="file field required")
+        raw = await upload.read()
+        csv_text = raw.decode("utf-8-sig", errors="replace")
+    else:
+        data = CsvImportRequest(**(await request.json()))
+        business_id, key, csv_text = data.business_id, data.key, data.csv_text
+
+    biz = verify_business_key(business_id, key, db)
+
+    headers, rows = parse_csv_text(csv_text)
+    if not headers or not rows:
+        raise HTTPException(status_code=400, detail="No CSV rows found — need a header row plus at least one data row")
+    if len(rows) > 500:
+        raise HTTPException(status_code=400, detail="Max 500 rows per import")
+
+    header_mapping = await map_headers_llm(headers)
+    result = import_accounts(db, biz.id, csv_text, header_mapping)
+    result["business"] = biz.name
+    return result
+
+
+@router.get("/onboarding/import-template")
+def import_template():
+    """Downloadable CSV template for client-list imports."""
+    from fastapi.responses import PlainTextResponse
+    csv_body = (
+        "name,address,gate_code,access_notes,contact_name,contact_phone,schedule,notes\n"
+        "Riverside Office Park,1200 Riverside Pkwy Atlanta GA,4412,Loading dock B; sensor is touchy,Dana Whitfield,404-555-0182,Mon/Thu,Quarterly filter contract\n"
+        "Grand Hotel Downtown,55 Peachtree St Atlanta GA,,Service elevator - get key from front desk,Luis,404-555-0143,Wed,No lobby work before 10am\n"
+    )
+    return PlainTextResponse(
+        csv_body,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=fieldnotes-clients-template.csv"},
+    )
 
 
 # --- Legacy business CRUD ---

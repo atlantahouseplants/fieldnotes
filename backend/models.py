@@ -65,6 +65,7 @@ class Business(Base):
     stripe_customer_id = Column(String)      # Stripe customer (linked via webhook + signup email)
     stripe_subscription_id = Column(String)  # active Stripe subscription
     subscription_status = Column(String, default="none")  # none|trialing|active|past_due|canceled
+    beta_all_access = Column(Boolean, default=True)  # P5: beta users get every feature; flip off post-beta
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     is_active = Column(Boolean, default=True)
 
@@ -86,6 +87,10 @@ class Account(Base):
     contact_name = Column(String)
     contact_phone = Column(String)
     notes = Column(Text)
+    gate_code = Column(String)        # gate/door/alarm codes (Ask FieldNotes answers from this)
+    access_notes = Column(Text)       # parking, entry instructions, warnings (dogs, badges)
+    schedule = Column(String)         # free-text: "Mon/Thu", "every other Tue", "1st of month"
+    schedule_parsed = Column(Text)    # JSON normalized schedule (P4 route awareness)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 

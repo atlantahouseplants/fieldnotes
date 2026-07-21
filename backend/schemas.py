@@ -43,6 +43,12 @@ class AccountOut(BaseModel):
     name: str
     shorthand: Optional[str]
     address: Optional[str]
+    contact_name: Optional[str] = None
+    contact_phone: Optional[str] = None
+    gate_code: Optional[str] = None
+    access_notes: Optional[str] = None
+    schedule: Optional[str] = None
+    notes: Optional[str] = None
     is_active: bool
 
     model_config = {"from_attributes": True}

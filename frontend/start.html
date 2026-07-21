@@ -101,6 +101,13 @@
         <button class="copybtn" onclick="copyField('ownerlink', this)">Copy</button>
       </div>
     </div>
+
+    <div class="card">
+      <div class="step-emoji">📋</div>
+      <h3>6 · Optional: import your full client list</h3>
+      <p class="hint">Got a spreadsheet with addresses, gate codes, contacts, and service days? Import it — this is what lets the bot answer questions like "what's the gate code for Riverside?"</p>
+      <a id="import-open" href="#" style="display:inline-block;margin-top:8px;padding:12px 20px;background:#1b5e20;color:#fff;border-radius:10px;text-decoration:none;font-weight:600">Import client list →</a>
+    </div>
   </div>
 </div>
 
@@ -138,6 +145,8 @@ async function signup() {
     document.getElementById('ownerlink').value = d.owner_link;
     document.getElementById('dash').value = d.dashboard_url;
     document.getElementById('dash-open').href = d.dashboard_url;
+    const importUrl = `/app/import.html${d.dashboard_url.slice(d.dashboard_url.indexOf('?'))}`;
+    document.getElementById('import-open').href = importUrl;
     window.scrollTo(0, 0);
   } catch (e) {
     err.textContent = e.message + ' — try again.';

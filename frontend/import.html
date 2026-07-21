@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Import Client List — FieldNotes</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background:#f5f7f5; color:#1a1a1a; margin:0; padding:24px; }
+  .wrap { max-width:640px; margin:0 auto; }
+  .card { background:#fff; border-radius:14px; padding:24px; box-shadow:0 1px 4px rgba(0,0,0,.08); margin-bottom:16px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .hint { color:#666; font-size:14px; margin:4px 0 16px; }
+  textarea { width:100%; min-height:220px; border:1px solid #ddd; border-radius:10px; padding:12px; font-family:ui-monospace,monospace; font-size:13px; box-sizing:border-box; }
+  .btn { display:inline-block; background:#1b5e20; color:#fff; border:none; border-radius:10px; padding:14px 28px; font-size:16px; font-weight:600; cursor:pointer; text-decoration:none; }
+  .btn:disabled { opacity:.6; }
+  .btn.secondary { background:#fff; color:#1b5e20; border:1px solid #1b5e20; margin-left:8px; }
+  #err { display:none; color:#b00020; margin-top:12px; font-size:14px; }
+  #result { display:none; }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin-top:8px; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid #eee; }
+  code { background:#f0f0f0; padding:2px 6px; border-radius:4px; font-size:12px; }
+  .stats { display:flex; gap:16px; margin:12px 0; }
+  .stat { background:#f0f7f0; border-radius:10px; padding:12px 18px; text-align:center; }
+  .stat b { display:block; font-size:24px; color:#1b5e20; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>📋 Import your client list</h1>
+    <p class="hint">Paste a CSV (or spreadsheet export) with your accounts. We recognize columns like
+      <code>name, address, gate code, contact, phone, schedule, notes</code> — other headers get mapped automatically.
+      Duplicates (same name) update instead of doubling. <a href="/onboarding/import-template">Download a template</a>.</p>
+    <textarea id="csv" placeholder="name,address,gate_code,contact_name,contact_phone,schedule,notes&#10;Riverside Office Park,1200 Riverside Pkwy,4412,Dana,404-555-0182,Mon/Thu,Sensor is touchy"></textarea>
+    <div style="margin-top:14px">
+      <button class="btn" id="go" onclick="doImport()">Import Clients →</button>
+      <input type="file" id="file" accept=".csv,text/csv,text/plain" style="display:none" onchange="loadFile(this)">
+      <button class="btn secondary" onclick="document.getElementById('file').click()">Choose .csv file</button>
+    </div>
+    <div id="err"></div>
+  </div>
+
+  <div class="card" id="result">
+    <h1>✅ Import complete</h1>
+    <div class="stats">
+      <div class="stat"><b id="s-created">0</b>created</div>
+      <div class="stat"><b id="s-updated">0</b>updated</div>
+      <div class="stat"><b id="s-skipped">0</b>skipped</div>
+    </div>
+    <div id="dupes"></div>
+    <div id="preview"></div>
+    <p style="margin-top:16px"><a id="dash-link" class="btn secondary" href="#">Open Dashboard →</a></p>
+  </div>
+</div>
+
+<script>
+// Escape user/CSV-derived strings before innerHTML (account names come from pasted CSV)
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const params = new URLSearchParams(location.search);
+const BIZ = params.get('biz'), KEY = params.get('key');
+document.getElementById('dash-link').href = `/app/dashboard.html?biz=${BIZ}&key=${encodeURIComponent(KEY || '')}`;
+if (!BIZ || !KEY) {
+  const err = document.getElementById('err');
+  err.textContent = 'Missing biz/key in URL — use the import link from your signup success page or dashboard.';
+  err.style.display = 'block';
+}
+
+function loadFile(input) {
+  const f = input.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => { document.getElementById('csv').value = r.result; };
+  r.readAsText(f);
+}
+
+async function doImport() {
+  const btn = document.getElementById('go'), err = document.getElementById('err');
+  err.style.display = 'none';
+  const csv_text = document.getElementById('csv').value.trim();
+  if (!csv_text) { err.textContent = 'Paste your CSV first.'; err.style.display = 'block'; return; }
+  btn.disabled = true; btn.textContent = 'Importing…';
+  try {
+    const r = await fetch('/onboarding/import-csv', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ business_id: parseInt(BIZ), key: KEY, csv_text })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail || 'Import failed');
+    document.getElementById('s-created').textContent = d.created;
+    document.getElementById('s-updated').textContent = d.updated;
+    document.getElementById('s-skipped').textContent = d.skipped;
+    if (d.possible_dupes?.length) {
+      document.getElementById('dupes').innerHTML = '<p class="hint">⚠️ Possible duplicates to review:<br>' +
+        d.possible_dupes.map(x => '• ' + esc(x)).join('<br>') + '</p>';
+    }
+    if (d.preview?.length) {
+      document.getElementById('preview').innerHTML = '<table><tr><th>Account</th><th>Gate</th><th>Schedule</th><th>Action</th></tr>' +
+        d.preview.map(p => `<tr><td>${esc(p.name)}</td><td>${esc(p.gate_code || '—')}</td><td>${esc(p.schedule || '—')}</td><td>${esc(p.action)}</td></tr>`).join('') + '</table>';
+    }
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  } catch (e) {
+    err.textContent = e.message + ' — check your CSV and try again.';
+    err.style.display = 'block';
+  }
+  btn.disabled = false; btn.textContent = 'Import Clients →';
+}
+</script>
+</body>
+</html>

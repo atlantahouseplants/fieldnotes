@@ -157,9 +157,11 @@ async function loadDashboard() {
     if (accounts.length === 0) {
       document.getElementById('accounts-container').innerHTML = '<div class="empty">No accounts configured</div>';
     } else {
-      let html = '<table><tr><th>Name</th><th>Shorthand</th><th>Address</th></tr>';
+      let html = '<table><tr><th>Name</th><th>Shorthand</th><th>Schedule</th><th>Address</th><th>Gate/Access</th><th>Contact</th></tr>';
       accounts.forEach(a => {
-        html += `<tr><td>${a.name}</td><td><code>${a.shorthand || ''}</code></td><td>${a.address || '—'}</td></tr>`;
+        const access = [a.gate_code, a.access_notes].filter(Boolean).join(' · ') || '—';
+        const contact = [a.contact_name, a.contact_phone].filter(Boolean).join(' ') || '—';
+        html += `<tr><td>${a.name}</td><td><code>${a.shorthand || ''}</code></td><td>${a.schedule || '—'}</td><td>${a.address || '—'}</td><td>${access}</td><td>${contact}</td></tr>`;
       });
       html += '</table>';
       document.getElementById('accounts-container').innerHTML = html;

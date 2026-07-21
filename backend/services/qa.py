@@ -8,7 +8,7 @@ Tenant isolation is sacred: every query is scoped by business_id.
 import json
 import os
 import re
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from typing import Optional
 
 import httpx
@@ -45,6 +45,9 @@ def looks_like_question(text: str) -> bool:
     if any(t.startswith(w) for w in QUESTION_STARTERS):
         return True
     if any(p in t for p in LOOKUP_PHRASES):
+        return True
+    # P4: route/schedule/missed-stop questions (e.g. "route today", "did we skip anyone")
+    if _route_intent(t):
         return True
     return False
 
@@ -108,6 +111,9 @@ def _gather_context(db: Session, business_id: int, question: str) -> tuple[dict,
         ctx["accounts"].append({
             "name": a.name, "address": a.address,
             "contact_name": a.contact_name, "contact_phone": a.contact_phone,
+            "gate_code": getattr(a, "gate_code", None),
+            "access_notes": getattr(a, "access_notes", None),
+            "schedule": getattr(a, "schedule", None),
             "notes": a.notes,
         })
         logs = db.query(ServiceLog).filter(
@@ -137,8 +143,14 @@ def _gather_context(db: Session, business_id: int, question: str) -> tuple[dict,
             ).order_by(Action.created_at.desc()).limit(15).all()
             ctx["open_actions"] = [a.description for a in actions]
 
-        # Give the model the account roster for orientation (names only)
-        ctx["accounts"] = [{"name": a.name, "notes": a.notes} for a in accounts[:25]]
+        # Give the model the account roster for orientation (names + access facts only)
+        ctx["accounts"] = [{
+            "name": a.name,
+            "gate_code": getattr(a, "gate_code", None),
+            "access_notes": getattr(a, "access_notes", None),
+            "schedule": getattr(a, "schedule", None),
+            "notes": a.notes,
+        } for a in accounts[:25]]
 
     return ctx, matched
 
@@ -155,7 +167,48 @@ def _log_dict(l: ServiceLog) -> dict:
 
 
 # ── Answer synthesis ──────────────────────────────────────────────
-ANSWER_PROMPT = """You are FieldNotes, the assistant for a field service company. A worker in the field asked a question. Answer it using ONLY the company records below — nothing else.
+# ── P4: route intents (deterministic — no LLM needed) ─────────────
+_ROUTE_DAY = re.compile(
+    r"\b(route|stops|schedule)\b[^\n]*\b(today|tomorrow|this week)\b|"
+    r"\b(today|tomorrow)'?s (route|stops|schedule)|"
+    r"who (do|should) i (see|visit|service)|what'?s (my )?(route|schedule|stops)|"
+    r"(scheduled|due) (today|tomorrow)", re.I)
+_MISSED = re.compile(
+    r"did (we|i) (skip|miss)|skip(ped)? (anyone|any|a stop)|miss(ed)? (any|a|anyone)|"
+    r"anyone (get )?(skipped|missed)|missed stops?", re.I)
+
+
+def _route_intent(question: str):
+    """→ ('route', target_date) | ('missed', None) | None"""
+    q = question.lower()
+    if _MISSED.search(q):
+        return ("missed", None)
+    if _ROUTE_DAY.search(q):
+        target = date.today() + timedelta(days=1) if "tomorrow" in q else date.today()
+        return ("route", target)
+    return None
+
+
+def _route_answer(db: Session, business_id: int, kind: str, target) -> dict:
+    from .schedule import route_for_date, missed_this_week, format_route_message
+    if kind == "route":
+        from ..models import Business
+        biz = db.query(Business).filter(Business.id == business_id).first()
+        stops = route_for_date(db, business_id, target)
+        msg = format_route_message(biz.name if biz else "", target, stops)
+        return {"answer": msg, "sources": ["route schedule"], "clarification": False}
+    missed = missed_this_week(db, business_id)
+    if not missed:
+        return {"answer": "No missed stops this week — everything due so far has a log. ✅",
+                "sources": ["route schedule", "service logs"], "clarification": False}
+    lines = [f"⚠️ Missed stops this week ({len(missed)}):"]
+    lines += [f"• <b>{m['name']}</b> — was due {m['weekday']} {m['due']}" for m in missed]
+    lines.append("Log a note when you catch up and I'll mark it done.")
+    return {"answer": "\n".join(lines), "sources": ["route schedule", "service logs"],
+            "clarification": False}
+
+
+ANSWER_PROMPT = """You are FieldNotes, the assistant for a field service company. A worker asked a question. Answer ONLY from the company records below.
 
 Question: {question}
 
@@ -206,6 +259,10 @@ def _deterministic_answer(ctx: dict, question: str) -> str:
     """No-LLM fallback: surface raw records honestly."""
     parts = []
     for a in ctx["accounts"]:
+        if a.get("gate_code"):
+            parts.append(f"{a['name']} gate/access code: {a['gate_code']}")
+        if a.get("access_notes"):
+            parts.append(f"{a['name']} access: {a['access_notes']}")
         if a.get("notes"):
             parts.append(f"{a['name']} notes: {a['notes']}")
         if a.get("address"):
@@ -227,6 +284,14 @@ async def answer_question(db: Session, business_id: int, worker: Optional[Worker
     Answer a worker's question from tenant data. Writes a QaEvent.
     Returns {"answer": str, "sources": list, "clarification": bool}.
     """
+    # P4: route intents short-circuit (deterministic, no LLM)
+    ri = _route_intent(question)
+    if ri:
+        result = _route_answer(db, business_id, ri[0], ri[1])
+        _record_event(db, business_id, worker, question, result["answer"],
+                      {"sources": result["sources"], "intent": ri[0]})
+        return result
+
     ctx, matched = _gather_context(db, business_id, question)
 
     # Ambiguous account mention → ask, don't guess
