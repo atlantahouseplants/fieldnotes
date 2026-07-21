@@ -9,7 +9,11 @@
 | P3 | SMS Channel (AgentPhone) | ⏳ BLOCKED — 10DLC in review (filed 2026-07-20) | — | — |
 | P4 | Route Awareness (schedules) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
+| P6 | Dashboard Home Base (owner UX) | 🔲 NOT STARTED — build P6a at 4 PM session Jul 21 | — | — |
+| P7 | Account Tasks (delegation loop) | 🔲 NOT STARTED — builds on P6a (needs account page) | — | — |
 | INFRA | Paying-Client Infrastructure | 🔨 tasks 1-3 ✅ (/health live, DATABASE_URL, PG audit) · tasks 4-9 need Geoff cost approval (~$12/mo) | hermes-tui-session | 2026-07-20 |
+
+Also read: `USE-CASE-MAP.md` (every workflow moment, tagged live/planned/concept).
 
 Legend: 🔲 not started · 🔨 in progress · ✅ done · ⏳ blocked
 

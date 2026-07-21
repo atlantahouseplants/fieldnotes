@@ -15,11 +15,24 @@
 
 ## Simplicity rules (apply to EVERYTHING below)
 
+**Geoff's mandate (2026-07-21): clean, simple, intuitive, user-friendly UI is CRITICAL to this product's success. It is a feature, not polish.**
+
 1. One screen, cards, big touch targets — no menus-within-menus
 2. Every action ≤ 2 taps from the dashboard
 3. Plain language: "Add a customer", not "Create account entity"
 4. **Everything the dashboard does, the chat can also do** — owner's choice (owner is often also in the field)
 5. Never ask a question that has a reasonable default
+
+## UI standard (binding for all frontend work)
+
+- **Mobile-first.** Owners and reps are on phones, outdoors, between stops. Design for a 390px screen first.
+- **Touch targets ≥ 44px**, high contrast, readable in sunlight (no gray-on-gray).
+- **Brand system (already in use — keep consistent):** primary green `#1b5e20`, white rounded cards (`border-radius:14px`, soft shadow), system font stack (`-apple-system, sans-serif`), page bg `#f5f7f5`. Match `frontend/import.html` styling exactly.
+- **Plain HTML/CSS/JS only** — no frameworks, no build step. Must load fast on a cracked-phone 4G connection.
+- **Forms:** minimum possible fields, smart defaults, big inputs, inline validation in plain words ("We need a name for this customer").
+- **Feedback:** every action gets an immediate plain-words confirmation ("Customer added ✓") — never a silent success or a raw error.
+- **No logins anywhere** — key-locked URLs. No settings pages, filters, or search bars unless the jobs table demands them.
+- **Bilingual-ready:** keep UI strings short and simple so ES translation later is cheap; reps may be Spanish-first.
 
 ## Owner jobs-to-be-done → what we build
 
