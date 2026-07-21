@@ -3,12 +3,26 @@ FieldNotes — Database Models
 SQLite MVP → PostgreSQL at scale
 """
 import datetime
+import os
+from pathlib import Path
+
 from sqlalchemy import create_engine, Column, String, Integer, DateTime, Boolean, Text, ForeignKey, Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, relationship, sessionmaker
 import enum
 
-DATABASE_URL = "sqlite:///fieldnotes.db"
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+# Determine the base directory of this file
+BASE_DIR = Path(__file__).resolve().parent
+
+# Database URL from environment variable, default to SQLite
+# Ensure SQLite path is absolute to avoid CWD issues
+_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///fieldnotes.db")
+if _DATABASE_URL.startswith("sqlite:///"):
+    db_file = Path(_DATABASE_URL.replace("sqlite:///", ""))
+    if not db_file.is_absolute():
+        _DATABASE_URL = f"sqlite:///{BASE_DIR / db_file}"
+
+DATABASE_URL = _DATABASE_URL
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False}) if DATABASE_URL.startswith("sqlite:///") else create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 class Base(DeclarativeBase):
@@ -57,6 +71,7 @@ class Business(Base):
     workers = relationship("Worker", back_populates="business", cascade="all, delete-orphan")
     service_logs = relationship("ServiceLog", back_populates="business", cascade="all, delete-orphan")
     actions = relationship("Action", back_populates="business", cascade="all, delete-orphan")
+    qa_events = relationship("QaEvent", back_populates="business", cascade="all, delete-orphan") # NEW
 
 class Account(Base):
     """A client location/job site the business services."""
@@ -91,6 +106,7 @@ class Worker(Base):
 
     business = relationship("Business", back_populates="workers")
     service_logs = relationship("ServiceLog", back_populates="worker")
+    qa_events = relationship("QaEvent", back_populates="worker") # NEW
 
 class ServiceLog(Base):
     """A single service stop logged by a worker."""
@@ -182,5 +198,31 @@ class PendingSubscription(Base):
     stripe_subscription_id = Column(String)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
+class QaEvent(Base):
+    """A record of a Q&A exchange via the Ask FieldNotes assistant."""
+    __tablename__ = "qa_events"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    business_id = Column(Integer, ForeignKey("businesses.id"), nullable=False)
+    worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True) # Can be None if owner asks
+    question = Column(Text, nullable=False)
+    answer = Column(Text, nullable=False)
+    sources = Column(Text) # JSON string of sources used for the answer
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    business = relationship("Business", back_populates="qa_events")
+    worker = relationship("Worker", back_populates="qa_events")
+
+# Add relationship to Business model
+Base.metadata.tables["businesses"].columns.append(
+    relationship("QaEvent", back_populates="business", cascade="all, delete-orphan")
+)
+
+# Add relationship to Worker model
+Base.metadata.tables["workers"].columns.append(
+    relationship("QaEvent", back_populates="worker")
+)
+
 def init_db():
     Base.metadata.create_all(bind=engine)
+

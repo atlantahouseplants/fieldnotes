@@ -1,7 +1,7 @@
 """
 FieldNotes — FastAPI Application
 """
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -10,7 +10,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
 
-from .models import init_db
+from .models import init_db, SessionLocal
+from sqlalchemy import text
 from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api
 
 app = FastAPI(
@@ -57,6 +58,20 @@ async def root():
     return RedirectResponse(url="/app/index.html")
 
 
-@app.get("/health")
-async def health():
-    return {"status": "healthy"}
+@app.get("/health", status_code=200)
+async def health(response: Response):
+    db_status = "down"
+    db = None  # Initialize db to None
+    try:
+        db = SessionLocal()
+        # Perform a trivial query to check connectivity
+        db.execute(text("SELECT 1"))
+        db_status = "ok"
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+        response.status_code = 500
+    finally:
+        if db: # Only close if db was successfully created
+            db.close()
+
+    return {"status": "healthy", "db": db_status}
