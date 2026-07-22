@@ -11,7 +11,7 @@
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
 | P6 | Dashboard Home Base (owner UX) | 🔲 NOT STARTED — build P6a at 4 PM session Jul 21 | — | — |
 | P7 | Account Tasks (delegation loop) | 🔲 NOT STARTED — builds on P6a (needs account page) | — | — |
-| INFRA | Paying-Client Infrastructure | 🔨 tasks 1,2,3,5 ✅ + task 9 cost report (Railway Hobby $5–11/mo, INFRA-cost-report.md) + task 4 prepped (nixpacks.toml, env checklist, click-through runbook INFRA-railway-runbook.md) · AWAITING GEOFF: cost approval + Railway/GitHub login → then tasks 4,6,7,8 | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
+| INFRA | Paying-Client Infrastructure | ✅ DONE (Jul 21) — Railway + managed PG live, data migrated, fieldnotesapp.io custom domain cut over (TXT-verified, SSL issued), Telegram webhook + Stripe endpoint on pretty domain, tenant isolation verified. Only remaining: UptimeRobot (task 7) + retire Cloudflare Tunnel after 24h clean (fallback meanwhile) | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
 
 Also read: `USE-CASE-MAP.md` (every workflow moment, tagged live/planned/concept).
 
