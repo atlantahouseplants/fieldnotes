@@ -11,7 +11,7 @@
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
 | P6 | Dashboard Home Base (owner UX) | ✅ DONE (Jul 22) — P6a quick-action bar + P6b owner chat commands (New account / Note for / invite), live in prod | hermes-tui-session | 2026-07-22 |
 | P7 | Account Tasks (delegation loop) | ✅ DONE (Jul 22) — chat intents (create/close/YES-NO confirm), log-time + route-push surfacing, owner pings, dashboard Tasks section, 46-check suite; live in prod | hermes-tui-session | 2026-07-22 |
-| P8 | Client Recaps (proof-of-service) | 🔨 IN PROGRESS (claimed Jul 22) — email-first, approve-first, client-safe rewrite | hermes-tui-session | 2026-07-22 |
+| P8 | Client Recaps (proof-of-service) | ✅ DONE (Jul 22) — LLM rewrite + safety filter (held, never raw-send), owner approve-first (✓/✗/edit), 2h visit-window merge, tier gate, nightly pending line, dashboard Recap column, suite green; live in prod | hermes-tui-session | 2026-07-22 |
 | INFRA | Paying-Client Infrastructure | ✅ DONE (Jul 21) — Railway + managed PG live, data migrated, fieldnotesapp.io custom domain cut over (TXT-verified, SSL issued), Telegram webhook + Stripe endpoint on pretty domain, tenant isolation verified. Only remaining: UptimeRobot (task 7) + retire Cloudflare Tunnel after 24h clean (fallback meanwhile) | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
 
 Also read: `USE-CASE-MAP.md` (every workflow moment, tagged live/planned/concept).
