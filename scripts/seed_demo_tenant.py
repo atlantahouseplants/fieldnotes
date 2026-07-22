@@ -13,10 +13,15 @@ from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.models import SessionLocal, Account, ServiceLog, Worker
+from backend.models import SessionLocal, Account, ServiceLog, Worker, Business
 
 DEMO_BIZ = 2
 MARKER = "[demo-seed]"
+
+# P8: recap demo — Geoff-controlled address ONLY (sarah@atlantahouseplant.com,
+# no trailing 's'). A demo user approving a recap must never email a real person.
+RECAP_DEMO_ACCOUNT = "Riverside Office Park"
+RECAP_DEMO_EMAIL = "sarah@atlantahouseplant.com"
 
 ACCOUNT_NOTES = {
     "Riverside Office Park": (
@@ -64,6 +69,23 @@ def main():
             updated += 1
         db.commit()
         print(f"accounts updated with access notes: {updated}")
+
+        # P8: demo recap loop — one recap-enabled account so a stranger can
+        # experience draft → approve → send. Email MUST be a Geoff-controlled
+        # address (spec pitfall): recaps from the demo never reach a real client.
+        biz = db.query(Business).filter(Business.id == DEMO_BIZ).first()
+        if biz and biz.tier != "team":
+            biz.tier = "team"   # recaps gate is Team-tier
+            db.commit()
+            print("demo tenant tier set to team (recaps gate)")
+        riverside = accounts.get(RECAP_DEMO_ACCOUNT)
+        if riverside and not riverside.recap_enabled:
+            riverside.recap_enabled = True
+            riverside.recap_email = RECAP_DEMO_EMAIL
+            db.commit()
+            print(f"recaps enabled for {RECAP_DEMO_ACCOUNT} → {RECAP_DEMO_EMAIL}")
+        elif riverside:
+            print(f"recaps already enabled for {RECAP_DEMO_ACCOUNT}")
 
         worker = db.query(Worker).filter(Worker.business_id == DEMO_BIZ, Worker.is_active == True).first()
         existing = db.query(ServiceLog).filter(

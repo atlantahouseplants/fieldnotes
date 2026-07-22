@@ -81,6 +81,10 @@
   .task-title { font-weight: 600; font-size: 15px; }
   .task-meta { font-size: 13px; color: var(--muted); }
 </style>
+<style>
+.recap-btn { min-height: 44px; }
+.recap-on { color: #1b5e20; font-weight: bold; }
+</style>
 </head>
 <body>
 <div class="container">
@@ -186,6 +190,7 @@
 
   <div class="section">
     <h2>📍 Accounts</h2>
+    <div class="qa-msg" id="acct-msg"></div>
     <div id="accounts-container"><div class="loading">Loading...</div></div>
   </div>
 </div>
@@ -224,6 +229,11 @@ function togglePanel(id) {
   if (p.classList.contains('open')) p.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g,
+    c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function setMsg(id, text, ok) {
   const el = document.getElementById(id);
   el.textContent = text || '';
@@ -251,6 +261,21 @@ async function submitAddAccount() {
     setMsg('aa-msg', e.message, false);
   }
   btn.disabled = false; btn.textContent = 'Add Customer ✓';
+}
+
+async function setRecap(id, enabled) {
+  const body = { account_id: id, enabled };
+  if (enabled) {
+    const inp = document.getElementById('rc-' + id);
+    body.email = inp ? inp.value.trim() : '';
+  }
+  try {
+    const d = await postApi('/api/dashboard/set-recap', body);
+    setMsg('acct-msg', d.message, d.ok);
+    if (d.ok) loadDashboard();
+  } catch (e) {
+    setMsg('acct-msg', e.message, false);
+  }
 }
 
 async function submitQuickNote() {
@@ -415,11 +440,14 @@ async function loadDashboard() {
     if (accounts.length === 0) {
       document.getElementById('accounts-container').innerHTML = '<div class="empty">No accounts configured</div>';
     } else {
-      let html = '<table><tr><th>Name</th><th>Shorthand</th><th>Schedule</th><th>Address</th><th>Gate/Access</th><th>Contact</th></tr>';
+      let html = '<table><tr><th>Name</th><th>Shorthand</th><th>Schedule</th><th>Address</th><th>Gate/Access</th><th>Contact</th><th>Client recap</th></tr>';
       accounts.forEach(a => {
         const access = [a.gate_code, a.access_notes].filter(Boolean).join(' · ') || '—';
         const contact = [a.contact_name, a.contact_phone].filter(Boolean).join(' ') || '—';
-        html += `<tr><td>${a.name}</td><td><code>${a.shorthand || ''}</code></td><td>${a.schedule || '—'}</td><td>${a.address || '—'}</td><td>${access}</td><td>${contact}</td></tr>`;
+        const recapCell = a.recap_enabled
+          ? `<span class="recap-on">📬 ${esc(a.recap_email)}</span> <button class="qa-btn recap-btn" onclick="setRecap(${a.id}, false)">Off</button>`
+          : `<input id="rc-${a.id}" type="email" placeholder="client email" autocomplete="off"> <button class="qa-btn recap-btn" onclick="setRecap(${a.id}, true)">On</button>`;
+        html += `<tr><td>${esc(a.name)}</td><td><code>${esc(a.shorthand || '')}</code></td><td>${esc(a.schedule || '—')}</td><td>${esc(a.address || '—')}</td><td>${esc(access)}</td><td>${esc(contact)}</td><td>${recapCell}</td></tr>`;
       });
       html += '</table>';
       document.getElementById('accounts-container').innerHTML = html;

@@ -81,4 +81,16 @@ def persist_parsed_note(
 
     pipeline_result = run_pipeline(db, log)
 
-    return {"log": log, "actions_created": actions_created, "pipeline": pipeline_result}
+    # P8: client recap planning (sync — batching + gate; no LLM here). The
+    # async route handler runs recaps.draft_and_notify() on the returned row.
+    recap = None
+    if account_id:
+        from ..models import Account as _Account, Business as _Business
+        from . import recaps as recaps_mod
+        biz = db.query(_Business).filter(_Business.id == business_id).first()
+        account = db.query(_Account).filter(_Account.id == account_id).first()
+        if biz is not None:
+            recap = recaps_mod.plan_for_log(db, biz, log, account)
+
+    return {"log": log, "actions_created": actions_created,
+            "pipeline": pipeline_result, "recap": recap}

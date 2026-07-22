@@ -9,12 +9,14 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from ..models import SessionLocal, ServiceLog, Account, Worker, Business
-from ..deps import verify_business_key
+from ..deps import verify_business_key, has_feature
 from ..services.schedule import parse_schedule, sync_route_entries
 from ..services.accounts import create_account, get_or_create_owner_worker
 from ..services.qa import _match_accounts
 from ..services.parser import parse_note
 from ..services.ingest import persist_parsed_note
+from ..services import recaps as recaps_mod
+from ..integrations.telegram import send_message
 from .onboarding import BOT_USERNAME as TELEGRAM_BOT_USERNAME
 
 router = APIRouter(prefix="/api/dashboard", tags=["dashboard"])
@@ -108,7 +110,50 @@ async def add_note(
         account_id=int(account.id),
     )
 
+    # P8: owner notes start recaps too — same pipeline, same approval flow.
+    if persisted.get("recap") is not None:
+        biz = db.query(Business).filter(Business.id == business_id).first()
+        if biz:
+            await recaps_mod.draft_and_notify(db, biz, persisted["recap"], send_message)
+
     return {"ok": True, "message": f"Note added to {account.name} ✓", "log_id": int(persisted["log"].id)}
+
+
+# ── P8: client recap controls (owner dashboard) ──────────────────
+class SetRecapRequest(BaseModel):
+    account_id: int
+    enabled: bool
+    email: Optional[str] = None
+
+
+@router.post("/set-recap")
+async def set_recap(
+    req: SetRecapRequest,
+    business_id: int = Query(...),
+    key: str = Query(...),
+    db: Session = Depends(get_db)
+):
+    biz = verify_business_key(business_id, key, db)
+    if not has_feature(biz, "recaps"):
+        return {"ok": False, "message": "Client recaps are on the Team plan — upgrade to turn them on."}
+    account = db.query(Account).filter(
+        Account.id == req.account_id,
+        Account.business_id == business_id,   # tenant scope
+        Account.is_active == True,
+    ).first()
+    if not account:
+        return {"ok": False, "message": "Customer not found."}
+    if req.enabled:
+        email = (req.email or account.recap_email or "").strip().lower()
+        if not recaps_mod._EMAIL_RE.match(email):
+            return {"ok": False, "message": "Add the client's email first — recaps need somewhere to go."}
+        account.recap_enabled = True
+        account.recap_email = email
+        db.commit()
+        return {"ok": True, "message": f"Recaps on for {account.name} ✓ — you'll approve each one before it sends."}
+    account.recap_enabled = False
+    db.commit()
+    return {"ok": True, "message": f"Recaps off for {account.name}."}
 
 
 # ── P7: account tasks ─────────────────────────────────────────────

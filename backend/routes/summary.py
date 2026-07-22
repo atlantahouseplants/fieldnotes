@@ -93,6 +93,14 @@ def _build_today_summary(db: Session, business_id: int) -> DailySummary:
 
     biz = db.query(Business).filter(Business.id == business_id).first()
 
+    # P8: client recaps waiting on the owner's word (spec: stays pending,
+    # gets listed in the nightly summary)
+    from ..models import RecapLog
+    recaps_pending = db.query(RecapLog).filter(
+        RecapLog.business_id == business_id,
+        RecapLog.status.in_(("pending_approval", "held")),
+    ).count()
+
     return DailySummary(
         date=today,
         business_name=biz.name if biz else "",
@@ -102,7 +110,8 @@ def _build_today_summary(db: Session, business_id: int) -> DailySummary:
         issues_flagged=issues_flagged,
         actions_pending=pending,
         supplies_needed=supplies,
-        workers_active=worker_names
+        workers_active=worker_names,
+        recaps_pending=recaps_pending,
     )
 
 
@@ -121,6 +130,10 @@ def _format_summary_message(s: DailySummary) -> str:
         lines.append(f"🧰 Supplies: {', '.join(s.supplies_needed)}")
     if s.workers_active:
         lines.append(f"👷 Active today: {', '.join(s.workers_active)}")
+    if s.recaps_pending:
+        n = s.recaps_pending
+        lines.append(f"📬 {n} client recap{'s' if n != 1 else ''} waiting for your ✓ "
+                     f"— reply to the recap message to send or skip.")
     if s.stops_completed == 0 and not s.stops_expected:
         lines.append("Quiet day — no stops logged or scheduled.")
     return "\n".join(lines)

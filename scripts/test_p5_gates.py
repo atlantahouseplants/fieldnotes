@@ -116,7 +116,7 @@ def main():
         check("usage 403 without key", r.status_code == 403, r.status_code)
         r = httpx.get(f"{BASE}/accounts/usage?business_id=1&key=k1", timeout=10).json()
         check("usage counts", r["usage"]["gated_attempts_this_month"] == 1 and r["usage"]["workers"] == 1, r)
-        check("usage features solo", r["features"] == {"qa": False, "csv_import": False, "routes": False, "sms": False, "morning_push": False}, r["features"])
+        check("usage features solo", r["features"] == {"qa": False, "csv_import": False, "routes": False, "sms": False, "morning_push": False, "recaps": False}, r["features"])
         r4 = httpx.get(f"{BASE}/accounts/usage?business_id=4&key=k4", timeout=10).json()
         check("usage beta features all true", all(r4["features"].values()) and r4["beta_all_access"] is True, r4["features"])
 

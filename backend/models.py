@@ -94,6 +94,9 @@ class Account(Base):
     access_notes = Column(Text)       # parking, entry instructions, warnings (dogs, badges)
     schedule = Column(String)         # free-text: "Mon/Thu", "every other Tue", "1st of month"
     schedule_parsed = Column(Text)    # JSON normalized schedule (P4 route awareness)
+    recap_enabled = Column(Boolean, default=False)   # P8: client recaps opt-in (default OFF)
+    recap_email = Column(String)                     # P8: client's service-contact email (owner-confirmed)
+    recap_auto_send = Column(Boolean, default=False) # P8 Phase 2 — built but INERT at launch (approve-first always)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
@@ -249,6 +252,40 @@ class AccountTask(Base):
 
     __table_args__ = (
         Index("ix_account_tasks_scope", "business_id", "account_id", "status"),
+    )
+
+
+class RecapLog(Base):
+    """P8 — client recap lifecycle. One row per client-facing recap.
+
+    Status flow: drafting (LLM rewrite in flight) → pending_approval →
+    sent / skipped. held = LLM failure, safety-filter rejection, tier gate,
+    or email send failure — a held recap is NEVER sent as-is; the owner is
+    pinged to handle it manually. The raw worker note must never reach a
+    client (spec hard rule #1), so there is no raw-text fallback anywhere
+    in this pipeline.
+
+    Batching: notes for the same account within the visit window merge into
+    ONE recap — source_log_ids (JSON) tracks every log folded in; service_log_id
+    keeps the FIRST log for back-compat with the spec schema.
+    """
+    __tablename__ = "recap_log"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    business_id = Column(Integer, ForeignKey("businesses.id"), nullable=False)
+    account_id = Column(Integer, ForeignKey("accounts.id"), nullable=False)
+    service_log_id = Column(Integer, ForeignKey("service_logs.id"), nullable=False)  # first log
+    source_log_ids = Column(Text)           # JSON list of every merged ServiceLog id
+    source_text = Column(Text)              # combined note text the rewriter works from
+    client_text = Column(Text)              # the client-safe rewrite (never raw note)
+    status = Column(String, default="drafting")  # drafting/pending_approval/sent/skipped/held
+    channel = Column(String, default="email")
+    approved_by_worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True)  # null = owner
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    sent_at = Column(DateTime)
+
+    __table_args__ = (
+        Index("ix_recap_log_scope", "business_id", "account_id", "status"),
     )
 
 

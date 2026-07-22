@@ -30,6 +30,7 @@ FEATURE_TIERS = {
     "routes": "crew",       # route awareness (route today / missed stops)
     "sms": "crew",          # SMS channel (P3, not yet built)
     "morning_push": "crew", # morning route push
+    "recaps": "team",       # P8 client recaps (email; SMS recaps ride the sms gate post-P3)
 }
 
 FEATURE_LABELS = {
@@ -38,6 +39,7 @@ FEATURE_LABELS = {
     "routes": ("Route awareness", "Crew", "$149/mo"),
     "sms": ("SMS channel", "Crew", "$149/mo"),
     "morning_push": ("Morning route push", "Crew", "$149/mo"),
+    "recaps": ("Client recaps", "Team", "$79/mo"),
 }
 
 UPGRADE_URL = "https://fieldnotesapp.io/app/pricing.html"

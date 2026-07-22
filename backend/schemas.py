@@ -49,6 +49,8 @@ class AccountOut(BaseModel):
     access_notes: Optional[str] = None
     schedule: Optional[str] = None
     notes: Optional[str] = None
+    recap_enabled: Optional[bool] = False
+    recap_email: Optional[str] = None
     is_active: bool
 
     model_config = {"from_attributes": True}
@@ -147,6 +149,7 @@ class DailySummary(BaseModel):
     actions_pending: int
     supplies_needed: List[str]
     workers_active: List[str]
+    recaps_pending: int = 0  # P8: client recaps waiting on owner approval
 
 
 # ── Telegram Webhook ───────────────────────────────────

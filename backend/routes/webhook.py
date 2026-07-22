@@ -20,6 +20,7 @@ from ..services.ingest import persist_parsed_note
 from ..services.qa import looks_like_question, answer_question, route_intent, _match_accounts
 from ..services import tasks as tasks_mod
 from ..services import accounts as accounts_mod
+from ..services import recaps as recaps_mod
 from .onboarding import BOT_USERNAME
 from ..integrations.telegram import send_confirmation, send_message
 from ..deps import has_feature, upgrade_message
@@ -247,6 +248,15 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     is_owner_chat = bool(biz and biz.owner_telegram_id
                          and str(biz.owner_telegram_id) == str(telegram_id))
 
+    # ── P8: owner recap approval — ✓ send / ✗ skip / "edit: …" ─────
+    # Owner-chat only. Takes precedence over the P7 task YES/NO below when a
+    # recap is waiting — the recap ping is the owner's most recent context.
+    if is_owner_chat and biz:
+        recap_handled = await recaps_mod.handle_owner_reply(
+            db, biz, text, send_message, telegram_id)
+        if recap_handled:
+            return {"worker": worker.name, **recap_handled}
+
     # ── P7: YES/NO answer to a pending task-close proposal ────────
     if tasks_mod.is_yes_or_no(text):
         pend = tasks_mod.pending_close_for(db, int(worker.id))
@@ -348,6 +358,74 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
                         "error": "ambiguous", "candidates": [t.title for t in cands]}
             # No title overlap → normal log note; falls through.
 
+    # ── P8: recap setup — "recaps on for X: email" / "recaps off for X" ──
+    # Owner-only (spec role rule); reps get pointed to the boss.
+    on_intent = recaps_mod.parse_recaps_on(text)
+    off_intent = recaps_mod.parse_recaps_off(text)
+    if on_intent or off_intent:
+        if not (is_owner_chat and biz):
+            await send_message(
+                telegram_id,
+                "Client recaps are the boss's call — they can turn them on "
+                "from their own chat or the dashboard.")
+            return {"worker": worker.name, "intent": "recap_setup", "error": "not_owner"}
+        if not has_feature(biz, "recaps"):
+            await send_message(telegram_id, upgrade_message("recaps", biz))
+            return {"worker": worker.name, "intent": "recap_setup", "gated": True}
+        if on_intent:
+            account_q, email = on_intent
+            acct, err = recaps_mod.enable_recaps(db, business_id, account_q, email)
+            if err:
+                await send_message(telegram_id, err)
+                return {"worker": worker.name, "intent": "recap_setup", "error": err}
+            await send_message(
+                telegram_id,
+                f"📬 Recaps on for <b>{acct.name}</b> ✓ After each visit I'll draft "
+                f"a client-safe recap for you to approve — nothing sends without "
+                f"your ✓. It goes to {acct.recap_email}.")
+            return {"worker": worker.name, "intent": "recap_setup",
+                    "account": acct.name, "enabled": True}
+        acct, err = recaps_mod.disable_recaps(db, business_id, off_intent)
+        if err:
+            await send_message(telegram_id, err)
+            return {"worker": worker.name, "intent": "recap_setup", "error": err}
+        await send_message(
+            telegram_id,
+            f"✋ Recaps off for <b>{acct.name}</b> — no more client emails "
+            f"from visits there.")
+        return {"worker": worker.name, "intent": "recap_setup",
+                "account": acct.name, "enabled": False}
+
+    # P8 footgun: "recaps on for X: <bad email>" doesn't match the setup regex,
+    # and without this catch it falls through and gets logged as a service NOTE.
+    if recaps_mod.malformed_recaps_on(text):
+        if not (is_owner_chat and biz):
+            await send_message(
+                telegram_id,
+                "Client recaps are the boss's call — they can turn them on "
+                "from their own chat or the dashboard.")
+            return {"worker": worker.name, "intent": "recap_setup", "error": "not_owner"}
+        await send_message(
+            telegram_id,
+            "⚠️ That email doesn't look right — nothing changed. Say it like:\n"
+            "<i>recaps on for Smith Office: jane@smith.com</i>")
+        return {"worker": worker.name, "intent": "recap_setup", "error": "bad_email"}
+
+    # ── P8: "which clients get recaps?" — deterministic list, any worker ──
+    if recaps_mod.recaps_list_intent(text):
+        if biz and not has_feature(biz, "recaps"):
+            await send_message(telegram_id, upgrade_message("recaps", biz))
+            return {"worker": worker.name, "intent": "recaps_list", "gated": True}
+        enabled = recaps_mod.enabled_accounts(db, business_id)
+        if enabled:
+            lines = [f"• <b>{a.name}</b> → {a.recap_email}" for a in enabled]
+            msg = "📬 Client recaps are on for:\n" + "\n".join(lines)
+        else:
+            msg = ("No client recaps turned on yet. Boss: say \"recaps on for "
+                   "<customer>: their-email\" to start one.")
+        await send_message(telegram_id, msg)
+        return {"worker": worker.name, "intent": "recaps_list", "count": len(enabled)}
+
     # ── P6b: owner chat command — "New account: Name, address, gate, schedule" ──
     # Owner-only by spec; a rep's identical text just becomes a normal note.
     na = accounts_mod.parse_new_account(text)
@@ -402,6 +480,8 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
             text=note_body, parsed=parsed, account_id=int(acct.id))
         status = parsed.get("status", "logged")
         await send_confirmation(telegram_id, acct.name, status)
+        if persisted.get("recap") is not None and biz:
+            await recaps_mod.draft_and_notify(db, biz, persisted["recap"], send_message)
         return {"worker": worker.name, "intent": "note_for",
                 "account": acct.name, "account_id": int(acct.id),
                 "status": status, "log_id": int(persisted["log"].id)}
@@ -526,6 +606,12 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
                 telegram_id,
                 f"🤔 That sounds like <b>{proposed.title}</b> — mark it done? "
                 f"Reply YES or NO.")
+
+    # P8: client recap — the note may have started/merged a draft; rewrite
+    # client-safe and ping the owner for approval (never blocks the rep's
+    # confirmation above; failures hold, never raw-send).
+    if persisted.get("recap") is not None and biz:
+        await recaps_mod.draft_and_notify(db, biz, persisted["recap"], send_message)
 
     # Demo disclosure — unregistered users are testing the sample business
     if is_demo:

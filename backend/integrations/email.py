@@ -81,7 +81,8 @@ async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
     supplies_needed = summary_data.get("supplies_needed", [])
     stops_missed = summary_data.get("stops_missed", [])
     workers = summary_data.get("workers_active", [])
-    
+    recaps_pending = summary_data.get("recaps_pending", 0)  # P8
+
     # Build HTML
     missed_html = ""
     if stops_missed:
@@ -91,7 +92,7 @@ async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
             <td style="color:#e74c3c;font-weight:bold">⚠️ Missed Stops</td>
             <td><ul style="margin:0;padding-left:15px">{items}</ul></td>
         </tr>"""
-    
+
     supplies_html = ""
     if supplies_needed:
         items = "".join(f"<li>{s}</li>" for s in supplies_needed)
@@ -100,7 +101,15 @@ async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
             <td style="color:#f39c12;font-weight:bold">📦 Supplies Needed</td>
             <td><ul style="margin:0;padding-left:15px">{items}</ul></td>
         </tr>"""
-    
+
+    recaps_html = ""
+    if recaps_pending:
+        recaps_html = f"""
+        <tr>
+            <td style="color:#1b5e20;font-weight:bold">📬 Client Recaps</td>
+            <td>{recaps_pending} waiting for your approval in the bot chat</td>
+        </tr>"""
+
     html = f"""<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
@@ -108,7 +117,7 @@ async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
     <div style="background:#fff;border-radius:12px;padding:30px;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
         <h1 style="color:#2c3e50;margin:0 0 5px;font-size:24px">📋 FieldNotes Daily Summary</h1>
         <p style="color:#7f8c8d;margin:0 0 25px">{date_str} · Workers: {', '.join(workers) if workers else 'N/A'}</p>
-        
+
         <table style="width:100%;border-collapse:collapse">
             <tr>
                 <td style="padding:10px 15px;background:#eaf7ea;border-radius:6px;font-weight:bold">✅ Stops Completed</td>
@@ -126,14 +135,15 @@ async def send_daily_summary(to_email: str, summary_data: dict) -> dict:
             </tr>
             {missed_html}
             {supplies_html}
+            {recaps_html}
         </table>
-        
+
         <p style="color:#95a5a6;font-size:12px;margin-top:25px;text-align:center">
-            FieldNotes — View full dashboard → 
+            FieldNotes — View full dashboard →
         </p>
     </div>
 </body>
 </html>"""
-    
+
     subject = f"📋 FieldNotes: {stops_completed}/{stops_expected} stops · {issues_flagged} issues"
     return await send_email(to_email, subject, html)
