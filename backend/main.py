@@ -13,7 +13,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env
 from .models import init_db, SessionLocal, engine, DATABASE_URL
 from sqlalchemy import text, inspect
 from pathlib import Path
-from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api
+from .routes import accounts, workers, logs, webhook, summary, businesses as routes, onboarding, billing, hiring, dashboard_api, demo
 
 app = FastAPI(
     title="FieldNotes",
@@ -40,6 +40,7 @@ app.include_router(onboarding.router)
 app.include_router(billing.router)
 app.include_router(hiring.router)
 app.include_router(dashboard_api.router)
+app.include_router(demo.router)
 
 # Serve frontend dashboard
 frontend_dir = os.path.join(os.path.dirname(__file__), "..", "frontend")
