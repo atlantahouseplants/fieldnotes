@@ -26,10 +26,13 @@ async def send_message(chat_id: str, text: str) -> dict:
         return resp.json()
 
 
-async def send_confirmation(chat_id: str, account_name: str, status: str) -> None:
-    """Send a quick confirmation to a worker after processing their note."""
+async def send_confirmation(chat_id: str, account_name: str, status: str, extra: str = "") -> None:
+    """Send a quick confirmation to a worker after processing their note.
+    `extra` (P7): open-task annotation appended on a new line."""
     emoji = "✅" if status == "all_good" else "⚠️"
     msg = f"{emoji} <b>{account_name}</b> logged — {status.replace('_', ' ').title()}"
+    if extra:
+        msg += f"\n{extra}"
     await send_message(chat_id, msg)
 
 

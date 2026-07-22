@@ -165,9 +165,16 @@ def route_for_date(db: Session, business_id: int, target: date) -> list:
         ServiceLog.timestamp < day_end,
         ServiceLog.account_id.isnot(None)).all()}
 
+    # P7: open tasks ride along so the morning push can flag them
+    from .tasks import open_tasks_for_business
+    tasks_by_acct = {}
+    for t in open_tasks_for_business(db, business_id):
+        tasks_by_acct.setdefault(int(t.account_id), []).append(t)
+
     return [{"account_id": aid, "name": accounts[aid].name if aid in accounts else f"#{aid}",
              "schedule": accounts[aid].schedule if aid in accounts else None,
-             "done": aid in logged}
+             "done": aid in logged,
+             "open_tasks": tasks_by_acct.get(aid, [])}
             for aid in sorted(due_ids, key=lambda i: accounts[i].name.lower() if i in accounts else "")]
 
 
@@ -195,9 +202,14 @@ def format_route_message(business_name: str, target: date, stops: list) -> str:
     if not stops:
         lines.append("No stops scheduled. Enjoy the lighter day 🌿")
         return "\n".join(lines)
+    from .tasks import tasks_annotation
     for i, s in enumerate(stops, 1):
         mark = "✅" if s["done"] else "⬜"
-        lines.append(f"{mark} {i}. <b>{s['name']}</b>")
+        line = f"{mark} {i}. <b>{s['name']}</b>"
+        note = tasks_annotation(s.get("open_tasks") or [])
+        if note:
+            line += f" — {note}"
+        lines.append(line)
     done = sum(1 for s in stops if s["done"])
     lines.append("")
     lines.append(f"{done}/{len(stops)} logged. Reply with a note at each stop — I'll file it.")

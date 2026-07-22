@@ -17,7 +17,8 @@ from ..services.actions import create_action, bulk_create_actions
 from ..services.action_queue import add_action as queue_add
 from ..services.ahp_pipeline import run_pipeline
 from ..services.ingest import persist_parsed_note
-from ..services.qa import looks_like_question, answer_question, route_intent
+from ..services.qa import looks_like_question, answer_question, route_intent, _match_accounts
+from ..services import tasks as tasks_mod
 from ..integrations.telegram import send_confirmation, send_message
 from ..deps import has_feature, upgrade_message
 
@@ -174,6 +175,38 @@ async def handle_start(db: Session, telegram_id: str, text: str, chat: dict) -> 
     return {"ok": True, "detail": "welcome_sent"}
 
 
+def _resolve_one_account(query: str, accounts: list):
+    """Exact name/shorthand match first (case-insensitive); else word-boundary
+    fuzzy. Returns the Account, 'ambiguous', or None."""
+    q = query.strip().lower()
+    exact = [a for a in accounts if (a.name and a.name.lower() == q)
+             or (a.shorthand and a.shorthand.lower() == q)]
+    if len(exact) == 1:
+        return exact[0]
+    fuzzy = _match_accounts(query, accounts)
+    if len(fuzzy) == 1:
+        return fuzzy[0]
+    if len(fuzzy) > 1:
+        return "ambiguous"
+    return None
+
+
+async def _ping_owner_task_done(db: Session, biz, closer_telegram_id: str,
+                                worker, task, account_name: str) -> None:
+    """Owner-only completion ping — NEVER to reps (spec pitfall). Silent no-op
+    if the owner hasn't linked Telegram or closed it themselves."""
+    try:
+        if not biz or not biz.owner_telegram_id:
+            return
+        if str(biz.owner_telegram_id) == str(closer_telegram_id):
+            return
+        await send_message(
+            str(biz.owner_telegram_id),
+            f"✅ <b>{task.title}</b> at {account_name} — done, closed by {worker.name}.")
+    except Exception:
+        pass  # a failed ping must never break the reply path
+
+
 async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     """Process a single worker note end-to-end."""
 
@@ -197,6 +230,111 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
             return {"detail": "unknown_worker", "telegram_id": telegram_id}
 
     business_id = int(worker.business_id)
+
+    biz = db.query(Business).filter(Business.id == business_id).first()
+    is_owner_chat = bool(biz and biz.owner_telegram_id
+                         and str(biz.owner_telegram_id) == str(telegram_id))
+
+    # ── P7: YES/NO answer to a pending task-close proposal ────────
+    if tasks_mod.is_yes_or_no(text):
+        pend = tasks_mod.pending_close_for(db, int(worker.id))
+        if pend:
+            pending, task = pend
+            acct = db.query(Account).filter(Account.id == task.account_id).first()
+            acct_name = acct.name if acct else "?"
+            if tasks_mod.is_yes(text):
+                tasks_mod.close_task(db, task, closed_by_worker_id=int(worker.id))
+                tasks_mod.clear_pending(db, pending)
+                await send_message(telegram_id,
+                                   f"✅ Marked done: <b>{task.title}</b> at {acct_name}. Nice work.")
+                await _ping_owner_task_done(db, biz, telegram_id, worker, task, acct_name)
+                return {"worker": worker.name, "intent": "close_task",
+                        "task_id": int(task.id), "via": "confirm"}
+            tasks_mod.clear_pending(db, pending)
+            await send_message(telegram_id,
+                               f"👍 OK — left <b>{task.title}</b> open at {acct_name}.")
+            return {"worker": worker.name, "intent": "close_task_declined",
+                    "task_id": int(task.id)}
+        # No pending proposal — fall through; a bare "yes"/"no" is just a note.
+
+    # ── P7: task create — "Task for <account>: <what>" ────────────
+    create_intent = tasks_mod.task_create_intent(text)
+    if create_intent:
+        account_query, body = create_intent
+        accounts_all = db.query(Account).filter(
+            Account.business_id == business_id, Account.is_active == True).all()
+        acct = _resolve_one_account(account_query, accounts_all)
+        if acct is None:
+            await send_message(
+                telegram_id,
+                f"⚠️ Couldn't find a customer called \"{account_query}\". "
+                f"Check the name or add them on the dashboard first.")
+            return {"worker": worker.name, "intent": "create_task",
+                    "error": "account_not_found", "query": account_query}
+        if acct == "ambiguous":
+            names = [a.name for a in _match_accounts(account_query, accounts_all)][:4]
+            await send_message(
+                telegram_id,
+                f"⚠️ Which customer? Could be: {', '.join(names)}. "
+                f"Say it like \"Task for <full name>: …\"")
+            return {"worker": worker.name, "intent": "create_task",
+                    "error": "account_ambiguous", "query": account_query}
+        crew = db.query(Worker).filter(
+            Worker.business_id == business_id, Worker.is_active == True).all()
+        parts = tasks_mod.parse_task_body(body, crew)
+        if not parts["title"]:
+            await send_message(telegram_id, "⚠️ What's the task? Say it like "
+                                            "\"Task for Smith Office: repair pool cover\".")
+            return {"worker": worker.name, "intent": "create_task", "error": "empty_title"}
+        task = tasks_mod.create_task(
+            db, business_id=business_id, account_id=int(acct.id),
+            title=parts["title"], supplies=parts["supplies"], due=parts["due"],
+            assigned_worker_id=int(parts["assigned"].id) if parts["assigned"] else None,
+            source="chat_owner" if is_owner_chat else "chat_rep",
+            created_by_worker_id=None if is_owner_chat else int(worker.id),
+        )
+        who = f"<b>{parts['assigned'].name}</b> will see it" if parts["assigned"] \
+            else "The crew will see it"
+        when = f" — {parts['due']}" if parts["due"] else ""
+        sup = f"\n🧰 Supplies: {task.supplies_needed}" if task.supplies_needed else ""
+        await send_message(
+            telegram_id,
+            f"📋 Task added to <b>{acct.name}</b>: {task.title}.{sup}\n"
+            f"{who} at log time and in the morning route{when}.")
+        return {"worker": worker.name, "intent": "create_task",
+                "task_id": int(task.id), "account": acct.name,
+                "assigned_to": parts["assigned"].name if parts["assigned"] else None,
+                "due": parts["due"], "supplies": parts["supplies"]}
+
+    # ── P7: task close — completion language + account with open tasks ──
+    # Guard: requires BOTH completion phrasing AND a matched account that
+    # actually has open tasks, so a normal "Smith: all done" note still logs.
+    if tasks_mod.task_close_language(text):
+        accounts_all = db.query(Account).filter(
+            Account.business_id == business_id, Account.is_active == True).all()
+        for acct in _match_accounts(text, accounts_all):
+            open_t = tasks_mod.open_tasks_for_account(db, business_id, int(acct.id))
+            if not open_t:
+                continue
+            cands = tasks_mod.match_open_tasks(open_t, text)
+            if len(cands) == 1:
+                task = cands[0]
+                tasks_mod.close_task(db, task, closed_by_worker_id=int(worker.id))
+                await send_message(
+                    telegram_id,
+                    f"✅ Marked done: <b>{task.title}</b> at {acct.name}. Nice work.")
+                await _ping_owner_task_done(db, biz, telegram_id, worker, task, acct.name)
+                return {"worker": worker.name, "intent": "close_task",
+                        "task_id": int(task.id), "account": acct.name, "via": "explicit"}
+            if len(cands) > 1:
+                listed = "; ".join(t.title for t in cands[:3])
+                await send_message(
+                    telegram_id,
+                    f"⚠️ Which one is done at {acct.name}? Open tasks: {listed}. "
+                    f"Say \"done with <name>\".")
+                return {"worker": worker.name, "intent": "close_task",
+                        "error": "ambiguous", "candidates": [t.title for t in cands]}
+            # No title overlap → normal log note; falls through.
 
     # ── Ask FieldNotes: questions get answers, not service logs ──
     if looks_like_question(text):
@@ -278,12 +416,27 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     actions_created = persisted["actions_created"]
     pipeline_result = persisted["pipeline"]
 
-    # 8. Send confirmation to worker
+    # 8. Confirm — with open-task annotation (P7 log-time surfacing), then
+    # implicit-completion proposal when the note overlaps exactly one task.
+    open_tasks = tasks_mod.open_tasks_for_account(db, business_id, account_id) \
+        if account_id else []
     await send_confirmation(
         chat_id=telegram_id,
         account_name=account_name,
-        status=parsed.get("status", "logged")
+        status=parsed.get("status", "logged"),
+        extra=tasks_mod.tasks_annotation(open_tasks),
     )
+    proposed_task_id = None
+    if open_tasks:
+        cands = tasks_mod.match_open_tasks(open_tasks, text)
+        if len(cands) == 1:
+            proposed = cands[0]
+            tasks_mod.propose_close(db, business_id, int(worker.id), proposed)
+            proposed_task_id = int(proposed.id)
+            await send_message(
+                telegram_id,
+                f"🤔 That sounds like <b>{proposed.title}</b> — mark it done? "
+                f"Reply YES or NO.")
 
     # Demo disclosure — unregistered users are testing the sample business
     if is_demo:
@@ -302,4 +455,6 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
         "actions_created": actions_created,
         "processing_ms": parsed.get("processing_time_ms", 0),
         "pipeline": pipeline_result,
+        "open_tasks": len(open_tasks),
+        "proposed_task_id": proposed_task_id,
     }

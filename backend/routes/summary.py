@@ -64,6 +64,12 @@ def _build_today_summary(db: Session, business_id: int) -> DailySummary:
         for a in supply_actions
     ]
 
+    # P7: supplies attached to open account tasks roll up here too
+    from ..services.tasks import open_tasks_for_business
+    for t in open_tasks_for_business(db, business_id):
+        if t.supplies_needed and t.supplies_needed not in supplies:
+            supplies.append(str(t.supplies_needed))
+
     # Missed stop detection
     today_dow = date.today().strftime("%A").lower()
     week_type = _get_week_type()  # "weekly", "week_a", "week_b"

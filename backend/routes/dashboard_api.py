@@ -145,6 +145,110 @@ async def add_note(
     return {"ok": True, "message": f"Note added to {account.name} ✓", "log_id": int(persisted["log"].id)}
 
 
+# ── P7: account tasks ─────────────────────────────────────────────
+class AddTaskRequest(BaseModel):
+    account: str
+    title: str
+    details: Optional[str] = None
+    supplies: Optional[str] = None
+
+
+def _task_dict(t, acct_names: dict, worker_names: dict) -> dict:
+    return {
+        "id": int(t.id),
+        "account": acct_names.get(int(t.account_id), "?"),
+        "title": t.title,
+        "details": t.details,
+        "supplies": t.supplies_needed,
+        "due": t.due_date,
+        "status": t.status,
+        "assigned_to": worker_names.get(t.assigned_worker_id),
+        "created_at": str(t.created_at),
+        "closed_at": str(t.closed_at) if t.closed_at else None,
+    }
+
+
+@router.get("/tasks")
+def list_tasks(
+    business_id: int = Query(...),
+    key: str = Query(...),
+    db: Session = Depends(get_db),
+):
+    """Open tasks + the 10 most recently closed, tenant-scoped, key-locked."""
+    verify_business_key(business_id, key, db)
+    from ..models import AccountTask
+    from ..services.tasks import open_tasks_for_business
+    open_t = open_tasks_for_business(db, business_id)
+    closed = db.query(AccountTask).filter(
+        AccountTask.business_id == business_id,
+        AccountTask.status == "done",
+    ).order_by(AccountTask.closed_at.desc()).limit(10).all()
+    acct_names = {a.id: a.name for a in db.query(Account).filter(
+        Account.business_id == business_id).all()}
+    worker_names = {w.id: w.name for w in db.query(Worker).filter(
+        Worker.business_id == business_id).all()}
+    return {"ok": True,
+            "open": [_task_dict(t, acct_names, worker_names) for t in open_t],
+            "closed": [_task_dict(t, acct_names, worker_names) for t in closed]}
+
+
+@router.post("/add-task")
+async def add_task(
+    req: AddTaskRequest,
+    business_id: int = Query(...),
+    key: str = Query(...),
+    db: Session = Depends(get_db),
+):
+    verify_business_key(business_id, key, db)
+    from ..services import tasks as tasks_mod
+
+    if not req.title.strip():
+        return {"ok": False, "message": "Type the task first"}
+
+    all_accounts = db.query(Account).filter(
+        Account.business_id == business_id, Account.is_active == True).all()
+    q = req.account.strip().lower()
+    exact = [a for a in all_accounts
+             if a.name.lower() == q or (a.shorthand and a.shorthand.lower() == q)]
+    matched = exact or _match_accounts(req.account, all_accounts)
+    if not matched:
+        return {"ok": False, "message": f"Couldn't find a customer called \"{req.account}\" — add them first."}
+    if len(matched) > 1:
+        names = ", ".join(a.name for a in matched)
+        return {"ok": False, "message": f"Which customer? Could be: {names}"}
+
+    account = matched[0]
+    task = tasks_mod.create_task(
+        db, business_id=business_id, account_id=int(account.id),
+        title=req.title, details=req.details, supplies=req.supplies,
+        source="dashboard", created_by_worker_id=None,  # null = owner created
+    )
+    return {"ok": True, "message": f"Task added to {account.name} ✓", "task_id": int(task.id)}
+
+
+@router.post("/close-task")
+async def close_task_endpoint(
+    task_id: int = Query(...),
+    business_id: int = Query(...),
+    key: str = Query(...),
+    db: Session = Depends(get_db),
+):
+    verify_business_key(business_id, key, db)
+    from ..models import AccountTask
+    from ..services import tasks as tasks_mod
+
+    task = db.query(AccountTask).filter(
+        AccountTask.id == task_id,
+        AccountTask.business_id == business_id,  # tenant scope — never close across tenants
+    ).first()
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    if task.status != "open":
+        return {"ok": False, "message": "That task is already closed"}
+    tasks_mod.close_task(db, task, closed_by_worker_id=None)  # owner closed it
+    return {"ok": True, "message": "Task marked done ✓"}
+
+
 @router.get("/invite-link")
 def invite_link(
     business_id: int = Query(...),

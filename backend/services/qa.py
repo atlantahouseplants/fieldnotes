@@ -127,6 +127,10 @@ def _gather_context(db: Session, business_id: int, question: str) -> tuple[dict,
             Action.status == "pending",
         ).limit(10).all()
         ctx["open_actions"] = [a2.description for a2 in actions]
+        # P7: open account tasks — "anything special at Smith today?" works
+        from .tasks import open_tasks_for_account, task_line
+        ctx["open_tasks"] = [task_line(t) for t in
+                             open_tasks_for_account(db, business_id, a.id)]
 
     elif not matched:
         # No specific account — keyword search across the tenant's history
@@ -142,6 +146,16 @@ def _gather_context(db: Session, business_id: int, question: str) -> tuple[dict,
                 Action.business_id == business_id, Action.status == "pending"
             ).order_by(Action.created_at.desc()).limit(15).all()
             ctx["open_actions"] = [a.description for a in actions]
+
+        # P7: same style of question should see open account tasks too
+        if any(w in question.lower() for w in ("issue", "action", "open", "todo", "to-do", "outstanding", "problem", "special", "task")):
+            from .tasks import open_tasks_for_business, task_line
+            from ..models import Account as _Acct
+            acct_names = {x.id: x.name for x in db.query(_Acct).filter(
+                _Acct.business_id == business_id).all()}
+            ctx["open_tasks"] = [
+                f"{acct_names.get(int(t.account_id), '?')}: {task_line(t)}"
+                for t in open_tasks_for_business(db, business_id)[:15]]
 
         # Give the model the account roster for orientation (names + access facts only)
         ctx["accounts"] = [{

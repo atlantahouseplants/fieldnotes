@@ -6,7 +6,7 @@ import datetime
 import os
 from pathlib import Path
 
-from sqlalchemy import create_engine, Column, String, Integer, DateTime, Boolean, Text, ForeignKey, Enum as SQLEnum
+from sqlalchemy import create_engine, Column, String, Integer, DateTime, Boolean, Text, ForeignKey, Index, Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, relationship, sessionmaker
 import enum
 
@@ -221,6 +221,53 @@ class QaEvent(Base):
 
     business = relationship("Business", back_populates="qa_events")
     worker = relationship("Worker", back_populates="qa_events")
+
+class AccountTask(Base):
+    """A task attached to an account — the delegation loop (P7).
+
+    Open tasks surface at log time, in the morning push, in Q&A, and on the
+    dashboard. Unassigned tasks (assigned_worker_id NULL) are visible to the
+    whole crew. Nothing auto-closes silently: ambiguous closes ask, implicit
+    completions get a YES/NO confirm.
+    """
+    __tablename__ = "account_tasks"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    business_id = Column(Integer, ForeignKey("businesses.id"), nullable=False)
+    account_id = Column(Integer, ForeignKey("accounts.id"), nullable=False)
+    title = Column(String, nullable=False)            # "Repair pool cover"
+    details = Column(Text)                            # "client said tear on deep-end corner"
+    status = Column(String, default="open")           # open / done / cancelled
+    assigned_worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True)  # null = whole crew
+    supplies_needed = Column(Text)                    # "cover patch kit, 12ft strap"
+    due_date = Column(String)                         # raw day text ("Thursday") — surfacing doesn't depend on it
+    source = Column(String)                           # chat_owner / chat_rep / dashboard
+    created_by_worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True)  # null = owner created
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    closed_at = Column(DateTime)
+    closed_by_worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True)
+
+    __table_args__ = (
+        Index("ix_account_tasks_scope", "business_id", "account_id", "status"),
+    )
+
+
+class PendingTaskClose(Base):
+    """A proposed task close awaiting the rep's YES/NO (P7 implicit-completion
+    confirm). Created when a logged note overlaps an open task's title. Never
+    auto-closes — expired proposals (24h) are simply ignored."""
+    __tablename__ = "pending_task_closes"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    business_id = Column(Integer, ForeignKey("businesses.id"), nullable=False)
+    worker_id = Column(Integer, ForeignKey("workers.id"), nullable=False)  # who must confirm
+    task_id = Column(Integer, ForeignKey("account_tasks.id"), nullable=False)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    __table_args__ = (
+        Index("ix_pending_task_closes_worker", "worker_id", "created_at"),
+    )
+
 
 def init_db():
     Base.metadata.create_all(bind=engine)

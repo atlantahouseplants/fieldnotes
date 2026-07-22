@@ -2,7 +2,7 @@
 """
 P6a dashboard quick-actions test suite. Two layers:
 
-  A) HTTP endpoint tests — local uvicorn (port 8769) + temp sqlite.
+  A) HTTP endpoint tests — local uvicorn (port 8772) + temp sqlite.
      LLM keys are STRIPPED from the server env, so parse_note uses its
      deterministic _basic_parse fallback (no network, no cost, no flake).
   B) In-process unit test of the SHARED pipeline (services/ingest.py):
@@ -15,7 +15,7 @@ Production data is never touched.
 import json, os, sqlite3, subprocess, sys, time
 import httpx
 
-BASE = "http://127.0.0.1:8769"
+BASE = "http://127.0.0.1:8772"  # distinct from p5 (8769) — shared-port zombies caused cross-suite flakes
 DB_PATH = "/tmp/p6a_dashboard_test.db"
 UNIT_DB = "/tmp/p6a_ingest_unit.db"
 
@@ -58,7 +58,7 @@ def http_tests():
            if k not in ("XAI_API_KEY", "DEEPSEEK_API_KEY", "OPENAI_API_KEY")}
     env["DATABASE_URL"] = f"sqlite:///{DB_PATH}"
     proc = subprocess.Popen(
-        [sys.executable, "-m", "uvicorn", "backend.main:app", "--host", "127.0.0.1", "--port", "8769"],
+        [sys.executable, "-m", "uvicorn", "backend.main:app", "--host", "127.0.0.1", "--port", "8772"],
         cwd="/home/wallg/fieldnotes", env=env,
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:
