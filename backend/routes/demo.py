@@ -48,6 +48,17 @@ _hits: dict = defaultdict(list)
 
 
 def _client_ip(request: Request) -> str:
+    # Prod sits behind Cloudflare → Railway edge. The Railway edge rewrites
+    # X-Forwarded-For to the *Cloudflare egress* IP, which varies request to
+    # request — taking XFF[0] silently defeats a per-IP limiter (verified in
+    # prod: 12 rapid requests, 12 distinct keys). CF-Connecting-IP is set by
+    # Cloudflare to the true client IP and passes through untouched, so it
+    # wins when present. Direct-to-origin callers could spoof it, but the
+    # demo page is only served via the CF-fronted domain — best-effort is
+    # fine for a demo guard.
+    cf = (request.headers.get("cf-connecting-ip") or "").strip()
+    if cf:
+        return cf
     fwd = (request.headers.get("x-forwarded-for") or "").split(",")[0].strip()
     if fwd:
         return fwd
