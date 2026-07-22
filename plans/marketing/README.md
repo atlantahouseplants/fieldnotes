@@ -4,11 +4,11 @@
 
 | Task | Name | Status | Owner agent | Last touched |
 |------|------|--------|-------------|--------------|
-| M1 | `/api/demo` public endpoint (biz-2 locked, rate-limited) | 🔲 not started | — | — |
-| M2 | Phone-mockup demo UI (`frontend/try.html`) | 🔲 not started | — | — |
-| M3 | Landing page rebuild (demo above the fold) | 🔲 not started | — | — |
-| M4 | Pricing matrix update (P6–P8 features) | 🔲 not started | — | — |
-| M5 | Social/launch copy rewrite (gate-code moment) | 🔲 not started | — | — |
+| M1 | `/api/demo` public endpoint (biz-2 locked, rate-limited) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
+| M2 | Phone-mockup demo UI (`frontend/try.html`) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
+| M3 | Landing page rebuild (demo above the fold) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
+| M4 | Pricing matrix update (P6–P8 features) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
+| M5 | Social/launch copy rewrite (gate-code moment) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
 
 Legend: 🔲 not started · 🔨 in progress · ✅ done
 
