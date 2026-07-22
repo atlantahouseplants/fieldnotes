@@ -76,11 +76,23 @@ Never inline token values in code — read at runtime.
 - Source voice: `marketing/social-posts.md`, `marketing/outreach-templates.md`, `frontend/index.html`.
 - Product truth: the `fieldnotes` skill + `backend/` — never invent features.
 
-## Cost guardrail
+## Cost guardrail + image tiers
 
-Max **5 image generations/day**. Content Engine counts today's `costs.jsonl` entries before
-calling `image_generate`; at cap it ships the post text-only and says so. Every generation is
-logged: `{at, kind:"image", model, cost_usd, post_id}`.
+Max **5 FAL image generations/day**. Content Engine counts today's `costs.jsonl` entries before
+calling `image_generate`. Two-tier image strategy:
+1. `image_generate` (FAL) when available and under cap — **currently UNAVAILABLE: FAL_KEY is not
+   set in ~/.hermes/.env** (Jul 22; uncomment/set it or use Nous Portal managed image gen).
+2. PIL fallback: `~/.hermes/scripts/fieldnotes_card.py chat|card` — deterministic branded cards
+   (exact charcoal/lime, crisp text, $0). Default tier while FAL is unset.
+
+Every generation is logged: `{at, kind:"image", model, cost_usd, post_id}`.
+
+## Public image hosting (required for IG)
+
+IG publishing needs a public `image_url`. Cards are copied to `frontend/assets/cards/<id>.png`,
+committed, and pushed (`env -u GITHUB_TOKEN git push`); Railway auto-deploys and the image is
+public at `https://fieldnotesapp.io/app/assets/cards/<id>.png`. FB uses local multipart upload
+and works even without hosting.
 
 ## Gate-code video asset
 
