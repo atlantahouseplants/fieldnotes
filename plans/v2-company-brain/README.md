@@ -9,7 +9,7 @@
 | P3 | SMS Channel (AgentPhone) | ⏳ BLOCKED — 10DLC in review (filed 2026-07-20) | — | — |
 | P4 | Route Awareness (schedules) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
-| P6 | Dashboard Home Base (owner UX) | 🔲 NOT STARTED — build P6a at 4 PM session Jul 21 | — | — |
+| P6 | Dashboard Home Base (owner UX) | 🔨 P6a IN PROGRESS | hermes-tui-session (Jul 21 eve) | 2026-07-21 |
 | P7 | Account Tasks (delegation loop) | 🔲 NOT STARTED — builds on P6a (needs account page) | — | — |
 | INFRA | Paying-Client Infrastructure | ✅ DONE (Jul 21) — Railway + managed PG live, data migrated, fieldnotesapp.io custom domain cut over (TXT-verified, SSL issued), Telegram webhook + Stripe endpoint on pretty domain, tenant isolation verified. Only remaining: UptimeRobot (task 7) + retire Cloudflare Tunnel after 24h clean (fallback meanwhile) | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
 
