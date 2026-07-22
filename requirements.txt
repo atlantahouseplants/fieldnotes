@@ -12,3 +12,4 @@ passlib[bcrypt]==1.7.*
 python-multipart==0.0.*
 psycopg2-binary==2.9.*
 alembic==1.18.*
+email-validator==2.*
