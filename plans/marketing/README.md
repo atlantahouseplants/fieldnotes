@@ -4,11 +4,13 @@
 
 | Task | Name | Status | Owner agent | Last touched |
 |------|------|--------|-------------|--------------|
-| M1 | `/api/demo` public endpoint (biz-2 locked, rate-limited) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
-| M2 | Phone-mockup demo UI (`frontend/try.html`) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
-| M3 | Landing page rebuild (demo above the fold) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
-| M4 | Pricing matrix update (P6–P8 features) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
-| M5 | Social/launch copy rewrite (gate-code moment) | 🔨 in progress | hermes-main Jul 22 | Jul 22 |
+| M1 | `/api/demo` public endpoint (biz-2 locked, rate-limited) | ✅ done | hermes-main Jul 22 | Jul 22 |
+| M2 | Phone-mockup demo UI (`frontend/try.html`) | ✅ done | hermes-main Jul 22 | Jul 22 |
+| M3 | Landing page rebuild (demo above the fold) | ✅ done | hermes-main Jul 22 | Jul 22 |
+| M4 | Pricing matrix update (P6–P8 features) | ✅ done | hermes-main Jul 22 | Jul 22 |
+| M5 | Social/launch copy rewrite (gate-code moment) | ✅ done | hermes-main Jul 22 | Jul 22 |
+
+**Shipped Jul 22 (all on prod, verified live):** M1 endpoint + 25-check suite (`scripts/test_m1_demo.py`, port 8775); M2 try.html browser-verified (3 taps, esc(), 44px); M3 landing with real demo screenshot in hero (`assets/demo-screenshot.png`); M4 matrix rows match FEATURE_TIERS (BETA49 byte-identical); M5 copy leads gate-code moment + 15s video script in social-posts.md. Prod verification: 3 taps live on fieldnotesapp.io, rate limit 10/hr→429 confirmed, biz-2 recap rows `skipped`-only (0 sent — sarah@ quiet), self-healing demo task re-opens after each close. Limiter gotcha fixed post-deploy: prefer `CF-Connecting-IP` — Railway edge rewrites XFF to varying Cloudflare egress IPs (see skill pitfall #41).
 
 Legend: 🔲 not started · 🔨 in progress · ✅ done
 
