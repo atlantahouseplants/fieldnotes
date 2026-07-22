@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 from ..models import SessionLocal, ServiceLog, Account, Worker, Business
 from ..deps import verify_business_key
 from ..services.schedule import parse_schedule, sync_route_entries
+from ..services.accounts import create_account, get_or_create_owner_worker
 from ..services.qa import _match_accounts
 from ..services.parser import parse_note
 from ..services.ingest import persist_parsed_note
@@ -44,37 +45,13 @@ async def add_account(
 ):
     biz = verify_business_key(business_id, key, db)
 
-    name_clean = req.name.strip()
-    if not name_clean:
-        return {"ok": False, "message": "Type the customer's name first"}
-
-    existing = db.query(Account).filter(
-        Account.business_id == business_id,
-        func.lower(Account.name) == name_clean.lower()
-    ).first()
-    if existing:
-        return {"ok": False, "message": f"You already have a customer called \"{existing.name}\" — no need to add it twice."}
-
-    account = Account(
-        business_id=business_id,
-        name=name_clean,
-        address=req.address,
-        gate_code=req.gate_code,
-        access_notes=req.access_notes,
-        schedule=req.schedule,
-        is_active=True
-    )
-    db.add(account)
-    db.flush() # To get account.id
-
-    if req.schedule:
-        parsed_schedule = parse_schedule(req.schedule)
-        account.schedule_parsed = json.dumps(parsed_schedule) if (parsed_schedule["entries"] or parsed_schedule["monthly_day"]) else None
-        sync_route_entries(db, business_id) # Sync all accounts for this business
-
-    db.commit()
-    db.refresh(account)
-
+    # ONE create path, shared with the owner chat command (P6b)
+    account, err = create_account(
+        db, business_id, req.name, address=req.address,
+        gate_code=req.gate_code, access_notes=req.access_notes,
+        schedule=req.schedule)
+    if err:
+        return {"ok": False, "message": err}
     return {"ok": True, "message": "Customer added ✓", "account_id": account.id}
 
 
@@ -83,19 +60,8 @@ class AddNoteRequest(BaseModel):
     note: str
 
 
-def _get_or_create_owner_worker(db: Session, business_id: int) -> Worker:
-    """Attribution row for owner-added notes (ServiceLog.worker_id is NOT NULL).
-    telegram_id stays NULL — owner isn't a field worker; morning-push and
-    summary worker loops skip NULL/placeholder ids (isdigit check)."""
-    owner = db.query(Worker).filter(
-        Worker.business_id == business_id, Worker.name == "Owner"
-    ).first()
-    if not owner:
-        owner = Worker(business_id=business_id, name="Owner", telegram_id=None, is_active=True)
-        db.add(owner)
-        db.flush()  # id available now; commit happens with the note in persist_parsed_note
-        db.refresh(owner)
-    return owner
+# Canonical home: services/accounts.py (shared with the P6b chat path)
+_get_or_create_owner_worker = get_or_create_owner_worker
 
 
 @router.post("/add-note")

@@ -19,6 +19,8 @@ from ..services.ahp_pipeline import run_pipeline
 from ..services.ingest import persist_parsed_note
 from ..services.qa import looks_like_question, answer_question, route_intent, _match_accounts
 from ..services import tasks as tasks_mod
+from ..services import accounts as accounts_mod
+from .onboarding import BOT_USERNAME
 from ..integrations.telegram import send_confirmation, send_message
 from ..deps import has_feature, upgrade_message
 
@@ -218,16 +220,26 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
 
     is_demo = False
     if not worker:
-        # DEMO MODE: Allow unregistered users to test with the demo business
-        demo_worker = db.query(Worker).filter(
-            Worker.business_id == 2,  # Precision HVAC demo
-            Worker.is_active == True
+        # P6b: the owner isn't a field worker — resolve them via
+        # Business.owner_telegram_id so their chat commands and notes land
+        # in their OWN tenant (attributed to the synthetic "Owner" worker).
+        owner_biz = db.query(Business).filter(
+            Business.owner_telegram_id == telegram_id,
+            Business.is_active == True
         ).first()
-        if demo_worker:
-            worker = demo_worker
-            is_demo = True
+        if owner_biz:
+            worker = accounts_mod.get_or_create_owner_worker(db, int(owner_biz.id))
         else:
-            return {"detail": "unknown_worker", "telegram_id": telegram_id}
+            # DEMO MODE: Allow unregistered users to test with the demo business
+            demo_worker = db.query(Worker).filter(
+                Worker.business_id == 2,  # Precision HVAC demo
+                Worker.is_active == True
+            ).first()
+            if demo_worker:
+                worker = demo_worker
+                is_demo = True
+            else:
+                return {"detail": "unknown_worker", "telegram_id": telegram_id}
 
     business_id = int(worker.business_id)
 
@@ -335,6 +347,83 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
                 return {"worker": worker.name, "intent": "close_task",
                         "error": "ambiguous", "candidates": [t.title for t in cands]}
             # No title overlap → normal log note; falls through.
+
+    # ── P6b: owner chat command — "New account: Name, address, gate, schedule" ──
+    # Owner-only by spec; a rep's identical text just becomes a normal note.
+    na = accounts_mod.parse_new_account(text)
+    if na and is_owner_chat:
+        account, err = accounts_mod.create_account(
+            db, business_id, na["name"], address=na["address"],
+            gate_code=na["gate_code"], schedule=na["schedule"])
+        if err:
+            await send_message(telegram_id, f"⚠️ {err}")
+            return {"worker": worker.name, "intent": "new_account", "error": err}
+        bits = []
+        if account.address:
+            bits.append(str(account.address))
+        if account.gate_code:
+            bits.append(f"gate {account.gate_code}")
+        if account.schedule:
+            bits.append(f"route: {account.schedule}")
+        detail = f" — {', '.join(bits)}" if bits else ""
+        await send_message(
+            telegram_id,
+            f"🏢 Customer added ✓ <b>{account.name}</b>{detail}.\n"
+            f"Reps can log at it right away; it shows on the dashboard too.")
+        return {"worker": worker.name, "intent": "new_account",
+                "account_id": int(account.id), "account": account.name}
+
+    # ── P6b: "Note for <customer>: …" — owner or rep, explicit account ──
+    nf = accounts_mod.parse_note_for(text)
+    if nf:
+        account_q, note_body = nf
+        all_accounts = db.query(Account).filter(
+            Account.business_id == business_id, Account.is_active == True).all()
+        acct = _resolve_one_account(account_q, all_accounts)
+        if acct is None:
+            await send_message(
+                telegram_id,
+                f"⚠️ Couldn't find a customer called \"{account_q}\" — nothing saved. "
+                f"Check the name, or add them first.")
+            return {"worker": worker.name, "intent": "note_for",
+                    "error": "account_not_found", "query": account_q}
+        if acct == "ambiguous":
+            names = [a.name for a in _match_accounts(account_q, all_accounts)][:4]
+            await send_message(
+                telegram_id,
+                f"⚠️ Which customer? Could be: {', '.join(names)}. "
+                f"Say it like \"Note for <full name>: …\"")
+            return {"worker": worker.name, "intent": "note_for",
+                    "error": "account_ambiguous", "query": account_q}
+        hints = [acct.name] + ([acct.shorthand] if acct.shorthand else [])
+        parsed = await parse_note(note_body, hints)
+        persisted = persist_parsed_note(
+            db, business_id=business_id, worker_id=int(worker.id),
+            text=note_body, parsed=parsed, account_id=int(acct.id))
+        status = parsed.get("status", "logged")
+        await send_confirmation(telegram_id, acct.name, status)
+        return {"worker": worker.name, "intent": "note_for",
+                "account": acct.name, "account_id": int(acct.id),
+                "status": status, "log_id": int(persisted["log"].id)}
+
+    # ── P6b: "invite" — owner gets the link; reps get pointed to the boss ──
+    if accounts_mod.invite_intent(text):
+        if is_owner_chat and biz:
+            if not biz.invite_token:
+                biz.invite_token = _secrets.token_urlsafe(12)
+                db.commit()
+                db.refresh(biz)
+            link = f"https://t.me/{BOT_USERNAME}?start=invite_{biz.invite_token}"
+            await send_message(
+                telegram_id,
+                f"👷 Send this to your new guy — he taps it, presses START, "
+                f"and his notes land in your account. No setup:\n{link}")
+            return {"worker": worker.name, "intent": "invite"}
+        await send_message(
+            telegram_id,
+            "Only the boss can invite workers — ask them to send the invite "
+            "link (it's on their dashboard).")
+        return {"worker": worker.name, "intent": "invite", "error": "not_owner"}
 
     # ── Ask FieldNotes: questions get answers, not service logs ──
     if looks_like_question(text):
