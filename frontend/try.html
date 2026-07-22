@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try FieldNotes — 60-second live demo</title>
+<style>
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+         background:#e8ede8; color:#1a1a1a; margin:0; }
+  /* Phone frame: full-bleed on mobile, centered mockup on desktop */
+  .phone { max-width:390px; margin:0 auto; min-height:100vh; background:#f5f7f5;
+           display:flex; flex-direction:column; }
+  @media (min-width:480px) {
+    body { padding:24px 0; }
+    .phone { min-height:calc(100vh - 48px); border-radius:28px; overflow:hidden;
+             box-shadow:0 12px 40px rgba(0,0,0,.25); border:6px solid #222; }
+  }
+  .phead { background:#1b5e20; color:#fff; padding:14px 16px; }
+  .phead b { font-size:16px; display:block; }
+  .phead span { font-size:12px; opacity:.85; }
+  .thread { flex:1; padding:14px 12px; overflow-y:auto; }
+  .bubble { max-width:82%; padding:10px 13px; border-radius:16px; margin:6px 0;
+            font-size:15px; line-height:1.4; word-wrap:break-word; }
+  .me { background:#1b5e20; color:#fff; margin-left:auto; border-bottom-right-radius:4px; }
+  .bot { background:#fff; color:#1a1a1a; border:1px solid #e2e6e2;
+         border-bottom-left-radius:4px; box-shadow:0 1px 2px rgba(0,0,0,.05); }
+  .src { font-size:12px; color:#666; margin-top:6px; }
+  .typing { display:inline-flex; gap:4px; padding:12px 14px; }
+  .typing i { width:7px; height:7px; border-radius:50%; background:#9e9e9e;
+              animation:blink 1.2s infinite; }
+  .typing i:nth-child(2) { animation-delay:.2s; }
+  .typing i:nth-child(3) { animation-delay:.4s; }
+  @keyframes blink { 0%,60%,100% { opacity:.25; } 30% { opacity:1; } }
+  /* Result cards inside the thread */
+  .rcard { background:#fff; border:1px solid #e2e6e2; border-radius:12px;
+           padding:12px 14px; margin:6px 0; font-size:14px;
+           box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .rcard .ok { color:#1b5e20; font-weight:700; }
+  .rcard .task { margin-top:8px; padding-top:8px; border-top:1px dashed #ddd; }
+  /* Email preview */
+  .email { background:#fff; border:1px solid #ddd; border-radius:12px;
+           padding:16px; margin:6px 0; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .email .from { color:#1b5e20; font-weight:700; font-size:15px; }
+  .email .subj { color:#666; font-size:12.5px; margin:2px 0 10px; }
+  .email .body { font-size:14.5px; line-height:1.5; color:#222; }
+  .email .foot { border-top:1px solid #eee; margin-top:12px; padding-top:8px;
+                 color:#999; font-size:11px; }
+  .preview-tag { display:inline-block; background:#fff8e1; color:#8a6d00;
+                 border:1px solid #f0df9a; font-size:11px; border-radius:6px;
+                 padding:2px 8px; margin-bottom:8px; }
+  /* Chips */
+  .chips { padding:8px 12px 4px; display:flex; flex-direction:column; gap:8px; }
+  .chip { display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+          min-height:44px; background:#fff; border:1.5px solid #1b5e20;
+          color:#1b5e20; border-radius:12px; padding:10px 12px; font-size:14.5px;
+          font-weight:600; cursor:pointer; }
+  .chip small { display:block; font-weight:400; color:#555; font-size:12px; }
+  .chip.done { background:#e8f3e9; border-color:#c8e0c9; color:#4a6b4d; }
+  .chip:disabled { opacity:.55; cursor:default; }
+  /* Composer */
+  .composer { display:flex; gap:8px; padding:10px 12px 14px; background:#f5f7f5; }
+  .composer input { flex:1; min-height:44px; border:1px solid #ccc; border-radius:12px;
+                    padding:10px 12px; font-size:15px; }
+  .composer button { min-height:44px; min-width:56px; border:none; border-radius:12px;
+                     background:#1b5e20; color:#fff; font-size:16px; font-weight:700;
+                     cursor:pointer; }
+  .composer button:disabled { opacity:.5; }
+  /* CTA */
+  #cta { display:none; margin:14px 12px; background:#1b5e20; color:#fff;
+         border-radius:14px; padding:18px 16px; text-align:center; }
+  #cta .kicker { font-size:16px; font-weight:700; margin:0 0 4px; }
+  #cta .sub { font-size:13px; opacity:.9; margin:0 0 14px; }
+  #cta a { display:block; min-height:48px; line-height:48px; background:#fff;
+           color:#1b5e20; font-weight:700; font-size:16px; border-radius:12px;
+           text-decoration:none; }
+  #cta .later { display:block; margin-top:10px; color:#cfe4d0; font-size:12.5px; }
+  .foot { text-align:center; color:#777; font-size:12px; padding:0 12px 16px; }
+  .foot a { color:#1b5e20; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="phead">
+    <b>FieldNotes — live demo</b>
+    <span>You're texting as a tech at <b>Precision HVAC</b> (sample business)</span>
+  </div>
+
+  <div class="thread" id="thread">
+    <div class="bubble bot">👋 This is the real thing, not a video. Tap a prompt below
+      (or type your own) — you're driving a live sample business.</div>
+  </div>
+
+  <div class="chips">
+    <button class="chip" id="chip1" onclick="tapChip(1)">
+      <span>📝</span><span>Log it<small>Riverside: replaced the belt on unit 1</small></span>
+    </button>
+    <button class="chip" id="chip2" onclick="tapChip(2)">
+      <span>❓</span><span>Ask it<small>What's the gate code for Riverside?</small></span>
+    </button>
+    <button class="chip" id="chip3" onclick="tapChip(3)">
+      <span>📧</span><span>Prove it<small>Show the recap your customer gets</small></span>
+    </button>
+  </div>
+
+  <div id="cta">
+    <p class="kicker">You just ran a whole visit from a text message.</p>
+    <p class="sub">Logged the work, got the gate code, proved the visit to the customer.
+      Your crew already knows how to text — that's the whole training program.</p>
+    <a href="/app/start.html">Start your 30-day trial — no credit card</a>
+    <a class="later" href="/app/index.html">← Back to fieldnotesapp.io</a>
+  </div>
+
+  <div class="composer">
+    <input id="msg" type="text" maxlength="500" enterkeyhint="send"
+           placeholder="Or type your own note or question…"
+           onkeydown="if(event.key==='Enter')sendFree()">
+    <button id="send" onclick="sendFree()" aria-label="Send">➤</button>
+  </div>
+  <div class="foot">Demo data only — nothing you type here emails or texts anyone.</div>
+</div>
+
+<script>
+// All API-derived strings pass through esc() before innerHTML.
+const esc = s => String(s ?? '').replace(/[&<>"']/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const thread = document.getElementById('thread');
+const CHIP_TEXT = {
+  1: 'Riverside: replaced the belt on unit 1',
+  2: "What's the gate code for Riverside?",
+  3: 'show the recap',
+};
+let busy = false;
+let lastRecap = null;   // preview captured from the log tap — replay for tap 3
+let ctaShown = false;
+
+function scrollDown() {
+  requestAnimationFrame(() => { thread.scrollTop = thread.scrollHeight; });
+}
+
+function addBubble(cls, html) {
+  const d = document.createElement('div');
+  d.className = 'bubble ' + cls;
+  d.innerHTML = html;
+  thread.appendChild(d);
+  scrollDown();
+  return d;
+}
+
+function addCard(html) {
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  thread.appendChild(d);
+  scrollDown();
+  return d;
+}
+
+function showTyping() {
+  const d = document.createElement('div');
+  d.className = 'bubble bot typing';
+  d.id = 'typing';
+  d.innerHTML = '<i></i><i></i><i></i>';
+  thread.appendChild(d);
+  scrollDown();
+}
+function hideTyping() { document.getElementById('typing')?.remove(); }
+
+function markChip(n) {
+  const c = document.getElementById('chip' + n);
+  if (c) { c.classList.add('done'); }
+}
+
+function setBusy(b) {
+  busy = b;
+  document.getElementById('send').disabled = b;
+  [1,2,3].forEach(n => document.getElementById('chip' + n).disabled = b);
+}
+
+function showCta() {
+  if (ctaShown) return;
+  ctaShown = true;
+  document.getElementById('cta').style.display = 'block';
+  document.getElementById('cta').scrollIntoView({behavior:'smooth'});
+}
+
+function renderNote(d) {
+  const log = d.log || {};
+  let html = '<div class="rcard"><span class="ok">✓ Logged</span> — <b>'
+    + esc(log.account || 'uncategorized') + '</b>'
+    + (log.matched === false
+        ? '<div class="src">No account matched — filed for the owner to assign.</div>'
+        : '<div class="src">Filed under ' + esc(log.account || '') + ' · status: '
+          + esc(log.status || 'logged') + '</div>');
+  if (d.task_closed && d.task_closed.title) {
+    html += '<div class="task">✅ <b>Task closed:</b> ' + esc(d.task_closed.title)
+      + '<div class="src">The note matched an open task — FieldNotes closed it for you.</div></div>';
+  }
+  if (d.recap_preview) {
+    html += '<div class="task">📧 A client recap is drafted — tap <b>Prove it</b> to see it.</div>';
+  }
+  html += '</div>';
+  addCard(html);
+  markChip(1);
+  if (d.recap_preview) lastRecap = d.recap_preview;
+}
+
+function renderQuestion(d) {
+  let html = esc(d.answer || "I don't have that on file yet.").replace(/\n/g, '<br>');
+  if (d.sources && d.sources.length) {
+    html += '<div class="src">Source: ' + d.sources.map(esc).join(', ') + '</div>';
+  }
+  addBubble('bot', html);
+  markChip(2);
+}
+
+function renderRecap(p) {
+  const html = '<div class="email"><span class="preview-tag">PREVIEW — nothing was emailed</span>'
+    + '<div class="from">Precision HVAC</div>'
+    + '<div class="subj">' + esc(p.subject || 'Service recap') + ' · to ' + esc(p.to || 'your customer') + '</div>'
+    + '<div class="body">' + esc(p.client_text || '').replace(/\n/g, '<br>') + '</div>'
+    + '<div class="foot">Timestamped proof the visit happened. In the real product the owner '
+    + 'approves every recap first — then it goes to the customer automatically.</div></div>';
+  addCard(html);
+  markChip(3);
+  showCta();
+}
+
+async function sendText(text) {
+  if (busy) return;
+  text = (text || '').trim();
+  if (!text) return;
+  setBusy(true);
+  addBubble('me', esc(text));
+  showTyping();
+  try {
+    const r = await fetch('/api/demo', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({text}),
+    });
+    const d = await r.json().catch(() => ({}));
+    hideTyping();
+    if (!r.ok || d.ok === false) {
+      addBubble('bot', '⚠️ ' + esc(d.message || d.error
+        || "The demo hiccuped — give it another try."));
+      return;
+    }
+    if (d.kind === 'question') { renderQuestion(d); return; }
+    if (d.kind === 'note') { renderNote(d); return; }
+    if (d.kind === 'recap') {
+      if (d.recap_preview) { renderRecap(d.recap_preview); }
+      else if (lastRecap) { renderRecap(lastRecap); }
+      else { addBubble('bot', esc(d.answer || 'Log a visit first, then I can show the recap.')); }
+      return;
+    }
+    addBubble('bot', esc(d.answer || 'Done.'));
+  } catch (e) {
+    hideTyping();
+    addBubble('bot', "⚠️ Can't reach the demo right now — check your connection and try again.");
+  } finally {
+    setBusy(false);
+  }
+}
+
+function tapChip(n) { if (!busy) sendText(CHIP_TEXT[n]); }
+function sendFree() {
+  const i = document.getElementById('msg');
+  const t = i.value;
+  i.value = '';
+  sendText(t);
+}
+</script>
+</body>
+</html>
