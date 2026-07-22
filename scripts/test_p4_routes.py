@@ -15,6 +15,13 @@ import json, os, sqlite3, subprocess, sys, time
 from datetime import date, timedelta
 import httpx
 
+# Pin both this script and the server subprocess to UTC: log timestamps are
+# datetime.utcnow() while route lookups use date.today(). On a non-UTC box the
+# two diverge between 8pm-midnight local and the "logged stop flips" check
+# fails spuriously. Prod (Railway) runs TZ=UTC, so this mirrors prod.
+os.environ["TZ"] = "UTC"
+time.tzset()
+
 BASE = "http://127.0.0.1:8768"
 DB_PATH = "/tmp/p4_route_test.db"
 SECRET_HDR = {"x-telegram-bot-api-secret-token": None}
@@ -40,7 +47,7 @@ def main():
             secret = line.split("=", 1)[1].strip()
     SECRET_HDR["x-telegram-bot-api-secret-token"] = secret
 
-    env = dict(os.environ, DATABASE_URL=f"sqlite:///{DB_PATH}", FIELDNOTES_CRON_SECRET=CRON)
+    env = dict(os.environ, DATABASE_URL=f"sqlite:///{DB_PATH}", FIELDNOTES_CRON_SECRET=CRON, TZ="UTC")
     proc = subprocess.Popen(
         [sys.executable, "-m", "uvicorn", "backend.main:app", "--host", "127.0.0.1", "--port", "8768"],
         cwd="/home/wallg/fieldnotes", env=env,

@@ -16,6 +16,7 @@ from ..services.parser import parse_note
 from ..services.actions import create_action, bulk_create_actions
 from ..services.action_queue import add_action as queue_add
 from ..services.ahp_pipeline import run_pipeline
+from ..services.ingest import persist_parsed_note
 from ..services.qa import looks_like_question, answer_question, route_intent
 from ..integrations.telegram import send_confirmation, send_message
 from ..deps import has_feature, upgrade_message
@@ -262,56 +263,20 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     if not account_id:
         account_name = account_hint if account_hint else "uncategorized"
     
-    # 5. Create service log (use None for uncategorized accounts)
-    log = ServiceLog(
+    # 5-7. Persist through the SHARED pipeline (services/ingest.py):
+    # ServiceLog + action items + deterministic execution pipeline.
+    # Owner-added dashboard notes go through this exact same function.
+    persisted = persist_parsed_note(
+        db,
         business_id=business_id,
-        account_id=account_id or None,  # Allow uncategorized
-        worker_id=worker.id,
-        raw_note=text,
-        parsed_status=parsed.get("status", ""),
-        parsed_issues=json.dumps(parsed.get("issues", [])),
-        parsed_supplies=json.dumps(parsed.get("supplies", [])),
-        parsed_followups=json.dumps(parsed.get("followups", [])),
-        parsed_customer_requests=json.dumps(parsed.get("customer_requests", [])),
-        timestamp=datetime.utcnow(),
-        processing_time_ms=parsed.get("processing_time_ms", 0)
+        worker_id=int(worker.id),
+        text=text,
+        parsed=parsed,
+        account_id=account_id,
     )
-    db.add(log)
-    db.commit()
-    db.refresh(log)
-    
-    # 6. Create action items
-    actions_created = []
-    
-    for issue in parsed.get("issues", []):
-        action = create_action(
-            db=db, business_id=business_id,
-            description=issue, priority="this_week",
-            account_id=account_id or 0,
-            service_log_id=log.id, source="service_log"
-        )
-        actions_created.append(action.description)
-    
-    for supply in parsed.get("supplies", []):
-        action = create_action(
-            db=db, business_id=business_id,
-            description=f"Supply: {supply}", priority="next_visit",
-            account_id=account_id or 0,
-            service_log_id=log.id, source="service_log"
-        )
-        actions_created.append(action.description)
-    
-    for followup in parsed.get("followups", []):
-        action = create_action(
-            db=db, business_id=business_id,
-            description=followup, priority="next_visit",
-            account_id=account_id or 0,
-            service_log_id=log.id, source="service_log"
-        )
-        actions_created.append(action.description)
-    
-    # 7. Run deterministic execution pipeline
-    pipeline_result = run_pipeline(db, log)
+    log = persisted["log"]
+    actions_created = persisted["actions_created"]
+    pipeline_result = persisted["pipeline"]
 
     # 8. Send confirmation to worker
     await send_confirmation(
