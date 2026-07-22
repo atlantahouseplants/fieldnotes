@@ -2,61 +2,49 @@
 
 ---
 
-## Post 1: The Problem (LinkedIn, Facebook Groups)
+## Post 1: The Gate-Code Moment (LinkedIn, Facebook Groups)
 
-**Your workers won't use field service software.**
+**"I asked it the gate code and it knew."**
 
-I've tried. For 20 years. They hate apps. They hate forms. They hate "required fields."
+That's what a founder told me about FieldNotes. His new guy never has to call him again.
 
-But you know what they don't hate? Sending a text message.
+Imagine your phone *not* ringing with "What's the gate code for Riverside?" or "Where's the water shut-off?"
 
-That's the entire insight behind FieldNotes.
+FieldNotes is the "Company Brain" for your service business. Workers text notes via Telegram between stops (just like they already do). AI instantly turns it into service logs, action queues, and answers to *any* question about your business records.
 
-Workers send a 10-second voice note between stops — same app they already use. AI turns it into service logs, action items, and a daily summary on your phone.
+No apps. No forms. No training. Just instant answers.
 
-No apps. No forms. No training.
-
-I built it for my own service business. Now opening it up to beta customers.
-
-👉 [link]
+Try the 60-second demo: fieldnotesapp.io/app/try.html (no install, tap chips to ask the gate code yourself).
 
 ---
 
-## Post 2: The Daily Email (LinkedIn)
+## Post 2: The Client Recap Email (LinkedIn, Facebook Groups)
 
-**This is the email I get every day at 5pm:**
+**Client dispute? Invoice questions? Not anymore.**
 
-📋 4/4 stops completed
-🔔 2 issues flagged
-📦 Supplies needed: air filters, potting soil
-⚠️ 0 missed stops
-👷 Mike, James
+A client once swore my guy didn't do the work. If only I had timestamped proof of service. Now I do.
 
-60 seconds to read. Complete field visibility.
+FieldNotes generates professional, client-safe recap emails after every visit. Your approval first, then it sends. Timestamped proof of service = dispute armor + invoice justification.
 
-Before FieldNotes, I was scrolling through text messages trying to piece together what happened. Now I know exactly what happened — and what needs to happen tomorrow.
+All from a 10-second voice note your workers send between stops. They use the same app they already have, you get peace of mind and happy clients.
 
-$79/mo for the whole team. 30-day free trial.
-
-👉 [link]
+See how simple it is. Try the 60-second demo: fieldnotesapp.io/app/try.html
 
 ---
 
-## Post 3: The "Why I Built It" (LinkedIn, Twitter)
+## Post 3: The Phone-Stops-Ringing Future (LinkedIn, Twitter)
 
-I run a commercial plant service business. 17 accounts. Solo operator.
+**My phone used to ring all day.**
 
-Between stops, I'd text myself notes. "Acme — need more soil." "Big Corp — client wants a quote." "Check on the ficus at City Hall."
+"What's the gate code?" "Where are the extra parts?" "Did we finish that one job?"
 
-Those texts were my CRM. My action queue. My memory.
+Now? Silence. The good kind.
 
-Then I realized: every service business owner has this exact problem. And none of the existing software solves it — because workers won't use it.
+FieldNotes built a "Company Brain" from my team's simple text notes. I can ask it anything about our business records and get an instant answer. My new hire gets answers without bothering me.
 
-So I built FieldNotes. Voice notes → structured data. 10 seconds between stops.
+I built it for my own service business (plant care, 1-10 workers). If you're tired of your phone being the bottleneck, you'll love this.
 
-It's changed how I run my business. Now I want to help other owners get the same visibility.
-
-👉 [link]
+Try the 60-second demo: fieldnotesapp.io/app/try.html (no credit card, 30-day trial).
 
 ---
 
@@ -64,54 +52,43 @@ It's changed how I run my business. Now I want to help other owners get the same
 
 **"My guys won't use another app."**
 
-They don't have to. FieldNotes works through the messaging app they already have.
+They don't have to. FieldNotes works through the messaging app they already use. They just text like normal.
 
-**"We just text the boss."**
+**"I already know everything that happens."**
 
-Perfect. Keep doing that. FieldNotes just makes those texts useful — auto-logging, issue tracking, daily summaries.
+Do you know the gate code for every single property? What if a new guy starts? FieldNotes builds a "Company Brain" so *everyone* has instant answers.
 
-**"Sounds expensive. We're a small shop."**
+**"Sounds expensive."**
 
-$39/mo for a solo operator. The cost of one missed follow-up call.
+$79/mo for the whole team. The cost of one missed follow-up or a single client dispute. 30-day free trial, no credit card.
 
-**"What if it doesn't work for us?"**
-
-30-day free trial. No credit card. Cancel anytime.
-
-Try it: [link]
+Try the 60-second demo and ask it the gate code yourself: fieldnotesapp.io/app/try.html
 
 ---
 
-## Post 5: The Beta Invite (LinkedIn, Local Business Groups)
+## Post 5: Solo Op to First Hire (LinkedIn, Local Business Groups)
 
-Looking for 5 service business owners to try FieldNotes — free for 30 days.
+**Ready to make your first hire, but all the knowledge is in *your* head?**
 
-What you need:
-- 2-10 field workers
-- A desire to actually know what happened in the field today
-- 10 minutes to set up
+That was me. Every gate code, every special instruction, every client preference. My phone rang constantly.
 
-What you get:
-- Voice-first field logging your workers will actually use
-- Daily summaries, action queues, missed-stop alerts
-- Direct input into what we build next
-- Lifetime beta pricing ($49/mo after trial)
+FieldNotes solves this. Your workers text notes, like they always do. FieldNotes builds a "Company Brain" of *your* business records. Your new hire can ask "What's the gate code for the Johnson residence?" and get an instant answer. No calling you.
 
-DM me or comment if interested. 5 spots.
+Reclaim your time. Scale your business without losing your mind.
+
+Try FieldNotes free for 30 days, no credit card. DM me or comment if interested, or try the 60-second demo: fieldnotesapp.io/app/try.html
 
 ---
 
-## Post 6: Comparison (Twitter/X, Threads)
+## Post 6: The Demo Kicker (Twitter/X, Threads)
 
-FieldNotes vs. the alternatives:
+**"You just ran a whole visit from a text message."**
 
-Housecall Pro: $49-349/mo, 50 features, workers hate it
-Jobber: $39-179/mo, complex setup, workers ignore it
-Texting the boss: Free, but nothing gets tracked
+That's the kicker of our 60-second demo. No install. No onboarding. Just tap to log a note, ask a gate code, see a client recap.
 
-FieldNotes: $39-79/mo, 3 features done perfectly, workers don't even know they're using it
+FieldNotes isn't another complicated field service app. It's the simplest way to get field visibility and a "Company Brain" that answers *any* question about your business records.
 
-The competition isn't other software. It's chaos.
+Try the 60-second demo: fieldnotesapp.io/app/try.html
 
 ---
 
@@ -124,13 +101,27 @@ The competition isn't other software. It's chaos.
 
 ---
 
+## 15-second Route-Day Video Script
+
+**Concept:** Vertical phone video. Fast cuts, on-screen captions, no voiceover needed. Shows the "gate-code moment" in action.
+
+**Shots:**
+1.  **[0-2s] Shot:** Hand holding a phone in a truck (dashboard view or similar). On-screen caption: "Your new guy calls you 5x a day."
+2.  **[2-5s] Shot:** Close-up of phone screen. Worker types into a messaging app (e.g., Telegram): "Gate code for Riverside?" (Show typing animation). On-screen caption: "Not anymore."
+3.  **[5-8s] Shot:** Phone screen quickly shows the answer: "Riverside: #1234. Code changes 1st of month." (Highlight the answer). On-screen caption: "FieldNotes 'Company Brain'."
+4.  **[8-12s] Shot:** Worker nods, puts phone down, starts truck (or picks up tool). Confident, efficient. On-screen caption: "Instant answers. Zero calls."
+5.  **[12-15s] Shot:** Overlay FieldNotes logo + tagline "Never call the office again." and URL: "fieldnotesapp.io/app/try.html"
+
+---
+
 ## Visual Suggestions
 
 | Post | Image Idea |
 |------|-----------|
-| Post 1 | Phone screen showing a voice note being sent |
-| Post 2 | Screenshot of the daily Telegram summary |
-| Post 3 | Photo of Geoff on a job site (authentic!) |
-| Post 4 | Simple graphic: "No apps. No forms. No training." |
-| Post 5 | "5 spots" countdown graphic |
-| Post 6 | Side-by-side comparison table graphic |
+| Post 1 | Phone screen showing "Gate code for Riverside?" and an instant answer |
+| Post 2 | Screenshot of a professional client recap email |
+| Post 3 | Photo of Geoff on a job site looking relaxed, phone in pocket (or enjoying a coffee) |
+| Post 4 | Simple graphic: "Ask it the gate code" with FieldNotes logo |
+| Post 5 | Graphic of a "brain" icon with "Your Company Brain" text, phone icon next to it |
+| Post 6 | Screenshot of the 60-second web demo (phone mockup) |
+| Video | As described in the script above |

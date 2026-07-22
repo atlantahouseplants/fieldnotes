@@ -8,21 +8,21 @@
 **Best for:** Warm introductions, referrals, owners you've met briefly
 
 ```
-Subject: Your workers are already sending you texts — let's make them useful
+Subject: Your crew calls you for gate codes. Not for long.
 
 Hi [Name],
 
 Quick one — I run a service business too (commercial interiorscape, 17 accounts). Here's something that changed my life:
 
-My workers text me between stops. "Acme done, need filters." "Big Corp — leaking pipe in conference room."
+My new guy used to call me five times a day asking for gate codes, alarm disarms, or where the water shut-off was.
 
-Those texts used to get buried and forgotten. Now they automatically become service logs, action items, and a daily summary Telegrammed to me every evening.
+Now he just texts "Gate code for Riverside?" and FieldNotes tells him. Instantly.
 
-I built a simple tool called FieldNotes that does this. Workers don't install anything — they just keep texting like they always do. The system does the rest.
+I built a simple tool called FieldNotes that does this. Workers don't install anything — they just keep texting like they always do. FieldNotes builds a "Company Brain" from those texts so everyone has instant answers.
 
-Honest question: how do you currently track what happens in the field each day?
+Honest question: how do you currently manage all that tribal knowledge? What happens when a new worker starts?
 
-Happy to show you a 2-minute demo if you're curious.
+Try the 60-second demo: fieldnotesapp.io/app/try.html (no install, tap chips to ask the gate code yourself).
 
 Geoff Wall
 FieldNotes
@@ -34,24 +34,22 @@ FieldNotes
 **Best for:** Cold outreach to owners who clearly need better field visibility
 
 ```
-Subject: What happened in the field today?
+Subject: Stop phone calls about gate codes. Get a Company Brain instead.
 
 [Name],
 
-Be honest — when your crew finishes for the day, do you know exactly what happened at every stop?
+Be honest — when your crew finishes for the day, do you know every gate code, alarm setting, and special instruction for every property? What about your new hire?
 
-If you had to answer "what issues came up?" or "what supplies do we need?" right now, could you?
+If your phone rings constantly with "What's the gate code?" or "Where's the water shut-off?" you're not alone. Most service business owners I talk to are the single source of truth for all that tribal knowledge.
 
-Most service business owners I talk to say no. They get texts. They get "I'll tell you later." They get silence.
-
-FieldNotes fixes this. Workers send a 10-second voice note between stops (like they already do with texts). AI turns it into service logs, flagged issues, supply lists, and a daily summary.
+FieldNotes fixes this. Workers send a 10-second text note (like they already do). FieldNotes builds a "Company Brain" from those texts. Now, anyone on your team can ask "Gate code for [property name]?" and get an instant answer.
 
 - No apps to download
-- No forms to fill out  
+- No forms to fill out
 - Workers up in 5 minutes
 - $79/mo for up to 5 workers
 
-Want to see how it works? 2-minute demo — no pitch, just the product.
+Want to see how it works? Try the 60-second demo — ask it the gate code yourself: fieldnotesapp.io/app/try.html
 
 Geoff Wall
 FieldNotes
@@ -71,13 +69,15 @@ I spent 20 years trying to get field workers to use apps. They hate them. Every 
 
 So I stopped trying.
 
-FieldNotes uses the app that's already on their phone — their messaging app. They send a voice note between stops. "Smith residence: all good, need more filters." That's it.
+FieldNotes uses the app that's already on their phone — their messaging app. They text a note between stops. "Smith residence: all good, need more filters." That's it.
 
-No login. No "required fields." No training. Just talk.
+No login. No "required fields." No training. Just text.
 
-On my end? I get a daily summary. Service logs. Flagged issues. Supply lists. Missed-stop alerts. All from those 10-second voice notes.
+On my end? FieldNotes builds a "Company Brain" from those notes. Service logs. Flagged issues. A daily summary. And here's the part that sold me: my new guy texts "gate code for Riverside?" and gets the answer instantly — instead of calling me.
 
 I built it for my own business (commercial plants, 17 accounts). Now I'm opening it up to a few other service business owners.
+
+Try the 60-second demo — ask it the gate code yourself: fieldnotesapp.io/app/try.html
 
 $79/mo, 30-day free trial, zero setup. Worth a look?
 
@@ -95,12 +95,14 @@ Subject: Beta invite — free FieldNotes for 3 months
 
 [Name],
 
-I'm launching FieldNotes — a voice-first field service logging tool I built for my own business — and I'm looking for 5 beta customers.
+I'm launching FieldNotes — the "Company Brain" for field service businesses that I built for my own company — and I'm looking for 5 beta customers.
+
+Your crew texts notes like they already do. FieldNotes logs the work, answers their questions ("gate code for Riverside?" — instant answer), and sends your clients a professional recap after every visit.
 
 What you get:
 - Free for 3 months (then $79/mo, locked in at $49 for life)
 - Direct line to me for feature requests
-- A system your workers will actually use (voice notes, 10 seconds, no apps)
+- A system your workers will actually use (they just text — no apps)
 
 What I need:
 - Real feedback. What works, what doesn't, what you'd pay for.
@@ -123,7 +125,7 @@ Subject: Re: [original subject]
 
 Just circling back on this. I know you're busy running a crew.
 
-If the timing's not right, no worries. But if you're curious, the demo takes 2 minutes — you'll see exactly how it works.
+If the timing's not right, no worries. But if you're curious, the demo takes 60 seconds — ask it the gate code yourself: fieldnotesapp.io/app/try.html
 
 Geoff
 ```
@@ -135,9 +137,9 @@ Geoff
 ```
 Hey [Name] — saw you run [company name]. Quick question:
 
-How do your workers report what happened at each stop? Texts? Paper? Memory?
+How often does your phone ring with "what's the gate code?" or "when were we last at [property]?"
 
-I built something for my own service business that might help. 2-minute demo if you're curious.
+I built something for my own service business that answers those instantly — from your own records. 60-second demo, no install: fieldnotesapp.io/app/try.html — ask it the gate code.
 
 No pitch, just showing you how it works.
 ```
@@ -150,6 +152,9 @@ No pitch, just showing you how it works.
 What happened in the field today?
 Your workers are already texting you →
 I got tired of software my workers refused to use
+"What's the gate code?" — never hear it again
+My new guy stopped calling me. Here's why.
+Your business already knows the answer. Ask it.
 10 seconds between stops. That's all it takes.
 The daily summary you wish you had
 "I'll tell you later" → never happens. Fix this.
@@ -157,6 +162,7 @@ Stop guessing what happened at each job site
 Field service logging without the app nobody uses
 The tool I built for my own crew
 Your workers won't even know they're using it
+Never call the office again
 ```
 
 ---

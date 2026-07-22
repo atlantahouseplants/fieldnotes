@@ -7,16 +7,16 @@ Beta hook: **BETA49** — first 10 customers lock beta pricing forever. Say it i
 
 | Day | Action | Where | Post |
 |-----|--------|-------|------|
-| **Mon** | Launch announcement | X, LinkedIn, Threads, IG, FB page, TikTok | Post 1 (The Problem) |
+| **Mon** | Launch announcement | X, LinkedIn, Threads, IG, FB page, TikTok | Post 1 (The Gate-Code Moment) |
 | Mon | Join 5 groups, NO posting — read rules, comment helpfully on 2-3 threads | FB: HVAC Service Business Owners, Lawn Care Business, Cleaning Business Owners, Pest Control Business Owners, Landscaping business groups | — |
-| **Tue** | The daily summary post + screenshot of YOUR real AHP summary from last night | LinkedIn, X | Post 2 |
+| **Tue** | The client recap email post + screenshot of a sample client recap | LinkedIn, X | Post 2 |
 | Tue | Comment on 3-5 group threads (be the helpful plant/service ops guy, no pitching) | FB groups | — |
-| **Wed** | Founder story + a real photo of you on a job site | LinkedIn, X, Threads | Post 3 |
-| Wed | DM 5 people who engaged with your posts/groups: "saw your comment about tracking crews — built something for exactly that, want a look?" | FB/LinkedIn DMs | personal, 2 sentences |
+| **Wed** | Founder story (phone-stops-ringing) + a real photo of you on a job site | LinkedIn, X, Threads | Post 3 |
+| Wed | DM 5 people who engaged with your posts/groups: "Try the 60-second demo: ask it the gate code!" | FB/LinkedIn DMs | personal, 2 sentences |
 | **Thu** | Objection-handling post | FB groups (where rules allow promo; else profile/page) | Post 4 |
-| Thu | TikTok/IG Reel: 15-sec phone video — send a voice note, show the log appear | TikTok, IG | screen-record demo.html |
-| **Fri** | Beta invite — scarcity play (BETA49, first 10) | LinkedIn, X, FB page | Post 5 |
-| **Sat** | Comparison post | X, Threads | Post 6 |
+| Thu | TikTok/IG Reel: 15-sec route-day video (phone in truck, ask gate code, answer appears) | TikTok, IG | Use script in social-posts.md |
+| **Fri** | Solo Op to First Hire post | LinkedIn, X, FB page | Post 5 |
+| **Sat** | Demo kicker post | X, Threads | Post 6 |
 | **Sun** | Rest / engage only | — | — |
 
 ## Rules that keep accounts alive
