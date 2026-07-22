@@ -67,6 +67,19 @@
   .qa-msg.err { color: var(--red); }
   .invite-result { margin-top: 12px; }
   .invite-result input { font-size: 14px; background: #f0f7f0; }
+
+  /* P7 tasks — same touch-first rules as quick actions */
+  .task-add { display: grid; grid-template-columns: 1fr 2fr auto; gap: 10px; margin-bottom: 12px; }
+  @media (max-width: 600px) { .task-add { grid-template-columns: 1fr; } }
+  .task-add select, .task-add input { min-height: 48px; border: 1px solid #ddd; border-radius: 10px; padding: 12px; font-size: 16px; font-family: inherit; background: #fff; }
+  .task-add .qa-btn { min-height: 48px; padding: 12px 20px; }
+  .task-row { display: flex; align-items: center; gap: 12px; padding: 10px 4px; border-bottom: 1px solid var(--border); }
+  .task-row:last-child { border-bottom: none; }
+  .task-done-btn { min-width: 48px; min-height: 48px; border-radius: 50%; border: 2px solid var(--green); background: #fff; color: var(--green); font-size: 20px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
+  .task-done-btn:active { background: var(--green); color: #fff; }
+  .task-info { flex: 1; min-width: 0; }
+  .task-title { font-weight: 600; font-size: 15px; }
+  .task-meta { font-size: 13px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -147,6 +160,21 @@
   </div>
 
   <div class="section">
+    <h2>✅ Tasks</h2>
+    <div class="task-add">
+      <select id="task-account"></select>
+      <input id="task-title" type="text" placeholder="What needs doing? e.g. repair pool cover" autocomplete="off">
+      <button class="qa-btn" id="task-go" onclick="submitAddTask()">Add Task</button>
+    </div>
+    <div class="qa-msg" id="task-msg"></div>
+    <div id="tasks-container"><div class="loading">Loading...</div></div>
+    <details id="tasks-done-wrap" style="display:none;margin-top:10px">
+      <summary style="cursor:pointer;color:var(--muted);font-size:14px;padding:6px 0">Recently done</summary>
+      <div id="tasks-done-container"></div>
+    </details>
+  </div>
+
+  <div class="section">
     <h2>📝 Today's Activity</h2>
     <div id="logs-container"><div class="loading">Loading...</div></div>
   </div>
@@ -178,7 +206,7 @@ async function api(path) {
 }
 
 async function postApi(path, body) {
-  const resp = await fetch(`${API}${path}?business_id=${BIZ_ID}&key=${encodeURIComponent(DASH_KEY)}`, {
+  const resp = await fetch(`${API}${path}${path.includes('?') ? '&' : '?'}business_id=${BIZ_ID}&key=${encodeURIComponent(DASH_KEY)}`, {
     method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
   });
   const d = await resp.json().catch(() => ({}));
@@ -271,6 +299,63 @@ async function copyInvite() {
   }
 }
 
+/* ---- P7 tasks ---- */
+async function submitAddTask() {
+  const btn = document.getElementById('task-go');
+  const account = document.getElementById('task-account').value;
+  const title = document.getElementById('task-title').value.trim();
+  if (!account) { setMsg('task-msg', 'Pick a customer first', false); return; }
+  if (!title) { setMsg('task-msg', 'Type the task first', false); return; }
+  btn.disabled = true; btn.textContent = 'Adding…';
+  try {
+    const d = await postApi('/api/dashboard/add-task', { account, title });
+    setMsg('task-msg', d.message, d.ok);
+    if (d.ok) { document.getElementById('task-title').value = ''; loadDashboard(); }
+  } catch (e) {
+    setMsg('task-msg', e.message, false);
+  }
+  btn.disabled = false; btn.textContent = 'Add Task';
+}
+
+async function closeTask(id, btn) {
+  btn.disabled = true;
+  try {
+    const d = await postApi(`/api/dashboard/close-task?task_id=${id}`, {});
+    if (!d.ok) setMsg('task-msg', d.message || 'Could not close that one', false);
+    loadDashboard();
+  } catch (e) {
+    setMsg('task-msg', e.message, false);
+    btn.disabled = false;
+  }
+}
+
+function renderTasks(data, accounts) {
+  const sel = document.getElementById('task-account');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">Pick a customer…</option>' +
+    accounts.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
+  if (current) sel.value = current;
+
+  const open = data.open || [];
+  document.getElementById('tasks-container').innerHTML = open.length === 0
+    ? '<div class="empty">No open tasks — add one above, or text the bot: "Task for Smith: fix the valve"</div>'
+    : open.map(t => `<div class="task-row">
+        <button class="task-done-btn" title="Mark done" onclick="closeTask(${t.id}, this)">✓</button>
+        <div class="task-info">
+          <div class="task-title">${esc(t.title)}</div>
+          <div class="task-meta">${esc(t.account)}${t.supplies ? ' · 📦 ' + esc(t.supplies) : ''}${t.due ? ' · ' + esc(t.due) : ''}${t.assigned_to ? ' · ' + esc(t.assigned_to) : ''}</div>
+        </div>
+      </div>`).join('');
+
+  const closed = data.closed || [];
+  document.getElementById('tasks-done-wrap').style.display = closed.length ? 'block' : 'none';
+  document.getElementById('tasks-done-container').innerHTML = closed.map(t =>
+    `<div class="task-row"><div class="task-info">
+      <div class="task-title" style="text-decoration:line-through;color:var(--muted)">${esc(t.title)}</div>
+      <div class="task-meta">${esc(t.account)} · done</div>
+    </div></div>`).join('');
+}
+
 function renderAccountPicker(accounts) {
   const sel = document.getElementById('qn-account');
   const current = sel.value;
@@ -286,10 +371,11 @@ function renderAccountPicker(accounts) {
 async function loadDashboard() {
   document.getElementById('error').style.display = 'none';
   try {
-    const [summary, logs, accounts] = await Promise.all([
+    const [summary, logs, accounts, tasks] = await Promise.all([
       api('/summary/today'),
       api('/logs/today'),
-      api('/accounts/')
+      api('/accounts/'),
+      api('/api/dashboard/tasks')
     ]);
 
     // Stats
@@ -323,7 +409,8 @@ async function loadDashboard() {
       ? '<ul>' + summary.supplies_needed.map(s => `<li>📦 ${s}</li>`).join('') + '</ul>'
       : '<div class="empty">No pending actions</div>';
 
-    // Accounts
+    // Tasks (P7) + Accounts
+    renderTasks(tasks, accounts);
     renderAccountPicker(accounts);
     if (accounts.length === 0) {
       document.getElementById('accounts-container').innerHTML = '<div class="empty">No accounts configured</div>';
