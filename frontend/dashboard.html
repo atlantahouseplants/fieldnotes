@@ -6,16 +6,16 @@
 <title>FieldNotes — Dashboard</title>
 <style>
   :root {
-    --bg: #f5f6fa;
+    --bg: #f5f7f5;
     --card: #fff;
-    --text: #2c3e50;
-    --muted: #7f8c8d;
-    --green: #27ae60;
+    --text: #1a1a1a;
+    --muted: #666;
+    --green: #1b5e20;
     --orange: #e67e22;
-    --red: #e74c3c;
+    --red: #b00020;
     --blue: #3498db;
     --border: #ecf0f1;
-    --radius: 12px;
+    --radius: 14px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
@@ -48,6 +48,25 @@
   .refresh-btn:hover { opacity: 0.9; }
   .loading { text-align: center; padding: 40px; color: var(--muted); }
   .error { background: #fdecea; color: var(--red); padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+
+  /* P6a quick-action bar — mobile-first, ≥44px touch targets, brand green */
+  .qa-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .qa-bar { grid-template-columns: repeat(2, 1fr); } }
+  .qa-btn { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 12px 8px; background: var(--green); color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; text-align: center; line-height: 1.2; }
+  .qa-btn.secondary { background: #fff; color: var(--green); border: 1px solid var(--green); }
+  .qa-btn:active { opacity: 0.85; }
+  .qa-panel { display: none; background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .qa-panel.open { display: block; }
+  .qa-panel h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .qa-panel label { display: block; font-size: 13px; font-weight: 600; margin: 10px 0 4px; }
+  .qa-panel input, .qa-panel select, .qa-panel textarea { width: 100%; min-height: 48px; border: 1px solid #ddd; border-radius: 10px; padding: 12px; font-size: 16px; font-family: inherit; background: #fff; }
+  .qa-panel textarea { min-height: 90px; resize: vertical; }
+  .qa-panel .qa-submit { margin-top: 14px; width: 100%; min-height: 52px; }
+  .qa-msg { margin-top: 12px; font-size: 14px; min-height: 20px; }
+  .qa-msg.ok { color: var(--green); font-weight: 600; }
+  .qa-msg.err { color: var(--red); }
+  .invite-result { margin-top: 12px; }
+  .invite-result input { font-size: 14px; background: #f0f7f0; }
 </style>
 </head>
 <body>
@@ -64,6 +83,49 @@
   </header>
 
   <div id="error" class="error" style="display:none"></div>
+
+  <!-- P6a quick-action bar: everything the owner does, ≤2 taps -->
+  <div class="qa-bar">
+    <button class="qa-btn" onclick="togglePanel('panel-account')">➕ Add Customer</button>
+    <button class="qa-btn" onclick="togglePanel('panel-note')">📝 Quick Note</button>
+    <button class="qa-btn secondary" onclick="togglePanel('panel-invite')">👷 Invite Worker</button>
+    <a class="qa-btn secondary" id="import-link" href="#">📥 Import List</a>
+  </div>
+
+  <div class="qa-panel" id="panel-account">
+    <h2>➕ Add a customer</h2>
+    <label for="aa-name">Name</label>
+    <input id="aa-name" type="text" placeholder="Smith Office" autocomplete="off">
+    <label for="aa-address">Address (optional)</label>
+    <input id="aa-address" type="text" placeholder="121 Main St, Atlanta" autocomplete="off">
+    <label for="aa-gate">Gate code / access (optional)</label>
+    <input id="aa-gate" type="text" placeholder="Gate 4412, enter at back" autocomplete="off">
+    <label for="aa-schedule">Schedule (optional)</label>
+    <input id="aa-schedule" type="text" placeholder="Tue/Fri, or Tue (wk A)" autocomplete="off">
+    <button class="qa-btn qa-submit" id="aa-go" onclick="submitAddAccount()">Add Customer ✓</button>
+    <div class="qa-msg" id="aa-msg"></div>
+  </div>
+
+  <div class="qa-panel" id="panel-note">
+    <h2>📝 Log a note</h2>
+    <label for="qn-account">Customer</label>
+    <select id="qn-account"></select>
+    <label for="qn-note">Note</label>
+    <textarea id="qn-note" placeholder="Serviced lobby unit, all good. Needs new filter next visit."></textarea>
+    <button class="qa-btn qa-submit" id="qn-go" onclick="submitQuickNote()">Log Note ✓</button>
+    <div class="qa-msg" id="qn-msg"></div>
+  </div>
+
+  <div class="qa-panel" id="panel-invite">
+    <h2>👷 Invite a worker</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px">Send them this link. They tap it, press START in Telegram, and their notes land in your account — no setup.</p>
+    <button class="qa-btn qa-submit" id="inv-go" onclick="getInviteLink()">Get Invite Link</button>
+    <div class="invite-result" id="inv-result" style="display:none">
+      <input id="inv-link" type="text" readonly onclick="this.select()">
+      <button class="qa-btn qa-submit" onclick="copyInvite()">Copy Link</button>
+    </div>
+    <div class="qa-msg" id="inv-msg"></div>
+  </div>
 
   <div class="grid">
     <div class="stat-card">
@@ -104,13 +166,121 @@
 const API = '';
 const BIZ_ID = new URLSearchParams(window.location.search).get('biz') || '2';
 const DASH_KEY = new URLSearchParams(window.location.search).get('key') || '';
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+document.getElementById('import-link').href = `/app/import.html?biz=${encodeURIComponent(BIZ_ID)}&key=${encodeURIComponent(DASH_KEY)}`;
 
 async function api(path) {
   const resp = await fetch(`${API}${path}${path.includes('?') ? '&' : '?'}business_id=${BIZ_ID}&key=${encodeURIComponent(DASH_KEY)}`);
   if (!resp.ok) throw new Error(`${resp.status}: ${await resp.text()}`);
   return resp.json();
+}
+
+async function postApi(path, body) {
+  const resp = await fetch(`${API}${path}?business_id=${BIZ_ID}&key=${encodeURIComponent(DASH_KEY)}`, {
+    method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
+  });
+  const d = await resp.json().catch(() => ({}));
+  if (!resp.ok) throw new Error(d.detail ? (typeof d.detail === 'string' ? d.detail : JSON.stringify(d.detail)) : `Error ${resp.status}`);
+  return d;
+}
+
+/* ---- P6a quick actions ---- */
+function togglePanel(id) {
+  document.querySelectorAll('.qa-panel').forEach(p => {
+    if (p.id === id) { p.classList.toggle('open'); }
+    else { p.classList.remove('open'); }
+  });
+  const p = document.getElementById(id);
+  if (p.classList.contains('open')) p.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function setMsg(id, text, ok) {
+  const el = document.getElementById(id);
+  el.textContent = text || '';
+  el.className = 'qa-msg' + (text ? (ok ? ' ok' : ' err') : '');
+}
+
+async function submitAddAccount() {
+  const btn = document.getElementById('aa-go');
+  const name = document.getElementById('aa-name').value.trim();
+  if (!name) { setMsg('aa-msg', 'Type the customer\'s name first', false); return; }
+  btn.disabled = true; btn.textContent = 'Adding…';
+  try {
+    const d = await postApi('/api/dashboard/add-account', {
+      name,
+      address: document.getElementById('aa-address').value.trim() || null,
+      gate_code: document.getElementById('aa-gate').value.trim() || null,
+      schedule: document.getElementById('aa-schedule').value.trim() || null,
+    });
+    setMsg('aa-msg', d.message, d.ok);
+    if (d.ok) {
+      ['aa-name','aa-address','aa-gate','aa-schedule'].forEach(i => document.getElementById(i).value = '');
+      loadDashboard();
+    }
+  } catch (e) {
+    setMsg('aa-msg', e.message, false);
+  }
+  btn.disabled = false; btn.textContent = 'Add Customer ✓';
+}
+
+async function submitQuickNote() {
+  const btn = document.getElementById('qn-go');
+  const account = document.getElementById('qn-account').value;
+  const note = document.getElementById('qn-note').value.trim();
+  if (!account) { setMsg('qn-msg', 'Pick a customer first', false); return; }
+  if (!note) { setMsg('qn-msg', 'Type a note first', false); return; }
+  btn.disabled = true; btn.textContent = 'Logging…';
+  try {
+    const d = await postApi('/api/dashboard/add-note', { account, note });
+    setMsg('qn-msg', d.message, d.ok);
+    if (d.ok) {
+      document.getElementById('qn-note').value = '';
+      loadDashboard();
+    }
+  } catch (e) {
+    setMsg('qn-msg', e.message, false);
+  }
+  btn.disabled = false; btn.textContent = 'Log Note ✓';
+}
+
+async function getInviteLink() {
+  const btn = document.getElementById('inv-go');
+  btn.disabled = true; btn.textContent = 'Getting link…';
+  try {
+    const d = await api('/api/dashboard/invite-link');
+    document.getElementById('inv-link').value = d.invite_link;
+    document.getElementById('inv-result').style.display = 'block';
+    setMsg('inv-msg', 'Send this link to your worker ✓', true);
+  } catch (e) {
+    setMsg('inv-msg', e.message, false);
+  }
+  btn.disabled = false; btn.textContent = 'Get Invite Link';
+}
+
+async function copyInvite() {
+  const input = document.getElementById('inv-link');
+  try {
+    await navigator.clipboard.writeText(input.value);
+    setMsg('inv-msg', 'Copied ✓ — paste it into a text to your worker', true);
+  } catch (e) {
+    input.select();
+    document.execCommand('copy');
+    setMsg('inv-msg', 'Copied ✓', true);
+  }
+}
+
+function renderAccountPicker(accounts) {
+  const sel = document.getElementById('qn-account');
+  const current = sel.value;
+  if (accounts.length === 0) {
+    sel.innerHTML = '<option value="">No customers yet — add one first</option>';
+    return;
+  }
+  sel.innerHTML = '<option value="">Pick a customer…</option>' +
+    accounts.map(a => `<option value="${esc(a.name)}">${esc(a.name)}</option>`).join('');
+  if (current) sel.value = current;
 }
 
 async function loadDashboard() {
@@ -154,6 +324,7 @@ async function loadDashboard() {
       : '<div class="empty">No pending actions</div>';
 
     // Accounts
+    renderAccountPicker(accounts);
     if (accounts.length === 0) {
       document.getElementById('accounts-container').innerHTML = '<div class="empty">No accounts configured</div>';
     } else {
