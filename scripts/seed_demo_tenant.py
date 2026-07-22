@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.models import SessionLocal, Account, ServiceLog, Worker, Business
+from backend.models import SessionLocal, Account, ServiceLog, Worker, Business, AccountTask
 
 DEMO_BIZ = 2
 MARKER = "[demo-seed]"
@@ -88,6 +88,28 @@ def main():
             print(f"recaps already enabled for {RECAP_DEMO_ACCOUNT}")
 
         worker = db.query(Worker).filter(Worker.business_id == DEMO_BIZ, Worker.is_active == True).first()
+
+        # M1/M2: web-demo tap-1 payoff — an open task the visitor's note
+        # closes ("Riverside: replaced the belt on unit 1"). /api/demo
+        # re-opens a fresh copy after each close (self-healing), so this
+        # only needs to exist once.
+        if riverside:
+            open_task = db.query(AccountTask).filter(
+                AccountTask.business_id == DEMO_BIZ,
+                AccountTask.account_id == int(riverside.id),
+                AccountTask.status == "open",
+                AccountTask.title == "Replace belt on unit 1",
+            ).first()
+            if not open_task:
+                db.add(AccountTask(
+                    business_id=DEMO_BIZ, account_id=int(riverside.id),
+                    title="Replace belt on unit 1",
+                    details="Belt showing wear — flagged at last quarterly PM.",
+                    status="open", source="demo-seed"))
+                db.commit()
+                print("demo task seeded: 'Replace belt on unit 1' (Riverside)")
+            else:
+                print("demo task already open")
         existing = db.query(ServiceLog).filter(
             ServiceLog.business_id == DEMO_BIZ, ServiceLog.raw_note.like("%[demo-log]%")
         ).count()
