@@ -1,8 +1,12 @@
 # FieldNotes Content Engine
 
-Autonomous social-media content creation + approval-gated distribution for FieldNotes
-(FB Page + IG Business via Meta Graph API). Built Jul 22, 2026. Companion skill:
-`fieldnotes-content-engine` (has Meta token setup/refresh + pitfalls).
+Autonomous social-media content creation + approval-gated distribution for FieldNotes.
+Built Jul 22, 2026. Companion skill: `fieldnotes-content-engine` (credentials + pitfalls).
+
+**Publishing = Buffer** (GraphQL API, `https://api.buffer.com`) — pivoted same day from
+the original Meta-direct plan; no Meta app/tokens needed. Geoff's Buffer account has 3
+channels connected: FB Page `FieldNotes`, IG `fieldnotesappio`, TikTok `fieldnotesappio`
+(TikTok unused in v1).
 
 ## Architecture — 4 Hermes cron components
 
@@ -56,13 +60,14 @@ post_meta.py approve <queue.json>   # mark approved (agent runs this on Geoff's 
 post_meta.py skip <queue.json>
 post_meta.py edit <queue.json> fb|ig <textfile>
 post_meta.py publish [--dry-run]    # publish all approved (the Poster cron runs this)
-post_meta.py verify-token           # check Meta creds + token expiry
+post_meta.py verify-token           # check Buffer token + list channels
+post_meta.py test-draft             # create+delete a Buffer draft (safe plumbing check)
 ```
 
-Meta creds live in `~/.hermes/.env`: `FIELDNOTES_META_PAGE_TOKEN`,
-`FIELDNOTES_META_PAGE_ID`, `FIELDNOTES_META_IG_ID`
-(+ `FIELDNOTES_META_APP_ID` / `FIELDNOTES_META_APP_SECRET` for token refresh/debug).
-Never inline token values in code — read at runtime.
+Credential: `BUFFER_ACCESS_TOKEN` in `~/.hermes/.env` — Buffer Personal Key
+(publish.buffer.com/settings/api), 1-year expiry (Jul 22 2027). Channel IDs are
+constants in the script. **Refresh:** settings/api → New Key → 1 year → all scopes →
+replace in `.env`, then `verify-token`. Never inline token values in code.
 
 ## Voice rules (binding for every post)
 
