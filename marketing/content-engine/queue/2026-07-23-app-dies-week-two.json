@@ -1,0 +1,55 @@
+{
+  "id": "2026-07-23-app-dies-week-two",
+  "theme": "objection handling (crew won't use apps)",
+  "fb_text": "Every field-service app dies the same death.\n\nWeek one: everyone's excited. Week two: the techs stop opening it. Week three: you're paying $200 a month for an icon on phones nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. I watched this happen with every tool I tried. My guys aren't desk workers. They're not going to stand in a parking lot and fill out a form.\n\nSo I stopped asking them to.\n\nFieldNotes works where they already live: text messages and voice notes. After a stop, my tech talks for 10 seconds like he's texting me. The AI turns it into the service log, the client recap, the follow-up list. No app to learn. No forms. Nothing to remember.\n\nWeek two looks exactly like week one.\n\nIf every tool you've bought died in your crew's pockets, try the one that isn't an app \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Every field-service app dies the same death.\n\nWeek one: excited. Week two: techs stop opening it. Week three: you're paying for an icon nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. My guys aren't going to fill out forms in a parking lot. So I stopped asking them to.\n\nFieldNotes works where they already live: texts and voice notes. Tech talks for 10 seconds after a stop, AI writes the log, the recap, the follow-ups. Nothing to learn.\n\nWeek two looks exactly like week one.\n\nTry the one that isn't an app \u2014 60-second demo:\nfieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #hvac #plumbing #landscaping #homeservices #contractorlife #businessowner #fieldmanagement #saas",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-23-app-dies-week-two.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-23-app-dies-week-two.png",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Every field app dies in week two.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-07-23-app-dies-week-two.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-07-23-app-dies-week-two.mp4",
+    "model": "fieldnotes_render_video.py style A (PIL+ffmpeg)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Every field-service app dies the same death.\n\nWeek one: everyone's excited. Week two: the techs stop opening it. Week three: you're paying $200 a month for an icon on phones nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. I watched this happen with every tool I tried. My guys aren't desk workers. They're not going to stand in a parking lot and fill out a form.\n\nSo I stopped asking them to.\n\nFieldNotes works where they already live: text messages and voice notes. After a stop, my tech talks for 10 seconds like he's texting me. The AI turns it into the service log, the client recap, the follow-up list. No app to learn. No forms. Nothing to remember.\n\nWeek two looks exactly like week one.\n\nIf every tool you've bought died in your crew's pockets, try the one that isn't an app \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Every field-service app dies the same death.\n\nWeek one: excited. Week two: techs stop opening it. Week three: you're paying for an icon nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. My guys aren't going to fill out forms in a parking lot. So I stopped asking them to.\n\nFieldNotes works where they already live: texts and voice notes. Tech talks for 10 seconds after a stop, AI writes the log, the recap, the follow-ups. Nothing to learn.\n\nWeek two looks exactly like week one.\n\nTry the one that isn't an app \u2014 60-second demo:\nfieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #hvac #plumbing #landscaping #homeservices #contractorlife #businessowner #fieldmanagement #saas"
+    },
+    "ig_story": {},
+    "fb_reel": {
+      "text": "Every field-service app dies in week two. This one isn't an app \u2014 your techs just text like they already do. Try the 60-second demo: fieldnotesapp.io/app/try.html"
+    },
+    "ig_reel": {
+      "text": "Every field-service app dies in week two. This one isn't an app.\n\n10-second voice note after each stop \u2192 service log, client recap, follow-ups. Written by AI, sent from the truck.\n\nTry it free: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #contractorlife #smallbusiness #landscaping #hvac #plumbing #businessowner #saas"
+    },
+    "tiktok": {
+      "text": "Every field-service app dies in week two. This one isn't an app. #fieldservice #contractorlife #smallbusiness #landscaping #hvac #plumbinglife #businessowner"
+    }
+  },
+  "status": "failed",
+  "created_at": "2026-07-23T10:05:00-04:00",
+  "approved_at": "2026-07-23T10:05:00-04:00",
+  "publish_errors": [
+    "fb_feed: {'message': 'Uh-oh! Facebook had some trouble processing this video. Please retry this post or reupload the video and try again.'}",
+    "ig_story: [{\"message\": \"Variable \\\"$input\\\" got invalid value { type: \\\"story\\\" } at \\\"input.metadata.instagram\\\"; Field \\\"shouldShareToFeed\\\" of required type \\\"Boolean!\\\" was not provided.\", \"locations\": [{\"line\": 1, \"column\": 21}], \"extensions\": {\"code\": \"INTERNAL_SERVER_ERROR\"}}]",
+    "fb_reel: {'message': \"Facebook was unable to process the media for this post. This can happen if the media URL is unreachable or the file format isn't supported. Try re-uploading the media and publishing again.\"}",
+    "ig_reel: [{\"message\": \"Variable \\\"$input\\\" got invalid value { type: \\\"reel\\\" } at \\\"input.metadata.instagram\\\"; Field \\\"shouldShareToFeed\\\" of required type \\\"Boolean!\\\" was not provided.\", \"locations\": [{\"line\": 1, \"column\": 21}], \"extensions\": {\"code\": \"INTERNAL_SERVER_ERROR\"}}]"
+  ],
+  "published": {
+    "fb_url": null,
+    "ig_url": "buffer-post-id:6a621fbbdc5469c2bd664465",
+    "surfaces": {
+      "ig_feed": "buffer-post-id:6a621fbbdc5469c2bd664465",
+      "tiktok": "buffer-post-id:6a621fd15a39d940350a9b28"
+    },
+    "at": "2026-07-23T14:06:22.189488+00:00"
+  }
+}

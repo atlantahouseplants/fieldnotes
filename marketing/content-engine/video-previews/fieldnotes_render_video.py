@@ -326,6 +326,15 @@ def main(spec_file=None):
                 "-i", png_file
             ])
 
+        # Silent stereo audio track (input index = len(pngs)) — FB Reels and
+        # TikTok reject or mishandle videos with NO audio stream (Jul 23:
+        # "Facebook was unable to process the media" on a silent MP4)
+        audio_input_idx = len(temp_png_files_for_style)
+        ffmpeg_command.extend([
+            "-f", "lavfi",
+            "-i", "anullsrc=channel_layout=stereo:sample_rate=44100"
+        ])
+
         # Filter complex for scaling and xfade
         filter_complex_parts = []
         for i in range(len(temp_png_files_for_style)):
@@ -353,10 +362,14 @@ def main(spec_file=None):
         ffmpeg_command.extend([
             "-filter_complex", "".join(filter_complex_parts),
             "-map", f"[{final_output_stream_label}]",
+            "-map", f"{audio_input_idx}:a",
             "-c:v", "libx264",
             "-r", str(FPS),
             "-pix_fmt", "yuv420p",
             "-preset", "fast",
+            "-c:a", "aac",
+            "-b:a", "128k",
+            "-shortest",
             "-movflags", "+faststart",
             output_video_path
         ])
