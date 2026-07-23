@@ -1,23 +1,24 @@
 # FieldNotes Content Engine
 
-Autonomous social-media content creation + approval-gated distribution for FieldNotes.
-Built Jul 22, 2026. Companion skill: `fieldnotes-content-engine` (credentials + pitfalls).
+Autonomous social-media content creation + **FULL-AUTO** distribution for FieldNotes.
+Built Jul 22, 2026; approval gate removed same evening (Geoff's call — "I trust you").
+Companion skill: `fieldnotes-content-engine` (credentials + pitfalls).
 
 **Publishing = Buffer** (GraphQL API, `https://api.buffer.com`) — pivoted same day from
 the original Meta-direct plan; no Meta app/tokens needed. Geoff's Buffer account has 3
 channels connected: FB Page `FieldNotes`, IG `fieldnotesappio`, TikTok `fieldnotesappio`
 (TikTok unused in v1).
 
-## Architecture — 4 Hermes cron components
+## Architecture — 3 Hermes cron components
 
 | # | Component | Schedule (ET) | What it does |
 |---|-----------|---------------|--------------|
-| 1 | **Strategist** (`FieldNotes Content Strategist`) | Mon 9:00am | Reads the marketing docs, picks the week's 3 themes (rotates: gate-code moment, proof-of-service, founder story, objection handling, solo-op-to-first-hire, demo CTA), writes `plans/week-YYYY-MM-DD.md` |
-| 2 | **Content Engine** (`FieldNotes Content Engine`) | Mon/Wed/Fri 1:00pm | Writes one post pair (FB + IG variants) from the week plan, generates an image card via `image_generate` (FAL, cap 5/day, logged to `costs.jsonl`), saves `queue/<id>.json` (status=`pending`) |
-| 3 | **Approval Queue** (`FieldNotes Approval Delivery`) | Mon/Wed/Fri 1:20pm | Finds pending queue items, delivers preview to Geoff's Telegram in a *continuable thread*. Geoff replies `approve` / `skip` / `edit: <new text>` — his reply wakes the agent, which runs `fieldnotes_post_meta.py approve|skip|edit` |
-| 4 | **Poster** (`FieldNotes Poster`) | every 15 min | `no_agent` script: publishes every `status=approved` item to FB + IG, appends to `published.jsonl`, Telegrams Geoff the live links. Silent when nothing is approved |
+| 1 | **Strategist** (`FieldNotes Content Strategist`) | Mon 9:00am | Reads the marketing docs, picks the week's 3 themes (rotates: gate-code moment, proof-of-service, founder story, objection handling, solo-op-to-first-hire, demo CTA; one VIDEO slot/week), writes `plans/week-YYYY-MM-DD.md` |
+| 2 | **Content Engine** (`FieldNotes Content Engine`) | Mon/Wed/Fri 1:00pm | Writes one post pair (FB + IG variants) from the week plan, generates an image card, saves `queue/<id>.json` with **status=`approved` (auto-post)** |
+| 3 | **Poster** (`FieldNotes Poster`) | every 15 min | `no_agent` script `fieldnotes_poster.sh` (wrapper → `fieldnotes_post_meta.py publish`): publishes every approved item to FB + IG, appends to `published.jsonl`, Telegrams Geoff the live links. Silent when nothing is approved |
 
-**Nothing posts without Geoff's explicit approval.** Full-auto only if Geoff explicitly flips it.
+**FULL AUTO — no approval gate.** Geoff gets the Poster's live-link report after each post
+ships. Voice + privacy rules below are the quality control — they are binding in every cron prompt.
 
 ## Files
 
@@ -69,14 +70,18 @@ Credential: `BUFFER_ACCESS_TOKEN` in `~/.hermes/.env` — Buffer Personal Key
 constants in the script. **Refresh:** settings/api → New Key → 1 year → all scopes →
 replace in `.env`, then `verify-token`. Never inline token values in code.
 
-## Voice rules (binding for every post)
+## Voice + privacy rules (binding for every post)
 
 - Plain, direct, owner-operator. No AI-isms ("revolutionize", "unlock", "supercharge", "game-changer").
 - Only claims backed by the repo or Geoff. **Never invent traction** — no customer counts,
   testimonials, ratings. Honest framings: "Built for crews who run their business from text
   messages", "30 days free, no credit card".
-- Founder story facts that ARE allowed (from Geoff): AHP, 18 accounts, commercial plant service,
-  "my new guy never calls me anymore", "I built it for my own business".
+- **AHP PRIVACY (Geoff's hard rule, Jul 22 evening):** never the real account count, revenue,
+  or client/company names in any post. Business size is ALWAYS phrased as
+  **"50+ corporate and commercial properties in the Metro Atlanta area"** (intentionally
+  reads bigger than reality — competitors watch). Founder-story angles stay:
+  "my new guy never calls me anymore", "I built it for my own business", commercial plant
+  service in Atlanta. Generic/fictional place names ("the Riverside office") are fine.
 - Every post ends with ONE CTA. Primary: `fieldnotesapp.io/app/try.html` (60-sec demo).
 - Source voice: `marketing/social-posts.md`, `marketing/outreach-templates.md`, `frontend/index.html`.
 - Product truth: the `fieldnotes` skill + `backend/` — never invent features.
@@ -98,6 +103,16 @@ IG publishing needs a public `image_url`. Cards are copied to `frontend/assets/c
 committed, and pushed (`env -u GITHUB_TOKEN git push`); Railway auto-deploys and the image is
 public at `https://fieldnotesapp.io/app/assets/cards/<id>.png`. FB uses local multipart upload
 and works even without hosting.
+
+## Video layer — motion-card renderer (Phase A live Jul 22)
+
+`video-previews/fieldnotes_render_video.py` — vertical 1080x1920 MP4s from PIL pre-rendered
+frames + ffmpeg xfade (no drawtext escaping, no Ken Burns). Three style previews delivered to
+Geoff Jul 22 (`style-preview-{A,B,C}.mp4`); **default template = A (lower-third bar)** —
+Geoff delegated the pick. Timing constants are EMPIRICAL: T=3.6s/frame, xfade offsets 3.1/6.7
+→ 6.73s final. Verify every render: ffprobe (duration/1080x1920/h264) + extracted frame at
+t=5s with PIL stddev > 10. Phase B: wire into the Friday video slot → TikTok via Buffer.
+Music undecided (previews are silent).
 
 ## Gate-code video asset
 

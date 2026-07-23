@@ -10,8 +10,14 @@
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
-  "status": "pending",
+  "status": "published",
   "created_at": "2026-07-22T13:00:00-04:00",
-  "approved_at": null,
-  "published": null
+  "approved_at": "2026-07-23T00:29:08.128891+00:00",
+  "published": {
+    "fb_url": "buffer-post-id:6a61609c86a987cb32f199d4",
+    "ig_url": "buffer-post-id:6a6160a786a987cb32f19a5e",
+    "at": "2026-07-23T00:30:42.405955+00:00"
+  },
+  "replaced_by": "2026-07-22-gate-code-moment-v2",
+  "replaced_reason": "privacy scrub (removed '18 accounts' + client name); old Buffer posts must be deleted MANUALLY by Geoff in FB/IG apps — Buffer Personal Key cannot delete already-published posts (VoidMutationError: Account is not allowed)"
 }
