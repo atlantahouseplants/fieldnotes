@@ -1,0 +1,21 @@
+{
+    "cards": [
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-23-app-dies-week-two.png",
+            "headline": "Every field app dies in week two.",
+            "sub": "Your techs never wanted the form."
+        },
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-23-app-dies-week-two.png",
+            "headline": "10-second voice note. Done.",
+            "sub": "FieldNotes writes the paperwork."
+        },
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-23-app-dies-week-two.png",
+            "headline": "Try it free — fieldnotesapp.io",
+            "sub": "The tool that isn't an app."
+        }
+    ],
+    "style": "A",
+    "out": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-07-23-app-dies-week-two.mp4"
+}

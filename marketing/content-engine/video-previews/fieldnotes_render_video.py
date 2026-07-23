@@ -268,12 +268,30 @@ def verify_video(video_path):
         return False
 
 
-def main():
+def main(spec_file=None):
+    global SOURCE_IMAGE_PATH
     all_temp_pngs = []
     rendered_video_paths = []
     success_count = 0
 
-    for style_key, spec in PREVIEW_SPECS.items():
+    # Optional spec-file mode: render ONE style from a JSON spec
+    # {"cards": [{"image","headline","sub"} x3], "style": "A|B|C", "out": "/abs/path.mp4"}
+    if spec_file:
+        with open(spec_file) as fh:
+            s = json.load(fh)
+        SOURCE_IMAGE_PATH = s["cards"][0]["image"]
+        style_map = {"A": "lower-third", "B": "big-center", "C": "kicker"}
+        specs = {s["style"]: {
+            "output_filename": os.path.basename(s["out"]),
+            "style_type": style_map[s["style"]],
+            "frames": [{"headline": c["headline"], "sub": c["sub"]} for c in s["cards"]],
+        }}
+        out_dir = os.path.dirname(os.path.abspath(s["out"]))
+    else:
+        specs = PREVIEW_SPECS
+        out_dir = OUTPUT_DIR
+
+    for style_key, spec in specs.items():
         print(f"\n--- Rendering Video for Style {style_key} ---")
         temp_png_files_for_style = []
         
@@ -291,7 +309,7 @@ def main():
             all_temp_pngs.append(temp_png)
             print(f"Generated temporary PIL frame: {temp_png}")
 
-        output_video_path = os.path.join(OUTPUT_DIR, spec["output_filename"])
+        output_video_path = os.path.join(out_dir, spec["output_filename"])
         rendered_video_paths.append(output_video_path)
 
         # 2. Construct and execute ONE FFmpeg command with xfade
@@ -359,10 +377,10 @@ def main():
             print("Aborting for this style.")
 
     print("\n--- Overall Summary ---")
-    if success_count == len(PREVIEW_SPECS):
+    if success_count == len(specs):
         print("All video renders and verifications PASSED!")
     else:
-        print(f"{success_count} of {len(PREVIEW_SPECS)} videos rendered and verified successfully. Review above logs for failures.")
+        print(f"{success_count} of {len(specs)} videos rendered and verified successfully. Review above logs for failures.")
 
     # Clean up temporary PNG files
     for png_file in all_temp_pngs:
@@ -371,4 +389,5 @@ def main():
             print(f"Cleaned up {png_file}")
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv[1] if len(sys.argv) > 1 else None)
