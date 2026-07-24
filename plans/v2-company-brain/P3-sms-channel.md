@@ -1,6 +1,6 @@
 # P3 — SMS Channel (AgentPhone)
 
-**Status: 🟢 READY TO BUILD — 10DLC APPROVED 2026-07-23 (watchdog confirmed live; campaign cleared carriers). AgentPhone number can send/receive production SMS. Build against real API — no sandbox needed.**
+**Status: ✅ CODE SHIPPED 2026-07-24 (commit dcb3502) — built, tested (54-check suite + full regression green), deployed to Railway, prod-verified. ⏳ OUTBOUND SMS BLOCKED VENDOR-SIDE: 10DLC campaign approved Jul 23 but AgentPhone's send gate still 403s "Complete 10DLC registration first" — entitlement lag on their side, nothing actionable API-side (verified: no sub-accounts, campaign on master). Watchdog cron `ap-outbound-watchdog` probes every 2h and pings Geoff when it opens. Remaining: real-phone E2E (invite Geoff's phone on demo biz 2 → YES → log → ask) once the gate opens. Geoff actions: nudge AgentPhone support (dashboard = sarah@atlantahouseplant.com), top up balance.**
 
 ## Why this might be THE unlock
 

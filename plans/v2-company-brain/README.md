@@ -6,7 +6,7 @@
 |-------|------|--------|-------------|--------------|
 | P1 | Q&A Assistant ("Ask FieldNotes") | ✅ DONE (Jul 20) — E2E verified, live in prod | hermes-tui-session | 2026-07-20 |
 | P2 | Rich Client Import (CSV) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
-| P3 | SMS Channel (AgentPhone) | 🟢 READY — 10DLC APPROVED 2026-07-23 | — | — |
+| P3 | SMS Channel (AgentPhone) | ✅ CODE DONE (Jul 24, commit dcb3502) — channel seam, /webhook/sms, STOP/START/invite-YES/MORE, dashboard SMS-invite, 54-check suite + 13-suite regression green, prod-verified. ⏳ OUTBOUND BLOCKED vendor-side: 10DLC approved Jul 23 but AgentPhone send gate still 403s; watchdog cron `ap-outbound-watchdog` (791a9e839d95, every 2h) pings Geoff when it opens → then real-phone E2E | hermes-tui-session | 2026-07-24 |
 | P4 | Route Awareness (schedules) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
 | P6 | Dashboard Home Base (owner UX) | ✅ DONE (Jul 22) — P6a quick-action bar + P6b owner chat commands (New account / Note for / invite), live in prod | hermes-tui-session | 2026-07-22 |
@@ -63,7 +63,7 @@ Q&A first because it transforms the pitch. CSV second because Q&A is only as goo
 - Email: AgentMail primary (`backend/integrations/email.py`)
 - Stripe: linked subs, signature-verified webhook (`backend/routes/billing.py`), tiers on Business
 - AgentPhone account provisioned, keys in `~/.hermes/.env`, API bank in `agent-account-provisioning` skill → `references/agentphone-api.md`
-- 10DLC/A2P registration: filed 2026-07-20, in review. Compliance pages live: ahp-pages.vercel.app (privacy/terms/opt-in). Status: `GET https://api.agentphone.ai/v1/register/status`. Watchdog cron: `10dlc-status-watchdog` (every 12h).
+- 10DLC/A2P registration: APPROVED 2026-07-23, but the outbound send gate did NOT open with it (POST /v1/messages still 403s as of Jul 24 — vendor-side; no sub-accounts, nothing actionable API-side). Compliance pages live: ahp-pages.vercel.app (privacy/terms/opt-in). Status: `GET https://api.agentphone.ai/v1/register/status`. Watchdogs: `10dlc-status-watchdog` (registration), `ap-outbound-watchdog` 791a9e839d95 (send gate, every 2h). AgentPhone master webhook → `https://fieldnotesapp.io/webhook/sms`; `AGENTPHONE_WEBHOOK_SECRET` + 3 AGENTPHONE_* vars in Railway. OPEN for Geoff: nudge AgentPhone support + top up balance ($25 filing consumed the $25 credit).
 - Demo tenant: business_id=2 (public demo), AHP = business_id=3
 
 ## Pitch after v2
