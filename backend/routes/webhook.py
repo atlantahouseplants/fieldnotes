@@ -23,6 +23,9 @@ from ..services import accounts as accounts_mod
 from ..services import recaps as recaps_mod
 from .onboarding import BOT_USERNAME
 from ..integrations.telegram import send_confirmation, send_message
+from ..integrations.channel import (Channel, TelegramChannel, SmsChannel,
+                                    STOP_WORDS, START_WORDS, pop_more)
+from ..integrations import agentphone
 from ..deps import has_feature, upgrade_message
 
 router = APIRouter(prefix="/webhook", tags=["webhook"])
@@ -106,7 +109,7 @@ async def telegram_webhook(request: Request):
     # Process in a fresh DB session
     db = SessionLocal()
     try:
-        result = await process_worker_note(db, telegram_id, text)
+        result = await process_worker_note(db, TelegramChannel(telegram_id), text)
         return {"ok": True, **result}
     except Exception as e:
         return {"ok": False, "error": str(e)}
@@ -178,6 +181,128 @@ async def handle_start(db: Session, telegram_id: str, text: str, chat: dict) -> 
     return {"ok": True, "detail": "welcome_sent"}
 
 
+# ── P3: SMS channel (AgentPhone) ─────────────────────────────────────
+# Inbound: AgentPhone master webhook → POST /webhook/sms, HMAC-signed
+# (x-webhook-signature: sha256=HMAC(secret, "{x-webhook-timestamp}.{raw}")).
+# Identity = E.164 phone ↔ Worker.phone. NO demo fallback on this channel:
+# unknown numbers get the invite prompt, never the demo tenant.
+
+_SMS_INVITE_PROMPT = (
+    "This number isn't connected to a FieldNotes crew yet. Ask your boss to "
+    "add your number from their FieldNotes dashboard — or try the demo: "
+    "https://fieldnotesapp.io/app/try.html")
+
+
+@router.get("/sms/status")
+async def sms_status():
+    return {"status": "ready", "service": "FieldNotes SMS Webhook"}
+
+
+@router.post("/sms")
+async def sms_webhook(request: Request):
+    raw = await request.body()
+    if agentphone.WEBHOOK_SECRET:
+        ts = request.headers.get("x-webhook-timestamp", "")
+        sig = request.headers.get("x-webhook-signature", "")
+        if not agentphone.verify_webhook(raw, ts, sig):
+            raise HTTPException(status_code=403, detail="Forbidden")
+    try:
+        body = json.loads(raw)
+    except Exception:
+        return {"ok": True, "detail": "bad json"}
+    if body.get("event") != "agent.message":
+        return {"ok": True, "detail": "ignored_event"}
+    data = body.get("data") or {}
+    if data.get("direction") != "inbound":
+        return {"ok": True, "detail": "not_inbound"}
+    phone = agentphone.normalize_e164(data.get("from", ""))
+    text = (data.get("message") or "").strip()
+    if not phone or not text:
+        return {"ok": True, "detail": "no_from_or_message"}
+
+    db = SessionLocal()
+    try:
+        result = await process_sms(db, phone, text)
+        return {"ok": True, **result}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+    finally:
+        db.close()
+
+
+async def process_sms(db: Session, phone: str, text: str) -> dict:
+    """SMS-specific envelope: compliance words, invite acceptance, MORE —
+    then the SAME channel-agnostic pipeline Telegram uses."""
+    upper = text.strip().upper()
+    worker = db.query(Worker).filter(Worker.phone == phone).first()
+
+    # STOP — honor silently, no reply (10DLC compliance; carrier may ALSO
+    # enforce network-level, we enforce app-level regardless). sms_opted_out
+    # is the durable marker — a STOPped number must never be texted again,
+    # not even the invite prompt, until THEY text START.
+    if upper in STOP_WORDS:
+        if worker and worker.is_active:
+            worker.is_active = False
+            worker.sms_opted_out = True
+            db.commit()
+        return {"detail": "opt_out", "phone": phone}
+
+    # START — rejoin a previously connected crew.
+    if upper in START_WORDS:
+        if worker and not worker.is_active:
+            worker.is_active = True
+            worker.sms_opted_out = False
+            db.commit()
+            biz = db.query(Business).filter(Business.id == worker.business_id).first()
+            await agentphone.send_sms(
+                phone,
+                f"Welcome back — you're reconnected to {biz.name if biz else 'your crew'}. "
+                f"Text your job notes here anytime.")
+            return {"detail": "opt_in", "phone": phone}
+        if not worker:
+            await agentphone.send_sms(phone, _SMS_INVITE_PROMPT)
+            return {"detail": "unknown_worker", "phone": phone}
+        # already active — fall through and process normally
+
+    # Opted out and not START — absolute silence.
+    if worker and worker.sms_opted_out:
+        return {"detail": "opted_out_silent", "phone": phone}
+
+    # Invite acceptance — pending invite = inactive Worker row created by the
+    # dashboard "add worker by phone" flow; YES flips them live.
+    if worker and not worker.is_active:
+        biz = db.query(Business).filter(Business.id == worker.business_id).first()
+        biz_name = biz.name if biz else "your company"
+        if tasks_mod.is_yes(text):
+            worker.is_active = True
+            db.commit()
+            await agentphone.send_sms(
+                phone,
+                f"🎉 You're connected to {biz_name}! After each stop, text me a "
+                f"quick note like:\n\"Smith Office: all good, replaced filter, "
+                f"need more filters next time.\"\nQuestions work too (\"gate code "
+                f"for Smith?\"). Reply STOP anytime to opt out.")
+            return {"detail": "worker_registered", "business": biz_name}
+        await agentphone.send_sms(
+            phone,
+            f"Reply YES to join {biz_name} on FieldNotes. Reply STOP to opt out.")
+        return {"detail": "invite_pending", "phone": phone}
+
+    if not worker:
+        await agentphone.send_sms(phone, _SMS_INVITE_PROMPT)
+        return {"detail": "unknown_worker", "phone": phone}
+
+    # "MORE" — flush the truncated-answer continuation stash (silent if empty).
+    if upper == "MORE":
+        nxt = pop_more(phone)
+        if nxt:
+            await agentphone.send_sms(phone, nxt)
+            return {"detail": "more_sent"}
+        return {"detail": "no_more"}
+
+    return await process_worker_note(db, SmsChannel(phone), text)
+
+
 def _resolve_one_account(query: str, accounts: list):
     """Exact name/shorthand match first (case-insensitive); else word-boundary
     fuzzy. Returns the Account, 'ambiguous', or None."""
@@ -210,37 +335,24 @@ async def _ping_owner_task_done(db: Session, biz, closer_telegram_id: str,
         pass  # a failed ping must never break the reply path
 
 
-async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
-    """Process a single worker note end-to-end."""
+async def process_worker_note(db: Session, channel: Channel, text: str) -> dict:
+    """Process a single worker note end-to-end (channel-agnostic since P3).
 
-    # 1. Find worker
-    worker = db.query(Worker).filter(
-        Worker.telegram_id == telegram_id,
-        Worker.is_active == True
-    ).first()
+    The locals below shadow the imported telegram helpers with channel-bound
+    versions — every call site in this function keeps its original shape, and
+    Telegram behavior stays byte-identical. Routing by destination lives in
+    integrations/channel.py.
+    """
+    telegram_id = channel.sender_id          # noqa: F841 — alias keeps call sites unchanged
+    send_message = channel.send              # noqa: F841 — shadows telegram.send_message
+    send_confirmation = channel.send_confirmation  # noqa: F841
 
-    is_demo = False
-    if not worker:
-        # P6b: the owner isn't a field worker — resolve them via
-        # Business.owner_telegram_id so their chat commands and notes land
-        # in their OWN tenant (attributed to the synthetic "Owner" worker).
-        owner_biz = db.query(Business).filter(
-            Business.owner_telegram_id == telegram_id,
-            Business.is_active == True
-        ).first()
-        if owner_biz:
-            worker = accounts_mod.get_or_create_owner_worker(db, int(owner_biz.id))
-        else:
-            # DEMO MODE: Allow unregistered users to test with the demo business
-            demo_worker = db.query(Worker).filter(
-                Worker.business_id == 2,  # Precision HVAC demo
-                Worker.is_active == True
-            ).first()
-            if demo_worker:
-                worker = demo_worker
-                is_demo = True
-            else:
-                return {"detail": "unknown_worker", "telegram_id": telegram_id}
+    # 1. Find worker (channel-specific identity; Telegram keeps the
+    #    owner + demo fallbacks, SMS resolves by E.164 phone only)
+    found = channel.find_worker(db)
+    if not found:
+        return {"detail": "unknown_worker", "telegram_id": channel.sender_id}
+    worker, is_demo = found
 
     business_id = int(worker.business_id)
 
@@ -590,7 +702,7 @@ async def process_worker_note(db: Session, telegram_id: str, text: str) -> dict:
     open_tasks = tasks_mod.open_tasks_for_account(db, business_id, account_id) \
         if account_id else []
     await send_confirmation(
-        chat_id=telegram_id,
+        telegram_id,
         account_name=account_name,
         status=parsed.get("status", "logged"),
         extra=tasks_mod.tasks_annotation(open_tasks),

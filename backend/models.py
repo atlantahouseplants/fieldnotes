@@ -113,6 +113,7 @@ class Worker(Base):
     name = Column(String, nullable=False)
     telegram_id = Column(String, unique=True)
     phone = Column(String)
+    sms_opted_out = Column(Boolean, default=False)  # P3: STOP honored — NEVER text this number again until START
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 

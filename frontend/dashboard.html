@@ -142,6 +142,13 @@
       <button class="qa-btn qa-submit" onclick="copyInvite()">Copy Link</button>
     </div>
     <div class="qa-msg" id="inv-msg"></div>
+    <hr style="border:none;border-top:1px solid #e5e5e5;margin:16px 0">
+    <h2>📱 …or invite by text (SMS)</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px">No app at all — they reply YES to the text and their notes land here. Works on any phone.</p>
+    <input id="sms-name" type="text" placeholder="Worker name (e.g. Marcus)" style="width:100%;margin-bottom:8px;padding:8px;font-size:14px">
+    <input id="sms-phone" type="tel" placeholder="Their mobile number" style="width:100%;margin-bottom:8px;padding:8px;font-size:14px">
+    <button class="qa-btn qa-submit" id="sms-go" onclick="sendSmsInvite()">Text the Invite</button>
+    <div class="qa-msg" id="sms-msg"></div>
   </div>
 
   <div class="grid">
@@ -322,6 +329,26 @@ async function copyInvite() {
     document.execCommand('copy');
     setMsg('inv-msg', 'Copied ✓', true);
   }
+}
+
+async function sendSmsInvite() {
+  const btn = document.getElementById('sms-go');
+  const name = document.getElementById('sms-name').value.trim();
+  const phone = document.getElementById('sms-phone').value.trim();
+  if (!name) { setMsg('sms-msg', 'Type their name first', false); return; }
+  if (!phone) { setMsg('sms-msg', 'Type their mobile number first', false); return; }
+  btn.disabled = true; btn.textContent = 'Texting…';
+  try {
+    const d = await postApi('/api/dashboard/sms-invite', { name, phone });
+    setMsg('sms-msg', d.message, d.ok);
+    if (d.ok) {
+      document.getElementById('sms-name').value = '';
+      document.getElementById('sms-phone').value = '';
+    }
+  } catch (e) {
+    setMsg('sms-msg', e.message, false);
+  }
+  btn.disabled = false; btn.textContent = 'Text the Invite';
 }
 
 /* ---- P7 tasks ---- */

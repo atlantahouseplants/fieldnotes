@@ -279,6 +279,73 @@ def invite_link(
     return {"ok": True, "invite_link": invite_link_url, "owner_link": owner_link_url}
 
 
+class SmsInviteRequest(BaseModel):
+    name: str
+    phone: str
+
+
+@router.post("/sms-invite")
+async def sms_invite(
+    req: SmsInviteRequest,
+    business_id: int = Query(...),
+    key: str = Query(...),
+    db: Session = Depends(get_db),
+):
+    """P3 — owner adds a worker by phone: pending (inactive) Worker row +
+    invite SMS with opt-out language. Worker's YES reply flips them live
+    (handled in routes/webhook.py process_sms). One business per phone."""
+    from ..integrations.agentphone import send_sms, normalize_e164
+
+    biz = verify_business_key(business_id, key, db)
+    e164 = normalize_e164(req.phone)
+    if not e164:
+        return {"ok": False, "message": "That phone number doesn't look right — use a full US number."}
+    name_clean = (req.name or "").strip() or "Crew"
+
+    # One business per phone: an ACTIVE worker anywhere blocks the number…
+    active = db.query(Worker).filter(
+        Worker.phone == e164, Worker.is_active == True).first()
+    if active:
+        if int(active.business_id) == business_id:
+            return {"ok": False, "message": f"{active.name} is already connected from that number."}
+        return {"ok": False, "message": "That number is already connected to a FieldNotes crew."}
+
+    # …and so does a PENDING invite held by another tenant. Without this,
+    # two businesses could hold pending rows for the same number and a YES
+    # would register into whichever query won.
+    pending = db.query(Worker).filter(
+        Worker.phone == e164, Worker.business_id == business_id).first()
+    if pending and pending.sms_opted_out:
+        # 10DLC: never send to an opted-out number — they must text START first.
+        return {"ok": False,
+                "message": "That number replied STOP before — they have to text START to our number first."}
+    if not pending:
+        foreign_pending = db.query(Worker).filter(
+            Worker.phone == e164, Worker.business_id != business_id).first()
+        if foreign_pending:
+            if foreign_pending.sms_opted_out:
+                return {"ok": False,
+                        "message": "That number replied STOP before — they have to text START to our number first."}
+            return {"ok": False,
+                    "message": "That number already has a pending invite to another crew — they can reply YES to that text, or STOP then START."}
+        db.add(Worker(business_id=business_id, name=name_clean,
+                      phone=e164, is_active=False))
+    else:
+        pending.name = name_clean
+    db.commit()
+
+    res = await send_sms(
+        e164,
+        f"{biz.name} added you to FieldNotes — text job notes to this number "
+        f"and they go straight to the office. Reply YES to join. "
+        f"Msg&data rates may apply. Reply STOP to opt out.")
+    if not res.get("ok"):
+        return {"ok": False,
+                "message": f"SMS send failed ({res.get('error', 'unknown')}) — try again in a minute."}
+    return {"ok": True,
+            "message": f"Invite texted to {name_clean} at {e164} — they're live when they reply YES."}
+
+
 @router.get("/logs")
 def dashboard_logs(business_id: int = Query(...), key: str = Query(...), limit: int = Query(20)):
     db = SessionLocal()
