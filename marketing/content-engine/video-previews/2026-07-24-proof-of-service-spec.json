@@ -1,0 +1,21 @@
+{
+    "cards": [
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-24-proof-of-service.png",
+            "headline": "Client says your crew never showed.",
+            "sub": "You've taken this call before."
+        },
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-24-proof-of-service.png",
+            "headline": "You send the visit recap.",
+            "sub": "Timestamped. Client-safe. Approved by you."
+        },
+        {
+            "image": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-24-proof-of-service.png",
+            "headline": "Try it free — fieldnotesapp.io",
+            "sub": "10-second text → proof of service."
+        }
+    ],
+    "style": "A",
+    "out": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-07-24-proof-of-service.mp4"
+}

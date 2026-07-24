@@ -1,0 +1,33 @@
+{
+  "id": "2026-07-24-proof-of-service",
+  "theme": "proof-of-service (client recap / dispute armor)",
+  "fb_text": "Every service company owner has taken this call.\n\n\"Your guy was never here.\"\n\nYou know he was. He knows he was. The client doesn't care — no paper trail, no argument won.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. After a stop, my tech sends a 10-second voice note like he's texting me. FieldNotes logs the visit with a timestamp, rewrites the note into a clean client-safe recap, and I approve it with a checkmark from my phone. The client gets a professional visit summary by email.\n\nNext time someone says \"nobody showed,\" the reply is a timestamped recap. That conversation is over before it starts.\n\nNo apps for the crew. No forms. Just texts.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "\"Your guy was never here.\"\n\nEvery service company owner has taken this call. No paper trail, no argument won.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. After a stop, my tech sends a 10-second voice note like he's texting me. FieldNotes logs the visit with a timestamp, rewrites it into a clean client-safe recap, I approve it from my phone, and the client gets a professional visit summary by email.\n\nNext time someone says \"nobody showed,\" the reply is a timestamped recap. Conversation over.\n\nNo apps for the crew. Just texts.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife #businessowner #lawncare #pestandtermite #commercialcleaning #fieldmanagement #saas",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-24-proof-of-service.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-24-proof-of-service.png",
+    "prompt": "PIL branded card (card mode) — headline 'Client says your guy never showed.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-07-24-proof-of-service.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-07-24-proof-of-service.mp4",
+    "model": "fieldnotes_render_video.py style A (PIL+ffmpeg, silent AAC track)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Client says your crew never showed. You reply with a timestamped visit recap. Conversation over. FieldNotes turns a 10-second voice note into a client-safe proof-of-service email — you approve it, the client gets it. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife"
+    },
+    "ig_reel": {
+      "text": "\"Your guy was never here.\"\n\nEvery service company owner has taken this call. No paper trail, no argument won.\n\nAfter a stop, my tech sends a 10-second voice note like he's texting me. FieldNotes logs the visit with a timestamp, rewrites it into a clean client-safe recap, I approve it from my phone, and the client gets a professional visit summary by email.\n\nNext time someone says \"nobody showed,\" the reply is a timestamped recap. Conversation over.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife #businessowner #fieldmanagement"
+    },
+    "fb_video": {
+      "text": "Every service company owner has taken this call.\n\n\"Your guy was never here.\"\n\nYou know he was. He knows he was. The client doesn't care — no paper trail, no argument won.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. After a stop, my tech sends a 10-second voice note like he's texting me. FieldNotes logs the visit with a timestamp, rewrites the note into a clean client-safe recap, and I approve it with a checkmark from my phone. The client gets a professional visit summary by email.\n\nNext time someone says \"nobody showed,\" the reply is a timestamped recap. That conversation is over before it starts.\n\nNo apps for the crew. No forms. Just texts.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-07-24T13:10:00-04:00",
+  "approved_at": "2026-07-24T13:10:00-04:00"
+}
