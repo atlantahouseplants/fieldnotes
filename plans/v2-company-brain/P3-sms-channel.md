@@ -1,6 +1,6 @@
 # P3 — SMS Channel (AgentPhone)
 
-**Status: ⏳ BLOCKED — 10DLC/A2P registration in review (filed 2026-07-20, standard_brand, Atlanta Houseplants LLC). Watchdog cron `10dlc-status-watchdog` reports status changes. Do NOT start integration until status = approved.**
+**Status: 🟢 READY TO BUILD — 10DLC APPROVED 2026-07-23 (watchdog confirmed live; campaign cleared carriers). AgentPhone number can send/receive production SMS. Build against real API — no sandbox needed.**
 
 ## Why this might be THE unlock
 

@@ -12,44 +12,41 @@
   },
   "video": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-07-23-app-dies-week-two.mp4",
-    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-07-23-app-dies-week-two.mp4",
-    "model": "fieldnotes_render_video.py style A (PIL+ffmpeg)",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-07-23-app-dies-week-two-audio.mp4",
+    "model": "fieldnotes_render_video.py style A (PIL+ffmpeg, silent AAC track)",
     "cost_usd": 0.0
   },
+  "already_published": {
+    "ig_feed": "buffer-post-id:6a621fbbdc5469c2bd664465",
+    "tiktok": "buffer-post-id:6a621fd15a39d940350a9b28",
+    "fb_feed": "https://facebook.com/1208623249001508_122096578449408315",
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3947648740518227346",
+    "ig_reel": "buffer-post-id:6a6223342c51ef481646a6ca",
+    "note": "run1: ig_feed went out with video asset (media bug, fixed); run2: fb_feed/ig_story/ig_reel ok; fb_reel rejected by FB twice -> fb_video fallback",
+    "_cleanup": "run1 ig_feed-with-video auto-converted by IG to duplicate reel DbI1vqBldP3 \u2014 Buffer cannot delete published posts; Geoff to delete that reel in the IG app manually. Proper ig_feed image post re-published 2026-07-23 ~17:20 ET (DbKDhXrDsM-)."
+  },
   "surfaces": {
-    "fb_feed": {
-      "text": "Every field-service app dies the same death.\n\nWeek one: everyone's excited. Week two: the techs stop opening it. Week three: you're paying $200 a month for an icon on phones nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. I watched this happen with every tool I tried. My guys aren't desk workers. They're not going to stand in a parking lot and fill out a form.\n\nSo I stopped asking them to.\n\nFieldNotes works where they already live: text messages and voice notes. After a stop, my tech talks for 10 seconds like he's texting me. The AI turns it into the service log, the client recap, the follow-up list. No app to learn. No forms. Nothing to remember.\n\nWeek two looks exactly like week one.\n\nIf every tool you've bought died in your crew's pockets, try the one that isn't an app \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html"
-    },
-    "ig_feed": {
-      "text": "Every field-service app dies the same death.\n\nWeek one: excited. Week two: techs stop opening it. Week three: you're paying for an icon nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. My guys aren't going to fill out forms in a parking lot. So I stopped asking them to.\n\nFieldNotes works where they already live: texts and voice notes. Tech talks for 10 seconds after a stop, AI writes the log, the recap, the follow-ups. Nothing to learn.\n\nWeek two looks exactly like week one.\n\nTry the one that isn't an app \u2014 60-second demo:\nfieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #hvac #plumbing #landscaping #homeservices #contractorlife #businessowner #fieldmanagement #saas"
-    },
-    "ig_story": {},
-    "fb_reel": {
+    "fb_video": {
       "text": "Every field-service app dies in week two. This one isn't an app \u2014 your techs just text like they already do. Try the 60-second demo: fieldnotesapp.io/app/try.html"
-    },
-    "ig_reel": {
-      "text": "Every field-service app dies in week two. This one isn't an app.\n\n10-second voice note after each stop \u2192 service log, client recap, follow-ups. Written by AI, sent from the truck.\n\nTry it free: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #contractorlife #smallbusiness #landscaping #hvac #plumbing #businessowner #saas"
-    },
-    "tiktok": {
-      "text": "Every field-service app dies in week two. This one isn't an app. #fieldservice #contractorlife #smallbusiness #landscaping #hvac #plumbinglife #businessowner"
     }
   },
-  "status": "failed",
+  "status": "published",
   "created_at": "2026-07-23T10:05:00-04:00",
   "approved_at": "2026-07-23T10:05:00-04:00",
   "publish_errors": [
-    "fb_feed: {'message': 'Uh-oh! Facebook had some trouble processing this video. Please retry this post or reupload the video and try again.'}",
-    "ig_story: [{\"message\": \"Variable \\\"$input\\\" got invalid value { type: \\\"story\\\" } at \\\"input.metadata.instagram\\\"; Field \\\"shouldShareToFeed\\\" of required type \\\"Boolean!\\\" was not provided.\", \"locations\": [{\"line\": 1, \"column\": 21}], \"extensions\": {\"code\": \"INTERNAL_SERVER_ERROR\"}}]",
-    "fb_reel: {'message': \"Facebook was unable to process the media for this post. This can happen if the media URL is unreachable or the file format isn't supported. Try re-uploading the media and publishing again.\"}",
-    "ig_reel: [{\"message\": \"Variable \\\"$input\\\" got invalid value { type: \\\"reel\\\" } at \\\"input.metadata.instagram\\\"; Field \\\"shouldShareToFeed\\\" of required type \\\"Boolean!\\\" was not provided.\", \"locations\": [{\"line\": 1, \"column\": 21}], \"extensions\": {\"code\": \"INTERNAL_SERVER_ERROR\"}}]"
+    "fb_reel: {'message': \"Facebook was unable to process the media for this post. This can happen if the media URL is unreachable or the file format isn't supported. Try re-uploading the media and publishing again.\"}"
   ],
   "published": {
-    "fb_url": null,
-    "ig_url": "buffer-post-id:6a621fbbdc5469c2bd664465",
+    "fb_url": "https://facebook.com/1208623249001508_122096578449408315",
+    "ig_url": "https://www.instagram.com/p/DbKDhXrDsM-/",
     "surfaces": {
-      "ig_feed": "buffer-post-id:6a621fbbdc5469c2bd664465",
-      "tiktok": "buffer-post-id:6a621fd15a39d940350a9b28"
+      "fb_feed": "https://facebook.com/1208623249001508_122096578449408315",
+      "fb_video": "https://facebook.com/1208623249001508_122096581437408315",
+      "ig_feed": "https://www.instagram.com/p/DbKDhXrDsM-/",
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3947648740518227346",
+      "ig_reel": "https://www.instagram.com/reel/DbI3bsvgJgw/",
+      "tiktok": "https://tiktok.com/@fieldnotesappio/video/7665724378302237965"
     },
-    "at": "2026-07-23T14:06:22.189488+00:00"
+    "at": "2026-07-24T01:27:20.095983+00:00"
   }
 }

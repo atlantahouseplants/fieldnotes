@@ -6,7 +6,7 @@
 |-------|------|--------|-------------|--------------|
 | P1 | Q&A Assistant ("Ask FieldNotes") | ✅ DONE (Jul 20) — E2E verified, live in prod | hermes-tui-session | 2026-07-20 |
 | P2 | Rich Client Import (CSV) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
-| P3 | SMS Channel (AgentPhone) | ⏳ BLOCKED — 10DLC in review (filed 2026-07-20) | — | — |
+| P3 | SMS Channel (AgentPhone) | 🟢 READY — 10DLC APPROVED 2026-07-23 | — | — |
 | P4 | Route Awareness (schedules) | ✅ DONE (Jul 21) — committed b828e20, live in prod | hermes-tui-session | 2026-07-21 |
 | P5 | Tiering & Feature Gates | ✅ DONE (Jul 21) — committed 11d9e95, live in prod; beta tenants grandfathered (all-access) | hermes-tui-session | 2026-07-21 |
 | P6 | Dashboard Home Base (owner UX) | ✅ DONE (Jul 22) — P6a quick-action bar + P6b owner chat commands (New account / Note for / invite), live in prod | hermes-tui-session | 2026-07-22 |
