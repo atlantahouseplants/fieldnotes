@@ -1,3 +1,4 @@
 {"at": "2026-07-22T19:35:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL fallback — FAL_KEY not set)", "cost_usd": 0.0, "post_id": "2026-07-22-gate-code-moment"}
 {"at": "2026-07-24T13:10:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL fallback — FAL_KEY not set)", "cost_usd": 0.0, "post_id": "2026-07-24-proof-of-service"}
 {"at": "2026-07-24T13:10:00-04:00", "kind": "video", "model": "fieldnotes_render_video.py style A (PIL+ffmpeg, silent AAC)", "cost_usd": 0.0, "post_id": "2026-07-24-proof-of-service"}
+{"at":"2026-07-25T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-25-founder-story"}
