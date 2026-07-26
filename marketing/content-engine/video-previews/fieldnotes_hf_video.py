@@ -55,7 +55,7 @@ import tempfile
 CONTENT_ENGINE = "/home/wallg/fieldnotes/marketing/content-engine"
 WORKROOT = os.path.join(CONTENT_ENGINE, "hf-compositions")
 
-DEFAULT_DUR = {"hook": 4.0, "value": 3.5, "brand": 2.5, "cta": 3.0}
+DEFAULT_DUR = {"hook": 4.0, "value": 3.5, "brand": 2.5, "cta": 3.0, "image": 4.0}
 
 PACKAGE_JSON = {
     "name": "fieldnotes-hf",
@@ -93,6 +93,18 @@ def scene_html(i, scene, start, dur):
         <div class="brand" id="{sid}-brand">FieldNotes</div>
         <div class="tagline" id="{sid}-tag">{tagline}</div>
       </div>'''
+    elif t == "image":
+        # Full-bleed AI photo (skit format) — Ken Burns zoom + optional kicker
+        # chip + lower-third caption. src copied into workdir as _local by main().
+        src = esc(scene.get("_local") or scene.get("src", ""))
+        kicker = esc(scene.get("kicker", ""))
+        caption = esc(scene.get("caption", ""))
+        kicker_html = f'\n        <div class="imgkicker" id="{sid}-kicker">{kicker}</div>' if kicker else ""
+        cap_html = f'\n        <div class="imgcap" id="{sid}-cap">{caption}</div>' if caption else ""
+        inner = f'''      <div id="{sid}" class="scene clip imgscene" data-start="{start}" data-duration="{dur}" data-track-index="{i}">
+        <div class="kbwrap"><img class="kenburns" id="{sid}-img" src="{src}" /></div>
+        <div class="scrim"></div>{kicker_html}{cap_html}
+      </div>'''
     else:  # hook / value
         kicker = esc(scene.get("kicker", ""))
         headline = esc(scene.get("headline", ""))
@@ -120,6 +132,17 @@ def scene_tweens(i, scene, start):
         lines.append(f'      tl.from("#{sid}-rule", {{ scaleX: 0, transformOrigin: "left", duration: 0.5 }}, {a:.2f});')
         lines.append(f'      tl.from("#{sid}-brand", {{ y: 50, opacity: 0, duration: 0.6 }}, {b:.2f});')
         lines.append(f'      tl.from("#{sid}-tag", {{ y: 30, opacity: 0, duration: 0.6 }}, {c:.2f});')
+    elif t == "image":
+        dur = float(scene.get("duration", DEFAULT_DUR["image"]))
+        # Ken Burns: alternate zoom-in / zoom-out per scene index, linear, full scene length
+        if i % 2 == 0:
+            lines.append(f'      tl.fromTo("#{sid}-img", {{ scale: 1.0 }}, {{ scale: 1.14, duration: {dur:.2f}, ease: "none" }}, {start:.2f});')
+        else:
+            lines.append(f'      tl.fromTo("#{sid}-img", {{ scale: 1.14 }}, {{ scale: 1.0, duration: {dur:.2f}, ease: "none" }}, {start:.2f});')
+        if scene.get("kicker"):
+            lines.append(f'      tl.from("#{sid}-kicker", {{ y: -20, opacity: 0, duration: 0.5 }}, {a:.2f});')
+        if scene.get("caption"):
+            lines.append(f'      tl.from("#{sid}-cap", {{ y: 30, opacity: 0, duration: 0.5 }}, {b:.2f});')
     else:
         lines.append(f'      tl.from("#{sid}-kicker", {{ y: -30, opacity: 0, duration: 0.5 }}, {a:.2f});')
         lines.append(f'      tl.from("#{sid}-head", {{ y: 40, opacity: 0, duration: 0.6 }}, {b:.2f});')
@@ -208,6 +231,47 @@ def build_html(scenes):
         height: 8px;
         background: #C6F135;
         margin-bottom: 56px;
+      }}
+      .imgscene {{ padding: 0; }}
+      .kbwrap {{
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }}
+      .kenburns {{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: center center;
+      }}
+      .scrim {{
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(26,29,33,0.55) 0%, rgba(26,29,33,0) 30%, rgba(26,29,33,0) 55%, rgba(26,29,33,0.78) 100%);
+      }}
+      .imgkicker {{
+        position: absolute;
+        top: 90px;
+        left: 90px;
+        color: #1A1D21;
+        background: #C6F135;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        padding: 14px 26px;
+        border-radius: 8px;
+      }}
+      .imgcap {{
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        bottom: 130px;
+        color: #FFFFFF;
+        font-size: 52px;
+        font-weight: bold;
+        line-height: 1.3;
+        text-shadow: 0 2px 18px rgba(0,0,0,0.6);
       }}
       .cta-box {{
         border: 4px solid #C6F135;
@@ -386,6 +450,16 @@ def main():
                 print(f"[hf] scene {i} stretched {default:.1f}s -> {sc['duration']:.1f}s to fit narration ({ad:.1f}s)")
         except Exception as e:
             print(f"[hf] WARN: TTS pre-pass failed scene {i} ({e}) — using default duration")
+
+    # Copy image-scene sources into the workdir so the composition is self-contained
+    for i, sc in enumerate(scenes):
+        if sc["type"] == "image":
+            src = sc.get("src", "")
+            if not src or not os.path.exists(src):
+                raise SystemExit(f"scene {i}: image src missing or not found: {src!r}")
+            local = f"img-{i}{os.path.splitext(src)[1].lower() or '.png'}"
+            shutil.copy(src, os.path.join(workdir, local))
+            sc["_local"] = local
 
     html_text, total, timings = build_html(scenes)
     with open(os.path.join(workdir, "index.html"), "w") as f:

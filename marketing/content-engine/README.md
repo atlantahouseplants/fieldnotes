@@ -140,8 +140,19 @@ beats), `brand` (rule + FieldNotes + tagline), `cta` (STANDARDIZED end-card —
 fieldnotesapp.io/app/try.html, never customized; the reusable sub-composition piece, identical
 across all videos). One composition = one render = no stitching. Renders ~30-60s on WSL.
 Generated compositions live in `hf-compositions/<id>/` (gitignored). Demos:
-`video-previews/template-demo.mp4` (silent), `video-previews/narration-demo.mp4` (voiced).
+`video-previews/template-demo.mp4` (silent), `video-previews/narration-demo.mp4` (voiced),
+`video-previews/skit-demo.mp4` (photo skit).
 If the script exits non-zero → fall back to the PIL renderer below.
+
+**SKIT format (Geoff's direction Jul 26):** `image` scenes — full-bleed AI photos with Ken
+Burns zoom + lime kicker chip + lower-third caption. Photos come from
+`~/.hermes/scripts/fieldnotes_gen_image.py "<prompt>" <out.png>` (**Gemini 2.5 Flash Image,
+$0**, uses GEMINI_API_KEY; FAL remains dead — FAL_KEY never set). Prompt rules: always
+"Photorealistic candid photo, vertical 9:16 portrait, documentary style, no readable text,
+no watermarks" (AI text renders as gibberish — keep phone/monitor screens dark); reuse a
+character description verbatim across prompts for consistency. Mix image + text scenes
+freely in one composition. Skits = stories/real-life situations acted out in stills +
+voiceover — the avatar idea Geoff rejected in favor of this ($0 vs HeyGen $29/mo watermarked).
 
 **Narration ("say" per scene, $0):** every scene carries a "say" line (spoken-style, <= 15
 words). The generator synthesizes each via **edge-tts** (Microsoft, free, no key — venv has
