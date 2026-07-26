@@ -131,16 +131,27 @@ and works even without hosting.
 
 ## Video layer — HyperFrames (PRIMARY since Jul 25) + PIL motion cards (fallback)
 
-**Primary: HyperFrames multi-scene compositions.** `~/.hermes/scripts/fieldnotes_hf_video.py`
-(repo copy: `video-previews/fieldnotes_hf_video.py`) takes a scene spec JSON, generates a
-branded composition (charcoal #1A1D21 / lime #C6F135 / Inter), runs `hyperframes check` +
-render, muxes a silent AAC track, and self-verifies (ffprobe + frame stddev). Scene types:
-`hook` (kicker + headline + dim sub), `value` (1-3 idea beats), `brand` (rule + FieldNotes +
-tagline), `cta` (STANDARDIZED end-card — fieldnotesapp.io/app/try.html, never customized;
-this is the reusable sub-composition piece, identical across all videos). One composition =
-one render = no stitching; 15-25s typical. Renders ~30s on WSL. Generated compositions live
-in `hf-compositions/<id>/`. Template demo: `video-previews/template-demo.mp4`.
+**Primary: HyperFrames multi-scene compositions + voiceover.**
+`~/.hermes/scripts/fieldnotes_hf_video.py` (repo copy: `video-previews/fieldnotes_hf_video.py`)
+takes a scene spec JSON, generates a branded composition (charcoal #1A1D21 / lime #C6F135 /
+Inter), runs `hyperframes check` + render, builds a NARRATION track, and self-verifies
+(ffprobe + frame stddev). Scene types: `hook` (kicker + headline + dim sub), `value` (1-3 idea
+beats), `brand` (rule + FieldNotes + tagline), `cta` (STANDARDIZED end-card —
+fieldnotesapp.io/app/try.html, never customized; the reusable sub-composition piece, identical
+across all videos). One composition = one render = no stitching. Renders ~30-60s on WSL.
+Generated compositions live in `hf-compositions/<id>/` (gitignored). Demos:
+`video-previews/template-demo.mp4` (silent), `video-previews/narration-demo.mp4` (voiced).
 If the script exits non-zero → fall back to the PIL renderer below.
+
+**Narration ("say" per scene, $0):** every scene carries a "say" line (spoken-style, <= 15
+words). The generator synthesizes each via **edge-tts** (Microsoft, free, no key — venv has
+edge-tts 7.2.7), measures it, and STRETCHES the scene duration to fit natural speech
+(audio + 0.35s) — voice sets the pace, never tempo-crushed. Scenes then get their segments
+concatenated and muxed as the video's AAC track (silent scenes get silence; no "say" at all
+→ silent AAC). Default voice `en-US-GuyNeural`, overridable via spec "voice". Upgrade paths:
+ElevenLabs free tier (10k chars/mo — our ~4k/mo usage fits) for more human voices; ElevenLabs
+Starter ($5/mo) to clone GEOFF's voice for founder-story posts. HeyGen avatar ($29/mo,
+free tier is watermarked/unusable) only after a free-tier taste test.
 
 **Fallback: `video-previews/fieldnotes_render_video.py`** — vertical 1080x1920 MP4s from
 PIL pre-rendered frames + ffmpeg xfade. Three style previews delivered to Geoff Jul 22

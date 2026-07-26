@@ -15,14 +15,23 @@ Spec:
   "scenes": [                                     # required, 2..8 scenes
     {"type": "hook",  "kicker": "Tuesday, 7:52 AM",
      "headline": "Your tech is at the gate.",
-     "sub": "The gate code is in a text thread from March."},
+     "sub": "The gate code is in a text thread from March.",
+     "say": "Your tech is at the gate, and the gate code is buried in a text thread from March."},
     {"type": "value", "kicker": "Step 1",
      "headline": "He sends one text after each stop.",
-     "sub": "FieldNotes files it under the right client."},
+     "say": "After each stop he sends one text, like he's texting a buddy."},
     {"type": "brand", "tagline": "Every job detail. One voice memo.\nLogged before the truck leaves."},
     {"type": "cta"}                                # standardized end-card, no fields needed
-  ]
+  ],
+  "voice": "en-US-GuyNeural"                      # optional — edge-tts voice (default Guy)
 }
+
+NARRATION ("say" per scene): any scene may include a "say" string — spoken
+voiceover for that scene, generated FREE via edge-tts (Microsoft, no key, no
+cost; swap-in for ElevenLabs later). Keep each "say" <= ~25 words so it fits
+the scene duration; the generator speeds audio up to ~1.4x to fit and pads
+short audio with silence. Scenes without "say" get silence. If NO scene has
+"say", a silent AAC track is muxed instead (platforms expect an audio stream).
 
 Scene types (default durations, overridable with "duration": seconds):
   hook  (4.0s) — kicker + big headline + dim sub. The scroll-stopper.
@@ -121,13 +130,14 @@ def scene_tweens(i, scene, start):
 
 def build_html(scenes):
     total = 0.0
-    parts, tweens = [], []
+    parts, tweens, timings = [], [], []
     for i, sc in enumerate(scenes):
         if sc["type"] not in DEFAULT_DUR:
             raise SystemExit(f"unknown scene type: {sc['type']}")
         dur = float(sc.get("duration", DEFAULT_DUR[sc["type"]]))
         parts.append(scene_html(i, sc, round(total, 2), round(dur, 2)))
         tweens.append(scene_tweens(i, sc, total))
+        timings.append((total, dur, sc))
         total += dur
     scenes_html = "\n\n".join(parts)
     tweens_js = "\n".join(tweens)
@@ -240,7 +250,67 @@ def build_html(scenes):
     </script>
   </body>
 </html>
-''', total
+''', total, timings
+
+
+def tts_segment(text, voice, path):
+    import asyncio
+    import edge_tts
+
+    async def _go():
+        await edge_tts.Communicate(text, voice).save(path)
+
+    asyncio.run(_go())
+
+
+def build_narration(timings, voice, workdir):
+    """TTS per scene ("say"), each fit to its scene duration, concatenated in
+    scene order. Returns the narration wav path, or None on failure."""
+    segs = []
+    for i, (start, dur, sc) in enumerate(timings):
+        say = (sc.get("say") or "").strip()
+        seg = os.path.join(workdir, f"seg-{i}.wav")
+        if say:
+            mp3 = os.path.join(workdir, f"seg-{i}.mp3")
+            if not os.path.exists(mp3):  # pre-pass may already have synthesized it
+                try:
+                    tts_segment(say, voice, mp3)
+                except Exception as e:
+                    print(f"[hf] TTS failed for scene {i}: {e}")
+                    return None
+            rc, out_d = run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                             "-of", "csv=p=0", mp3], cwd=workdir)
+            try:
+                ad = float(out_d.strip())
+            except ValueError:
+                return None
+            af = ""
+            if ad > dur - 0.15:
+                tempo = min(ad / max(dur - 0.15, 0.5), 1.45)
+                af = f"atempo={tempo:.3f},"
+                print(f"[hf] scene {i} narration {ad:.1f}s vs {dur:.1f}s scene — atempo {tempo:.2f}x")
+            rc, o = run(["ffmpeg", "-y", "-v", "error", "-i", mp3,
+                         "-af", af + "apad", "-t", f"{dur:.2f}",
+                         "-ar", "44100", "-ac", "2", seg], cwd=workdir)
+        else:
+            rc, o = run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
+                         "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+                         "-t", f"{dur:.2f}", seg], cwd=workdir)
+        if rc != 0 or not os.path.exists(seg):
+            print(f"[hf] segment build failed scene {i}: {o[-300:]}")
+            return None
+        segs.append(seg)
+    lst = os.path.join(workdir, "concat.txt")
+    with open(lst, "w") as f:
+        for s in segs:
+            f.write(f"file '{s}'\n")
+    track = os.path.join(workdir, "narration.wav")
+    rc, o = run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
+                 "-i", lst, "-c", "copy", track], cwd=workdir)
+    if rc != 0 or not os.path.exists(track):
+        print(f"[hf] concat failed: {o[-300:]}")
+        return None
+    return track
 
 
 def run(cmd, cwd, timeout=600):
@@ -294,7 +364,30 @@ def main():
     if os.path.exists(workdir):
         shutil.rmtree(workdir)
     os.makedirs(workdir)
-    html_text, total = build_html(scenes)
+
+    # Narration pre-pass: synthesize "say" lines FIRST and stretch scene
+    # durations to fit natural speech (audio + 0.35s breathing room), so the
+    # voiceover sets the pace instead of getting tempo-crushed into the scene.
+    voice = spec.get("voice", "en-US-GuyNeural")
+    for i, sc in enumerate(scenes):
+        say = (sc.get("say") or "").strip()
+        if not say:
+            continue
+        mp3 = os.path.join(workdir, f"seg-{i}.mp3")
+        try:
+            tts_segment(say, voice, mp3)
+            rc, out_d = run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                             "-of", "csv=p=0", mp3], cwd=workdir)
+            ad = float(out_d.strip())
+            want = ad + 0.35
+            default = float(sc.get("duration", DEFAULT_DUR[sc["type"]]))
+            if want > default:
+                sc["duration"] = round(want, 2)
+                print(f"[hf] scene {i} stretched {default:.1f}s -> {sc['duration']:.1f}s to fit narration ({ad:.1f}s)")
+        except Exception as e:
+            print(f"[hf] WARN: TTS pre-pass failed scene {i} ({e}) — using default duration")
+
+    html_text, total, timings = build_html(scenes)
     with open(os.path.join(workdir, "index.html"), "w") as f:
         f.write(html_text)
     with open(os.path.join(workdir, "package.json"), "w") as f:
@@ -316,22 +409,42 @@ def main():
         print("[hf] RENDER FAILED", file=sys.stderr)
         sys.exit(3)
 
-    # Parity with the PIL pipeline: platforms (IG Reels/TikTok) expect an audio
-    # stream — mux a silent AAC track if the render has none (Jul 23 pitfall).
-    rc, probe = run(["ffprobe", "-v", "error", "-select_streams", "a",
-                     "-show_entries", "stream=codec_name", "-of", "csv=p=0", out], cwd="/tmp")
-    if not probe.strip():
+    # Audio: narration track if any scene has "say" (edge-tts, $0); otherwise a
+    # silent AAC track — platforms (IG Reels/TikTok) expect an audio stream
+    # regardless (Jul 23 pitfall). HyperFrames render output has NO audio stream.
+    voice = spec.get("voice", "en-US-GuyNeural")
+    track = None
+    if any((sc.get("say") or "").strip() for sc in scenes):
+        print(f"[hf] building narration track (voice={voice})")
+        track = build_narration(timings, voice, workdir)
+        if not track:
+            print("[hf] WARN: narration build failed — falling back to silent audio")
+    if track:
         tmp = out + ".audio.mp4"
-        rc, o = run(["ffmpeg", "-y", "-v", "error", "-i", out,
-                     "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+        rc, o = run(["ffmpeg", "-y", "-v", "error", "-i", out, "-i", track,
                      "-c:v", "copy", "-c:a", "aac", "-shortest", tmp], cwd="/tmp")
         if rc == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > 0:
             os.replace(tmp, out)
-            print("[hf] silent AAC track muxed in")
+            print("[hf] narration track muxed in")
         else:
             if os.path.exists(tmp):
                 os.unlink(tmp)
-            print("[hf] WARN: could not mux silent audio; publishing without it")
+            print("[hf] WARN: narration mux failed; publishing silent")
+    else:
+        rc, probe = run(["ffprobe", "-v", "error", "-select_streams", "a",
+                         "-show_entries", "stream=codec_name", "-of", "csv=p=0", out], cwd="/tmp")
+        if not probe.strip():
+            tmp = out + ".audio.mp4"
+            rc, o = run(["ffmpeg", "-y", "-v", "error", "-i", out,
+                         "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+                         "-c:v", "copy", "-c:a", "aac", "-shortest", tmp], cwd="/tmp")
+            if rc == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > 0:
+                os.replace(tmp, out)
+                print("[hf] silent AAC track muxed in")
+            else:
+                if os.path.exists(tmp):
+                    os.unlink(tmp)
+                print("[hf] WARN: could not mux silent audio; publishing without it")
 
     ok, msg = verify(out, total)
     print(f"[hf] verify: {msg}")
