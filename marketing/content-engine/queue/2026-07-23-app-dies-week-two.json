@@ -1,12 +1,12 @@
 {
   "id": "2026-07-23-app-dies-week-two",
   "theme": "objection handling (crew won't use apps)",
-  "fb_text": "Every field-service app dies the same death.\n\nWeek one: everyone's excited. Week two: the techs stop opening it. Week three: you're paying $200 a month for an icon on phones nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. I watched this happen with every tool I tried. My guys aren't desk workers. They're not going to stand in a parking lot and fill out a form.\n\nSo I stopped asking them to.\n\nFieldNotes works where they already live: text messages and voice notes. After a stop, my tech talks for 10 seconds like he's texting me. The AI turns it into the service log, the client recap, the follow-up list. No app to learn. No forms. Nothing to remember.\n\nWeek two looks exactly like week one.\n\nIf every tool you've bought died in your crew's pockets, try the one that isn't an app \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html",
-  "ig_text": "Every field-service app dies the same death.\n\nWeek one: excited. Week two: techs stop opening it. Week three: you're paying for an icon nobody touches.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties across the metro. My guys aren't going to fill out forms in a parking lot. So I stopped asking them to.\n\nFieldNotes works where they already live: texts and voice notes. Tech talks for 10 seconds after a stop, AI writes the log, the recap, the follow-ups. Nothing to learn.\n\nWeek two looks exactly like week one.\n\nTry the one that isn't an app \u2014 60-second demo:\nfieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #hvac #plumbing #landscaping #homeservices #contractorlife #businessowner #fieldmanagement #saas",
+  "fb_text": "Every field-service app dies the same death.\n\nWeek one: everyone's excited. Week two: the techs stop opening it. Week three: you're paying $200 a month for an icon on phones nobody touches.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. I watched this happen with every tool I tried. My guys aren't desk workers. They're not going to stand in a parking lot and fill out a form.\n\nSo I stopped asking them to.\n\nFieldNotes works where they already live: text messages and voice notes. After a stop, my tech talks for 10 seconds like he's texting me. The AI turns it into the service log, the client recap, the follow-up list. No app to learn. No forms. Nothing to remember.\n\nWeek two looks exactly like week one.\n\nIf every tool you've bought died in your crew's pockets, try the one that isn't an app — 60-second demo, no install:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Every field-service app dies the same death.\n\nWeek one: excited. Week two: techs stop opening it. Week three: you're paying for an icon nobody touches.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. My guys aren't going to fill out forms in a parking lot. So I stopped asking them to.\n\nFieldNotes works where they already live: texts and voice notes. Tech talks for 10 seconds after a stop, AI writes the log, the recap, the follow-ups. Nothing to learn.\n\nWeek two looks exactly like week one.\n\nTry the one that isn't an app — 60-second demo:\nfieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #hvac #plumbing #landscaping #homeservices #contractorlife #businessowner #fieldmanagement #saas",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-23-app-dies-week-two.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-23-app-dies-week-two.png",
-    "prompt": "PIL branded card (card mode) \u2014 headline 'Every field app dies in week two.'",
+    "prompt": "PIL branded card (card mode) — headline 'Every field app dies in week two.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
@@ -17,17 +17,17 @@
     "cost_usd": 0.0
   },
   "already_published": {
-    "ig_feed": "buffer-post-id:6a621fbbdc5469c2bd664465",
-    "tiktok": "buffer-post-id:6a621fd15a39d940350a9b28",
+    "ig_feed": "https://www.instagram.com/reel/DbI1vqBldP3/",
+    "tiktok": "https://www.tiktok.com/@fieldnotesappio/video/7665724378302237965?utm_campaign=tt4d_open_api&utm_source=7103819247981182978",
     "fb_feed": "https://facebook.com/1208623249001508_122096578449408315",
     "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3947648740518227346",
-    "ig_reel": "buffer-post-id:6a6223342c51ef481646a6ca",
+    "ig_reel": "https://www.instagram.com/reel/DbI3bsvgJgw/",
     "note": "run1: ig_feed went out with video asset (media bug, fixed); run2: fb_feed/ig_story/ig_reel ok; fb_reel rejected by FB twice -> fb_video fallback",
-    "_cleanup": "run1 ig_feed-with-video auto-converted by IG to duplicate reel DbI1vqBldP3 \u2014 Buffer cannot delete published posts; Geoff to delete that reel in the IG app manually. Proper ig_feed image post re-published 2026-07-23 ~17:20 ET (DbKDhXrDsM-)."
+    "_cleanup": "run1 ig_feed-with-video auto-converted by IG to duplicate reel DbI1vqBldP3 — Buffer cannot delete published posts; Geoff to delete that reel in the IG app manually. Proper ig_feed image post re-published 2026-07-23 ~17:20 ET (DbKDhXrDsM-)."
   },
   "surfaces": {
     "fb_video": {
-      "text": "Every field-service app dies in week two. This one isn't an app \u2014 your techs just text like they already do. Try the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "Every field-service app dies in week two. This one isn't an app — your techs just text like they already do. Try the 60-second demo: fieldnotesapp.io/app/try.html"
     }
   },
   "status": "published",

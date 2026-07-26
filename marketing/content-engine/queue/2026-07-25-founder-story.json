@@ -18,7 +18,20 @@
       "text": "I didn't build FieldNotes to sell software. I built it so my new guy would stop calling me five times a day.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties across the metro. Every answer lived in my head, and my phone rang all day.\n\nNow my crew just texts. Notes get logged under the right client. Gate codes get answered by the bot, not by me.\n\nBuilt for my own routes. It runs my business every day.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning #fieldmanagement"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-07-25T13:05:00-04:00",
-  "approved_at": "2026-07-25T13:05:00-04:00"
+  "approved_at": "2026-07-25T13:05:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122098104969408315",
+    "ig_feed": "https://www.instagram.com/p/DbOVF1pHBNb/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122098104969408315",
+    "ig_url": "https://www.instagram.com/p/DbOVF1pHBNb/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122098104969408315",
+      "ig_feed": "https://www.instagram.com/p/DbOVF1pHBNb/"
+    },
+    "at": "2026-07-25T17:16:09.657837+00:00"
+  }
 }
