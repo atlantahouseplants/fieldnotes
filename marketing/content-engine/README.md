@@ -51,6 +51,31 @@ marketing/content-engine/
 
 `<id>` = `YYYY-MM-DD-<theme-slug>` (one post per run day).
 
+## Surfaces (Jul 23+)
+
+One queue item can fan out to multiple distribution surfaces via a `surfaces` dict
+(poster: `fieldnotes_post_meta.py publish`). Backward-compatible: items without
+`surfaces` post legacy fb_feed+ig_feed only.
+
+| surface | channel | media | notes |
+|---|---|---|---|
+| fb_feed | FB Page | image | long text OK |
+| fb_video | FB Page | video | USE THIS for FB video — `fb_reel` is rejected by FB's reel ingest ("unable to process the media", even with AAC audio, Jul 23 ×2) |
+| ig_feed | IG | image | `shouldShareToFeed: true` required |
+| ig_story | IG | image | `shouldShareToFeed: false` required (schema demands the field) |
+| ig_reel | IG | video | `shouldShareToFeed: true` required; Buffer returns id, reel processes async |
+| tiktok | TikTok | video | caption + hashtags |
+
+**Video requirements (hard-won):** every render MUST include an audio stream —
+silent MP4s get rejected/mishandled (renderer now adds silent AAC via lavfi
+anullsrc). Re-hosted videos MUST use a NEW filename: fieldnotesapp.io sits behind
+Cloudflare with `max-age=14400` edge cache — overwriting a URL keeps serving stale
+bytes to Buffer for up to 4h.
+
+**Daily schedule (Jul 23+):** Content Engine runs EVERY day 1pm. Format rotation:
+Mon/Wed/Sat feed · Tue/Fri video (tiktok+ig_reel+fb_video) · Thu feed+story ·
+Sun story-only. Strategist plans 7 slots/week accordingly.
+
 ## Poster script
 
 `~/.hermes/scripts/fieldnotes_post_meta.py` — stdlib-only:
@@ -104,15 +129,25 @@ committed, and pushed (`env -u GITHUB_TOKEN git push`); Railway auto-deploys and
 public at `https://fieldnotesapp.io/app/assets/cards/<id>.png`. FB uses local multipart upload
 and works even without hosting.
 
-## Video layer — motion-card renderer (Phase A live Jul 22)
+## Video layer — HyperFrames (PRIMARY since Jul 25) + PIL motion cards (fallback)
 
-`video-previews/fieldnotes_render_video.py` — vertical 1080x1920 MP4s from PIL pre-rendered
-frames + ffmpeg xfade (no drawtext escaping, no Ken Burns). Three style previews delivered to
-Geoff Jul 22 (`style-preview-{A,B,C}.mp4`); **default template = A (lower-third bar)** —
-Geoff delegated the pick. Timing constants are EMPIRICAL: T=3.6s/frame, xfade offsets 3.1/6.7
-→ 6.73s final. Verify every render: ffprobe (duration/1080x1920/h264) + extracted frame at
-t=5s with PIL stddev > 10. Phase B: wire into the Friday video slot → TikTok via Buffer.
-Music undecided (previews are silent).
+**Primary: HyperFrames multi-scene compositions.** `~/.hermes/scripts/fieldnotes_hf_video.py`
+(repo copy: `video-previews/fieldnotes_hf_video.py`) takes a scene spec JSON, generates a
+branded composition (charcoal #1A1D21 / lime #C6F135 / Inter), runs `hyperframes check` +
+render, muxes a silent AAC track, and self-verifies (ffprobe + frame stddev). Scene types:
+`hook` (kicker + headline + dim sub), `value` (1-3 idea beats), `brand` (rule + FieldNotes +
+tagline), `cta` (STANDARDIZED end-card — fieldnotesapp.io/app/try.html, never customized;
+this is the reusable sub-composition piece, identical across all videos). One composition =
+one render = no stitching; 15-25s typical. Renders ~30s on WSL. Generated compositions live
+in `hf-compositions/<id>/`. Template demo: `video-previews/template-demo.mp4`.
+If the script exits non-zero → fall back to the PIL renderer below.
+
+**Fallback: `video-previews/fieldnotes_render_video.py`** — vertical 1080x1920 MP4s from
+PIL pre-rendered frames + ffmpeg xfade. Three style previews delivered to Geoff Jul 22
+(`style-preview-{A,B,C}.mp4`); **default template = A (lower-third bar)**. Timing constants
+are EMPIRICAL: T=3.6s/frame, xfade offsets 3.1/6.7 → 6.73s final. Verify every render:
+ffprobe (duration/1080x1920/h264) + extracted frame at t=5s with PIL stddev > 10.
+Music undecided (all videos are silent + silent AAC).
 
 ## Gate-code video asset
 

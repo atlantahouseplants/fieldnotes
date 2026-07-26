@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #1A1D21;
+      }
+      body { font-family: "Inter", sans-serif; }
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 120px 90px;
+      }
+      .kicker {
+        color: #C6F135;
+        font-size: 34px;
+        font-weight: bold;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        margin-bottom: 48px;
+      }
+      .hook {
+        color: #FFFFFF;
+        font-size: 76px;
+        font-weight: bold;
+        line-height: 1.25;
+      }
+      .value-line {
+        color: #FFFFFF;
+        font-size: 64px;
+        font-weight: bold;
+        line-height: 1.3;
+      }
+      .subline {
+        color: #8A8F98;
+        font-size: 44px;
+        line-height: 1.4;
+        margin-top: 40px;
+      }
+      .brand {
+        color: #C6F135;
+        font-size: 120px;
+        font-weight: bold;
+        letter-spacing: -2px;
+      }
+      .tagline {
+        color: #FFFFFF;
+        font-size: 48px;
+        line-height: 1.4;
+        margin-top: 36px;
+      }
+      .rule {
+        width: 180px;
+        height: 8px;
+        background: #C6F135;
+        margin-bottom: 56px;
+      }
+      .cta-box {
+        border: 4px solid #C6F135;
+        border-radius: 24px;
+        padding: 56px 48px;
+        text-align: center;
+      }
+      .cta-url {
+        color: #C6F135;
+        font-size: 52px;
+        font-weight: bold;
+      }
+      .cta-sub {
+        color: #8A8F98;
+        font-size: 34px;
+        margin-top: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="16.50"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="s0" class="scene clip" data-start="0.0" data-duration="4.0" data-track-index="0">
+        <div class="kicker" id="s0-kicker">Tuesday, 7:52 AM</div>
+        <div class="hook" id="s0-head">Your tech is at the gate.</div>
+        <div class="subline" id="s0-sub">The gate code is in a text thread from March.</div>
+      </div>
+
+      <div id="s1" class="scene clip" data-start="4.0" data-duration="3.5" data-track-index="1">
+        <div class="kicker" id="s1-kicker">Step 1</div>
+        <div class="value-line" id="s1-head">He sends one text after each stop.</div>
+      </div>
+
+      <div id="s2" class="scene clip" data-start="7.5" data-duration="3.5" data-track-index="2">
+        <div class="kicker" id="s2-kicker">Step 2</div>
+        <div class="value-line" id="s2-head">FieldNotes files it under the right client.</div>
+        <div class="subline" id="s2-sub">No app. No login. Just a text.</div>
+      </div>
+
+      <div id="s3" class="scene clip" data-start="11.0" data-duration="2.5" data-track-index="3">
+        <div class="rule" id="s3-rule"></div>
+        <div class="brand" id="s3-brand">FieldNotes</div>
+        <div class="tagline" id="s3-tag">Every job detail. One voice memo.<br />Logged before the truck leaves.</div>
+      </div>
+
+      <div id="s4" class="scene clip" data-start="13.5" data-duration="3.0" data-track-index="4">
+        <div class="cta-box" id="s4-box">
+          <div class="cta-url" id="s4-url">fieldnotesapp.io/app/try.html</div>
+          <div class="cta-sub" id="s4-sub">Free to try. Built for the field.</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene content tweens only — .clip handles scene visibility windows
+      tl.from("#s0-kicker", { y: -30, opacity: 0, duration: 0.5 }, 0.10);
+      tl.from("#s0-head", { y: 40, opacity: 0, duration: 0.6 }, 0.35);
+      tl.from("#s0-sub", { y: 25, opacity: 0, duration: 0.5 }, 0.65);
+      tl.from("#s1-kicker", { y: -30, opacity: 0, duration: 0.5 }, 4.10);
+      tl.from("#s1-head", { y: 40, opacity: 0, duration: 0.6 }, 4.35);
+      tl.from("#s2-kicker", { y: -30, opacity: 0, duration: 0.5 }, 7.60);
+      tl.from("#s2-head", { y: 40, opacity: 0, duration: 0.6 }, 7.85);
+      tl.from("#s2-sub", { y: 25, opacity: 0, duration: 0.5 }, 8.15);
+      tl.from("#s3-rule", { scaleX: 0, transformOrigin: "left", duration: 0.5 }, 11.10);
+      tl.from("#s3-brand", { y: 50, opacity: 0, duration: 0.6 }, 11.35);
+      tl.from("#s3-tag", { y: 30, opacity: 0, duration: 0.6 }, 11.65);
+      tl.from("#s4-box", { scale: 0.92, opacity: 0, duration: 0.6 }, 13.60);
+      tl.from("#s4-sub", { y: 20, opacity: 0, duration: 0.5 }, 13.85);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
