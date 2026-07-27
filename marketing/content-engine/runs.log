@@ -2,3 +2,4 @@
 2026-07-24T13:10:00-04:00 QUEUED 2026-07-24-proof-of-service — theme=proof-of-service (dispute armor), surfaces=tiktok,ig_reel,fb_video; card 52506B + video 141531B hosted+verified 200; status=approved
 2026-07-25T13:05:00-04:00 QUEUED 2026-07-25-founder-story — theme=founder story (built for my own business, carried from Mon slot), surfaces=fb_feed,ig_feed; card 50379B hosted+verified 200 @ fieldnotesapp.io/app/assets/cards/2026-07-25-founder-story.png; status=approved
 2026-07-26T13:10:00-04:00 QUEUED 2026-07-26-first-hire — theme=solo-op-to-first-hire (Sun story-only slot, rotation list carryover), surfaces=ig_story; card 60284B hosted+verified 200 @ fieldnotesapp.io/app/assets/cards/2026-07-26-first-hire.png; status=approved
+2026-07-27T13:05:36-04:00 run: created+approved 2026-07-27-no-app-objection (objection handling, feed day; surfaces fb_feed+ig_feed); card hosted 200/41658
