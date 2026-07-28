@@ -4,3 +4,6 @@
 {"at":"2026-07-25T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-25-founder-story"}
 {"at":"2026-07-26T13:10:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-26-first-hire"}
 {"at":"2026-07-27T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-27-no-app-objection"}
+{"at":"2026-07-28T13:02:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
+{"at":"2026-07-28T13:02:00-04:00","kind":"image","model":"Gemini 2.5 Flash Image (fieldnotes_gen_image.py) — 3 skit photos","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
+{"at":"2026-07-28T13:04:00-04:00","kind":"video","model":"fieldnotes_hf_video.py (HyperFrames skit + edge-tts narration)","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
