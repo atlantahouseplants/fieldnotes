@@ -7,3 +7,4 @@
 {"at":"2026-07-28T13:02:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
 {"at":"2026-07-28T13:02:00-04:00","kind":"image","model":"Gemini 2.5 Flash Image (fieldnotes_gen_image.py) — 3 skit photos","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
 {"at":"2026-07-28T13:04:00-04:00","kind":"video","model":"fieldnotes_hf_video.py (HyperFrames skit + edge-tts narration)","cost_usd":0.0,"post_id":"2026-07-28-gate-code-skit"}
+{"at": "2026-07-29T13:10:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL)", "cost_usd": 0.0, "post_id": "2026-07-29-founder-story"}
