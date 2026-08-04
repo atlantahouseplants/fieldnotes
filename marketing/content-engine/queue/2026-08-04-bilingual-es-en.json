@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-04-bilingual-es-en",
+  "theme": "bilingual ES-to-EN (skit)",
+  "fb_text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it — in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "Your guy calls it in from the job site — in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-04-bilingual-es-en.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-04-bilingual-es-en.png",
+    "prompt": "PIL branded card (card mode) — headline 'He voice-notes in Spanish. You read it in English.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-08-04-bilingual-es-en.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-08-04-bilingual-es-en.mp4",
+    "model": "fieldnotes_hf_video.py (HyperFrames skit, 3 Gemini photos + edge-tts narration, 24.0s)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Your guy calls it in from the job site — in Spanish. You catch half of it. Now he voice-notes it in his own words, and your log comes out in clean English. Nothing lost. FieldNotes: your crew talks, it writes it down. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
+    },
+    "ig_reel": {
+      "text": "Your guy calls it in from the job site — in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning"
+    },
+    "fb_video": {
+      "text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it — in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-04T13:05:00-04:00",
+  "approved_at": "2026-08-04T13:05:00-04:00"
+}
