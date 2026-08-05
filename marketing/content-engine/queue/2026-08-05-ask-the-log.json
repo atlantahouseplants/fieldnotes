@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-05-ask-the-log",
+  "theme": "qa-beyond-gate-codes",
+  "fb_text": "\"When were we last at Riverside?\"\n\nYou know this question. A client calls, or you're standing in the yard at 7am, and the answer lives somewhere in your head — or buried in a text thread from three weeks ago.\n\nThe gate-code trick is the one everybody likes in the demo. But the questions that actually eat your day are the other ones:\n\n\"When were we last at Riverside?\"\n\"What supplies did we flag at the lake house in June?\"\n\"Who's on Thursday's route?\"\n\nEvery note your crew ever texts in becomes history you can ask about. Not a spreadsheet. Not an app someone has to learn. You just ask the bot, like you'd ask an office manager — if you had one.\n\nI run commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area — and I built FieldNotes because I was tired of being the answer key. Now the crew's notes are the memory, and anybody on the team can ask it.\n\nAsk it yourself in the 60-second demo — no install, no signup:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "\"When were we last at Riverside?\" — you could just ask.\n\nEvery note your crew texts in becomes askable history: last visits, supplies flagged in June, who's on Thursday's route.\n\nNo spreadsheet. No app to learn. Just ask the bot.\n\nTry the 60-second demo (no install, no signup) → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #lawncarelife #owneroperator #poolcleaning #fieldnotes #contractorlife",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-05-ask-the-log.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-05-ask-the-log.png",
+    "prompt": "PIL branded card: headline '\"When were we last at Riverside?\" You could just ask.', sub 'Gate codes, flagged supplies, last visits, Thursday's route — every note your crew ever sent is askable.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "\"When were we last at Riverside?\"\n\nYou know this question. A client calls, or you're standing in the yard at 7am, and the answer lives somewhere in your head — or buried in a text thread from three weeks ago.\n\nThe gate-code trick is the one everybody likes in the demo. But the questions that actually eat your day are the other ones:\n\n\"When were we last at Riverside?\"\n\"What supplies did we flag at the lake house in June?\"\n\"Who's on Thursday's route?\"\n\nEvery note your crew ever texts in becomes history you can ask about. Not a spreadsheet. Not an app someone has to learn. You just ask the bot, like you'd ask an office manager — if you had one.\n\nI run commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area — and I built FieldNotes because I was tired of being the answer key. Now the crew's notes are the memory, and anybody on the team can ask it.\n\nAsk it yourself in the 60-second demo — no install, no signup:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "\"When were we last at Riverside?\" — you could just ask.\n\nEvery note your crew texts in becomes askable history: last visits, supplies flagged in June, who's on Thursday's route.\n\nNo spreadsheet. No app to learn. Just ask the bot.\n\nTry the 60-second demo (no install, no signup) → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #lawncarelife #owneroperator #poolcleaning #fieldnotes #contractorlife"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-05T13:00:00-04:00",
+  "approved_at": "2026-08-05T13:00:00-04:00"
+}
