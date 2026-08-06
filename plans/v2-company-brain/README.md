@@ -13,6 +13,7 @@
 | P7 | Account Tasks (delegation loop) | ✅ DONE (Jul 22) — chat intents (create/close/YES-NO confirm), log-time + route-push surfacing, owner pings, dashboard Tasks section, 46-check suite; live in prod | hermes-tui-session | 2026-07-22 |
 | P8 | Client Recaps (proof-of-service) | ✅ DONE (Jul 22) — LLM rewrite + safety filter (held, never raw-send), owner approve-first (✓/✗/edit), 2h visit-window merge, tier gate, nightly pending line, dashboard Recap column, suite green; live in prod | hermes-tui-session | 2026-07-22 |
 | INFRA | Paying-Client Infrastructure | ✅ DONE (Jul 21) — Railway + managed PG live, data migrated, fieldnotesapp.io custom domain cut over (TXT-verified, SSL issued), Telegram webhook + Stripe endpoint on pretty domain, tenant isolation verified. Only remaining: UptimeRobot (task 7) + retire Cloudflare Tunnel after 24h clean (fallback meanwhile) | hermes-tui-session (Jul 21 INFRA redo) | 2026-07-21 |
+| P9 | Parser Eval Harness | ✅ DONE (Aug 6) — `scripts/parser_evals.py` + 50-note golden set; exposed + FIXED silent prod parse outage (all 3 LLM providers credit-dead since ~Aug 3); Moonshot kimi-k3 now primary parser (100% acct / 79% macro-F1); FK `account_id or 0` bug fixed; daily parse-chain watchdog cron live | hermes-tg-session | 2026-08-06 |
 
 Also read: `USE-CASE-MAP.md` (every workflow moment, tagged live/planned/concept).
 

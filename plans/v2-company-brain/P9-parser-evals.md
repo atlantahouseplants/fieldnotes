@@ -20,10 +20,20 @@
 
 ## Acceptance criteria
 
-- [ ] `python3 scripts/parser_evals.py --provider deepseek` runs 50 notes, prints score table, writes report.
-- [ ] Baseline saved for every reachable provider; `--baseline` diff works and exits non-zero on forced regression.
-- [ ] Baseline report committed so any future session can compare.
-- [ ] README status board updated.
+- [x] `python3 scripts/parser_evals.py --provider deepseek` runs 50 notes, prints score table, writes report.
+- [x] Baseline saved for every reachable provider; `--baseline` diff works and exits non-zero on forced regression.
+- [x] Baseline report committed so any future session can compare.
+- [x] README status board updated.
+
+## OUTCOME (Aug 6, 2026) — bigger than specced
+
+1. **Eval exposed a live prod outage:** xAI 403 / DeepSeek 402 / OpenAI 429 — ALL credit-dead. Prod had been silently parsing with `_basic_parse` since ~Aug 3. Nothing alerted.
+2. **Fix shipped:** Moonshot kimi-k3 added as FIRST provider in the parse chain (parser.py), MOONSHOT_API_KEY set on Railway, deployed (commits b8dcf8d, d4e9e3a). Eval: **kimi-k3 = 100% account / 76% status / 79% macro-F1** vs basic fallback 76/72/56. kimi-k2.6 rejected (32/50 empty-content failures). kimi-k3 quirks: temperature param rejected (omit it), reasoning tokens count against max_tokens (needs 4000, not 600), ~10-20s latency.
+3. **Second bug found via prod logs:** `account_id or 0` in ingest/ahp_pipeline/action_queue violates the PG FK on uncategorized notes — invisible on SQLite (no FK enforcement), masked pre-Moonshot because basic parse creates no action rows. Fixed → NULL.
+4. **Observability closed:** `fieldnotes_parse_watchdog.sh` + daily 8:05am ET cron (job 84e4d138675b) probes /api/demo and alerts Geoff if the chain degrades again. Silent on success.
+5. **When Geoff tops up xAI:** move `_call_xai` back to chain front (one-line reorder in parser.py) and rerun `--provider xai --baseline results/baseline_moonshot.json` to compare before deciding.
+
+**Deferred:** per-tenant weekly COGS report cron — low value until paying tenants exist (data is qa_events + usage endpoint; report would read ~$0 today). Spec stays in strategy notes; build when first 3 betas are live.
 
 ## Pitfalls (inherited)
 
