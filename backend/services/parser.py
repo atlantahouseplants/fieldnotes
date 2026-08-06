@@ -3,13 +3,20 @@ FieldNotes — AI Note Parser Service
 Parses worker voice/text notes into structured service data.
 """
 import json
+import re
 import time
 import os
 import httpx
 from typing import Optional
 
-# Provider selection — prefer xAI/Grok, fall back to DeepSeek/OpenAI
+# Provider selection — chain order: Moonshot(Kimi) → xAI/Grok → DeepSeek → OpenAI → basic.
+# Moonshot is first because as of Aug 2026 xAI (403), DeepSeek (402), and OpenAI (429)
+# are ALL credit-exhausted — the chain was silently degrading to _basic_parse in prod.
+# When xAI is topped up, move _call_xai back to the front (one-line reorder).
 LLM_PROVIDER = os.getenv("FIELDNOTES_LLM_PROVIDER", "xai")
+MOONSHOT_API_KEY = os.getenv("MOONSHOT_API_KEY", "")
+MOONSHOT_BASE = os.getenv("MOONSHOT_BASE_URL", "https://api.moonshot.ai/v1")
+MOONSHOT_MODEL = os.getenv("MOONSHOT_MODEL", "kimi-k3")
 XAI_API_KEY = os.getenv("XAI_API_KEY", "")
 XAI_BASE = "https://api.x.ai/v1"
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
@@ -43,6 +50,18 @@ Worker note: {note}
 JSON:"""
 
 
+def build_prompt(worker_note: str, known_accounts: Optional[list[str]] = None) -> str:
+    """Build the parse prompt exactly as production does (shared with eval harness)."""
+    prompt = PARSE_PROMPT.replace("{note}", worker_note)
+    if known_accounts:
+        accts_str = ", ".join(known_accounts)
+        prompt = prompt.replace(
+            "(try to match from known accounts)",
+            f"Known accounts: {accts_str}. Match the worker's mention to one of these."
+        )
+    return prompt
+
+
 async def parse_note(worker_note: str, known_accounts: Optional[list[str]] = None) -> dict:
     """
     Parse a worker's voice/text note into structured service data.
@@ -55,34 +74,70 @@ async def parse_note(worker_note: str, known_accounts: Optional[list[str]] = Non
         dict with parsed fields
     """
     t0 = time.time()
-    
-    # Build context-aware prompt if we have known accounts
-    prompt = PARSE_PROMPT.replace("{note}", worker_note)
-    if known_accounts:
-        accts_str = ", ".join(known_accounts)
-        prompt = prompt.replace(
-            "(try to match from known accounts)",
-            f"Known accounts: {accts_str}. Match the worker's mention to one of these."
-        )
+    prompt = build_prompt(worker_note, known_accounts)
     
     try:
-        if XAI_API_KEY:
+        if MOONSHOT_API_KEY:
+            result = await _call_moonshot(prompt)
+        elif XAI_API_KEY:
             result = await _call_xai(prompt)
         else:
             result = await _call_deepseek(prompt)
     except Exception as e:
         try:
-            result = await _call_deepseek(prompt)
+            result = await _call_xai(prompt)
         except Exception:
             try:
-                result = await _call_openai(prompt)
+                result = await _call_deepseek(prompt)
             except Exception:
-                # Graceful fallback: basic extraction without AI
-                result = _basic_parse(worker_note)
+                try:
+                    result = await _call_openai(prompt)
+                except Exception:
+                    # Graceful fallback: basic extraction without AI
+                    result = _basic_parse(worker_note)
     
     elapsed_ms = int((time.time() - t0) * 1000)
     result["processing_time_ms"] = elapsed_ms
     return result
+
+
+async def _call_moonshot(prompt: str) -> dict:
+    """Call Moonshot (Kimi) API for parsing. OpenAI-compatible endpoint.
+    Note: kimi-k3 rejects temperature != 1, so we omit it. No response_format
+    support guaranteed — extract the JSON object from the content defensively."""
+    if not MOONSHOT_API_KEY:
+        raise ValueError("MOONSHOT_API_KEY not set")
+
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.post(
+            f"{MOONSHOT_BASE}/chat/completions",
+            headers={
+                "Authorization": f"Bearer {MOONSHOT_API_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": MOONSHOT_MODEL,
+                "messages": [{"role": "user", "content": prompt}],
+                # kimi-k3 is a reasoning model — reasoning tokens count against
+                # max_tokens; 600 truncates the JSON or leaves content EMPTY.
+                "max_tokens": 4000,
+            }
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        content = (data["choices"][0]["message"]["content"] or "").strip()
+        # Strip markdown code fences if present
+        if content.startswith("```"):
+            content = re.sub(r"^```(?:json)?\s*", "", content)
+            content = re.sub(r"\s*```\s*$", "", content)
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            # Defensive: model may wrap JSON in prose
+            start, end = content.find("{"), content.rfind("}")
+            if start == -1 or end <= start:
+                raise ValueError(f"Moonshot returned non-JSON: {content[:100]}")
+            return json.loads(content[start:end + 1])
 
 
 async def _call_xai(prompt: str) -> dict:

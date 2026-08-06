@@ -1,0 +1,423 @@
+{
+  "provider": "xai",
+  "run_at": "2026-08-06T00:26:17.061051+00:00",
+  "n_notes": 50,
+  "n_failed_calls": 50,
+  "scores": {
+    "account_accuracy": 0.0,
+    "status_accuracy": 0.0,
+    "issues_f1": 0.0,
+    "supplies_f1": 0.0,
+    "follow_ups_f1": 0.0,
+    "macro_f1": 0.0
+  },
+  "latency_ms": {
+    "avg": 0,
+    "max": 0
+  },
+  "est_cost_usd": 0.0,
+  "failures": [
+    {
+      "id": 1,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 2,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 6,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 3,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 4,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 5,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 7,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 8,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 9,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 10,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 11,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 12,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 13,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 14,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 15,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 16,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 17,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 18,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 19,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 20,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 21,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 22,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 23,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 24,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 25,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 26,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 27,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 30,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 28,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 29,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 32,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 31,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 33,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 34,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 35,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 36,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 37,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 38,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 39,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 40,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 41,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 42,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 43,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 44,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 46,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 47,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 48,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 49,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 45,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 50,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    }
+  ],
+  "per_note": [
+    {
+      "id": 1,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 2,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 3,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 4,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 5,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 6,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 7,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 8,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 9,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 10,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 11,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 12,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 13,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 14,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 15,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 16,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 17,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 18,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 19,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 20,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 21,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 22,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 23,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 24,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 25,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 26,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 27,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 28,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 29,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 30,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 31,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 32,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 33,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 34,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 35,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 36,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 37,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 38,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 39,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 40,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 41,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 42,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 43,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 44,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 45,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 46,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 47,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 48,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 49,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "id": 50,
+      "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://api.x.ai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    }
+  ]
+}
