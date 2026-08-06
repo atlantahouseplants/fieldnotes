@@ -13,3 +13,5 @@
 {"at":"2026-08-04T13:03:00-04:00","kind":"image_card","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-04-bilingual-es-en"}
 {"at":"2026-08-04T13:05:00-04:00","kind":"video","model":"fieldnotes_hf_video.py (HyperFrames skit + edge-tts narration)","cost_usd":0.0,"post_id":"2026-08-04-bilingual-es-en"}
 {"at":"2026-08-05T13:00:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-05-ask-the-log"}
+{"at":"2026-08-06T13:00:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL card)","cost_usd":0.0,"post_id":"2026-08-06-route-meeting"}
+{"at":"2026-08-06T13:00:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL story)","cost_usd":0.0,"post_id":"2026-08-06-route-meeting"}
