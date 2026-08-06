@@ -56,7 +56,7 @@ def persist_parsed_note(
         action = create_action(
             db=db, business_id=business_id,
             description=issue, priority="this_week",
-            account_id=account_id or 0,
+            account_id=account_id,
             service_log_id=int(log.id), source="service_log",
         )
         actions_created.append(action.description)
@@ -65,7 +65,7 @@ def persist_parsed_note(
         action = create_action(
             db=db, business_id=business_id,
             description=f"Supply: {supply}", priority="next_visit",
-            account_id=account_id or 0,
+            account_id=account_id,
             service_log_id=int(log.id), source="service_log",
         )
         actions_created.append(action.description)
@@ -74,7 +74,7 @@ def persist_parsed_note(
         action = create_action(
             db=db, business_id=business_id,
             description=followup, priority="next_visit",
-            account_id=account_id or 0,
+            account_id=account_id,
             service_log_id=int(log.id), source="service_log",
         )
         actions_created.append(action.description)

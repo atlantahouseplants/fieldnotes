@@ -12,7 +12,7 @@ def run_pipeline(db: Session, log: "ServiceLog") -> dict:
     supplies = log.get_supplies()
     for s in supplies:
         r = add_action(db, log.business_id, f"Supply: {s}",
-                       priority="next_visit", account_id=log.account_id or 0,
+                       priority="next_visit", account_id=log.account_id,
                        service_log_id=log.id)
         if r["created"]:
             res["supply_actions"] += 1
@@ -21,7 +21,7 @@ def run_pipeline(db: Session, log: "ServiceLog") -> dict:
     followups = log.get_followups()
     for f in followups:
         r = add_action(db, log.business_id, f,
-                       priority="next_visit", account_id=log.account_id or 0,
+                       priority="next_visit", account_id=log.account_id,
                        service_log_id=log.id)
         if r["created"]:
             res["followup_actions"] += 1
@@ -30,7 +30,7 @@ def run_pipeline(db: Session, log: "ServiceLog") -> dict:
     issues = log.get_issues()
     for i in issues:
         r = add_action(db, log.business_id, i,
-                       priority="this_week", account_id=log.account_id or 0,
+                       priority="this_week", account_id=log.account_id,
                        service_log_id=log.id)
         if r["created"]:
             res["issue_actions"] += 1

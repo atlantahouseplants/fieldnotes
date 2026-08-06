@@ -39,7 +39,7 @@ def add_action(
 
     action = Action(
         business_id=business_id,
-        account_id=account_id or 0,
+        account_id=account_id,
         description=description,
         priority=priority,
         service_log_id=service_log_id,
