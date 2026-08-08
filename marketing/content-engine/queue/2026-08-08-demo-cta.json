@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-08-demo-cta",
+  "theme": "demo-cta",
+  "fb_text": "Three taps. Sixty seconds. You'll know if this is for you.\n\nHere's the whole demo: you text a job note, like you already do ten times a day. Then you ask it the gate code for one of your properties — and it answers, from the notes. Then you watch it draft the client recap, the kind of timestamped proof that ends \"did your guy even show up?\" before it starts.\n\nNo app to install. No signup. No credit card. It's a phone-shaped demo right in your browser — you just ran a whole visit from a text message.\n\nI built FieldNotes for my own business — commercial plant service, 50+ corporate and commercial properties in the Metro Atlanta area — because my crews live in their texts, not in software. If that's you too, go see it work.\n\nRun the 60-second demo right now:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Three taps. Sixty seconds. You'll know if this is for you.\n\n1. Log a job note — the kind you already text.\n2. Ask it the gate code. It answers.\n3. Watch it draft the client recap.\n\nNo install. No signup. No credit card. Built for crews who run their business from text messages.\n\nRun the demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #owneroperator #poolcleaning #fieldnotes #contractorlife #homeservices",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-08-demo-cta.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-08-demo-cta.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline 'Three taps. Sixty seconds.', sub 'Log it. Ask it. Prove it — no install, no signup.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Three taps. Sixty seconds. You'll know if this is for you.\n\nHere's the whole demo: you text a job note, like you already do ten times a day. Then you ask it the gate code for one of your properties — and it answers, from the notes. Then you watch it draft the client recap, the kind of timestamped proof that ends \"did your guy even show up?\" before it starts.\n\nNo app to install. No signup. No credit card. It's a phone-shaped demo right in your browser — you just ran a whole visit from a text message.\n\nI built FieldNotes for my own business — commercial plant service, 50+ corporate and commercial properties in the Metro Atlanta area — because my crews live in their texts, not in software. If that's you too, go see it work.\n\nRun the 60-second demo right now:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Three taps. Sixty seconds. You'll know if this is for you.\n\n1. Log a job note — the kind you already text.\n2. Ask it the gate code. It answers.\n3. Watch it draft the client recap.\n\nNo install. No signup. No credit card. Built for crews who run their business from text messages.\n\nRun the demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #owneroperator #poolcleaning #fieldnotes #contractorlife #homeservices"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-08T13:05:00-04:00",
+  "approved_at": "2026-08-08T13:05:00-04:00"
+}
