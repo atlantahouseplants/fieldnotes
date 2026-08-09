@@ -1,0 +1,22 @@
+{
+  "id": "2026-08-09-founder-lite",
+  "theme": "founder-lite",
+  "fb_text": "",
+  "ig_text": "Nothing to catch up on. That's the point.\n\n#fieldservice #smallbusinessowner #owneroperator #servicebusiness #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-09-founder-lite-story.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-09-founder-lite-story.png",
+    "prompt": "PIL branded story card (9:16): kicker 'FIELDNOTES', headline 'Nothing to catch up on. That's the point.', sub 'fieldnotesapp.io'",
+    "model": "fieldnotes_card.py (PIL, story mode)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "ig_story": {
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-09-founder-lite-story.png",
+      "text": ""
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-09T13:00:00-04:00",
+  "approved_at": "2026-08-09T13:00:00-04:00"
+}
