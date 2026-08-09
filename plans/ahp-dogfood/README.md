@@ -45,14 +45,11 @@ customer feels. The new tenant becomes the REAL AHP tenant; biz 3 gets retired (
 
 1. Open **https://fieldnotesapp.io** fresh (incognito optional — we WANT the stranger path).
 2. Run the 60-sec demo (try.html) — log a note, ask the gate code. (Already verified working.)
-3. Go to pricing → pick a plan → checkout. Use coupon **BETA49**.
-   - ⚠️ DECISION (Geoff): which tier? P5 gates: Team = Q&A + CSV import; **Crew adds morning
-     route push, routes, SMS**. Your favorite feature (6:45am route push) is Crew-gated.
-     Options: (a) buy Crew like a customer who wants it all, or (b) buy Team, hit the gate,
-     and we log "route push shouldn't be Crew-only" as our first product finding. Hermes
-     recommendation: (b) — feeling the gate IS the dogfood. Your call.
+3. Go to pricing → pick **Team** → checkout. Use coupon **BETA49** (= $49/mo locked).
+   - ✅ DECIDED (Geoff, 2026-08-08): Team, not Crew. Hitting the route-push gate is our first
+     product finding — "morning route push shouldn't be Crew-only." Feeling the gate IS the dogfood.
    - Use the SAME email at checkout and at signup (pending-subscription matches by email).
-     Recommend **sarah@atlantahouseplant.com** (biz 3's geoff@atlhouseplants.com is stale).
+     Confirmed: **sarah@atlantahouseplant.com** (biz 3's geoff@atlhouseplants.com is stale).
 4. After checkout → start.html: business name **Atlanta Houseplants**, owner name Geoff Wall,
    owner email (same as checkout), paste the plain account list (one per line).
 5. Watch for: the founder signup alarm fires to Geoff's Telegram (biz #N) — first real
