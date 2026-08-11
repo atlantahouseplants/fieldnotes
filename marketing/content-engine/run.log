@@ -5,3 +5,4 @@
 2026-08-07T13:13:10-04:00 content-engine: created 2026-08-07-first-hire (skit video, solo-op-to-first-hire) — surfaces tiktok/ig_reel/fb_video, status approved
 2026-08-09T13:05:46-04:00 run: 2026-08-09-founder-lite story-only ig_story, card 1080x1920 stddev 38, hosted+verified (200, 46856b), queued approved
 2026-08-10 13:15 EDT — queued 2026-08-10-in-my-head (objection-handling, FEED Mon). Surfaces: fb_feed, ig_feed. Card: queue/assets/2026-08-10-in-my-head.png (1080x1080, verified stddev 45.7), live at fieldnotesapp.io/app/assets/cards/2026-08-10-in-my-head.png (200, 47971B). Cost /usr/bin/bash.00. Note: lifecycle_guard crashes on absolute-path python executables (reads venv binary as script, NUL-token crash) — workaround: prefix with 'env'.
+2026-08-11T13:09:24-04:00 queued 2026-08-11-gate-code-hoa (SKIT video: 3 Gemini photos + narration, 25.96s; surfaces tiktok/ig_reel/fb_video; card + video hosted live)
