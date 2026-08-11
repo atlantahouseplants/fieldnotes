@@ -10,7 +10,7 @@ import json
 
 router = APIRouter(tags=["hiring"])
 
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8682558667:AAF4AsW4RZG58f7Xe6VZq6vu5P2SCGPqDtw")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")  # env-only; never hardcode tokens
 TELEGRAM_CHANNEL = os.getenv("FIELDNOTES_FOUNDER_CHAT_ID", "8357602306")
 
 
