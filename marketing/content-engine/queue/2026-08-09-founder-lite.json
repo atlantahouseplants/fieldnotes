@@ -16,7 +16,18 @@
       "text": ""
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-09T13:00:00-04:00",
-  "approved_at": "2026-08-09T13:00:00-04:00"
+  "approved_at": "2026-08-09T13:00:00-04:00",
+  "already_published": {
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3960058155652896740"
+  },
+  "published": {
+    "fb_url": null,
+    "ig_url": null,
+    "surfaces": {
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3960058155652896740"
+    },
+    "at": "2026-08-09T17:15:49.176899+00:00"
+  }
 }

@@ -6,3 +6,4 @@
 2026-07-28T13:10:00-04:00 QUEUED 2026-07-28-gate-code-skit — theme=gate-code moment (skit, per week-2026-07-27 Tue slot), surfaces=tiktok,ig_reel,fb_video; card 47443B + video 10176018B (22.4s, narration mean -25.1dB) hosted+verified 200 @ fieldnotesapp.io/app/assets/{cards,videos}/2026-07-28-gate-code-skit.*; status=approved
 2026-07-29T13:08:05-04:00 content-engine: created 2026-07-29-founder-story (founder story, FEED: fb_feed+ig_feed), card live at fieldnotesapp.io/app/assets/cards/2026-07-29-founder-story.png (200, 62027 bytes), status=approved, cost $0.00
 2026-08-08T13:05:00-04:00 engine-run id=2026-08-08-demo-cta theme=demo-cta surfaces=fb_feed,ig_feed card=1080x1080 stddev=42.5 hosted=200/44266 status=approved
+2026-08-13T13:05:00-04:00 queued 2026-08-13-founder-story (founder story), surfaces fb_feed+ig_feed+ig_story, PIL cards (square + 9:16 story), both hosted live (200, sizes verified)

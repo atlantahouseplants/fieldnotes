@@ -1,12 +1,12 @@
 {
   "id": "2026-08-11-gate-code-hoa",
   "theme": "gate-code moment (HOA skit)",
-  "fb_text": "Gated community. No code.\n\nThe old move: call the owner. He's mid-dinner, mid-drive, mid-everything — digging through a text thread from March for a code he gave out once.\n\nThe new move: the tech asks the bot. The gate code's already in the log, and the log answers in seconds.\n\nGate's open. Nobody's phone rang. That's the job now.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text. No apps, no logins, no training.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html",
-  "ig_text": "Gated community. No code.\n\nOld move: call the owner mid-dinner. New move: he asks the bot — the gate code's already in the log.\n\nGate's open. Nobody's phone rang.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice",
+  "fb_text": "Gated community. No code.\n\nThe old move: call the owner. He's mid-dinner, mid-drive, mid-everything \u2014 digging through a text thread from March for a code he gave out once.\n\nThe new move: the tech asks the bot. The gate code's already in the log, and the log answers in seconds.\n\nGate's open. Nobody's phone rang. That's the job now.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text. No apps, no logins, no training.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html",
+  "ig_text": "Gated community. No code.\n\nOld move: call the owner mid-dinner. New move: he asks the bot \u2014 the gate code's already in the log.\n\nGate's open. Nobody's phone rang.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-11-gate-code-hoa.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-11-gate-code-hoa.png",
-    "prompt": "PIL branded card (card mode) — headline 'Gated community. No code. No call to the owner.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Gated community. No code. No call to the owner.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
@@ -18,16 +18,31 @@
   },
   "surfaces": {
     "tiktok": {
-      "text": "Gated community. No code. Old move: call the owner mid-dinner. New move: he asks the bot — the gate code's already in the log. Gate's open. Nobody's phone rang. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #homeservices"
+      "text": "Gated community. No code. Old move: call the owner mid-dinner. New move: he asks the bot \u2014 the gate code's already in the log. Gate's open. Nobody's phone rang. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #homeservices"
     },
     "ig_reel": {
-      "text": "Gated community. No code.\n\nOld move: call the owner mid-dinner. New move: he asks the bot — the gate code's already in the log.\n\nGate's open. Nobody's phone rang.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice"
+      "text": "Gated community. No code.\n\nOld move: call the owner mid-dinner. New move: he asks the bot \u2014 the gate code's already in the log.\n\nGate's open. Nobody's phone rang.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #pestcontrol #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice"
     },
     "fb_video": {
-      "text": "Gated community. No code.\n\nThe old move: call the owner. He's mid-dinner, mid-drive, mid-everything — digging through a text thread from March for a code he gave out once.\n\nThe new move: the tech asks the bot. The gate code's already in the log, and the log answers in seconds.\n\nGate's open. Nobody's phone rang. That's the job now.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text. No apps, no logins, no training.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html"
+      "text": "Gated community. No code.\n\nThe old move: call the owner. He's mid-dinner, mid-drive, mid-everything \u2014 digging through a text thread from March for a code he gave out once.\n\nThe new move: the tech asks the bot. The gate code's already in the log, and the log answers in seconds.\n\nGate's open. Nobody's phone rang. That's the job now.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text. No apps, no logins, no training.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-11T13:15:00-04:00",
-  "approved_at": "2026-08-11T13:15:00-04:00"
+  "approved_at": "2026-08-11T13:15:00-04:00",
+  "already_published": {
+    "tiktok": "buffer-post-id:6a7b589a856f94ecfcba2670",
+    "ig_reel": "https://www.instagram.com/reel/Db6Gnx0lN7j/",
+    "fb_video": "https://facebook.com/1208623249001508_122104628295408315"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122104628295408315",
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "buffer-post-id:6a7b589a856f94ecfcba2670",
+      "ig_reel": "https://www.instagram.com/reel/Db6Gnx0lN7j/",
+      "fb_video": "https://facebook.com/1208623249001508_122104628295408315"
+    },
+    "at": "2026-08-11T17:17:18.145844+00:00"
+  }
 }

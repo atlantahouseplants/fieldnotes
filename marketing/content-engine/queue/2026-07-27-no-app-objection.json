@@ -1,20 +1,37 @@
 {
   "id": "2026-07-27-no-app-objection",
   "theme": "objection handling",
-  "fb_text": "\"My guys won't use another app.\"\n\nGood. This isn't one.\n\nThere's nothing to install. Nothing to log into. No forms, no training, no dashboard your crew ignores by Thursday.\n\nYour guys text like they already do. FieldNotes turns those texts into service logs, answers their questions on the spot (\"what's the gate code at Riverside?\"), and writes a clean recap your client can see after the visit.\n\nYour crew never touches an app. You get the whole picture anyway.\n\nAnd the \"sounds expensive\" part: the whole team is $79/month. One avoided client dispute pays for a year.\n\nTry it free for 30 days — no credit card: fieldnotesapp.io/app/try.html",
-  "ig_text": "\"My guys won't use another app.\" Good. This isn't one.\n\nNo install. No logins. No forms. Your crew texts like they already do — FieldNotes turns it into service logs, instant answers, and client recaps.\n\n$79/mo for the whole team. Free for 30 days, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #poolservice #commercialcleaning #pestcontrol #hvaclife #businessowner",
+  "fb_text": "\"My guys won't use another app.\"\n\nGood. This isn't one.\n\nThere's nothing to install. Nothing to log into. No forms, no training, no dashboard your crew ignores by Thursday.\n\nYour guys text like they already do. FieldNotes turns those texts into service logs, answers their questions on the spot (\"what's the gate code at Riverside?\"), and writes a clean recap your client can see after the visit.\n\nYour crew never touches an app. You get the whole picture anyway.\n\nAnd the \"sounds expensive\" part: the whole team is $79/month. One avoided client dispute pays for a year.\n\nTry it free for 30 days \u2014 no credit card: fieldnotesapp.io/app/try.html",
+  "ig_text": "\"My guys won't use another app.\" Good. This isn't one.\n\nNo install. No logins. No forms. Your crew texts like they already do \u2014 FieldNotes turns it into service logs, instant answers, and client recaps.\n\n$79/mo for the whole team. Free for 30 days, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #poolservice #commercialcleaning #pestcontrol #hvaclife #businessowner",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-27-no-app-objection.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-27-no-app-objection.png",
-    "prompt": "PIL branded card (card mode) — headline 'No app. No training. No forms.' sub 'Your crew texts. FieldNotes does the rest.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'No app. No training. No forms.' sub 'Your crew texts. FieldNotes does the rest.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
-    "fb_feed": {"text": "\"My guys won't use another app.\"\n\nGood. This isn't one.\n\nThere's nothing to install. Nothing to log into. No forms, no training, no dashboard your crew ignores by Thursday.\n\nYour guys text like they already do. FieldNotes turns those texts into service logs, answers their questions on the spot (\"what's the gate code at Riverside?\"), and writes a clean recap your client can see after the visit.\n\nYour crew never touches an app. You get the whole picture anyway.\n\nAnd the \"sounds expensive\" part: the whole team is $79/month. One avoided client dispute pays for a year.\n\nTry it free for 30 days — no credit card: fieldnotesapp.io/app/try.html"},
-    "ig_feed": {"text": "\"My guys won't use another app.\" Good. This isn't one.\n\nNo install. No logins. No forms. Your crew texts like they already do — FieldNotes turns it into service logs, instant answers, and client recaps.\n\n$79/mo for the whole team. Free for 30 days, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #poolservice #commercialcleaning #pestcontrol #hvaclife #businessowner"}
+    "fb_feed": {
+      "text": "\"My guys won't use another app.\"\n\nGood. This isn't one.\n\nThere's nothing to install. Nothing to log into. No forms, no training, no dashboard your crew ignores by Thursday.\n\nYour guys text like they already do. FieldNotes turns those texts into service logs, answers their questions on the spot (\"what's the gate code at Riverside?\"), and writes a clean recap your client can see after the visit.\n\nYour crew never touches an app. You get the whole picture anyway.\n\nAnd the \"sounds expensive\" part: the whole team is $79/month. One avoided client dispute pays for a year.\n\nTry it free for 30 days \u2014 no credit card: fieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "\"My guys won't use another app.\" Good. This isn't one.\n\nNo install. No logins. No forms. Your crew texts like they already do \u2014 FieldNotes turns it into service logs, instant answers, and client recaps.\n\n$79/mo for the whole team. Free for 30 days, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #poolservice #commercialcleaning #pestcontrol #hvaclife #businessowner"
+    }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-07-27T13:05:00-04:00",
-  "approved_at": "2026-07-27T13:05:00-04:00"
+  "approved_at": "2026-07-27T13:05:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122099958255408315",
+    "ig_feed": "https://www.instagram.com/p/DbTembOFAOq/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122099958255408315",
+    "ig_url": "https://www.instagram.com/p/DbTembOFAOq/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122099958255408315",
+      "ig_feed": "https://www.instagram.com/p/DbTembOFAOq/"
+    },
+    "at": "2026-07-27T17:15:32.491038+00:00"
+  }
 }

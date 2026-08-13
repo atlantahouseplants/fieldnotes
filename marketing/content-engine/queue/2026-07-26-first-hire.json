@@ -1,19 +1,30 @@
 {
   "id": "2026-07-26-first-hire",
   "theme": "solo-op-to-first-hire",
-  "fb_text": "Your first hire doesn't know what you know.\n\nEvery gate code, every client quirk, every \"how we do it here\" lives in your head right now. That's fine when it's just you in the truck. The day you hand someone the keys, your phone becomes the help desk.\n\nFieldNotes moves that knowledge out of your head and into the crew's pocket. Your guy texts the bot a question and gets the answer — from your own notes, not from you.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
-  "ig_text": "Your first hire doesn't know what you know. Every gate code and client quirk lives in your head — until your phone becomes the help desk.\n\nFieldNotes puts it in their pocket instead. They ask the bot, not you.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning #fieldmanagement",
+  "fb_text": "Your first hire doesn't know what you know.\n\nEvery gate code, every client quirk, every \"how we do it here\" lives in your head right now. That's fine when it's just you in the truck. The day you hand someone the keys, your phone becomes the help desk.\n\nFieldNotes moves that knowledge out of your head and into the crew's pocket. Your guy texts the bot a question and gets the answer \u2014 from your own notes, not from you.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "Your first hire doesn't know what you know. Every gate code and client quirk lives in your head \u2014 until your phone becomes the help desk.\n\nFieldNotes puts it in their pocket instead. They ask the bot, not you.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning #fieldmanagement",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-26-first-hire.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-26-first-hire.png",
-    "prompt": "PIL branded card (card mode) — headline 'Your first hire doesn't know what you know.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Your first hire doesn't know what you know.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
     "ig_story": {}
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-07-26T13:10:00-04:00",
-  "approved_at": "2026-07-26T13:10:00-04:00"
+  "approved_at": "2026-07-26T13:10:00-04:00",
+  "already_published": {
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3949911095490440912"
+  },
+  "published": {
+    "fb_url": null,
+    "ig_url": null,
+    "surfaces": {
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3949911095490440912"
+    },
+    "at": "2026-07-26T17:15:28.507342+00:00"
+  }
 }

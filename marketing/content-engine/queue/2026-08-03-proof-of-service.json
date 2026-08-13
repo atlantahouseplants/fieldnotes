@@ -1,8 +1,8 @@
 {
   "id": "2026-08-03-proof-of-service",
   "theme": "proof-of-service",
-  "fb_text": "\"Can you prove your crew was there Tuesday?\"\n\nA property manager asking for proof isn't picking a fight. It's the job now. They answer to tenants and owners, and \"my guy says he was there\" doesn't hold up anymore.\n\nThe old way: you dig through texts, call your tech, and burn an afternoon on a phone argument nobody wins.\n\nThe new way: your crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped service log, and a clean recap goes to the client — but only after you approve it. Nothing sends without your say.\n\nThat \"were you even there?\" email becomes a 30-second reply instead of a dispute.\n\nBuilt for crews who run their business from text messages. 30 days free, no credit card.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
-  "ig_text": "\"Can you prove your crew was there Tuesday?\"\n\nNow you can. In one reply.\n\nYour crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped log — and a clean recap goes to your client, only after you approve it.\n\nThat \"did they even show up?\" email becomes a 30-second reply.\n\n30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #propertymanagement #lawncarelife #owneroperator #fieldnotes #contractorlife",
+  "fb_text": "\"Can you prove your crew was there Tuesday?\"\n\nA property manager asking for proof isn't picking a fight. It's the job now. They answer to tenants and owners, and \"my guy says he was there\" doesn't hold up anymore.\n\nThe old way: you dig through texts, call your tech, and burn an afternoon on a phone argument nobody wins.\n\nThe new way: your crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped service log, and a clean recap goes to the client \u2014 but only after you approve it. Nothing sends without your say.\n\nThat \"were you even there?\" email becomes a 30-second reply instead of a dispute.\n\nBuilt for crews who run their business from text messages. 30 days free, no credit card.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "\"Can you prove your crew was there Tuesday?\"\n\nNow you can. In one reply.\n\nYour crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped log \u2014 and a clean recap goes to your client, only after you approve it.\n\nThat \"did they even show up?\" email becomes a 30-second reply.\n\n30 days free, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #propertymanagement #lawncarelife #owneroperator #fieldnotes #contractorlife",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-03-proof-of-service.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-03-proof-of-service.png",
@@ -12,13 +12,26 @@
   },
   "surfaces": {
     "fb_feed": {
-      "text": "\"Can you prove your crew was there Tuesday?\"\n\nA property manager asking for proof isn't picking a fight. It's the job now. They answer to tenants and owners, and \"my guy says he was there\" doesn't hold up anymore.\n\nThe old way: you dig through texts, call your tech, and burn an afternoon on a phone argument nobody wins.\n\nThe new way: your crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped service log, and a clean recap goes to the client — but only after you approve it. Nothing sends without your say.\n\nThat \"were you even there?\" email becomes a 30-second reply instead of a dispute.\n\nBuilt for crews who run their business from text messages. 30 days free, no credit card.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "\"Can you prove your crew was there Tuesday?\"\n\nA property manager asking for proof isn't picking a fight. It's the job now. They answer to tenants and owners, and \"my guy says he was there\" doesn't hold up anymore.\n\nThe old way: you dig through texts, call your tech, and burn an afternoon on a phone argument nobody wins.\n\nThe new way: your crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped service log, and a clean recap goes to the client \u2014 but only after you approve it. Nothing sends without your say.\n\nThat \"were you even there?\" email becomes a 30-second reply instead of a dispute.\n\nBuilt for crews who run their business from text messages. 30 days free, no credit card.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
-      "text": "\"Can you prove your crew was there Tuesday?\"\n\nNow you can. In one reply.\n\nYour crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped log — and a clean recap goes to your client, only after you approve it.\n\nThat \"did they even show up?\" email becomes a 30-second reply.\n\n30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #propertymanagement #lawncarelife #owneroperator #fieldnotes #contractorlife"
+      "text": "\"Can you prove your crew was there Tuesday?\"\n\nNow you can. In one reply.\n\nYour crew voice-notes every visit from the truck. FieldNotes turns it into a timestamped log \u2014 and a clean recap goes to your client, only after you approve it.\n\nThat \"did they even show up?\" email becomes a 30-second reply.\n\n30 days free, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #propertymanagement #lawncarelife #owneroperator #fieldnotes #contractorlife"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-03T13:00:00-04:00",
-  "approved_at": "2026-08-03T13:00:00-04:00"
+  "approved_at": "2026-08-03T13:00:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122102915595408315",
+    "ig_feed": "https://www.instagram.com/p/DblgNcFG6VY/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122102915595408315",
+    "ig_url": "https://www.instagram.com/p/DblgNcFG6VY/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122102915595408315",
+      "ig_feed": "https://www.instagram.com/p/DblgNcFG6VY/"
+    },
+    "at": "2026-08-03T17:15:52.891774+00:00"
+  }
 }

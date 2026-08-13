@@ -1,12 +1,12 @@
 {
   "id": "2026-07-28-gate-code-skit",
   "theme": "gate-code moment (skit)",
-  "fb_text": "Tuesday, 7:52 AM. Your tech pulls up to a commercial property and the gate's locked.\n\nThe old way: he calls you. You're in the middle of your own stop, digging through a text thread from March trying to find the gate code.\n\nThe new way: he texts the bot. FieldNotes answers with the gate code in seconds — pulled from your own client list. Your phone never rang.\n\nThat's the whole product. Your crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Gate codes, access notes, client quirks: it all lives in FieldNotes now, not in my head.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
-  "ig_text": "Tuesday, 7:52 AM. Your tech's at a locked gate.\n\nOld way: he calls you. You're digging through a text thread from March for the code.\n\nNew way: he texts the bot. FieldNotes answers with the gate code in seconds — from your own client list. Your phone never rang.\n\nYour crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning",
+  "fb_text": "Tuesday, 7:52 AM. Your tech pulls up to a commercial property and the gate's locked.\n\nThe old way: he calls you. You're in the middle of your own stop, digging through a text thread from March trying to find the gate code.\n\nThe new way: he texts the bot. FieldNotes answers with the gate code in seconds \u2014 pulled from your own client list. Your phone never rang.\n\nThat's the whole product. Your crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Gate codes, access notes, client quirks: it all lives in FieldNotes now, not in my head.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "Tuesday, 7:52 AM. Your tech's at a locked gate.\n\nOld way: he calls you. You're digging through a text thread from March for the code.\n\nNew way: he texts the bot. FieldNotes answers with the gate code in seconds \u2014 from your own client list. Your phone never rang.\n\nYour crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-28-gate-code-skit.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-28-gate-code-skit.png",
-    "prompt": "PIL branded card (card mode) — headline '7:52 AM. Your tech's at a locked gate.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline '7:52 AM. Your tech's at a locked gate.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
@@ -18,16 +18,31 @@
   },
   "surfaces": {
     "tiktok": {
-      "text": "7:52 AM. Your tech's at a locked gate. He doesn't call you — he texts the bot and the gate code comes back in seconds. Your phone never rang. FieldNotes: your crew texts, it logs every stop and answers the questions. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices"
+      "text": "7:52 AM. Your tech's at a locked gate. He doesn't call you \u2014 he texts the bot and the gate code comes back in seconds. Your phone never rang. FieldNotes: your crew texts, it logs every stop and answers the questions. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices"
     },
     "ig_reel": {
-      "text": "Tuesday, 7:52 AM. Your tech's at a locked gate.\n\nOld way: he calls you. You're digging through a text thread from March for the code.\n\nNew way: he texts the bot. FieldNotes answers with the gate code in seconds — from your own client list. Your phone never rang.\n\nYour crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning"
+      "text": "Tuesday, 7:52 AM. Your tech's at a locked gate.\n\nOld way: he calls you. You're digging through a text thread from March for the code.\n\nNew way: he texts the bot. FieldNotes answers with the gate code in seconds \u2014 from your own client list. Your phone never rang.\n\nYour crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #poolservice #landscaping #homeservices #contractorlife #businessowner #lawncare #commercialcleaning"
     },
     "fb_video": {
-      "text": "Tuesday, 7:52 AM. Your tech pulls up to a commercial property and the gate's locked.\n\nThe old way: he calls you. You're in the middle of your own stop, digging through a text thread from March trying to find the gate code.\n\nThe new way: he texts the bot. FieldNotes answers with the gate code in seconds — pulled from your own client list. Your phone never rang.\n\nThat's the whole product. Your crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Gate codes, access notes, client quirks: it all lives in FieldNotes now, not in my head.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "Tuesday, 7:52 AM. Your tech pulls up to a commercial property and the gate's locked.\n\nThe old way: he calls you. You're in the middle of your own stop, digging through a text thread from March trying to find the gate code.\n\nThe new way: he texts the bot. FieldNotes answers with the gate code in seconds \u2014 pulled from your own client list. Your phone never rang.\n\nThat's the whole product. Your crew texts like they already do. FieldNotes logs every stop and answers the questions that used to blow up your morning.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Gate codes, access notes, client quirks: it all lives in FieldNotes now, not in my head.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-07-28T13:10:00-04:00",
-  "approved_at": "2026-07-28T13:10:00-04:00"
+  "approved_at": "2026-07-28T13:10:00-04:00",
+  "already_published": {
+    "tiktok": "https://tiktok.com/@fieldnotesappio/video/7667628732760198413",
+    "ig_reel": "buffer-post-id:6a68e3ee0488feb290742ea3",
+    "fb_video": "https://facebook.com/1208623249001508_122100704361408315"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122100704361408315",
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "https://tiktok.com/@fieldnotesappio/video/7667628732760198413",
+      "ig_reel": "buffer-post-id:6a68e3ee0488feb290742ea3",
+      "fb_video": "https://facebook.com/1208623249001508_122100704361408315"
+    },
+    "at": "2026-07-28T17:17:47.837107+00:00"
+  }
 }

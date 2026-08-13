@@ -1,7 +1,7 @@
 {
   "id": "2026-08-06-route-meeting",
   "theme": "morning-route-push",
-  "fb_text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nNo \"where am I going first?\" No digging through last night's texts to figure out who's due today. Before the truck starts, today's stops are already sitting in your crew's pocket — the route, the order, what's still open.\n\nI run commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area — and the morning route push is the part of FieldNotes I'd miss first. The day starts organized instead of on the phone.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html",
+  "fb_text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nNo \"where am I going first?\" No digging through last night's texts to figure out who's due today. Before the truck starts, today's stops are already sitting in your crew's pocket \u2014 the route, the order, what's still open.\n\nI run commercial plant service \u2014 50+ corporate and commercial properties in the Metro Atlanta area \u2014 and the morning route push is the part of FieldNotes I'd miss first. The day starts organized instead of on the phone.\n\nTry it free for 30 days, no credit card \u2014 start with the 60-second demo:\nfieldnotesapp.io/app/try.html",
   "ig_text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nToday's stops, in order, before the truck starts. No \"where am I going first?\" The day starts organized instead of on the phone.\n\nTry the 60-second demo (no install, no signup) \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #owneroperator #poolcleaning #fieldnotes #contractorlife #homeservices",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-06-route-meeting.png",
@@ -12,7 +12,7 @@
   },
   "surfaces": {
     "fb_feed": {
-      "text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nNo \"where am I going first?\" No digging through last night's texts to figure out who's due today. Before the truck starts, today's stops are already sitting in your crew's pocket — the route, the order, what's still open.\n\nI run commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area — and the morning route push is the part of FieldNotes I'd miss first. The day starts organized instead of on the phone.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
+      "text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nNo \"where am I going first?\" No digging through last night's texts to figure out who's due today. Before the truck starts, today's stops are already sitting in your crew's pocket \u2014 the route, the order, what's still open.\n\nI run commercial plant service \u2014 50+ corporate and commercial properties in the Metro Atlanta area \u2014 and the morning route push is the part of FieldNotes I'd miss first. The day starts organized instead of on the phone.\n\nTry it free for 30 days, no credit card \u2014 start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
       "text": "6:45 AM. Your phone buzzes once. That's the whole route meeting.\n\nToday's stops, in order, before the truck starts. No \"where am I going first?\" The day starts organized instead of on the phone.\n\nTry the 60-second demo (no install, no signup) \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #lawncare #smallbusinessowner #servicebusiness #owneroperator #poolcleaning #fieldnotes #contractorlife #homeservices"
@@ -22,7 +22,22 @@
       "text": ""
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-06T13:00:00-04:00",
-  "approved_at": "2026-08-06T13:00:00-04:00"
+  "approved_at": "2026-08-06T13:00:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122103587091408315",
+    "ig_feed": "https://www.instagram.com/p/DbtOl9mFCzp/",
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3957883919383977117"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122103587091408315",
+    "ig_url": "https://www.instagram.com/p/DbtOl9mFCzp/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122103587091408315",
+      "ig_feed": "https://www.instagram.com/p/DbtOl9mFCzp/",
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3957883919383977117"
+    },
+    "at": "2026-08-06T17:16:01.715109+00:00"
+  }
 }

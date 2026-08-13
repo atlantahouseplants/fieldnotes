@@ -1,12 +1,12 @@
 {
   "id": "2026-08-04-bilingual-es-en",
   "theme": "bilingual ES-to-EN (skit)",
-  "fb_text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it — in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
-  "ig_text": "Your guy calls it in from the job site — in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning",
+  "fb_text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it \u2014 in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "Your guy calls it in from the job site \u2014 in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-04-bilingual-es-en.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-04-bilingual-es-en.png",
-    "prompt": "PIL branded card (card mode) — headline 'He voice-notes in Spanish. You read it in English.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'He voice-notes in Spanish. You read it in English.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
@@ -18,16 +18,32 @@
   },
   "surfaces": {
     "tiktok": {
-      "text": "Your guy calls it in from the job site — in Spanish. You catch half of it. Now he voice-notes it in his own words, and your log comes out in clean English. Nothing lost. FieldNotes: your crew talks, it writes it down. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
+      "text": "Your guy calls it in from the job site \u2014 in Spanish. You catch half of it. Now he voice-notes it in his own words, and your log comes out in clean English. Nothing lost. FieldNotes: your crew talks, it writes it down. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
     },
     "ig_reel": {
-      "text": "Your guy calls it in from the job site — in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning"
+      "text": "Your guy calls it in from the job site \u2014 in Spanish. You catch half of it.\n\nNow he just voice-notes it, in his own words. FieldNotes turns it into a clean English log: what got done, what's broken, what to bring next time. Nothing lost.\n\nYour crew talks. FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning"
     },
     "fb_video": {
-      "text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it — in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "Half the crews in this industry are Spanish-first. Yours might be too.\n\nThe old way: your guy calls it in from the job site, in Spanish. You're mid-stop, catching half of it, scribbling the rest on a notepad you hope you can read tonight. Details get lost between the truck and the log.\n\nThe new way: he voice-notes it \u2014 in his own words, in his own language. FieldNotes turns it into a clean English service log. What got done, what's broken, what to bring next time. Nothing lost in translation because there's no translation to do.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Every stop my crew works gets logged the same way: they talk, FieldNotes writes it down.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "failed",
   "created_at": "2026-08-04T13:05:00-04:00",
-  "approved_at": "2026-08-04T13:05:00-04:00"
+  "approved_at": "2026-08-04T13:05:00-04:00",
+  "already_published": {
+    "tiktok": "https://tiktok.com/@fieldnotesappio/video/7670226178761968910",
+    "ig_reel": "buffer-post-id:6a721e5d5c12454910e96e2a"
+  },
+  "publish_errors": [
+    "fb_video: {'message': 'Uh-oh! Facebook had some trouble processing this video. Please retry this post or reupload the video and try again.'}"
+  ],
+  "published": {
+    "fb_url": null,
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "https://tiktok.com/@fieldnotesappio/video/7670226178761968910",
+      "ig_reel": "buffer-post-id:6a721e5d5c12454910e96e2a"
+    },
+    "at": "2026-08-04T17:17:20.367251+00:00"
+  }
 }

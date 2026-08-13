@@ -1,24 +1,37 @@
 {
   "id": "2026-07-29-founder-story",
   "theme": "founder story",
-  "fb_text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. Offices, hotels, hospitals. My crew is out on routes every day, and for years every gate code, every client quirk, every \"did anyone water the lobby at Peachtree?\" came through my phone.\n\nI looked at the field service software out there. It's built for companies with an office manager and a dispatcher. That's not me. That's probably not you either. My guys weren't going to install an app, learn a dashboard, and fill out forms between stops. Neither was I.\n\nSo I built the thing I actually needed: my crew texts like they already do, and FieldNotes turns it into service logs, instant answers (\"what's the gate code at Riverside?\"), and a recap the client can see after the visit.\n\nI still run routes. I built this for my own business first — selling it came second.\n\nTry the 60-second demo — no install, no signup: fieldnotesapp.io/app/try.html",
-  "ig_text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every gate code, every client quirk, every \"did anyone water the lobby?\" came through my phone.\n\nMy crew texts like they already do. FieldNotes turns it into service logs, instant answers, and client recaps. I still run routes — built this for my own business first.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #lawncare #landscaping #poolservice #commercialcleaning #pestcontrol #businessowner #entrepreneurlife",
+  "fb_text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Offices, hotels, hospitals. My crew is out on routes every day, and for years every gate code, every client quirk, every \"did anyone water the lobby at Peachtree?\" came through my phone.\n\nI looked at the field service software out there. It's built for companies with an office manager and a dispatcher. That's not me. That's probably not you either. My guys weren't going to install an app, learn a dashboard, and fill out forms between stops. Neither was I.\n\nSo I built the thing I actually needed: my crew texts like they already do, and FieldNotes turns it into service logs, instant answers (\"what's the gate code at Riverside?\"), and a recap the client can see after the visit.\n\nI still run routes. I built this for my own business first \u2014 selling it came second.\n\nTry the 60-second demo \u2014 no install, no signup: fieldnotesapp.io/app/try.html",
+  "ig_text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Every gate code, every client quirk, every \"did anyone water the lobby?\" came through my phone.\n\nMy crew texts like they already do. FieldNotes turns it into service logs, instant answers, and client recaps. I still run routes \u2014 built this for my own business first.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #lawncare #landscaping #poolservice #commercialcleaning #pestcontrol #businessowner #entrepreneurlife",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-07-29-founder-story.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-07-29-founder-story.png",
-    "prompt": "PIL branded card (card mode) — headline '50+ commercial properties. One phone that used to ring all day.' sub 'Built by an owner who still runs the route.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline '50+ commercial properties. One phone that used to ring all day.' sub 'Built by an owner who still runs the route.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
     "fb_feed": {
-      "text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. Offices, hotels, hospitals. My crew is out on routes every day, and for years every gate code, every client quirk, every \"did anyone water the lobby at Peachtree?\" came through my phone.\n\nI looked at the field service software out there. It's built for companies with an office manager and a dispatcher. That's not me. That's probably not you either. My guys weren't going to install an app, learn a dashboard, and fill out forms between stops. Neither was I.\n\nSo I built the thing I actually needed: my crew texts like they already do, and FieldNotes turns it into service logs, instant answers (\"what's the gate code at Riverside?\"), and a recap the client can see after the visit.\n\nI still run routes. I built this for my own business first — selling it came second.\n\nTry the 60-second demo — no install, no signup: fieldnotesapp.io/app/try.html"
+      "text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Offices, hotels, hospitals. My crew is out on routes every day, and for years every gate code, every client quirk, every \"did anyone water the lobby at Peachtree?\" came through my phone.\n\nI looked at the field service software out there. It's built for companies with an office manager and a dispatcher. That's not me. That's probably not you either. My guys weren't going to install an app, learn a dashboard, and fill out forms between stops. Neither was I.\n\nSo I built the thing I actually needed: my crew texts like they already do, and FieldNotes turns it into service logs, instant answers (\"what's the gate code at Riverside?\"), and a recap the client can see after the visit.\n\nI still run routes. I built this for my own business first \u2014 selling it came second.\n\nTry the 60-second demo \u2014 no install, no signup: fieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
-      "text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company — 50+ corporate and commercial properties in the Metro Atlanta area. Every gate code, every client quirk, every \"did anyone water the lobby?\" came through my phone.\n\nMy crew texts like they already do. FieldNotes turns it into service logs, instant answers, and client recaps. I still run routes — built this for my own business first.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #lawncare #landscaping #poolservice #commercialcleaning #pestcontrol #businessowner #entrepreneurlife"
+      "text": "I didn't build FieldNotes to sell software. I built it so my phone would stop ringing.\n\nI run a commercial plant service company \u2014 50+ corporate and commercial properties in the Metro Atlanta area. Every gate code, every client quirk, every \"did anyone water the lobby?\" came through my phone.\n\nMy crew texts like they already do. FieldNotes turns it into service logs, instant answers, and client recaps. I still run routes \u2014 built this for my own business first.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #lawncare #landscaping #poolservice #commercialcleaning #pestcontrol #businessowner #entrepreneurlife"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-07-29T13:10:00-04:00",
-  "approved_at": "2026-07-29T13:10:00-04:00"
+  "approved_at": "2026-07-29T13:10:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122101569495408315",
+    "ig_feed": "https://www.instagram.com/p/DbYoQ4pG-Eb/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122101569495408315",
+    "ig_url": "https://www.instagram.com/p/DbYoQ4pG-Eb/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122101569495408315",
+      "ig_feed": "https://www.instagram.com/p/DbYoQ4pG-Eb/"
+    },
+    "at": "2026-07-29T17:16:08.111072+00:00"
+  }
 }

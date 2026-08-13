@@ -1,12 +1,12 @@
 {
   "id": "2026-08-07-first-hire",
   "theme": "solo-op-to-first-hire (skit)",
-  "fb_text": "Every new guy's first week goes the same way. Forty calls to the owner. Where do I park? What's the gate code? Does the loading dock take deliveries after ten?\n\nYou're mid-job, mid-drive, mid-dinner — walking somebody through details you already know by heart.\n\nThis crew's first week went different. He asks the bot, gets the answer in seconds, does the job. The gate code, the contact, what got flagged last visit — it's all in the log, and the log answers.\n\nHe learns the route. You keep your evenings.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html",
-  "ig_text": "New guy's first week. Forty calls to the owner.\n\nThis one just asks the bot. Gate code, contact, last visit's notes — answer in seconds, straight from the crew's own log.\n\nHe learns the route. You keep your evenings.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning",
+  "fb_text": "Every new guy's first week goes the same way. Forty calls to the owner. Where do I park? What's the gate code? Does the loading dock take deliveries after ten?\n\nYou're mid-job, mid-drive, mid-dinner \u2014 walking somebody through details you already know by heart.\n\nThis crew's first week went different. He asks the bot, gets the answer in seconds, does the job. The gate code, the contact, what got flagged last visit \u2014 it's all in the log, and the log answers.\n\nHe learns the route. You keep your evenings.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html",
+  "ig_text": "New guy's first week. Forty calls to the owner.\n\nThis one just asks the bot. Gate code, contact, last visit's notes \u2014 answer in seconds, straight from the crew's own log.\n\nHe learns the route. You keep your evenings.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-07-first-hire.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-07-first-hire.png",
-    "prompt": "PIL branded card (card mode) — headline 'The new guy's first week. Zero calls to the owner.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'The new guy's first week. Zero calls to the owner.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
@@ -18,16 +18,31 @@
   },
   "surfaces": {
     "tiktok": {
-      "text": "New guy's first week. Forty calls to the owner. This one just asks the bot — gate code, contact, last visit's notes — and gets the answer in seconds. He learns the route. You keep your evenings. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
+      "text": "New guy's first week. Forty calls to the owner. This one just asks the bot \u2014 gate code, contact, last visit's notes \u2014 and gets the answer in seconds. He learns the route. You keep your evenings. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
     },
     "ig_reel": {
-      "text": "New guy's first week. Forty calls to the owner.\n\nThis one just asks the bot. Gate code, contact, last visit's notes — answer in seconds, straight from the crew's own log.\n\nHe learns the route. You keep your evenings.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning"
+      "text": "New guy's first week. Forty calls to the owner.\n\nThis one just asks the bot. Gate code, contact, last visit's notes \u2014 answer in seconds, straight from the crew's own log.\n\nHe learns the route. You keep your evenings.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #commercialcleaning"
     },
     "fb_video": {
-      "text": "Every new guy's first week goes the same way. Forty calls to the owner. Where do I park? What's the gate code? Does the loading dock take deliveries after ten?\n\nYou're mid-job, mid-drive, mid-dinner — walking somebody through details you already know by heart.\n\nThis crew's first week went different. He asks the bot, gets the answer in seconds, does the job. The gate code, the contact, what got flagged last visit — it's all in the log, and the log answers.\n\nHe learns the route. You keep your evenings.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html"
+      "text": "Every new guy's first week goes the same way. Forty calls to the owner. Where do I park? What's the gate code? Does the loading dock take deliveries after ten?\n\nYou're mid-job, mid-drive, mid-dinner \u2014 walking somebody through details you already know by heart.\n\nThis crew's first week went different. He asks the bot, gets the answer in seconds, does the job. The gate code, the contact, what got flagged last visit \u2014 it's all in the log, and the log answers.\n\nHe learns the route. You keep your evenings.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. It works because your crew already knows how to send a text.\n\nTry the 60-second demo, no signup: fieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-07T13:10:00-04:00",
-  "approved_at": "2026-08-07T13:10:00-04:00"
+  "approved_at": "2026-08-07T13:10:00-04:00",
+  "already_published": {
+    "tiktok": "buffer-post-id:6a7612b48363eb694998547e",
+    "ig_reel": "https://www.instagram.com/reel/DbvzfgHkSUt/",
+    "fb_video": "https://facebook.com/1208623249001508_122103809391408315"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122103809391408315",
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "buffer-post-id:6a7612b48363eb694998547e",
+      "ig_reel": "https://www.instagram.com/reel/DbvzfgHkSUt/",
+      "fb_video": "https://facebook.com/1208623249001508_122103809391408315"
+    },
+    "at": "2026-08-07T17:17:40.338668+00:00"
+  }
 }

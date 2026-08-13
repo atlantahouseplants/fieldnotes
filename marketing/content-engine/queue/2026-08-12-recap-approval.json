@@ -1,24 +1,37 @@
 {
   "id": "2026-08-12-recap-approval",
   "theme": "proof-of-service (recap-approval flow)",
-  "fb_text": "Your crew talks like workers. Your clients get emails like professionals.\n\nHere's the flow: your tech finishes a visit and voice-notes it like always. FieldNotes turns that note into a clean, client-safe recap of the visit — not the raw text, a professional summary.\n\nThen the part that matters: nothing sends until YOU tap approve. You tap ✓, the recap goes to the client. You skip it, it doesn't. You want it worded different, you edit it first.\n\nYour crew keeps talking like workers. Your clients read like you have an office staff.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. Timestamped visit recaps are dispute armor: when a client says \"nobody told us,\" the email says otherwise.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html",
-  "ig_text": "Your crew talks like workers. Your clients get emails like professionals.\n\nTech voice-notes the visit → FieldNotes drafts a clean recap → you tap ✓ → the client gets it.\n\nNothing reaches a client until you approve it.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #pestcontrol",
+  "fb_text": "Your crew talks like workers. Your clients get emails like professionals.\n\nHere's the flow: your tech finishes a visit and voice-notes it like always. FieldNotes turns that note into a clean, client-safe recap of the visit \u2014 not the raw text, a professional summary.\n\nThen the part that matters: nothing sends until YOU tap approve. You tap \u2713, the recap goes to the client. You skip it, it doesn't. You want it worded different, you edit it first.\n\nYour crew keeps talking like workers. Your clients read like you have an office staff.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. Timestamped visit recaps are dispute armor: when a client says \"nobody told us,\" the email says otherwise.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "Your crew talks like workers. Your clients get emails like professionals.\n\nTech voice-notes the visit \u2192 FieldNotes drafts a clean recap \u2192 you tap \u2713 \u2192 the client gets it.\n\nNothing reaches a client until you approve it.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #pestcontrol",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-12-recap-approval.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-12-recap-approval.png",
-    "prompt": "PIL branded card (card mode) — headline 'Voice note → Your ✓ → Client recap.'",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Voice note \u2192 Your \u2713 \u2192 Client recap.'",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
     "fb_feed": {
-      "text": "Your crew talks like workers. Your clients get emails like professionals.\n\nHere's the flow: your tech finishes a visit and voice-notes it like always. FieldNotes turns that note into a clean, client-safe recap of the visit — not the raw text, a professional summary.\n\nThen the part that matters: nothing sends until YOU tap approve. You tap ✓, the recap goes to the client. You skip it, it doesn't. You want it worded different, you edit it first.\n\nYour crew keeps talking like workers. Your clients read like you have an office staff.\n\nI built FieldNotes for my own business — a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. Timestamped visit recaps are dispute armor: when a client says \"nobody told us,\" the email says otherwise.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "Your crew talks like workers. Your clients get emails like professionals.\n\nHere's the flow: your tech finishes a visit and voice-notes it like always. FieldNotes turns that note into a clean, client-safe recap of the visit \u2014 not the raw text, a professional summary.\n\nThen the part that matters: nothing sends until YOU tap approve. You tap \u2713, the recap goes to the client. You skip it, it doesn't. You want it worded different, you edit it first.\n\nYour crew keeps talking like workers. Your clients read like you have an office staff.\n\nI built FieldNotes for my own business \u2014 a commercial plant service company running 50+ corporate and commercial properties in the Metro Atlanta area. Timestamped visit recaps are dispute armor: when a client says \"nobody told us,\" the email says otherwise.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
-      "text": "Your crew talks like workers. Your clients get emails like professionals.\n\nTech voice-notes the visit → FieldNotes drafts a clean recap → you tap ✓ → the client gets it.\n\nNothing reaches a client until you approve it.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #pestcontrol"
+      "text": "Your crew talks like workers. Your clients get emails like professionals.\n\nTech voice-notes the visit \u2192 FieldNotes drafts a clean recap \u2192 you tap \u2713 \u2192 the client gets it.\n\nNothing reaches a client until you approve it.\n\nSee a real recap in the 60-second demo: fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices #contractorlife #businessowner #poolservice #pestcontrol"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-12T13:15:00-04:00",
-  "approved_at": "2026-08-12T13:15:00-04:00"
+  "approved_at": "2026-08-12T13:15:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122104827951408315",
+    "ig_feed": "https://www.instagram.com/p/Db8rW5klBX0/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122104827951408315",
+    "ig_url": "https://www.instagram.com/p/Db8rW5klBX0/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122104827951408315",
+      "ig_feed": "https://www.instagram.com/p/Db8rW5klBX0/"
+    },
+    "at": "2026-08-12T17:15:49.862682+00:00"
+  }
 }

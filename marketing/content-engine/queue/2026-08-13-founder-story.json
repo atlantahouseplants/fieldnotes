@@ -1,0 +1,28 @@
+{
+  "id": "2026-08-13-founder-story",
+  "theme": "founder-story",
+  "fb_text": "I didn't set out to build software. I set out to get my phone back.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — and my phone was the office. Gate codes. \"When were we last there?\" \"Did anyone get to the third floor today?\" Every question came to me, usually at dinner.\n\nSo I built the thing I wanted. My crew texts notes between stops like they always did — no app, no login, no training. The difference is everything they send lands somewhere that answers questions. Mine. Theirs. The next hire's.\n\nI still run my own business on it every day. It's called FieldNotes.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "I didn't set out to build software. I set out to get my phone back.\n\nI run a commercial plant service in Atlanta, and every question from the field used to land on my phone. So I built FieldNotes: my crew texts notes between stops like they always did, and now the answers live somewhere that isn't my head. I still run my own routes on it every day.\n\nTry the 60-second demo (no install, no signup) → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #smallbusinessowner #servicebusiness #owneroperator #lawncare #poolcleaning #fieldnotes #contractorlife #homeservices",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-13-founder-story.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-13-founder-story.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline 'Built by a guy who still runs the route.', sub '50+ corporate and commercial properties in the Metro Atlanta area — mine run on it every week.' + 9:16 story variant (headline + fieldnotesapp.io strip)",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "I didn't set out to build software. I set out to get my phone back.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — and my phone was the office. Gate codes. \"When were we last there?\" \"Did anyone get to the third floor today?\" Every question came to me, usually at dinner.\n\nSo I built the thing I wanted. My crew texts notes between stops like they always did — no app, no login, no training. The difference is everything they send lands somewhere that answers questions. Mine. Theirs. The next hire's.\n\nI still run my own business on it every day. It's called FieldNotes.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "I didn't set out to build software. I set out to get my phone back.\n\nI run a commercial plant service in Atlanta, and every question from the field used to land on my phone. So I built FieldNotes: my crew texts notes between stops like they always did, and now the answers live somewhere that isn't my head. I still run my own routes on it every day.\n\nTry the 60-second demo (no install, no signup) → fieldnotesapp.io/app/try.html\n\n#fieldservice #landscapingbusiness #smallbusinessowner #servicebusiness #owneroperator #lawncare #poolcleaning #fieldnotes #contractorlife #homeservices"
+    },
+    "ig_story": {
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-13-founder-story-story.png",
+      "text": ""
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-13T13:05:00-04:00",
+  "approved_at": "2026-08-13T13:05:00-04:00"
+}
