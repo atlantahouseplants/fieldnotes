@@ -26,3 +26,5 @@
 {"at": "2026-08-11T13:09:24-04:00", "kind": "video", "model": "fieldnotes_hf_video.py (HyperFrames + edge-tts narration)", "cost_usd": 0.0, "post_id": "2026-08-11-gate-code-hoa"}
 {"at": "2026-08-12T13:15:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL)", "cost_usd": 0.0, "post_id": "2026-08-12-recap-approval"}
 {"at": "2026-08-13T13:05:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL, feed + story variants)", "cost_usd": 0.0, "post_id": "2026-08-13-founder-story"}
+{"at":"2026-08-14T13:15:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-14-three-calls"}
+{"at":"2026-08-14T13:15:00-04:00","kind":"video","model":"fieldnotes_hf_video.py (HyperFrames+edge-tts)","cost_usd":0.0,"post_id":"2026-08-14-three-calls"}

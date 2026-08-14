@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-14-three-calls",
+  "theme": "Q&A beyond gate codes (TEXT video)",
+  "fb_text": "Three calls every service owner knows by heart.\n\n\"When were we last at that property?\" \"What did we flag on the last visit?\" \"Did anyone finish today's route?\"\n\nEach one means stopping what you're doing, digging through a text thread, maybe calling a guy who's on a ladder.\n\nFieldNotes answers all three from your crew's own notes. They text between stops like they always did \u2014 no app, no login, no training \u2014 and the log keeps it all. Now the log answers.\n\nI built it for my own business \u2014 a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. I still ask it these exact questions every week.\n\nTry it free for 30 days, no credit card \u2014 start with the 60-second demo:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Three calls every service owner knows by heart.\n\nWhen were we last there? What did we flag last visit? Did anyone finish today's route?\n\nFieldNotes answers all three from your crew's own notes \u2014 they text between stops like always, the log keeps it all, and now the log answers. No app, no login, no training.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-14-three-calls.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-14-three-calls.png",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Three calls you never have to take again.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-08-14-three-calls.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-08-14-three-calls.mp4",
+    "model": "fieldnotes_hf_video.py (HyperFrames TEXT format, hook + 3 value beats + brand + cta, edge-tts narration, 26.3s)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Three calls every service owner knows by heart. When were we last there? What did we flag? Is the route done? FieldNotes answers all three from your crew's own notes \u2014 no app, no login, no training. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
+    },
+    "ig_reel": {
+      "text": "Three calls every service owner knows by heart.\n\nWhen were we last there? What did we flag last visit? Did anyone finish today's route?\n\nFieldNotes answers all three from your crew's own notes \u2014 they text between stops like always, the log keeps it all, and now the log answers. No app, no login, no training.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning"
+    },
+    "fb_video": {
+      "text": "Three calls every service owner knows by heart.\n\n\"When were we last at that property?\" \"What did we flag on the last visit?\" \"Did anyone finish today's route?\"\n\nEach one means stopping what you're doing, digging through a text thread, maybe calling a guy who's on a ladder.\n\nFieldNotes answers all three from your crew's own notes. They text between stops like they always did \u2014 no app, no login, no training \u2014 and the log keeps it all. Now the log answers.\n\nI built it for my own business \u2014 a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. I still ask it these exact questions every week.\n\nTry it free for 30 days, no credit card \u2014 start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-14T13:15:00-04:00",
+  "approved_at": "2026-08-14T13:15:00-04:00"
+}
