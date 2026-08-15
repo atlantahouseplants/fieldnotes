@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-15-demo-cta",
+  "theme": "demo-cta",
+  "fb_text": "Sixty seconds. Three taps. No signup.\n\nEvery pitch for field-service software sounds the same. So I'm not going to pitch you — I'm going to dare you.\n\nGo to the demo page. Log a visit note the way your crew would text one. Ask it the gate code. Watch it draft the client recap. That's it — three taps, and you just ran a whole visit from a text message.\n\nNo install. No account. No credit card. No sales call. If it doesn't land in 60 seconds, close the tab and you've lost nothing.\n\nBring your skepticism:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Sixty seconds. Three taps. No signup.\n\nNo install, no account, no sales call — log a visit note, ask it the gate code, see the client recap it drafts. You just ran a whole visit from a text message.\n\nRun the demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-15-demo-cta.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-15-demo-cta.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline '1. Log it · 2. Ask it · 3. Prove it.', sub 'The 60-second demo. No install, no signup.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Sixty seconds. Three taps. No signup.\n\nEvery pitch for field-service software sounds the same. So I'm not going to pitch you — I'm going to dare you.\n\nGo to the demo page. Log a visit note the way your crew would text one. Ask it the gate code. Watch it draft the client recap. That's it — three taps, and you just ran a whole visit from a text message.\n\nNo install. No account. No credit card. No sales call. If it doesn't land in 60 seconds, close the tab and you've lost nothing.\n\nBring your skepticism:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Sixty seconds. Three taps. No signup.\n\nNo install, no account, no sales call — log a visit note, ask it the gate code, see the client recap it drafts. You just ran a whole visit from a text message.\n\nRun the demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-15T13:03:00-04:00",
+  "approved_at": "2026-08-15T13:03:00-04:00"
+}
