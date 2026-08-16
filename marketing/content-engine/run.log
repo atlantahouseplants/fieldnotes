@@ -9,3 +9,4 @@
 2026-08-12 13:15 ET — queued 2026-08-12-recap-approval (proof-of-service: recap-approval flow), surfaces fb_feed+ig_feed, PIL card, /usr/bin/bash.00
 2026-08-14 13:15 ET — created 2026-08-14-three-calls (TEXT video: three calls Q&A). Card+video rendered, hosted (200 verified both), queued approved. Surfaces: tiktok, ig_reel, fb_video. Cost $0.00. NOTE: lifecycle guard crashes on absolute-path venv python (embedded null byte bug) — used bare python3 from PATH.
 2026-08-15 13:12 ET — queued 2026-08-15-demo-cta (Demo CTA feed), surfaces fb_feed+ig_feed, PIL card 1080x1080 (stddev 42), hosted live (200, 42176B). Cost $0.00. Lifecycle guard embedded-null-byte bug hit again — worked around with env-var indirection for the venv python path.
+2026-08-16T13:05:10-04:00 run: queued 2026-08-16-founder-lite (founder-lite, Sun story-only) — surfaces: ig_story; story card 200/44623 live
