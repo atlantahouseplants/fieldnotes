@@ -43,11 +43,30 @@ time, and beta crews get white-gloved onto whatever channel works until SMS is l
 
 ## Execution plan
 
-**Phase 0 — vendor unblock (Geoff, ~1hr, THIS WEEK):**
+**Phase 0 — vendor unblock (Geoff, ~1hr, WEEK OF AUG 17):**
 - [ ] Nudge AgentPhone support (dashboard login sarah@atlantahouseplant.com + their calendar
-      link). Draft message lives in the Aug 14 session / master to-do.
-- [ ] Top up AgentPhone balance ($25 filing consumed the $25 credit).
+      link). Draft message below.
+- [ ] Top up AgentPhone balance ($25 filing consumed the $25 credit) — after they confirm.
 - [ ] Watchdog cron 791a9e839d95 (every 2h) pings when the send gate opens — no build needed.
+
+### AgentPhone support nudge — DRAFT (Geoff sends)
+
+> Subject: 10DLC approved 3 weeks ago — outbound still 403ing
+>
+> Hi — my 10DLC registration for Atlanta Houseplants LLC shows APPROVED since July 23
+> (GET /v1/register/status confirms), but POST /v1/messages still returns 403 "Complete
+> 10DLC registration first." It's been ~3 weeks, so this looks like an entitlement sync
+> issue on your side rather than a registration problem.
+>
+> Two asks:
+> 1. Can you check why the send gate hasn't opened for my account and force the entitlement
+>    through?
+> 2. Confirm my balance status — the $25 filing consumed my initial $25 credit and I want to
+>    top up as soon as sends actually work.
+>
+> Happy to jump on a quick call if easier — send me your calendar link.
+>
+> Thanks, Geoff
 
 **Phase 1 — when the gate opens (2-3 build sessions):**
 - [ ] Real-phone E2E FIRST: invite Geoff's phone on demo biz 2 → YES → log → ask. Prove the
