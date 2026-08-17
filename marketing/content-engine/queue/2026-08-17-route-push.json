@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-17-route-push",
+  "theme": "morning-route-push",
+  "fb_text": "Sunday-night homework for Monday's route is cancelled.\n\nYou know the routine. Tomorrow's stops live in your head, half a text thread, and a sticky note on the dash. So Sunday night turns into typing it all out — who goes where, in what order, what the client asked for last time.\n\nWith FieldNotes, you don't send any of that. The route is already in each tech's chat before the truck starts — stops, order, notes from the last visit. Automatic, every morning.\n\nNobody typed a schedule. Nobody made a call. Your crew's own notes built it, and it just knew.\n\nI run it on my own plant service routes across 50+ corporate and commercial properties in the Metro Atlanta area. Monday morning, my phone is quiet.\n\nTry it free for 30 days — no credit card:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Sunday-night homework for Monday's route is cancelled.\n\nStops, order, notes from the last visit — already in your crew's chat before the truck starts. You didn't send a thing. It just knew.\n\nTry it free 30 days, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscapingbusiness #lawncarelife #poolcleaning #contractorlife #homeservices #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-17-route-push.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-17-route-push.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline 'Tomorrow's route, in their hands before the truck starts.', sub 'Stops, order, last-visit notes - automatic.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Sunday-night homework for Monday's route is cancelled.\n\nYou know the routine. Tomorrow's stops live in your head, half a text thread, and a sticky note on the dash. So Sunday night turns into typing it all out — who goes where, in what order, what the client asked for last time.\n\nWith FieldNotes, you don't send any of that. The route is already in each tech's chat before the truck starts — stops, order, notes from the last visit. Automatic, every morning.\n\nNobody typed a schedule. Nobody made a call. Your crew's own notes built it, and it just knew.\n\nI run it on my own plant service routes across 50+ corporate and commercial properties in the Metro Atlanta area. Monday morning, my phone is quiet.\n\nTry it free for 30 days — no credit card:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Sunday-night homework for Monday's route is cancelled.\n\nStops, order, notes from the last visit — already in your crew's chat before the truck starts. You didn't send a thing. It just knew.\n\nTry it free 30 days, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscapingbusiness #lawncarelife #poolcleaning #contractorlife #homeservices #fieldnotes"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-17T13:05:00-04:00",
+  "approved_at": "2026-08-17T13:10:00-04:00"
+}
