@@ -4,7 +4,7 @@
 
 | Phase | Name | Status | Owner agent | Last touched |
 |-------|------|--------|-------------|--------------|
-| H1 | Kill the WSL dependency | 🔲 not started | — | — |
+| H1 | Kill the WSL dependency | 🔨 CODE DONE (Aug 18, commit d78034e) — in-process scheduler (route push 6:45a + nightly 7p ET, ET/DST-aware, grace windows, founder alerts), env-gated FIELDNOTES_SCHEDULER_ENABLED=1, 24-check suite + boot smoke green. ⏳ CUTOVER IN FLIGHT: cron ba90deca4220 flips the Railway var ~9:15pm ET + pauses WSL crons (2a920ed016a0, b72aed0861be); verify cron 80bee721f9bd checks first live fire 7:05am Aug 19 | hermes-tg-session | 2026-08-18 |
 | H2 | Disaster recovery (backups + drilled restore) | 🔲 not started | — | — |
 | H3 | Dashboard access control v1 (revocable per-person links, key rotation) | 🔲 not started | — | — |
 | H4 | Audit attribution (who did what) | 🔲 not started | — | — |
