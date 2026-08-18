@@ -31,3 +31,6 @@
 {"at":"2026-08-15T13:10:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-15-demo-cta"}
 {"at":"2026-08-16T13:01:00-04:00","kind":"image","model":"fieldnotes_card.py PIL card+story","cost_usd":0.0,"post_id":"2026-08-16-founder-lite"}
 {"at":"2026-08-17T13:10:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-17-route-push"}
+{"at":"2026-08-18T13:15:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-18-first-hire"}
+{"at":"2026-08-18T13:15:00-04:00","kind":"image","model":"gemini-2.5-flash-image x3 (skit beats)","cost_usd":0.0,"post_id":"2026-08-18-first-hire"}
+{"at":"2026-08-18T13:15:00-04:00","kind":"video","model":"fieldnotes_hf_video.py (HyperFrames + edge-tts)","cost_usd":0.0,"post_id":"2026-08-18-first-hire"}

@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-18-first-hire",
+  "theme": "solo-op to first hire (SKIT video)",
+  "fb_text": "Your first hire's first week. Your phone never stops.\n\nWhere's the gate code? What did we flag last visit? Does the back lot get service too? Every question routes to you — while you're standing on a job yourself.\n\nThen the shift: he voice-notes between stops, same as he always talked. The log keeps every answer. Next time the question comes up, it answers — not you.\n\nDinner gets quiet again.\n\nI built FieldNotes for my own business — a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. The first-hire week is exactly why it exists.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Your first hire's first week. Your phone never stops.\n\nEvery question routes to you — gate codes, last-visit notes, what gets serviced and what doesn't.\n\nThen he just voice-notes between stops. The log keeps every answer. Next time the question comes up, it answers — not you. Dinner gets quiet again.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-18-first-hire.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-18-first-hire.png",
+    "prompt": "PIL branded card (card mode) — headline 'The new guy stops calling you.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-08-18-first-hire.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-08-18-first-hire.mp4",
+    "model": "fieldnotes_hf_video.py (HyperFrames SKIT format, 3 Gemini photo beats + brand + cta, edge-tts narration en-US-GuyNeural, 22.6s)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Your first hire's first week. Your phone never stops — every question routes to you. Then he just voice-notes between stops and the log answers, not you. Dinner gets quiet again. Try the 60-second demo: fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #smallbusiness #landscaping #lawncare #homeservices"
+    },
+    "ig_reel": {
+      "text": "Your first hire's first week. Your phone never stops.\n\nEvery question routes to you — gate codes, last-visit notes, what gets serviced and what doesn't.\n\nThen he just voice-notes between stops. The log keeps every answer. Next time the question comes up, it answers — not you. Dinner gets quiet again.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning"
+    },
+    "fb_video": {
+      "text": "Your first hire's first week. Your phone never stops.\n\nWhere's the gate code? What did we flag last visit? Does the back lot get service too? Every question routes to you — while you're standing on a job yourself.\n\nThen the shift: he voice-notes between stops, same as he always talked. The log keeps every answer. Next time the question comes up, it answers — not you.\n\nDinner gets quiet again.\n\nI built FieldNotes for my own business — a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. The first-hire week is exactly why it exists.\n\nTry it free for 30 days, no credit card — start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-18T13:15:00-04:00",
+  "approved_at": "2026-08-18T13:15:00-04:00"
+}
