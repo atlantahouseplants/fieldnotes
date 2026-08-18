@@ -79,6 +79,18 @@ async def startup():
             command.stamp(_alembic_config(), "head")
         command.upgrade(_alembic_config(), "head")
 
+    # H1: in-process scheduler (route push + nightly summaries). No-op unless
+    # FIELDNOTES_SCHEDULER_ENABLED=1 (Railway prod only — see services/scheduler.py).
+    from .services.scheduler import start_scheduler
+    app.state.scheduler_task = start_scheduler()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    task = getattr(app.state, "scheduler_task", None)
+    if task:
+        task.cancel()
+
 
 @app.get("/")
 async def root():
@@ -93,7 +105,8 @@ async def health(response: Response):
     try:
         db = SessionLocal()
         db.execute(text("SELECT 1"))
-        return {"status": "healthy", "db": "ok"}
+        from .services.scheduler import scheduler_status
+        return {"status": "healthy", "db": "ok", "scheduler": scheduler_status()}
     except Exception as e:
         print(f"/health DB check failed: {e}")
         response.status_code = 503
