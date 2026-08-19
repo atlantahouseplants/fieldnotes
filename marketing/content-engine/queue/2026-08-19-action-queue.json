@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-19-action-queue",
+  "theme": "action queue / missed follow-up",
+  "fb_text": "Back in March, one of my techs mentioned a gate latch was loose at a property. Nobody wrote it down. By June, the client was calling about the busted latch \u2014 and asking what else we'd missed.\n\nThat's how clients leave. Not over the big stuff. Over the little thing you meant to go back to.\n\nFieldNotes catches it. Your crew voice-notes between stops, same as they always talk. Anything they flag \u2014 a loose latch, a supply to bring back, a follow-up to handle \u2014 lands in one queue. It stays in your daily summary until it's done.\n\nNothing lives and dies in a text thread anymore.\n\nI built it for my own business \u2014 a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. The follow-ups are exactly why it exists.\n\nSee it work in the 60-second demo:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "A tech mentioned a loose gate latch in March. Nobody wrote it down. By June the client was calling about the busted latch \u2014 and asking what else got missed.\n\nThat's how clients leave. Over the little thing you meant to go back to.\n\nYour crew voice-notes between stops. Everything they flag lands in one queue and stays in your daily summary until it's done. Nothing lives and dies in a text thread.\n\nSee it work in the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-19-action-queue.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-19-action-queue.png",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Flagged in March. Fixed before June.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Back in March, one of my techs mentioned a gate latch was loose at a property. Nobody wrote it down. By June, the client was calling about the busted latch \u2014 and asking what else we'd missed.\n\nThat's how clients leave. Not over the big stuff. Over the little thing you meant to go back to.\n\nFieldNotes catches it. Your crew voice-notes between stops, same as they always talk. Anything they flag \u2014 a loose latch, a supply to bring back, a follow-up to handle \u2014 lands in one queue. It stays in your daily summary until it's done.\n\nNothing lives and dies in a text thread anymore.\n\nI built it for my own business \u2014 a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. The follow-ups are exactly why it exists.\n\nSee it work in the 60-second demo:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "A tech mentioned a loose gate latch in March. Nobody wrote it down. By June the client was calling about the busted latch \u2014 and asking what else got missed.\n\nThat's how clients leave. Over the little thing you meant to go back to.\n\nYour crew voice-notes between stops. Everything they flag lands in one queue and stays in your daily summary until it's done. Nothing lives and dies in a text thread.\n\nSee it work in the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-19T13:10:00-04:00",
+  "approved_at": "2026-08-19T13:10:00-04:00"
+}
