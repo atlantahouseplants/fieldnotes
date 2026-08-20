@@ -12,3 +12,4 @@
 2026-08-16T13:05:10-04:00 run: queued 2026-08-16-founder-lite (founder-lite, Sun story-only) — surfaces: ig_story; story card 200/44623 live
 2026-08-18T17:10:50Z 2026-08-18-first-hire SKIT video queued (tiktok/ig_reel/fb_video); 3 Gemini beats; card+video hosted 200 OK
 2026-08-19 13:10 ET — content-engine run: created 2026-08-19-action-queue (FEED: fb_feed+ig_feed), PIL card generated+verified (1080x1080, stddev 48.1), hosted at fieldnotesapp.io (200, 44880 bytes), queue item approved. Cost $0.00.
+2026-08-20 13:15 ET — queued 2026-08-20-price-objection (objection-handling-price FEED+STORY Thu). Surfaces: fb_feed, ig_feed, ig_story. Cards: 1080x1080 (stddev 43.6) + 9:16 story (1080x1920, stddev 33.0). Hosted live 200/48616 and 200/41448. Cost $0.00.
