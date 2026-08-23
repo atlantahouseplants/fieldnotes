@@ -1,0 +1,22 @@
+{
+  "id": "2026-08-23-founder-lite",
+  "theme": "founder-lite",
+  "ig_text": "Monday's already handled.",
+  "fb_text": "Monday's already handled.",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-23-founder-lite.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-23-founder-lite.png",
+    "prompt": "PIL card: minimal founder-lite Sunday card",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "ig_story": {
+      "text": "Monday's already handled.\n\nfieldnotesapp.io",
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-23-founder-lite-story.png"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-23T13:05:00-04:00",
+  "approved_at": "2026-08-23T13:05:00-04:00"
+}
