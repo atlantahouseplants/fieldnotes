@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-24-gate-code",
+  "theme": "gate-code-moment",
+  "fb_text": "7:52 AM. Your new guy is at the gate. Your phone doesn't ring.\n\nThat used to be how every morning started. \"Hey boss, what's the gate code at the Riverside office?\" And you're digging through a text thread from March while your coffee goes cold.\n\nNow the code lives in FieldNotes. He asks the bot. It answers. He works. You drink the coffee while it's hot.\n\nEvery gate code, access note, and client quirk lives in one place — and your crew gets answers without calling you.\n\nI built it for my own commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area. The day the morning calls stopped is the day I knew it worked.\n\nTry the 60-second demo — ask it the gate code yourself:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "7:52 AM. Your new guy is at the gate. Your phone doesn't ring.\n\nThe gate code lives in FieldNotes. He asks the bot, not you. Every access note and client quirk in one place — no more digging through a text thread from March.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #owneroperator #landscaping #lawncare #poolservice #homeservices #contractorlife #commercialcleaning #pestcontrol",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-24-gate-code.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-24-gate-code.png",
+    "prompt": "PIL branded card (card mode) — headline '7:52 AM. He's at the gate. Your phone doesn't ring.' Sub 'Gate codes live in FieldNotes. Your crew asks the bot, not you.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "7:52 AM. Your new guy is at the gate. Your phone doesn't ring.\n\nThat used to be how every morning started. \"Hey boss, what's the gate code at the Riverside office?\" And you're digging through a text thread from March while your coffee goes cold.\n\nNow the code lives in FieldNotes. He asks the bot. It answers. He works. You drink the coffee while it's hot.\n\nEvery gate code, access note, and client quirk lives in one place — and your crew gets answers without calling you.\n\nI built it for my own commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area. The day the morning calls stopped is the day I knew it worked.\n\nTry the 60-second demo — ask it the gate code yourself:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "7:52 AM. Your new guy is at the gate. Your phone doesn't ring.\n\nThe gate code lives in FieldNotes. He asks the bot, not you. Every access note and client quirk in one place — no more digging through a text thread from March.\n\nTry the 60-second demo → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #owneroperator #landscaping #lawncare #poolservice #homeservices #contractorlife #commercialcleaning #pestcontrol"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-24T13:15:00-04:00",
+  "approved_at": "2026-08-24T13:15:00-04:00"
+}
