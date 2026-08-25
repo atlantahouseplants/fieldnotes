@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-25-dispute-armor",
+  "theme": "proof-of-service",
+  "fb_text": "The client swore nobody showed up last Tuesday.\n\nThat used to mean an argument. Maybe a lost account. Their word against your guy's, and you're not even sure yourself because you weren't there.\n\nNow it's a 30-second conversation.\n\nYour tech sent a voice note right after the visit — like he does after every stop. The log's timestamped. Gate code used, issue found, work done, all of it.\n\n\"Here's the record from 2:14 PM Tuesday.\" Dispute over.\n\nNo apps. No forms. Your crew talks to it like they already text. Everything becomes a timestamped record you can actually pull up when it matters.\n\nTry the 60-second demo — no credit card:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Client: \"Nobody showed up Tuesday.\"\n\nOld you: argument, maybe a lost account.\nNew you: timestamped log, pulled up in 30 seconds. Dispute over.\n\nYour crew voice-notes between stops like they already text. Every visit becomes a record.\n\n60-second demo, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #proofofservice",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-25-dispute-armor.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-25-dispute-armor.png",
+    "prompt": "PIL branded card (card mode) — headline 'One timestamped log. Dispute over.' Sub 'Your crew voice-notes after every visit. 30 days free, no card.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-08-25-dispute-armor.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-08-25-dispute-armor.mp4",
+    "model": "hyperframes + Gemini 2.5 Flash Image skit photos + edge-tts narration",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Client swore nobody showed up Tuesday. One timestamped voice-note log later — dispute over. Your crew voice-notes between stops like they already text. Try the 60-sec demo, no card → fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #owneroperator #smallbusiness #landscaping"
+    },
+    "ig_reel": {
+      "text": "Client: \"Nobody showed up Tuesday.\"\n\nOld you: argument, maybe a lost account.\nNew you: timestamped log, pulled up in 30 seconds. Dispute over.\n\nYour crew voice-notes between stops like they already text. Every visit becomes a record.\n\n60-second demo, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #proofofservice"
+    },
+    "fb_video": {
+      "text": "The client swore nobody showed up last Tuesday.\n\nThat used to mean an argument. Maybe a lost account. Their word against your guy's, and you're not even sure yourself because you weren't there.\n\nNow it's a 30-second conversation.\n\nYour tech sent a voice note right after the visit — like he does after every stop. The log's timestamped. Gate code used, issue found, work done, all of it.\n\n\"Here's the record from 2:14 PM Tuesday.\" Dispute over.\n\nNo apps. No forms. Your crew talks to it like they already text.\n\nTry the 60-second demo — no credit card:\nfieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-25T13:10:00-04:00",
+  "approved_at": "2026-08-25T13:10:00-04:00"
+}
