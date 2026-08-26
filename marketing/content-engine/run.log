@@ -16,4 +16,4 @@
 2026-08-23 13:05 ET — queued 2026-08-23-founder-lite (founder-lite STORY-only Sun). Surfaces: ig_story. Cards: 1080x1080 + 9:16 story (1080x1920, stddev 33.3). Hosted live 200/35067 and 200/38726. Cost $0.00.
 2026-08-24T13:05:32-04:00 2026-08-24-gate-code queued+approved; surfaces fb_feed,ig_feed; card https://fieldnotesapp.io/app/assets/cards/2026-08-24-gate-code.png (200 OK, 60832B); cost $0.00
 2026-08-25T13:13:47-04:00 QUEUED 2026-08-25-dispute-armor | Tue VIDEO skit (proof-of-service) | surfaces: tiktok, ig_reel, fb_video | card 200@53058 video 200@9620980 | 26.6s h264 1080x1920 narration muxed
-2026-08-26 13:05 ET — queued 2026-08-26-founder-story (FEED, founder-story). Surfaces: fb_feed, ig_feed. Card: queue/assets/2026-08-26-founder-story.png (1080x1080, stddev 47.1, 48549B). Hosting after push. Cost $0.00. No video (Wed), no story (not Thu/Sun).
+2026-08-26 13:05 ET — queued 2026-08-26-founder-story (FEED, founder-story). Surfaces: fb_feed, ig_feed. Card hosted https://fieldnotesapp.io/app/assets/cards/2026-08-26-founder-story.png (200, 48549B, 1080x1080 stddev 47.1). Cost $0.00. No video (Wed), no story (not Thu/Sun).
