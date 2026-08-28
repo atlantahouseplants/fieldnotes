@@ -1,0 +1,33 @@
+{
+  "id": "2026-08-28-first-hire",
+  "theme": "solo-op-to-first-hire",
+  "fb_text": "Every gate code. Every client quirk. Every \"the real key is under the fake rock.\" It's all in your head.\n\nThat works fine when it's just you in the truck. Then you make your first hire, and your phone starts ringing at dinner.\n\n\"What's the code at the Henderson place?\"\n\"Where do I park at the office complex?\"\n\"Which gate actually opens?\"\n\nSo you dump it into FieldNotes once. Text it like you're texting a buddy — gate code, access notes, the client's quirks, all of it.\n\nNow your new guy asks the bot instead of calling you. The answer comes back in seconds. Your phone stays face-down at dinner.\n\nNo apps to install. No training. He texts like he already does.\n\nTry the 60-second demo — ask it the gate code yourself:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Every gate code. Every client quirk. All in your head.\n\nWorks fine solo. Then you hire your first guy — and your phone rings at dinner every night.\n\nText it to FieldNotes once. Your new hire asks the bot instead of calling you. Phone stays face-down at dinner.\n\nNo apps. No training. He texts like he already does.\n\n60-second demo, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #poolservice #landscaping #lawncare #homeservices #contractorlife #firsthire",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-28-first-hire.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-28-first-hire.png",
+    "prompt": "PIL branded card (card mode) — headline 'Every gate code. Every client quirk. All in your head.' Sub 'Text it to FieldNotes once. 30 days free, no card.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-08-28-first-hire.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-08-28-first-hire.mp4",
+    "model": "hyperframes + Gemini 2.5 Flash Image skit photos + edge-tts narration",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "Every gate code, every client quirk — all in your head. Then you hire your first guy and your phone rings at dinner. Text it to FieldNotes once; he asks the bot instead. Try the 60-sec demo, no card → fieldnotesapp.io/app/try.html #fieldservice #servicebusiness #owneroperator #smallbusiness #poolservice"
+    },
+    "ig_reel": {
+      "text": "Every gate code. Every client quirk. All in your head.\n\nWorks fine solo. Then you hire your first guy — and your phone rings at dinner every night.\n\nText it to FieldNotes once. Your new hire asks the bot instead of calling you. Phone stays face-down at dinner.\n\nNo apps. No training. He texts like he already does.\n\n60-second demo, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #poolservice #landscaping #lawncare #homeservices #contractorlife #firsthire"
+    },
+    "fb_video": {
+      "text": "Every gate code. Every client quirk. Every \"the real key is under the fake rock.\" It's all in your head.\n\nThat works fine when it's just you in the truck. Then you make your first hire, and your phone starts ringing at dinner.\n\n\"What's the code at the Henderson place?\"\n\"Where do I park at the office complex?\"\n\"Which gate actually opens?\"\n\nSo you dump it into FieldNotes once. Text it like you're texting a buddy — gate code, access notes, the client's quirks, all of it.\n\nNow your new guy asks the bot instead of calling you. The answer comes back in seconds. Your phone stays face-down at dinner.\n\nNo apps to install. No training. He texts like he already does.\n\nTry the 60-second demo — ask it the gate code yourself:\nfieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-28T13:10:00-04:00",
+  "approved_at": "2026-08-28T13:10:00-04:00"
+}
