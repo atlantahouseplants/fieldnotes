@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-29-demo-cta",
+  "theme": "demo-cta",
+  "fb_text": "No install. No account. No sales call.\n\nHere's the whole pitch, and it takes 60 seconds to check if I'm lying: go to the demo page, and text it like your crew texts you.\n\nTap one: log a visit note the way your guy would send it from the truck. Watch it turn into a real service log.\n\nTap two: ask it the gate code for a client. It answers. That's the moment every owner-operator gets it — no more 7 AM phone calls for a code you typed in once.\n\nTap three: watch it draft the recap your client would get. Proof of the visit, in writing, before anyone argues about whether you showed up.\n\nThree taps and you just ran a whole visit from a text message. No app for your crew to download, no training, no credit card.\n\nIf it doesn't click in 60 seconds, close the tab. You've lost nothing but a minute:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "You just ran a whole visit from a text message. Took 60 seconds.\n\nNo install, no account, no card. Log a visit note, ask it the gate code, see the client recap it drafts. Three taps. That's the demo.\n\nTry it \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-29-demo-cta.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-29-demo-cta.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline 'You just ran a whole visit from a text message.', sub 'The 60-second demo. No install, no card.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "No install. No account. No sales call.\n\nHere's the whole pitch, and it takes 60 seconds to check if I'm lying: go to the demo page, and text it like your crew texts you.\n\nTap one: log a visit note the way your guy would send it from the truck. Watch it turn into a real service log.\n\nTap two: ask it the gate code for a client. It answers. That's the moment every owner-operator gets it — no more 7 AM phone calls for a code you typed in once.\n\nTap three: watch it draft the recap your client would get. Proof of the visit, in writing, before anyone argues about whether you showed up.\n\nThree taps and you just ran a whole visit from a text message. No app for your crew to download, no training, no credit card.\n\nIf it doesn't click in 60 seconds, close the tab. You've lost nothing but a minute:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "You just ran a whole visit from a text message. Took 60 seconds.\n\nNo install, no account, no card. Log a visit note, ask it the gate code, see the client recap it drafts. Three taps. That's the demo.\n\nTry it \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-29T13:00:00-04:00",
+  "approved_at": "2026-08-29T13:00:00-04:00"
+}

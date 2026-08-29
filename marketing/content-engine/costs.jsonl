@@ -48,3 +48,4 @@
 {"at": "2026-08-28T13:15:22-04:00", "kind": "skit_photos", "model": "gemini-2.5-flash-image", "cost_usd": 0.0, "post_id": "2026-08-28-first-hire"}
 {"at": "2026-08-28T13:15:22-04:00", "kind": "video_render", "model": "hyperframes", "cost_usd": 0.0, "post_id": "2026-08-28-first-hire"}
 {"at": "2026-08-28T13:15:22-04:00", "kind": "narration", "model": "edge-tts en-US-GuyNeural", "cost_usd": 0.0, "post_id": "2026-08-28-first-hire"}
+{"at":"2026-08-29T13:00:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-29-demo-cta"}
