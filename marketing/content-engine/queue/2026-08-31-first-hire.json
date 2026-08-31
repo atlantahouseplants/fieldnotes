@@ -1,0 +1,24 @@
+{
+  "id": "2026-08-31-first-hire",
+  "theme": "solo-op-to-first-hire",
+  "fb_text": "Fall is when solo ops hire their first guy. Winter contracts are coming, the route's too full, and you finally can't do it all yourself.\n\nNobody warns you about the real onboarding cost. It's not the paycheck — it's everything in your head.\n\nEvery gate code. Every \"use the side entrance, not the front.\" Every client quirk you've memorized over two years. None of it lives anywhere but between your ears.\n\nSo week one, your phone rings at dinner. Week two, it's ringing at 7 AM. \"What's the code at the office park?\" \"Which building gets serviced first?\"\n\nI hit that wall running my commercial plant service here in Atlanta. So I built FieldNotes: you text the details once — gate codes, access notes, client quirks — the same way you'd text a buddy. Your new guy asks the bot instead of calling you.\n\nThe knowledge transfer happens before the first phone call, not after the tenth.\n\nHiring this fall? Get it out of your head first. 30 days free, no credit card:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "Fall is hire-#1 season for solo ops. And nobody warns you about the real onboarding cost.\n\nIt's not the paycheck. It's every gate code, every \"use the side entrance,\" every client quirk that only lives in your head.\n\nText it all to FieldNotes once. Your new guy asks the bot instead of calling you at dinner.\n\nGet it out of your head before Monday. 30 days free → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-31-first-hire.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-31-first-hire.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline 'Every gate code in your head works fine. Until hire #1 starts Monday.', sub 'Get the details out of your head. 30 days free.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "Fall is when solo ops hire their first guy. Winter contracts are coming, the route's too full, and you finally can't do it all yourself.\n\nNobody warns you about the real onboarding cost. It's not the paycheck — it's everything in your head.\n\nEvery gate code. Every \"use the side entrance, not the front.\" Every client quirk you've memorized over two years. None of it lives anywhere but between your ears.\n\nSo week one, your phone rings at dinner. Week two, it's ringing at 7 AM. \"What's the code at the office park?\" \"Which building gets serviced first?\"\n\nI hit that wall running my commercial plant service here in Atlanta. So I built FieldNotes: you text the details once — gate codes, access notes, client quirks — the same way you'd text a buddy. Your new guy asks the bot instead of calling you.\n\nThe knowledge transfer happens before the first phone call, not after the tenth.\n\nHiring this fall? Get it out of your head first. 30 days free, no credit card:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Fall is hire-#1 season for solo ops. And nobody warns you about the real onboarding cost.\n\nIt's not the paycheck. It's every gate code, every \"use the side entrance,\" every client quirk that only lives in your head.\n\nText it all to FieldNotes once. Your new guy asks the bot instead of calling you at dinner.\n\nGet it out of your head before Monday. 30 days free → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-08-31T13:05:00-04:00",
+  "approved_at": "2026-08-31T13:05:00-04:00"
+}
