@@ -52,3 +52,7 @@
 {"at":"2026-08-30T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-30-founder-lite"}
 {"at":"2026-08-30T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL story)","cost_usd":0.0,"post_id":"2026-08-30-founder-lite"}
 {"at":"2026-08-31T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-08-31-first-hire"}
+{"at":"2026-09-01T13:20:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-09-01-founder-skit"}
+{"at":"2026-09-01T13:20:00-04:00","kind":"image","model":"Gemini 2.5 Flash Image (skit photos x3)","cost_usd":0.0,"post_id":"2026-09-01-founder-skit"}
+{"at":"2026-09-01T13:20:00-04:00","kind":"video","model":"HyperFrames","cost_usd":0.0,"post_id":"2026-09-01-founder-skit"}
+{"at":"2026-09-01T13:20:00-04:00","kind":"audio","model":"edge-tts en-US-GuyNeural","cost_usd":0.0,"post_id":"2026-09-01-founder-skit"}
