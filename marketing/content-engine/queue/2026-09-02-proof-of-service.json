@@ -1,0 +1,24 @@
+{
+  "id": "2026-09-02-proof-of-service",
+  "theme": "proof-of-service",
+  "fb_text": "The email every service business owner dreads: \"Were you even here last week?\"\n\nYou were. You know you were. But it's Thursday afternoon, the week's a blur, and now you're digging through old texts trying to reconstruct a visit while a client questions the invoice.\n\nHere's what that conversation looks like with FieldNotes: your crew texts a quick note after every stop — what they did, what they saw. FieldNotes timestamps it, files it to the property, and can turn it into a client-ready recap you approve before it sends.\n\nSo when \"were you even here?\" lands in your inbox, the reply is one line: the log, with the time on it. Conversation over. Invoice paid.\n\nI run a commercial plant service here in Atlanta covering 50+ corporate and commercial properties. The \"prove you were here\" email used to eat an hour of my evening. Now it takes thirty seconds.\n\nSee the recap flow in 60 seconds:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "\"Were you even here last week?\"\n\nThe email every service owner dreads. You were there — but it's Thursday, the week's a blur, and you're reconstructing a visit from memory while a client questions the invoice.\n\nWith FieldNotes your crew texts a quick note after every stop. Timestamped, filed to the property, turned into a client recap you approve before it sends.\n\nOne reply with the log ends the whole conversation. Invoice paid.\n\nSee the recap flow in 60 seconds → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-02-proof-of-service.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-02-proof-of-service.png",
+    "prompt": "PIL branded card: kicker 'FIELDNOTES', headline '\"Were you even here last week?\"', sub 'One timestamped log ends that conversation.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "The email every service business owner dreads: \"Were you even here last week?\"\n\nYou were. You know you were. But it's Thursday afternoon, the week's a blur, and now you're digging through old texts trying to reconstruct a visit while a client questions the invoice.\n\nHere's what that conversation looks like with FieldNotes: your crew texts a quick note after every stop — what they did, what they saw. FieldNotes timestamps it, files it to the property, and can turn it into a client-ready recap you approve before it sends.\n\nSo when \"were you even here?\" lands in your inbox, the reply is one line: the log, with the time on it. Conversation over. Invoice paid.\n\nI run a commercial plant service here in Atlanta covering 50+ corporate and commercial properties. The \"prove you were here\" email used to eat an hour of my evening. Now it takes thirty seconds.\n\nSee the recap flow in 60 seconds:\nfieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "\"Were you even here last week?\"\n\nThe email every service owner dreads. You were there — but it's Thursday, the week's a blur, and you're reconstructing a visit from memory while a client questions the invoice.\n\nWith FieldNotes your crew texts a quick note after every stop. Timestamped, filed to the property, turned into a client recap you approve before it sends.\n\nOne reply with the log ends the whole conversation. Invoice paid.\n\nSee the recap flow in 60 seconds → fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-09-02T13:05:00-04:00",
+  "approved_at": "2026-09-02T13:05:00-04:00"
+}
