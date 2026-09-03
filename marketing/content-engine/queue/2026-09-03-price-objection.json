@@ -1,0 +1,28 @@
+{
+  "id": "2026-09-03-price-objection",
+  "theme": "objection-handling-price",
+  "fb_text": "\"Sounds expensive.\"\n\nSo is one missed follow-up. So is one disputed invoice. So is an afternoon of phone tag over a gate code.\n\nTeam is $79 a month for the whole crew. Here's what that buys:\n\nYour guys voice-note between stops — like they already text you. Every note becomes a timestamped service log. Issues, supplies, and follow-ups land in a queue instead of your head. And when a client asks \"were you even here?\", the answer is a recap, not an argument.\n\nStack that against ONE of those afternoons. Or one client who walks because nobody can prove the work got done.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. I built FieldNotes for my own route before I ever sold it to anyone.\n\n30 days free. No credit card.\nAsk it the gate code yourself: fieldnotesapp.io/app/try.html",
+  "ig_text": "\"Sounds expensive.\"\n\nSo is one missed follow-up. So is one disputed invoice. So is an afternoon of phone tag over a gate code.\n\n$79/mo for the whole crew. Voice notes between stops become timestamped logs, an action queue, and client recaps.\n\nBuilt for my own route first. 30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-03-price-objection.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-03-price-objection.png",
+    "prompt": "PIL branded card (card mode) — headline '“Sounds expensive.” So is one missed follow-up.' Sub '$79/mo for the whole crew. 30 days free, no credit card.' + 9:16 story variant (headline '“Sounds expensive.”' / sub 'So is one missed follow-up. So is one disputed invoice.')",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_feed": {
+      "text": "\"Sounds expensive.\"\n\nSo is one missed follow-up. So is one disputed invoice. So is an afternoon of phone tag over a gate code.\n\nTeam is $79 a month for the whole crew. Here's what that buys:\n\nYour guys voice-note between stops — like they already text you. Every note becomes a timestamped service log. Issues, supplies, and follow-ups land in a queue instead of your head. And when a client asks \"were you even here?\", the answer is a recap, not an argument.\n\nStack that against ONE of those afternoons. Or one client who walks because nobody can prove the work got done.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. I built FieldNotes for my own route before I ever sold it to anyone.\n\n30 days free. No credit card.\nAsk it the gate code yourself: fieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "\"Sounds expensive.\"\n\nSo is one missed follow-up. So is one disputed invoice. So is an afternoon of phone tag over a gate code.\n\n$79/mo for the whole crew. Voice notes between stops become timestamped logs, an action queue, and client recaps.\n\nBuilt for my own route first. 30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife"
+    },
+    "ig_story": {
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-03-price-objection-story.png",
+      "text": ""
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-09-03T13:10:00-04:00",
+  "approved_at": "2026-09-03T13:10:00-04:00"
+}

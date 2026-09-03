@@ -9,3 +9,4 @@
 2026-08-13T13:05:00-04:00 queued 2026-08-13-founder-story (founder story), surfaces fb_feed+ig_feed+ig_story, PIL cards (square + 9:16 story), both hosted live (200, sizes verified)
 2026-08-17 13:10 EDT | engine | created 2026-08-17-route-push (morning-route-push FEED) | card 1080x1080 PIL $0 | asset live (200, 53462B) | surfaces: fb_feed, ig_feed | status approved
 2026-08-23 13:05 EDT | engine | created 2026-08-23-founder-lite (founder-lite STORY-only) | cards 1080x1080 + 9:16 PIL $0 | assets live (200, 35067B / 38726B) | surfaces: ig_story | status approved
+2026-09-03 13:10 EDT | engine | created 2026-09-03-price-objection (objection-handling-price FEED+STORY) | cards 1080x1080 + 9:16 PIL $0 | assets live (200, 61456B / 47704B) | surfaces: fb_feed, ig_feed, ig_story | status approved
