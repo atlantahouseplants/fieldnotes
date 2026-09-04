@@ -1,0 +1,30 @@
+{
+  "id": "2026-09-04-gate-code",
+  "theme": "gate-code moment",
+  "created_at": "2026-09-04T13:05:00-04:00",
+  "approved_at": "2026-09-04T13:05:00-04:00",
+  "status": "approved",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-04-gate-code.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-04-gate-code.png",
+    "model": "PIL fieldnotes_card.py",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-09-04-gate-code.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-09-04-gate-code.mp4",
+    "model": "HyperFrames + Gemini 2.5 Flash Image + edge-tts",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "fb_video": {
+      "text": "Your tech is standing at a locked gate. The code is buried in a text thread from March.\n\nHe could call you. You'll dig for it while you're driving.\n\nOr he texts the bot: gate code for Riverside?\n\nAnswer comes back in seconds. He's in. Your phone never rang.\n\nThat's FieldNotes. Every gate code, access note, and client quirk lives where your whole crew can ask for it — from the truck, in plain text. No app. No training.\n\nTry it free 30 days, no credit card: fieldnotesapp.io/app/try.html"
+    },
+    "ig_reel": {
+      "text": "The gate code is buried in a text thread from March. Your tech texts the bot instead — answer in seconds, your phone never rings.\n\nTry it free: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #landscaping #poolservice #lawncare #hvaclife #businessowner #fieldnotes"
+    },
+    "tiktok": {
+      "text": "Your tech is at the gate. The code is buried in a text thread from March. He texts the bot instead. #fieldservice #smallbusiness #landscaping #poolservice #fieldnotes"
+    }
+  }
+}
