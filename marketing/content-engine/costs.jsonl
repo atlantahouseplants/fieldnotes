@@ -61,3 +61,4 @@
 {"at": "2026-09-04T13:02:00-04:00", "kind": "image", "model": "PIL fieldnotes_card.py", "cost_usd": 0.0, "post_id": "2026-09-04-gate-code"}
 {"at": "2026-09-04T13:01:30-04:00", "kind": "image", "model": "gemini-2.5-flash-image x3 (skit photos)", "cost_usd": 0.0, "post_id": "2026-09-04-gate-code"}
 {"at": "2026-09-04T13:04:00-04:00", "kind": "video", "model": "hyperframes + edge-tts narration", "cost_usd": 0.0, "post_id": "2026-09-04-gate-code"}
+{"at":"2026-09-05T17:36:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-09-05-demo-cta"}

@@ -24,3 +24,4 @@
 2026-08-31T13:05:39-04:00 2026-08-31-first-hire QUEUED (fb_feed+ig_feed, PIL card, $0.00)
 2026-09-01T13:20:00-04:00 2026-09-01-founder-skit QUEUED (tiktok+ig_reel+fb_video, skit 26s, 3 Gemini photos + PIL card, $0.00, assets live 200)
 2026-09-04 13:05 ET — queued 2026-09-04-gate-code (SKIT video, 3 Gemini photos + narration 23.6s) → tiktok, ig_reel, fb_video. Assets pushed to frontend/assets.
+2026-09-05T17:41:40-04:00 run: created 2026-09-05-demo-cta (feed: fb_feed+ig_feed), card verified live, costs appended
