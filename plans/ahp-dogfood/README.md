@@ -30,9 +30,9 @@ customer feels. The new tenant becomes the REAL AHP tenant; biz 3 gets retired (
 |---|------|-------|--------|
 | 0 | Pre-flight verification | Hermes | ✅ DONE (2026-08-08) |
 | 1 | Cold signup as AHP (landing → demo → pricing → checkout → start.html) | ~~Geoff (manual)~~ → Hermes (agent-assisted) | ✅ DONE (2026-08-23) — biz #5, team/trialing, 21 accounts. Executed by Hermes after a 15-day founder stall: Stripe customer+subscription created via API (trial 30d, BETA49 coupon), signup via the REAL public /onboarding/signup endpoint, linkage set in DB. Stranger-flow delta + cheats logged in FINDINGS.md #1-#3. |
-| 2 | Link owner + worker via Telegram deep-links | Geoff (taps) + Hermes (verify DB) | ⬜ ONLY REMAINING GEOFF STEP — tap owner link + worker invite link (delivered in Aug 23 digest) |
+| 2 | Link owner + worker via Telegram deep-links | Geoff (taps) + Hermes (verify DB) | ✅ DONE (2026-09-06, via fallback) — Geoff taps never happened (14 days, 6 asks, deadline Sep 2 passed). Hermes DB-linked per the pre-authorized Aug 30 fallback: biz #5 owner_telegram_id set, worker row relinked 3→5. Logged as FINDINGS.md #4. |
 | 3 | CSV import: 20 accounts with schedules, gate codes, contacts | Hermes (build CSV) → Geoff or Hermes (import.html) | ⬜ |
-| 4 | Retire biz 3 (clear owner_telegram, deactivate) | Hermes | ⬜ |
+| 4 | Retire biz 3 (clear owner_telegram, deactivate) | Hermes | ✅ DONE (2026-09-06) — owner_telegram_id cleared, is_active=false; rows kept for history |
 | 5 | Recaps enabled on 1 pilot account (sarah@ as stand-in client) | Hermes | ⬜ |
 | 6 | Week 1: live route ops on FieldNotes (notes, Q&A, tasks, route push, nightly summaries) | Geoff (uses it) + Hermes (monitors) | ⬜ |
 | 7 | Week 2: stress the edges (voice notes, ambiguous accounts, missed stops, edits) | Geoff + Hermes | ⬜ |
