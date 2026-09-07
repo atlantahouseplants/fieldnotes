@@ -1,0 +1,22 @@
+{
+  "id": "2026-09-07-founder-story",
+  "theme": "founder story",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-07-founder-story.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-07-founder-story.png",
+    "prompt": "PIL card: headline 'My phone stayed quiet.' / sub 'Holiday Monday. The crew ran the route. The system handled the rest.' / kicker FIELDNOTES",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-07T13:00:00-04:00",
+  "approved_at": "2026-09-07T13:00:00-04:00",
+  "surfaces": {
+    "fb_feed": {
+      "text": "It's a holiday Monday. My crew ran the route. My phone stayed quiet.\n\nNot because nothing happened. The work happened — stops serviced, issues flagged, notes logged. My guys texted their updates like they always do, and the system turned it all into service logs, action items, and a daily recap.\n\nThat's the whole reason I built FieldNotes. I run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — and for years, I was the walking database. Gate codes, which floor gets serviced on which day, which account needs what. Every question came to me. At dinner. On weekends. On holidays.\n\nNow the answers live in the crew's own notes. My new guy asks the bot, not me. And on a holiday Monday, my phone stayed quiet while the business ran.\n\nThat's not luck. That's the system doing its job.\n\nTry the 60-second demo — 30 days free, no credit card: fieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Holiday Monday. The crew ran the route. My phone stayed quiet.\n\nNot because nothing happened — because every note my guys texted turned into service logs, action items, and a recap. The answers they used to call me for live in the company brain now.\n\nI built FieldNotes for my own plant service in Atlanta. No app to install, no login, no training. Your crew texts it like they already text.\n\nTry the 60-second demo — 30 days free, no card: fieldnotesapp.io/app/try.html\n\n#fieldservicelife #landscapingbusiness #lawncarebusiness #poolservice #cleaningbusiness #pestcontrol #hvaclife #smallbusinessowner #fieldservice #businessownerlife"
+    }
+  }
+}
