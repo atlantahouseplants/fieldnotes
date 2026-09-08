@@ -1,0 +1,33 @@
+{
+  "id": "2026-09-08-gate-code-skit",
+  "theme": "gate-code moment (skit)",
+  "fb_text": "New guy's first week. Locked gate. He calls you — again.\n\nThat used to be my whole day. Gate codes, contact names, which door, what was done last visit. Every answer lived in my head, so every question became a phone call.\n\nNow my crew texts FieldNotes and gets the answer back in seconds. Gate code, visit history, notes from the last stop — it's all in there because their own notes built it.\n\nHe's through the gate and working. My phone never rang.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — and I built FieldNotes for my own crew first. Then I made it for every owner who's still the walking gate-code database.\n\nTry it free for 30 days, no credit card: fieldnotesapp.io/app/try.html",
+  "ig_text": "New guy's first week. Locked gate. He calls you — again.\n\nNow my crew texts FieldNotes and gets the answer back in seconds. Gate codes, visit history, all of it — their own notes built the answer.\n\nHe's working. My phone never rang.\n\nTry it free 30 days, no credit card: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #lawncare #landscaping #poolservice #pestcontrol #hvac #cleaningbusiness #businessowner #contractor",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-08-gate-code-skit.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-08-gate-code-skit.png",
+    "prompt": "PIL branded card: 'Locked gate. He calls you — again.' / 'Now he just texts the bot.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-09-08-gate-code-skit.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-09-08-gate-code-skit.mp4",
+    "model": "HyperFrames + Gemini skit photos + edge-tts narration",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "New guy's first week. Locked gate. He calls you — again. Now he just texts the bot. #fieldservice #smallbusiness #landscaping #poolservice #pestcontrol #hvac #businessowner"
+    },
+    "ig_reel": {
+      "text": "New guy's first week. Locked gate. He calls you — again.\n\nNow my crew texts FieldNotes and gets the answer back in seconds. Gate codes, visit history, all of it — their own notes built the answer.\n\nHe's working. My phone never rang.\n\nTry it free 30 days, no credit card: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #lawncare #landscaping #poolservice #pestcontrol #hvac #cleaningbusiness #businessowner #contractor"
+    },
+    "fb_video": {
+      "text": "New guy's first week. Locked gate. He calls you — again.\n\nThat used to be my whole day. Gate codes, contact names, which door, what was done last visit. Every answer lived in my head, so every question became a phone call.\n\nNow my crew texts FieldNotes and gets the answer back in seconds. Gate code, visit history, notes from the last stop — it's all in there because their own notes built it.\n\nHe's through the gate and working. My phone never rang.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — and I built FieldNotes for my own crew first. Then I made it for every owner who's still the walking gate-code database.\n\nTry it free for 30 days, no credit card: fieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-09-08T13:05:00-04:00",
+  "approved_at": "2026-09-08T13:05:00-04:00"
+}
