@@ -1,0 +1,22 @@
+{
+  "id": "2026-09-09-no-app",
+  "theme": "objection handling",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-09-no-app.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-09-no-app.png",
+    "prompt": "PIL card: headline \"'My guys won't use another app.' Good. There isn't one.\" / sub 'No install. No login. No training. Your crew texts like they already text.' / kicker FIELDNOTES",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-09T13:05:00-04:00",
+  "approved_at": "2026-09-09T13:06:00-04:00",
+  "surfaces": {
+    "fb_feed": {
+      "text": "\"My guys won't use another app.\"\n\nGood. There isn't one.\n\nNo app to install. No login. No training. No rollout meeting. Your crew texts their notes the same way they already text you — and FieldNotes turns those texts into service logs, action items, and a daily recap.\n\nThat's the whole design. Field crews live in their text threads, not in dashboards. If a tech needs training to use your software, the software failed — so there's nothing to train.\n\nAnd the cost objection? A month of FieldNotes costs less than one botched visit. Less than one disputed invoice you couldn't defend. One saved callback pays for it.\n\nI built it for my own commercial service business in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area — because my crew wouldn't use software either. Now they don't have to. They just text.\n\nTry the 60-second demo — 30 days free, no credit card: fieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "\"My guys won't use another app.\" Good — there isn't one.\n\nNo install. No login. No training. Your crew texts their notes the way they already text, and FieldNotes turns them into service logs, action items, and a daily recap.\n\nThe cost? Less than one botched visit or one disputed invoice you couldn't defend.\n\nBuilt for my own service business in Atlanta — my crew wouldn't use software either. Now they just text.\n\nTry the 60-second demo — 30 days free, no card: fieldnotesapp.io/app/try.html\n\n#fieldservicelife #landscapingbusiness #lawncarebusiness #poolservice #cleaningbusiness #pestcontrol #hvaclife #smallbusinessowner #fieldservice #businessownerlife"
+    }
+  }
+}

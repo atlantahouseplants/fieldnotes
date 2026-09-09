@@ -1,1 +1,2 @@
 {"at": "2026-09-02T13:05:00-04:00", "run": "content-engine", "id": "2026-09-02-proof-of-service", "theme": "proof-of-service", "format": "feed", "surfaces": ["fb_feed","ig_feed"], "card_url_verified": true}
+{"at":"2026-09-09T13:06:00-04:00","run":"content-engine","id":"2026-09-09-no-app","theme":"objection handling","surfaces":["fb_feed","ig_feed"],"checker":"pass","status":"approved"}
