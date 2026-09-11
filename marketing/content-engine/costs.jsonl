@@ -72,3 +72,6 @@
 {"at":"2026-09-09T13:06:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-09-09-no-app"}
 {"ts": "2026-09-10T13:10:00-04:00", "id": "2026-09-10-proof-of-service", "item": "pil_card_square", "cost_usd": 0.0}
 {"ts": "2026-09-10T13:10:00-04:00", "id": "2026-09-10-proof-of-service", "item": "pil_card_story", "cost_usd": 0.0}
+{"at":"2026-09-11T13:09:54-04:00","kind":"image_card","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-09-11-first-hire"}
+{"at":"2026-09-11T13:09:54-04:00","kind":"skit_photos","model":"gemini-2.5-flash-image x3","cost_usd":0.0,"post_id":"2026-09-11-first-hire"}
+{"at":"2026-09-11T13:09:54-04:00","kind":"video","model":"hyperframes + edge-tts narration","cost_usd":0.0,"post_id":"2026-09-11-first-hire"}
