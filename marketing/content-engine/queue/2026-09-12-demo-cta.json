@@ -1,0 +1,22 @@
+{
+  "id": "2026-09-12-demo-cta",
+  "theme": "demo CTA",
+  "surfaces": {
+    "fb_feed": {
+      "text": "I could tell you your crew will actually use this. You've heard that before \u2014 from every app they ignored.\n\nSo don't take my word for it. Take 60 seconds and try to break it.\n\nNo install. No account. No card. The demo page is a text thread, because that's the whole product.\n\nAsk it the gate code for a client. It answers from the records. That's the call your office stops getting.\n\nText it a visit note the messy way your guy actually sends one from the truck. Watch it come back as a clean service log.\n\nThen look at the recap it drafts for the customer \u2014 timestamped proof of the visit, ready to send.\n\nYou just ran a whole visit from a text message. If your crew can text, they can run this.\n\nTry to break it: fieldnotesapp.io/app/try.html\n30 days free, no credit card."
+    },
+    "ig_feed": {
+      "text": "Don't take my word for it. Try to break it.\n\n60 seconds, no install, no account: ask it the gate code, text it a messy visit note from the truck, see the client recap it drafts. You just ran a whole visit from a text message.\n\nIf your crew can text, they can run this.\n\nfieldnotesapp.io/app/try.html \u2014 30 days free, no card.\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #homeservices #contractorlife #fieldnotes"
+    }
+  },
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-12-demo-cta.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-12-demo-cta.png",
+    "prompt": "PIL branded card: 'Don't take my word for it.' / 'Ask it the gate code yourself. 60 seconds, no signup.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-12T17:05:00+00:00",
+  "approved_at": "2026-09-12T17:10:18.214339+00:00"
+}

@@ -29,3 +29,4 @@
 2026-09-07T13:05:02-04:00 content-engine run: queued 2026-09-07-founder-story (fb_feed, ig_feed); card 43320B live on fieldnotesapp.io
 [2026-09-08T13:05:00-04:00] content-engine: created 2026-09-08-gate-code-skit (Tue VIDEO skit, gate-code moment); 3 Gemini photos + HyperFrames 26.94s + PIL card; assets live (card 40856B, video 12504301B); surfaces: tiktok/ig_reel/fb_video; status=approved
 2026-09-11T13:09:54-04:00 2026-09-11-first-hire skit video (26s) approved+queued; surfaces tiktok/ig_reel/fb_video; card+video hosted (200, size-verified)
+2026-09-12T17:10:18.214339+00:00 2026-09-12-demo-cta FEED (fb_feed+ig_feed) demo CTA — card generated+hosted, checker PASS, approved
