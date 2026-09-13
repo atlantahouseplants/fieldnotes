@@ -76,3 +76,4 @@
 {"at":"2026-09-11T13:09:54-04:00","kind":"skit_photos","model":"gemini-2.5-flash-image x3","cost_usd":0.0,"post_id":"2026-09-11-first-hire"}
 {"at":"2026-09-11T13:09:54-04:00","kind":"video","model":"hyperframes + edge-tts narration","cost_usd":0.0,"post_id":"2026-09-11-first-hire"}
 {"at": "2026-09-12T17:10:18.214339+00:00", "kind": "image", "model": "fieldnotes_card.py (PIL)", "cost_usd": 0.0, "post_id": "2026-09-12-demo-cta"}
+{"ts":"2026-09-13T13:00:00-04:00","item":"2026-09-13-sunday-quiet","image_card_usd":0.0,"video_usd":0.0,"narration_usd":0.0,"total_usd":0.0}
