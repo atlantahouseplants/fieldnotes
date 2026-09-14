@@ -3,7 +3,7 @@
   "date": "2026-09-13",
   "theme": "Founder story (light)",
   "angle": "Sunday quiet. One-line founder note, no pitch \u2014 the weekend used to mean catching up on paperwork; now the recaps wrote themselves all week. Brand-presence touch, lowest effort.",
-  "status": "approved",
+  "status": "published",
   "image": {
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-13-sunday-quiet-story.png"
   },
@@ -12,5 +12,16 @@
       "text": "Sunday. No paperwork waiting. The week logged itself. @fieldnotesappio",
       "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-13-sunday-quiet-story.png"
     }
+  },
+  "already_published": {
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3985425123322724320"
+  },
+  "published": {
+    "fb_url": null,
+    "ig_url": null,
+    "surfaces": {
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3985425123322724320"
+    },
+    "at": "2026-09-13T17:15:28.708497+00:00"
   }
 }

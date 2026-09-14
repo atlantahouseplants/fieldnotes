@@ -1,0 +1,22 @@
+{
+  "id": "2026-09-14-gate-code",
+  "theme": "gate-code moment",
+  "surfaces": {
+    "fb_feed": {
+      "text": "7:52 AM. The phone buzzes: \"What's the gate code at Riverside?\"\n\nYou know the code. You've typed it a hundred times. But you're backing out of your own driveway, and the guy at the locked gate could've found it himself \u2014 if the answer lived anywhere but in your head.\n\nOr in a text thread from March. Good luck scrolling to that.\n\nThat's the moment I built FieldNotes for.\n\nYour crew texts their notes like they already do. Every gate code, every access note, every \"the back door sticks\" \u2014 it all lands in one searchable place. The new guy asks the bot. The bot answers from your crew's own notes.\n\nYou keep driving.\n\nAsk it the gate code yourself \u2014 60-second demo, no signup: fieldnotesapp.io/app/try.html\n30 days free, no credit card."
+    },
+    "ig_feed": {
+      "text": "7:52 AM. \"What's the gate code at Riverside?\"\n\nEvery. Single. Time.\n\nYour crew texts their notes like they already do \u2014 gate codes, access notes, visit history \u2014 and the bot answers from those notes. The new guy asks the bot, not you.\n\nAsk it the gate code yourself \u2014 60-second demo: fieldnotesapp.io/app/try.html\n30 days free, no credit card.\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #homeservices #contractorlife #fieldnotes"
+    }
+  },
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-14-gate-code.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-14-gate-code.png",
+    "prompt": "PIL branded card: 'What's the gate code?' / '7:52 AM. Every. Single. Time.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-14T17:05:00+00:00",
+  "approved_at": "2026-09-14T17:05:30.420240+00:00"
+}

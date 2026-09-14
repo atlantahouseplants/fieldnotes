@@ -1,28 +1,43 @@
 {
   "id": "2026-08-27-no-app",
   "theme": "objection-handling-no-app",
-  "fb_text": "\"My guys won't use another app.\"\n\nNeither would mine. So I didn't build one.\n\nFieldNotes is a text thread. Your crew texts it between stops — voice note or typed, whatever they'd already send you.\n\n\"Riverside office — swapped the lobby ficus. Irrigation line on two is dripping. Need a valve Thursday.\"\n\nThat one text becomes the service log, the issue flag, and the follow-up reminder. Timestamped. Searchable. No download, no login, no training session.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. My new guy never calls me anymore. He texts FieldNotes. And when I need the gate code, I ask it instead of calling him.\n\nThe tool your crew will actually use is the one that doesn't feel like a tool.\n\nAsk it the gate code yourself — 60-second demo, no install:\nfieldnotesapp.io/app/try.html",
-  "ig_text": "\"My guys won't use software.\"\n\nNeither will mine. So I didn't build software — I built a text thread.\n\nYour crew texts it between stops like they already text you. That text becomes the log, the issue flag, the follow-up reminder. No app, no login, no training.\n\nMy new guy never calls me anymore. He texts FieldNotes.\n\nAsk it the gate code yourself → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife",
+  "fb_text": "\"My guys won't use another app.\"\n\nNeither would mine. So I didn't build one.\n\nFieldNotes is a text thread. Your crew texts it between stops \u2014 voice note or typed, whatever they'd already send you.\n\n\"Riverside office \u2014 swapped the lobby ficus. Irrigation line on two is dripping. Need a valve Thursday.\"\n\nThat one text becomes the service log, the issue flag, and the follow-up reminder. Timestamped. Searchable. No download, no login, no training session.\n\nI run a commercial plant service in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area. My new guy never calls me anymore. He texts FieldNotes. And when I need the gate code, I ask it instead of calling him.\n\nThe tool your crew will actually use is the one that doesn't feel like a tool.\n\nAsk it the gate code yourself \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html",
+  "ig_text": "\"My guys won't use software.\"\n\nNeither will mine. So I didn't build software \u2014 I built a text thread.\n\nYour crew texts it between stops like they already text you. That text becomes the log, the issue flag, the follow-up reminder. No app, no login, no training.\n\nMy new guy never calls me anymore. He texts FieldNotes.\n\nAsk it the gate code yourself \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-27-no-app.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-27-no-app.png",
-    "prompt": "PIL branded card (card mode) — headline '\"My guys won't use software.\" Neither will mine.' Sub 'No app. No login. No training. They text it like they already do.' + 9:16 story variant (sub 'They text it like they already do.')",
+    "prompt": "PIL branded card (card mode) \u2014 headline '\"My guys won't use software.\" Neither will mine.' Sub 'No app. No login. No training. They text it like they already do.' + 9:16 story variant (sub 'They text it like they already do.')",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
     "fb_feed": {
-      "text": "\"My guys won't use another app.\"\n\nNeither would mine. So I didn't build one.\n\nFieldNotes is a text thread. Your crew texts it between stops — voice note or typed, whatever they'd already send you.\n\n\"Riverside office — swapped the lobby ficus. Irrigation line on two is dripping. Need a valve Thursday.\"\n\nThat one text becomes the service log, the issue flag, and the follow-up reminder. Timestamped. Searchable. No download, no login, no training session.\n\nI run a commercial plant service in Atlanta — 50+ corporate and commercial properties in the Metro Atlanta area. My new guy never calls me anymore. He texts FieldNotes. And when I need the gate code, I ask it instead of calling him.\n\nThe tool your crew will actually use is the one that doesn't feel like a tool.\n\nAsk it the gate code yourself — 60-second demo, no install:\nfieldnotesapp.io/app/try.html"
+      "text": "\"My guys won't use another app.\"\n\nNeither would mine. So I didn't build one.\n\nFieldNotes is a text thread. Your crew texts it between stops \u2014 voice note or typed, whatever they'd already send you.\n\n\"Riverside office \u2014 swapped the lobby ficus. Irrigation line on two is dripping. Need a valve Thursday.\"\n\nThat one text becomes the service log, the issue flag, and the follow-up reminder. Timestamped. Searchable. No download, no login, no training session.\n\nI run a commercial plant service in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area. My new guy never calls me anymore. He texts FieldNotes. And when I need the gate code, I ask it instead of calling him.\n\nThe tool your crew will actually use is the one that doesn't feel like a tool.\n\nAsk it the gate code yourself \u2014 60-second demo, no install:\nfieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
-      "text": "\"My guys won't use software.\"\n\nNeither will mine. So I didn't build software — I built a text thread.\n\nYour crew texts it between stops like they already text you. That text becomes the log, the issue flag, the follow-up reminder. No app, no login, no training.\n\nMy new guy never calls me anymore. He texts FieldNotes.\n\nAsk it the gate code yourself → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife"
+      "text": "\"My guys won't use software.\"\n\nNeither will mine. So I didn't build software \u2014 I built a text thread.\n\nYour crew texts it between stops like they already text you. That text becomes the log, the issue flag, the follow-up reminder. No app, no login, no training.\n\nMy new guy never calls me anymore. He texts FieldNotes.\n\nAsk it the gate code yourself \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #owneroperator #smallbusinessowner #landscaping #lawncare #homeservices #poolservice #commercialcleaning #contractorlife"
     },
     "ig_story": {
       "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-27-no-app-story.png",
       "text": ""
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-27T13:07:00-04:00",
-  "approved_at": "2026-08-27T13:07:00-04:00"
+  "approved_at": "2026-08-27T13:07:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122107851507408315",
+    "ig_feed": "https://www.instagram.com/p/DcjTRvQIFj7/",
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3973104166169004403"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122107851507408315",
+    "ig_url": "https://www.instagram.com/p/DcjTRvQIFj7/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122107851507408315",
+      "ig_feed": "https://www.instagram.com/p/DcjTRvQIFj7/",
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3973104166169004403"
+    },
+    "at": "2026-08-27T17:15:54.193303+00:00"
+  }
 }

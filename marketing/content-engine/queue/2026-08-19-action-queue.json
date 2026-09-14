@@ -18,7 +18,20 @@
       "text": "A tech mentioned a loose gate latch in March. Nobody wrote it down. By June the client was calling about the busted latch \u2014 and asking what else got missed.\n\nThat's how clients leave. Over the little thing you meant to go back to.\n\nYour crew voice-notes between stops. Everything they flag lands in one queue and stays in your daily summary until it's done. Nothing lives and dies in a text thread.\n\nSee it work in the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #landscaping #lawncare #homeservices #contractorlife #owneroperator #poolservice #commercialcleaning"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-19T13:10:00-04:00",
-  "approved_at": "2026-08-19T13:10:00-04:00"
+  "approved_at": "2026-08-19T13:10:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122106332913408315",
+    "ig_feed": "https://www.instagram.com/p/DcOs6F9GiEW/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122106332913408315",
+    "ig_url": "https://www.instagram.com/p/DcOs6F9GiEW/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122106332913408315",
+      "ig_feed": "https://www.instagram.com/p/DcOs6F9GiEW/"
+    },
+    "at": "2026-08-19T17:15:40.316403+00:00"
+  }
 }

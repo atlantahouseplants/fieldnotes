@@ -1,28 +1,43 @@
 {
   "id": "2026-08-20-price-objection",
   "theme": "objection-handling-price",
-  "fb_text": "\"Sounds like another subscription.\"\n\nFair. Here's the math.\n\nOne disputed visit. One missed follow-up. One client who leaves because nobody can prove the work got done. That's more than $79.\n\nTeam is $79/month for the whole crew. Your guys voice-note between stops like they already do. Issues, follow-ups, and a timestamped recap live in one place instead of a text thread you can't find.\n\nI built it for my own commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area. One fight I didn't have to have paid for a year of it.\n\n30 days free. No credit card.\nfieldnotesapp.io/app/try.html",
-  "ig_text": "\"Another subscription?\"\n\nOne dispute pays for a year.\n\nTeam is $79/mo for the whole crew. Your guys voice-note between stops. Issues, follow-ups, and a timestamped recap live in one place — not a text thread you can't find.\n\n30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #commercialcleaning",
+  "fb_text": "\"Sounds like another subscription.\"\n\nFair. Here's the math.\n\nOne disputed visit. One missed follow-up. One client who leaves because nobody can prove the work got done. That's more than $79.\n\nTeam is $79/month for the whole crew. Your guys voice-note between stops like they already do. Issues, follow-ups, and a timestamped recap live in one place instead of a text thread you can't find.\n\nI built it for my own commercial plant service \u2014 50+ corporate and commercial properties in the Metro Atlanta area. One fight I didn't have to have paid for a year of it.\n\n30 days free. No credit card.\nfieldnotesapp.io/app/try.html",
+  "ig_text": "\"Another subscription?\"\n\nOne dispute pays for a year.\n\nTeam is $79/mo for the whole crew. Your guys voice-note between stops. Issues, follow-ups, and a timestamped recap live in one place \u2014 not a text thread you can't find.\n\n30 days free, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #commercialcleaning",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-08-20-price-objection.png",
     "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-20-price-objection.png",
-    "prompt": "PIL branded card (card mode) — headline 'One dispute pays for a year.' Sub '$79/mo, whole crew. 30 days free, no credit card.' + 9:16 story variant (headline + fieldnotesapp.io strip)",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'One dispute pays for a year.' Sub '$79/mo, whole crew. 30 days free, no credit card.' + 9:16 story variant (headline + fieldnotesapp.io strip)",
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
   "surfaces": {
     "fb_feed": {
-      "text": "\"Sounds like another subscription.\"\n\nFair. Here's the math.\n\nOne disputed visit. One missed follow-up. One client who leaves because nobody can prove the work got done. That's more than $79.\n\nTeam is $79/month for the whole crew. Your guys voice-note between stops like they already do. Issues, follow-ups, and a timestamped recap live in one place instead of a text thread you can't find.\n\nI built it for my own commercial plant service — 50+ corporate and commercial properties in the Metro Atlanta area. One fight I didn't have to have paid for a year of it.\n\n30 days free. No credit card.\nfieldnotesapp.io/app/try.html"
+      "text": "\"Sounds like another subscription.\"\n\nFair. Here's the math.\n\nOne disputed visit. One missed follow-up. One client who leaves because nobody can prove the work got done. That's more than $79.\n\nTeam is $79/month for the whole crew. Your guys voice-note between stops like they already do. Issues, follow-ups, and a timestamped recap live in one place instead of a text thread you can't find.\n\nI built it for my own commercial plant service \u2014 50+ corporate and commercial properties in the Metro Atlanta area. One fight I didn't have to have paid for a year of it.\n\n30 days free. No credit card.\nfieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
-      "text": "\"Another subscription?\"\n\nOne dispute pays for a year.\n\nTeam is $79/mo for the whole crew. Your guys voice-note between stops. Issues, follow-ups, and a timestamped recap live in one place — not a text thread you can't find.\n\n30 days free, no credit card → fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #commercialcleaning"
+      "text": "\"Another subscription?\"\n\nOne dispute pays for a year.\n\nTeam is $79/mo for the whole crew. Your guys voice-note between stops. Issues, follow-ups, and a timestamped recap live in one place \u2014 not a text thread you can't find.\n\n30 days free, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #servicebusiness #smallbusinessowner #owneroperator #landscaping #lawncare #homeservices #contractorlife #poolservice #commercialcleaning"
     },
     "ig_story": {
       "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-20-price-objection-story.png",
       "text": ""
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-20T13:15:00-04:00",
-  "approved_at": "2026-08-20T13:15:00-04:00"
+  "approved_at": "2026-08-20T13:15:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122106517923408315",
+    "ig_feed": "https://www.instagram.com/p/DcRRu0BFHs7/",
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3968030829867286107"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122106517923408315",
+    "ig_url": "https://www.instagram.com/p/DcRRu0BFHs7/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122106517923408315",
+      "ig_feed": "https://www.instagram.com/p/DcRRu0BFHs7/",
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3968030829867286107"
+    },
+    "at": "2026-08-20T17:16:06.834665+00:00"
+  }
 }

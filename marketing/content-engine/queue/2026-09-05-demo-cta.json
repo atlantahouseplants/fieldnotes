@@ -1,7 +1,7 @@
 {
   "id": "2026-09-05-demo-cta",
   "theme": "demo-cta",
-  "fb_text": "Every software pitch sounds the same until you touch the thing.\n\nSo here's the whole demo, no signup, no install, no card. It takes about a minute.\n\nOpen the demo page. It looks like a text thread, because that's the product — your crew texts, the office paperwork writes itself.\n\nFirst tap: log a visit note the way your guy actually sends one from the truck. Watch it become a clean service log.\n\nSecond tap: ask it the gate code for a client. It answers from the records. That's the call your office stops getting.\n\nThird tap: see the recap it drafts for the customer. Timestamped proof of the visit, ready to send, before anyone asks \"were you even here?\"\n\nThree taps and you just ran a whole visit from a text message. If it doesn't click in a minute, close the tab and you're out nothing.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "fb_text": "Every software pitch sounds the same until you touch the thing.\n\nSo here's the whole demo, no signup, no install, no card. It takes about a minute.\n\nOpen the demo page. It looks like a text thread, because that's the product \u2014 your crew texts, the office paperwork writes itself.\n\nFirst tap: log a visit note the way your guy actually sends one from the truck. Watch it become a clean service log.\n\nSecond tap: ask it the gate code for a client. It answers from the records. That's the call your office stops getting.\n\nThird tap: see the recap it drafts for the customer. Timestamped proof of the visit, ready to send, before anyone asks \"were you even here?\"\n\nThree taps and you just ran a whole visit from a text message. If it doesn't click in a minute, close the tab and you're out nothing.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
   "ig_text": "Don't take my word for it. Text it yourself.\n\nThree taps, no install, no card: log a visit note, ask it the gate code, see the client recap it drafts. You just ran a whole visit from a text message.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes",
   "image": {
     "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-05-demo-cta.png",
@@ -12,13 +12,26 @@
   },
   "surfaces": {
     "fb_feed": {
-      "text": "Every software pitch sounds the same until you touch the thing.\n\nSo here's the whole demo, no signup, no install, no card. It takes about a minute.\n\nOpen the demo page. It looks like a text thread, because that's the product — your crew texts, the office paperwork writes itself.\n\nFirst tap: log a visit note the way your guy actually sends one from the truck. Watch it become a clean service log.\n\nSecond tap: ask it the gate code for a client. It answers from the records. That's the call your office stops getting.\n\nThird tap: see the recap it drafts for the customer. Timestamped proof of the visit, ready to send, before anyone asks \"were you even here?\"\n\nThree taps and you just ran a whole visit from a text message. If it doesn't click in a minute, close the tab and you're out nothing.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+      "text": "Every software pitch sounds the same until you touch the thing.\n\nSo here's the whole demo, no signup, no install, no card. It takes about a minute.\n\nOpen the demo page. It looks like a text thread, because that's the product \u2014 your crew texts, the office paperwork writes itself.\n\nFirst tap: log a visit note the way your guy actually sends one from the truck. Watch it become a clean service log.\n\nSecond tap: ask it the gate code for a client. It answers from the records. That's the call your office stops getting.\n\nThird tap: see the recap it drafts for the customer. Timestamped proof of the visit, ready to send, before anyone asks \"were you even here?\"\n\nThree taps and you just ran a whole visit from a text message. If it doesn't click in a minute, close the tab and you're out nothing.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
     },
     "ig_feed": {
       "text": "Don't take my word for it. Text it yourself.\n\nThree taps, no install, no card: log a visit note, ask it the gate code, see the client recap it drafts. You just ran a whole visit from a text message.\n\nTry the 60-second demo \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusinessowner #servicebusiness #owneroperator #landscapingbusiness #lawncare #poolcleaning #contractorlife #homeservices #fieldnotes"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-09-05T17:36:00-04:00",
-  "approved_at": "2026-09-05T17:36:00-04:00"
+  "approved_at": "2026-09-05T17:36:00-04:00",
+  "already_published": {
+    "fb_feed": "https://facebook.com/1208623249001508_122109343485408315",
+    "ig_feed": "https://www.instagram.com/p/Dc69XWsmCNM/"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122109343485408315",
+    "ig_url": "https://www.instagram.com/p/Dc69XWsmCNM/",
+    "surfaces": {
+      "fb_feed": "https://facebook.com/1208623249001508_122109343485408315",
+      "ig_feed": "https://www.instagram.com/p/Dc69XWsmCNM/"
+    },
+    "at": "2026-09-05T21:46:04.484936+00:00"
+  }
 }

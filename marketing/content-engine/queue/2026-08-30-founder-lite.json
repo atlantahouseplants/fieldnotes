@@ -16,7 +16,18 @@
       "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-08-30-founder-lite-story.png"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-30T13:05:00-04:00",
-  "approved_at": "2026-08-30T13:05:00-04:00"
+  "approved_at": "2026-08-30T13:05:00-04:00",
+  "already_published": {
+    "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3975278226494281844"
+  },
+  "published": {
+    "fb_url": null,
+    "ig_url": null,
+    "surfaces": {
+      "ig_story": "https://www.instagram.com/stories/fieldnotesappio/3975278226494281844"
+    },
+    "at": "2026-08-30T17:15:25.594461+00:00"
+  }
 }

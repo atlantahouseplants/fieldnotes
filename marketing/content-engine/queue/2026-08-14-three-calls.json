@@ -27,7 +27,22 @@
       "text": "Three calls every service owner knows by heart.\n\n\"When were we last at that property?\" \"What did we flag on the last visit?\" \"Did anyone finish today's route?\"\n\nEach one means stopping what you're doing, digging through a text thread, maybe calling a guy who's on a ladder.\n\nFieldNotes answers all three from your crew's own notes. They text between stops like they always did \u2014 no app, no login, no training \u2014 and the log keeps it all. Now the log answers.\n\nI built it for my own business \u2014 a commercial plant service running 50+ corporate and commercial properties in the Metro Atlanta area. I still ask it these exact questions every week.\n\nTry it free for 30 days, no credit card \u2014 start with the 60-second demo:\nfieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-08-14T13:15:00-04:00",
-  "approved_at": "2026-08-14T13:15:00-04:00"
+  "approved_at": "2026-08-14T13:15:00-04:00",
+  "already_published": {
+    "tiktok": "buffer-post-id:6a7f4d23c42112fd3afc2fca",
+    "ig_reel": "https://www.instagram.com/reel/DcB1BZIFeAc/",
+    "fb_video": "https://facebook.com/1208623249001508_122105342499408315"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1208623249001508_122105342499408315",
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "buffer-post-id:6a7f4d23c42112fd3afc2fca",
+      "ig_reel": "https://www.instagram.com/reel/DcB1BZIFeAc/",
+      "fb_video": "https://facebook.com/1208623249001508_122105342499408315"
+    },
+    "at": "2026-08-14T17:17:00.746504+00:00"
+  }
 }
