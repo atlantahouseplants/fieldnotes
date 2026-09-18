@@ -1,0 +1,33 @@
+{
+  "id": "2026-09-18-objection-handling",
+  "theme": "objection handling (text video)",
+  "fb_text": "3 things every owner tells me before they try FieldNotes. All fair. All wrong.\n\n1. \"My guys won't use another app.\" Good \u2014 there isn't one. They text like they already do. Voice note or text, from the truck, between stops.\n\n2. \"I already know my business.\" You do. Does your new hire? Every note your crew sends becomes searchable company knowledge \u2014 gate codes, visit history, what's been done.\n\n3. \"Sounds expensive.\" It costs less than one disputed invoice. And it's free for 30 days, no credit card.\n\nI run a commercial plant service in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area \u2014 and I built FieldNotes for my own crew first.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html",
+  "ig_text": "3 things every owner tells me. All fair. All wrong.\n\n\"My guys won't use another app.\" \u2014 There isn't one. They text.\n\"I know my business.\" \u2014 Does your new guy?\n\"Sounds expensive.\" \u2014 Less than one disputed invoice.\n\n30 days free, no credit card: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #lawncare #landscaping #poolservice #pestcontrol #hvac #cleaningbusiness #businessowner #contractor",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-18-objection-handling.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-18-objection-handling.png",
+    "prompt": "PIL branded card: '3 things every owner tells me.' / 'All fair. All wrong.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "video": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/video-previews/2026-09-18-objection-handling.mp4",
+    "source_url": "https://fieldnotesapp.io/app/assets/videos/2026-09-18-objection-handling.mp4",
+    "model": "HyperFrames (text format) + edge-tts narration",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "tiktok": {
+      "text": "3 objections every owner has. All fair. All wrong. No app to install. Answers for the new guy. Cheaper than one dispute. #fieldservice #smallbusiness #landscaping #poolservice #hvac #businessowner"
+    },
+    "ig_reel": {
+      "text": "3 things every owner tells me. All fair. All wrong.\n\n\"My guys won't use another app.\" \u2014 There isn't one. They text.\n\"I know my business.\" \u2014 Does your new guy?\n\"Sounds expensive.\" \u2014 Less than one disputed invoice.\n\n30 days free, no credit card: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #lawncare #landscaping #poolservice #pestcontrol #hvac #cleaningbusiness #businessowner #contractor"
+    },
+    "fb_video": {
+      "text": "3 things every owner tells me before they try FieldNotes. All fair. All wrong.\n\n1. \"My guys won't use another app.\" Good \u2014 there isn't one. They text like they already do. Voice note or text, from the truck, between stops.\n\n2. \"I already know my business.\" You do. Does your new hire? Every note your crew sends becomes searchable company knowledge \u2014 gate codes, visit history, what's been done.\n\n3. \"Sounds expensive.\" It costs less than one disputed invoice. And it's free for 30 days, no credit card.\n\nI run a commercial plant service in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area \u2014 and I built FieldNotes for my own crew first.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
+    }
+  },
+  "status": "approved",
+  "created_at": "2026-09-18T13:12:00-04:00",
+  "approved_at": "2026-09-18T13:09:23-04:00"
+}

@@ -32,3 +32,4 @@
 2026-09-12T17:10:18.214339+00:00 2026-09-12-demo-cta FEED (fb_feed+ig_feed) demo CTA — card generated+hosted, checker PASS, approved
 2026-09-16 first-hire FEED (fb_feed,ig_feed) approved; card live at fieldnotesapp.io
 2026-09-17T17:07:10.388106+00:00 2026-09-17-founder-story CREATED+APPROVED surfaces=fb_feed,ig_feed,ig_story checker=PASS assets=200+byte-exact
+2026-09-18T13:09:23-04:00 run: created 2026-09-18-objection-handling (objection handling, TEXT video) surfaces=tiktok/ig_reel/fb_video, checker PASS, status=approved, cost $0.00
