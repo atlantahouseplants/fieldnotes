@@ -69,7 +69,7 @@ FN's core loop is System-One-shaped: unstructured note in → structured decisio
 - Their workflow evals: https://evals.typesafe.ai/
 - Pricing: $0.042/MTok input, output free · Latency claim: 70–500ms · Cardinality max 255 (2-stage beyond)
 
-**Waitlist status:** Geoff signed up + use-case bump sent Sep 16, 2026 (answer below). Access arrives via his email — when Geoff says "Jev access landed," start Phase 0.
+**Waitlist status:** ✅ ACCESS GRANTED Sep 16, 2026. TypeSafe skill installed in Hermes (`typesafe-ai`, software-development). NEXT: Geoff to drop the API key (from console.typesafe.ai) into `~/.hermes/.env` as `TYPESAFE_API_KEY` — then Phase 0 starts (docs read → playground spike with 3 real FN notes).
 
 **Use-case answer submitted to TypeSafe (verbatim, for reference):**
 > I run two production systems where Jev's exact shape — structured decisions with calibrated confidence — is the missing component.
