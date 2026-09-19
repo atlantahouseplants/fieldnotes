@@ -60,6 +60,25 @@ FN's core loop is System-One-shaped: unstructured note in → structured decisio
 
 ---
 
+## 7. Phase 0 RESULTS — playground spike, Sep 16 2026 ✅
+
+3 real notes from the FN db (HVAC demo tenant, 12-account Choice list). Questions: account (Choice+nomatch), status (Choice), supplies (Noul), follow-up (Noul).
+
+| Note | Account | Status | Follow-up | Latency |
+|------|---------|--------|-----------|---------|
+| "Riverside: all good, changed filters" | ✅ riverside (p=.92) | ✅ all_good (conf 1.00) | 0.31 ✓ | 530ms |
+| "Oakwood: fixed leak… all good" | ✅ oakwood (p=1.00) | ✅ all_good (conf 0.87) | 0.24 ✓ | 375ms |
+| "Mercy: filters… ICU running hot — monitoring" | ✅ mercy (p=.99) | ✅ issues_found (conf 1.00) | 0.97 ✓ | 498ms |
+
+- **Account match 3/3 with high calibrated probability; status 3/3; follow-up routing all correct** (incl. catching "monitoring" = follow-up at 0.97).
+- 2 supply-Noul "disagreements" vs demo ground truth — both are artifacts of the synthetic demo data (expected supplies not actually in note text); Jev's reads are the defensible ones ("changed filters" = parts used).
+- **Cost: ~700 input tokens/note ≈ $0.00003/note** (3 notes = $0.000029 each at $0.042/MTok). vs current chat-LLM parse: several seconds + ~100x the cost. Latency as advertised.
+- Extraction of issue TEXT still needs the "select-instead-of-generate" pattern (code splits candidate clauses, Jev picks) — that's the Phase 1 design, confirmed viable by the skill docs.
+
+**Phase 0 verdict: PASS → proceed to Phase 1 (adapter + shadow mode) when Geoff greenlights build time.**
+
+---
+
 ## 6. Access packet (everything needed on day one)
 
 **Links:**
