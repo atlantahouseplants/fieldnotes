@@ -100,7 +100,9 @@ async def add_note(
 
     # ONE pipeline, no special cases: same AI parse + persist path rep notes use
     hints = [account.name] + ([account.shorthand] if account.shorthand else [])
-    parsed = await parse_note(req.note, hints)
+    parsed = await parse_note(
+        req.note, hints,
+        db=db, business_id=business_id, worker_id=int(owner_worker.id))
     persisted = persist_parsed_note(
         db,
         business_id=business_id,
