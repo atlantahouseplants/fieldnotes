@@ -1,0 +1,21 @@
+{
+  "id": "2026-09-20-gate-code-light",
+  "date": "2026-09-20",
+  "theme": "Gate-code moment (light)",
+  "angle": "Sunday-evening brand touch. Tomorrow morning someone's new guy will be parked at a locked gate at 7:52 AM. Ours won't be. One line, no pitch, presence only.",
+  "status": "approved",
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-20-gate-code-light-story.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-20-gate-code-light-story.png",
+    "model": "fieldnotes_card.py story (PIL)",
+    "cost_usd": 0.0
+  },
+  "surfaces": {
+    "ig_story": {
+      "text": "Tomorrow at 7:52 AM, somebody's new guy hits a locked gate. Ours texts the bot. @fieldnotesappio",
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-20-gate-code-light-story.png"
+    }
+  },
+  "created_at": "2026-09-20T13:00:00-04:00",
+  "approved_at": "2026-09-20T13:12:00-04:00"
+}

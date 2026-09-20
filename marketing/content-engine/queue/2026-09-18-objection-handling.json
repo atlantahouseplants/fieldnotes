@@ -27,7 +27,22 @@
       "text": "3 things every owner tells me before they try FieldNotes. All fair. All wrong.\n\n1. \"My guys won't use another app.\" Good \u2014 there isn't one. They text like they already do. Voice note or text, from the truck, between stops.\n\n2. \"I already know my business.\" You do. Does your new hire? Every note your crew sends becomes searchable company knowledge \u2014 gate codes, visit history, what's been done.\n\n3. \"Sounds expensive.\" It costs less than one disputed invoice. And it's free for 30 days, no credit card.\n\nI run a commercial plant service in Atlanta \u2014 50+ corporate and commercial properties in the Metro Atlanta area \u2014 and I built FieldNotes for my own crew first.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html"
     }
   },
-  "status": "approved",
+  "status": "published",
   "created_at": "2026-09-18T13:12:00-04:00",
-  "approved_at": "2026-09-18T13:09:23-04:00"
+  "approved_at": "2026-09-18T13:09:23-04:00",
+  "already_published": {
+    "tiktok": "https://tiktok.com/@fieldnotesappio/video/7686925200683814157",
+    "ig_reel": "buffer-post-id:6aad71f79e7fdc60ebc90f89",
+    "fb_video": "https://facebook.com/1796161041578082"
+  },
+  "published": {
+    "fb_url": "https://facebook.com/1796161041578082",
+    "ig_url": null,
+    "surfaces": {
+      "tiktok": "https://tiktok.com/@fieldnotesappio/video/7686925200683814157",
+      "ig_reel": "buffer-post-id:6aad71f79e7fdc60ebc90f89",
+      "fb_video": "https://facebook.com/1796161041578082"
+    },
+    "at": "2026-09-18T17:17:46.172750+00:00"
+  }
 }
