@@ -290,6 +290,36 @@ class RecapLog(Base):
     )
 
 
+class ParseShadowLog(Base):
+    """FN-1: shadow-mode comparison row — logs the Jev adapter's read of a
+    note ALONGSIDE the current (LLM chain) parser's read, with latency +
+    token usage, when PARSER_BACKEND=shadow. Zero user-facing effect —
+    the current parser's result is always what actually gets used;
+    this table exists purely for the Phase 1 agreement/calibration eval.
+    """
+    __tablename__ = "parse_shadow_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    business_id = Column(Integer, ForeignKey("businesses.id"), nullable=True)
+    worker_id = Column(Integer, ForeignKey("workers.id"), nullable=True)
+    service_log_id = Column(Integer, ForeignKey("service_logs.id"), nullable=True)
+    raw_note = Column(Text, nullable=False)
+    current_result = Column(Text, nullable=True)         # JSON of current parser's dict (null in jev-primary mode — current chain not run)
+    jev_result = Column(Text, nullable=True)             # JSON of jev_client's dict (null if skipped/errored)
+    jev_error = Column(Text, nullable=True)              # exception str, if the jev call failed
+    jev_skipped_reason = Column(String, nullable=True)   # e.g. "daily_cap_exceeded"
+    jev_latency_ms = Column(Integer, nullable=True)
+    jev_input_tokens = Column(Integer, nullable=True)
+    jev_output_tokens = Column(Integer, nullable=True)
+    account_agree = Column(Boolean, nullable=True)       # current account_hint vs jev account choice
+    status_agree = Column(Boolean, nullable=True)        # current status vs jev status choice
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+    __table_args__ = (
+        Index("ix_parse_shadow_logs_business_created", "business_id", "created_at"),
+    )
+
+
 class PendingTaskClose(Base):
     """A proposed task close awaiting the rep's YES/NO (P7 implicit-completion
     confirm). Created when a logged note overlaps an open task's title. Never

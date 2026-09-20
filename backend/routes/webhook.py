@@ -586,7 +586,9 @@ async def process_worker_note(db: Session, channel: Channel, text: str) -> dict:
             return {"worker": worker.name, "intent": "note_for",
                     "error": "account_ambiguous", "query": account_q}
         hints = [acct.name] + ([acct.shorthand] if acct.shorthand else [])
-        parsed = await parse_note(note_body, hints)
+        parsed = await parse_note(
+            note_body, hints,
+            db=db, business_id=business_id, worker_id=int(worker.id))
         persisted = persist_parsed_note(
             db, business_id=business_id, worker_id=int(worker.id),
             text=note_body, parsed=parsed, account_id=int(acct.id))
@@ -666,7 +668,9 @@ async def process_worker_note(db: Session, channel: Channel, text: str) -> dict:
             account_map[a.shorthand.lower()] = a.id
     
     # 3. Parse note with AI
-    parsed = await parse_note(text, account_hints)
+    parsed = await parse_note(
+        text, account_hints,
+        db=db, business_id=business_id, worker_id=int(worker.id))
     
     # 4. Match account
     account_hint = (parsed.get("account_hint") or "").lower()

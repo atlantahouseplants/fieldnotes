@@ -79,6 +79,52 @@ FN's core loop is System-One-shaped: unstructured note in → structured decisio
 
 ---
 
+## 8. Phase 1 RESULTS — adapter + shadow mode, Sep 18 2026
+
+**Built (PR: see task FN-1):**
+- `backend/services/parser/jev_client.py` — plain HTTP client (no SDK — `typesafe-sdk`
+  wasn't installable in this box's constrained pip env; raw HTTP contract is simple).
+  Question design per the skill: `account`/`status` = Choice (+ `nomatch` for account),
+  `supplies_present`/`followups_present`/`customer_requests_present` = Noul,
+  issue/supply/follow-up/customer-request TEXT via "select instead of generate" —
+  code splits the note into ≤6 candidate clauses (`split_candidate_clauses`), Jev
+  tags each clause's role via one Choice question, code assembles the arrays
+  verbatim from the worker's own words (Jev never generates prose).
+- `PARSER_BACKEND` env var (`current` default | `shadow` | `jev`) gates all of this
+  behind `parse_note()`'s existing signature — zero change to the current chain's
+  code path when unset. Both `shadow` and `jev` modes fail closed to `current` on
+  any Jev error; `jev` mode also fails closed on `JEV_DAILY_TOKEN_CAP` (Geoff's COGS
+  guardrail — reads today's summed input+output tokens from `parse_shadow_logs`).
+- `parse_shadow_logs` table (Alembic `f2a9c4e81d36`) — every shadow/jev-mode call
+  logs current result, Jev result, latency, token usage, and account/status
+  agreement flags. Purely additive/observational.
+- Wired shadow-logging context (`db`, `business_id`, `worker_id`) into all 3 live
+  `parse_note()` call sites (webhook.py ×2, dashboard_api.py). Demo route
+  (`routes/demo.py`, synthetic business) intentionally left unwired — no reason to
+  spend Jev tokens or pollute the eval corpus on demo traffic.
+
+**37-note historical replay (`scripts/jev_shadow_replay.py`, live API run against
+the WSL dev sqlite corpus, 0 network errors):**
+
+| Metric | Result |
+|---|---|
+| Notes replayed | 37/37, 0 errors |
+| Account agreement | 31/33 (94%) — 4 stored logs had no account to compare against |
+| Status agreement | 29/37 (78%) |
+| Avg latency | 422ms |
+| Cost | 34,480 in / 11,641 out tokens total ≈ $0.00145 for 37 notes (~$0.000039/note) |
+
+Status disagreements (8/37) worth Hermes/Geoff's attention before any Phase 2
+cutover — spot-checked, several are Jev arguably being *more correct* than the
+stored current-parser status (e.g. #1 "need more filters next" stored as
+`all_good`, Jev correctly reads `needs_supplies`), not model error. Full
+per-note breakdown in `scripts/evals/results/jev_shadow_replay.json`.
+
+**Verdict: Phase 1 PASS.** Adapter is a clean drop-behind, shadow mode is
+observation-only and fails closed, cost is negligible relative to the current
+chat-LLM chain. Recommend Geoff/Hermes review the 8 status disagreements before
+deciding Phase 2 (confidence-gated cutover) scope.
+
 ## 6. Access packet (everything needed on day one)
 
 **Links:**
