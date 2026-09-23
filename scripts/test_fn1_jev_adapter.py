@@ -3,19 +3,22 @@
 FN-1 test suite — Jev (TypeSafe System One) parser adapter + shadow mode.
 
 Follows the repo convention (scripts/test_p*.py): plain check() helper,
-no pytest. Run with a venv that has sqlalchemy/httpx (this repo's own
-requirements aren't installed system-wide on this box — use the
-lead-engine venv, which mirrors backend/requirements.txt closely enough
-for this module's needs):
+runnable directly as a script OR collected via pytest (the `test_all`
+entry point runs the entire suite and asserts). Run with a venv that has
+sqlalchemy/httpx (this repo's own requirements aren't installed
+system-wide on this box — use the lead-engine venv, which mirrors
+backend/requirements.txt closely enough for this module's needs):
 
     /home/wallg/ahp-digital/lead-engine/.venv/bin/python scripts/test_fn1_jev_adapter.py
+    # or
+    /home/wallg/ahp-digital/lead-engine/.venv/bin/python -m pytest scripts/test_fn1_jev_adapter.py
 
 Covers:
   A) jev_client.split_candidate_clauses — clause splitting for the
      "select instead of generate" text-extraction pattern.
   B) jev_client.parse_note_jev — HTTP call shape, response parsing,
      clause-role assembly into issues/supplies/follow_ups/customer_requests,
-     error propagation (mocked httpx, no live API calls).
+     model_version logging, error propagation (mocked httpx, no live API calls).
   C) jev_client.get_todays_jev_tokens — daily token rollup from
      parse_shadow_logs (temp sqlite DB).
   D) parser.parse_note dispatcher — PARSER_BACKEND=current is a NO-OP
@@ -25,13 +28,15 @@ Covers:
      change) even when Jev errors, PARSER_BACKEND=jev returns Jev's
      result when under the daily token cap and fails closed to the
      current chain when the cap is exceeded.
+  E) jev_calibration — Brier score + 10-bin reliability table +
+     compute_calibration aggregation (hand-computed synthetic cases).
 """
 import asyncio
 import json
 import os
 import sys
 
-REPO = "/home/wallg/fieldnotes"
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 
 os.environ.setdefault("DATABASE_URL", "sqlite:////tmp/fn1_jev_unit.db")
@@ -44,14 +49,18 @@ for k in ("MOONSHOT_API_KEY", "XAI_API_KEY", "DEEPSEEK_API_KEY", "OPENAI_API_KEY
     os.environ[k] = ""
 
 failures = []
+_PYTEST = "pytest" in sys.modules
 def check(name, cond, detail=""):
     print(f"{'✅' if cond else '❌'} {name} {detail}")
     if not cond:
         failures.append(name)
+        if _PYTEST:
+            raise AssertionError(f"{name}: {detail}")
 
 
 import httpx
 from backend.services.parser import jev_client
+from backend.services.parser import jev_calibration
 from backend.services.parser import parse_note, PARSER_BACKEND_ENV
 from backend.models import Base, engine, SessionLocal, ParseShadowLog, Business, Worker
 
@@ -115,7 +124,7 @@ CANNED_JEV_RESPONSE = {
 }
 
 
-def test_split_candidate_clauses():
+def _test_split_candidate_clauses():
     clauses = jev_client.split_candidate_clauses(
         "Riverside: ICU running hot, filters need replacing. Monitoring the compressor.")
     check("A1 splits into multiple clauses", len(clauses) >= 2, str(clauses))
@@ -145,6 +154,19 @@ async def _test_parse_note_jev_success(monkeypatch_post):
           "account" in result["jev_confidence"] and "status" in result["jev_confidence"],
           result.get("jev_confidence"))
     check("B8 processing_time_ms present", isinstance(result.get("processing_time_ms"), int))
+    check("B9 model_version read from response `model` field", result["model_version"] == "jev-1.13.0",
+          result.get("model_version"))
+
+
+async def _test_parse_note_jev_missing_model(monkeypatch_post):
+    payload = dict(CANNED_JEV_RESPONSE)
+    payload.pop("model", None)  # simulate an API response without a version field
+    monkeypatch_post(200, payload)
+    result = await jev_client.parse_note_jev("all good", known_accounts=["riverside"])
+    check("B10 missing model -> model_version is None", result.get("model_version") is None,
+          result.get("model_version"))
+    check("B11 missing model -> model_requested captured", result.get("model_requested") == jev_client.JEV_MODEL,
+          result.get("model_requested"))
 
 
 async def _test_parse_note_jev_error(monkeypatch_post):
@@ -154,10 +176,10 @@ async def _test_parse_note_jev_error(monkeypatch_post):
         await jev_client.parse_note_jev("note", known_accounts=["riverside"])
     except Exception:
         raised = True
-    check("B9 HTTP error propagates as exception", raised)
+    check("B12 HTTP error propagates as exception", raised)
 
 
-def test_get_todays_jev_tokens():
+def _test_get_todays_jev_tokens():
     reset_db()
     db = SessionLocal()
     biz, w = seed_biz_worker(db)
@@ -171,6 +193,59 @@ def test_get_todays_jev_tokens():
     total = jev_client.get_todays_jev_tokens(db)
     check("C1 sums input+output tokens for today", total == 350, total)
     db.close()
+
+
+def _test_calibration_brier():
+    # Hand-computable: ((0.8-1)^2 + (0.2-0)^2 + (0.5-1)^2) / 3 = (0.04+0.04+0.25)/3 = 0.11
+    b = jev_calibration.brier_score([0.8, 0.2, 0.5], [1, 0, 1])
+    check("E1 brier_score matches hand computation", abs(b - 0.11) < 1e-9, b)
+    check("E2 brier_score empty -> None", jev_calibration.brier_score([], []) is None)
+
+
+def _test_reliability_table():
+    preds = [0.05, 0.15, 0.15, 0.95, 0.95]
+    outcomes = [0, 1, 0, 1, 1]
+    table = jev_calibration.reliability_table(preds, outcomes)
+    check("E3 reliability table has 10 bins", len(table) == 10, len(table))
+    check("E4 bin indices are 0..9", [r["bin"] for r in table] == list(range(10)),
+          [r["bin"] for r in table])
+    check("E5 bin 0 count == 1", table[0]["count"] == 1, table[0])
+    check("E6 bin 1 count == 2", table[1]["count"] == 2, table[1])
+    check("E7 bin 9 count == 2", table[9]["count"] == 2, table[9])
+    check("E8 total count conserved", sum(r["count"] for r in table) == 5,
+          sum(r["count"] for r in table))
+    check("E9 bin 1 mean_predicted == 0.15", abs(table[1]["mean_predicted"] - 0.15) < 1e-9,
+          table[1]["mean_predicted"])
+    check("E10 bin 1 observed_frequency == 0.5", abs(table[1]["observed_frequency"] - 0.5) < 1e-9,
+          table[1]["observed_frequency"])
+
+
+def _test_compute_calibration():
+    # 2 notes x 3 Noul = 6 Noul samples; hand-computed Brier below.
+    rows = [
+        {"supplies_present_prob": 0.8, "stored_supplies_nonempty": True,
+         "followups_present_prob": 0.2, "stored_followups_nonempty": False,
+         "customer_requests_present_prob": 0.5, "stored_customer_requests_nonempty": True,
+         "status_confidence": 0.9, "status_agree": True},
+        {"supplies_present_prob": 0.8, "stored_supplies_nonempty": True,
+         "followups_present_prob": 0.2, "stored_followups_nonempty": True,
+         "customer_requests_present_prob": 0.5, "stored_customer_requests_nonempty": False,
+         "status_confidence": 0.6, "status_agree": False},
+    ]
+    cal = jev_calibration.compute_calibration(rows)
+    # Noul: (0.8,1),(0.2,0),(0.5,1),(0.8,1),(0.2,1),(0.5,0)
+    #   = (0.04 + 0.04 + 0.25 + 0.04 + 0.64 + 0.25) / 6 = 1.26/6 = 0.21
+    check("E11 brier_noul matches hand computation", abs(cal["brier_noul"] - 0.21) < 1e-9,
+          cal["brier_noul"])
+    # Status: (0.9,1),(0.6,0) = (0.01 + 0.36)/2 = 0.185
+    check("E12 brier_status matches hand computation", abs(cal["brier_status"] - 0.185) < 1e-9,
+          cal["brier_status"])
+    check("E13 noul sample size == 6", cal["noul_sample_size"] == 6, cal["noul_sample_size"])
+    check("E14 status sample size == 2", cal["status_sample_size"] == 2, cal["status_sample_size"])
+    check("E15 small sample -> provisional note", cal["note"] is not None and "provisional" in cal["note"],
+          cal["note"])
+    check("E16 reliability table present (10 bins)", len(cal["reliability_table"]) == 10,
+          len(cal["reliability_table"]))
 
 
 async def _test_dispatcher_current_mode_untouched(monkeypatch_post):
@@ -292,14 +367,18 @@ def _monkeypatch_post_factory():
     return apply, restore
 
 
-def main():
-    test_split_candidate_clauses()
+def run_all():
+    _test_split_candidate_clauses()
+    _test_calibration_brier()
+    _test_reliability_table()
+    _test_compute_calibration()
 
     apply, restore = _monkeypatch_post_factory()
     try:
         asyncio.run(_test_parse_note_jev_success(apply))
+        asyncio.run(_test_parse_note_jev_missing_model(apply))
         asyncio.run(_test_parse_note_jev_error(apply))
-        test_get_todays_jev_tokens()
+        _test_get_todays_jev_tokens()
         asyncio.run(_test_dispatcher_current_mode_untouched(apply))
         asyncio.run(_test_dispatcher_shadow_mode(apply))
         asyncio.run(_test_dispatcher_shadow_mode_jev_error_still_returns_current(apply))
@@ -309,12 +388,22 @@ def main():
     finally:
         restore()
 
+
+def main():
+    run_all()
     print()
     if failures:
         print(f"❌ {len(failures)} FAILURES: {failures}")
         sys.exit(1)
     else:
         print("✅ ALL CHECKS PASS")
+
+
+def test_all():
+    """pytest entry point — runs the entire suite (sync + async) and asserts."""
+    failures.clear()
+    run_all()
+    assert not failures, f"FAILURES: {failures}"
 
 
 if __name__ == "__main__":

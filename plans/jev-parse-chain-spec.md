@@ -149,3 +149,47 @@ deciding Phase 2 (confidence-gated cutover) scope.
 3. Build `backend/services/parser/jev_client.py` behind the existing `parse_note()` interface
 4. Wire shadow logging (both parsers, zero user-facing change)
 5. Go from there per spec phases 1–3
+
+---
+
+## 9. Ops rules (Sep 23, from the HFT/Jev manual)
+
+Geoff-approved operating doctrine for the Jev integration. These are rules,
+not suggestions — code them, don't just read them.
+
+- **(a) Model version pinned + logged per row.** The resolved model version is
+  pinned via the `JEV_MODEL` env var (default `jev-latest`, which is an alias
+  TypeSafe rolls forward — an unpinned alias can silently change parse
+  behavior). The actual version that served each call is logged on every
+  `parse_shadow_logs` row (`jev_model_version`, Alembic `a1b2c3d4e5f6`), so a
+  model change is visible in the data, not a surprise. TypeSafe returns the
+  resolved version at the top-level `model` field of the `/v1/systemone`
+  response (e.g. `"jev-1.13.0"`); there is no separate `model_version` field.
+
+- **(b) Atomic questions composed in code — never chain dependent judgments in
+  one call.** Each question in a request must be answerable from the shared
+  `state` alone. If answering one question requires another question's answer
+  (e.g. "which account?" before "does this account need a follow-up?"), that
+  dependency is a *second request*. Never put a dependent judgment in the same
+  call and hope the model resolves the ordering.
+
+- **(c) Calibration measured against OUR outcomes (Brier + reliability).** The
+  vendor's self-reported calibration is not the eval — our stored parse is the
+  ground truth. `scripts/jev_shadow_replay.py` computes Brier score + a 10-bin
+  reliability table for the Noul questions (supplies / follow-up /
+  customer-request, truth = field non-empty in the stored parse) and Brier for
+  the status Choice (confidence vs stored-status agreement). If the reliability
+  curve bends off the diagonal, apply Platt scaling in the policy layer — do not
+  retrain or hand-tune thresholds around a miscalibrated probability.
+
+- **(d) Thresholds live in code, one per action, scaled to the cost of being
+  wrong.** No single global confidence cutoff. Each action that consumes a Jev
+  probability (auto-log, ask-worker, alert, escalate) carries its own threshold
+  in code, sized to what a false-positive/negative costs. Changing an action's
+  risk profile means changing its threshold, not the shared number.
+
+- **(e) Never trust "the system says it ran" on money-path guardrails.** Any
+  check that gates money (COGS caps, billing, send paths) must be verifiable
+  *outside* the model's own claim — an independent read of our own logs/DB, not
+  a field the model asserted. `get_todays_jev_tokens` reading `parse_shadow_logs`
+  is the pattern: the guardrail counts OUR rows, not the model's usage report.

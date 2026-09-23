@@ -137,6 +137,7 @@ def _log_shadow_row(db, *, business_id, worker_id, service_log_id, raw_note,
         jev_latency_ms=(jev_result or {}).get("processing_time_ms") if jev_result else None,
         jev_input_tokens=(jev_result or {}).get("jev_input_tokens") if jev_result else None,
         jev_output_tokens=(jev_result or {}).get("jev_output_tokens") if jev_result else None,
+        jev_model_version=(jev_result or {}).get("model_version") if jev_result else None,
         account_agree=account_agree,
         status_agree=status_agree,
     )

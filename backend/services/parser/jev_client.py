@@ -19,6 +19,7 @@ returned on the result dict so callers (parser.py dispatcher) can log
 it to parse_shadow_logs for the daily cost rollup.
 """
 import json
+import logging
 import os
 import re
 import time
@@ -27,10 +28,20 @@ from typing import Optional
 import httpx
 from sqlalchemy.orm import Session
 
+_logger = logging.getLogger(__name__)
+
 TYPESAFE_API_KEY = os.getenv("TYPESAFE_API_KEY", "")
 TYPESAFE_BASE = os.getenv("TYPESAFE_BASE_URL", "https://api.typesafe.ai/v1/systemone")
 JEV_MODEL = os.getenv("JEV_MODEL", "jev-latest")
 JEV_TIMEOUT_S = float(os.getenv("JEV_TIMEOUT_S", "10"))
+
+if JEV_MODEL == "jev-latest":
+    _logger.warning(
+        "JEV_MODEL is unpinned (default 'jev-latest') — parses may silently change "
+        "as TypeSafe rolls the alias forward. Ops should pin an explicit version via "
+        "JEV_MODEL for reproducibility; the resolved model version is still logged "
+        "per call (see parse_shadow_logs.jev_model_version)."
+    )
 
 MAX_CLAUSES = 6  # cap Choice questions per call — cost + latency guardrail
 
@@ -155,6 +166,11 @@ async def parse_note_jev(worker_note: str, known_accounts: Optional[list[str]] =
     answers = data.get("answers", {})
     elapsed_ms = int((time.time() - t0) * 1000)
 
+    # The TypeSafe response exposes the RESOLVED model version at the
+    # top level (`model`), e.g. "jev-1.13.0" even when `jev-latest` was
+    # requested — pinning + per-row logging depend on this field.
+    model_version = data.get("model")
+
     account_answer = answers.get("account")
     account_hint = ""
     if account_answer:
@@ -195,6 +211,8 @@ async def parse_note_jev(worker_note: str, known_accounts: Optional[list[str]] =
         "customer_requests": customer_requests,
         "summary": worker_note[:200].strip(),
         "processing_time_ms": elapsed_ms,
+        "model_version": model_version,
+        "model_requested": JEV_MODEL if model_version is None else None,
         "jev_input_tokens": usage.get("input_tokens"),
         "jev_output_tokens": usage.get("output_tokens"),
         "jev_confidence": jev_confidence,

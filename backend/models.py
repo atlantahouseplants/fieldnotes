@@ -311,6 +311,7 @@ class ParseShadowLog(Base):
     jev_latency_ms = Column(Integer, nullable=True)
     jev_input_tokens = Column(Integer, nullable=True)
     jev_output_tokens = Column(Integer, nullable=True)
+    jev_model_version = Column(String, nullable=True)     # resolved model version from the Jev response (e.g. "jev-1.13.0")
     account_agree = Column(Boolean, nullable=True)       # current account_hint vs jev account choice
     status_agree = Column(Boolean, nullable=True)        # current status vs jev status choice
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
