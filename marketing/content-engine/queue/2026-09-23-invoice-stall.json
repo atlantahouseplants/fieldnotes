@@ -1,0 +1,22 @@
+{
+  "id": "2026-09-23-invoice-stall",
+  "theme": "proof-of-service",
+  "surfaces": {
+    "fb_feed": {
+      "text": "\"What exactly are we paying for?\"\n\nEvery service business owner has heard it. And it stalls the invoice while you dig through texts, photos, and your own memory to rebuild two months of visits.\n\nThat's defense. Here's the offense.\n\nYour crew already texts you every visit — what got done, what needed attention, what's next. FieldNotes takes those notes and drafts a client-safe recap for every stop. Timestamped. Professional. You approve it before anything sends.\n\nSo before the client ever questions the bill, they've already seen the work. Visit by visit, in plain language, in their inbox.\n\nThe invoice stops being a negotiation. It becomes a receipt for something they already watched happen.\n\nNo app for your crew. No training. They text like they already do.\n\nTry the 60-second demo: fieldnotesapp.io/app/try.html\n30 days free, no credit card."
+    },
+    "ig_feed": {
+      "text": "\"What exactly are we paying for?\" — the question that stalls every invoice.\n\nFieldNotes drafts a client-safe recap from every visit — timestamped, professional, approved by you before it sends. The client sees the work before they question the bill.\n\nNo app for the crew. They text like they already do.\n\n30 days free, no card: fieldnotesapp.io/app/try.html\n\n#fieldservice #smallbusiness #owneroperator #servicebusiness #landscaping #lawncare #poolservice #hvac #businessowner #fieldnotes"
+    }
+  },
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-23-invoice-stall.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-23-invoice-stall.png",
+    "prompt": "PIL branded card: '\"What exactly are we paying for?\"' / 'The question that stalls every invoice.'",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-23T13:05:00-04:00",
+  "approved_at": "2026-09-23T13:08:00-04:00"
+}
