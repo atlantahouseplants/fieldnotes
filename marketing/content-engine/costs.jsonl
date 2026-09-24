@@ -92,3 +92,5 @@
 {"at": "2026-09-22T13:10:35-04:00", "kind": "video", "model": "HyperFrames", "cost_usd": 0.0, "post_id": "2026-09-22-gate-code-skit"}
 {"at": "2026-09-22T13:10:35-04:00", "kind": "narration", "model": "edge-tts en-US-GuyNeural", "cost_usd": 0.0, "post_id": "2026-09-22-gate-code-skit"}
 {"at": "2026-09-23T13:10:00-04:00", "kind": "image", "model": "fieldnotes_card.py (PIL)", "cost_usd": 0.0, "post_id": "2026-09-23-invoice-stall"}
+{"at":"2026-09-24T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL)","cost_usd":0.0,"post_id":"2026-09-24-demo-cta"}
+{"at":"2026-09-24T13:05:00-04:00","kind":"image","model":"fieldnotes_card.py (PIL, story variant)","cost_usd":0.0,"post_id":"2026-09-24-demo-cta"}
