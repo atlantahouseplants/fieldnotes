@@ -1,0 +1,26 @@
+{
+  "id": "2026-09-24-demo-cta",
+  "theme": "demo CTA",
+  "surfaces": {
+    "fb_feed": {
+      "text": "Between stops today, try something.\n\nOpen fieldnotesapp.io/app/try.html on your phone. No install, no signup, no sales call.\n\nTap one: log a visit note like you'd text it. Tap two: ask it the gate code. Tap three: watch it draft the client recap you'd send after the visit.\n\nSixty seconds, three taps \u2014 and you just ran a whole visit from a text message.\n\nThat's the whole pitch. Your crew texts their notes like they already do, and every gate code, access note, and visit detail stops living in your head.\n\n30 days free, no credit card: fieldnotesapp.io/app/try.html"
+    },
+    "ig_feed": {
+      "text": "Between stops today: three taps, sixty seconds, and you've run a whole visit from a text.\n\nLog a note. Ask the gate code. Watch the client recap draft itself. No install, no signup.\n\n30 days free, no credit card \u2192 fieldnotesapp.io/app/try.html\n\n#fieldservice #owneroperator #smallbusinessowner #servicebusiness #landscaping #lawncare #homeservices #poolservice #contractorlife #hvaclife"
+    },
+    "ig_story": {
+      "image_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-24-demo-cta-story.png",
+      "text": ""
+    }
+  },
+  "image": {
+    "local_path": "/home/wallg/fieldnotes/marketing/content-engine/queue/assets/2026-09-24-demo-cta.png",
+    "source_url": "https://fieldnotesapp.io/app/assets/cards/2026-09-24-demo-cta.png",
+    "prompt": "PIL branded card (card mode) \u2014 headline 'Run a whole visit from a text.' / sub 'Three taps, 60 seconds, no signup: fieldnotesapp.io/app/try.html' + 9:16 story variant (headline 'Ask it the gate code. 60 seconds. No signup.' / sub 'fieldnotesapp.io')",
+    "model": "fieldnotes_card.py (PIL)",
+    "cost_usd": 0.0
+  },
+  "status": "approved",
+  "created_at": "2026-09-24T13:05:00-04:00",
+  "approved_at": "2026-09-24T13:05:00-04:00"
+}
