@@ -36,3 +36,4 @@
 [2026-09-20T13:12:07-04:00] 2026-09-20-gate-code-light: Sun story-only (gate-code light). Story card generated+hosted, checker PASS, status=approved. Branch fix: repo was on feat/fn1-jev-parser-shadow; cherry-picked card to main, restored content state from stash, left repo on main.
 2026-09-22T13:10:35-04:00 2026-09-22-gate-code-skit: Tue VIDEO skit (gate-code, owner-side). 3 Gemini beats + HyperFrames 25.1s, checker PASS -> approved. Surfaces: tiktok, ig_reel, fb_video.
 2026-09-23T13:10:00-04:00 2026-09-23-invoice-stall: Wed FEED (proof-of-service / invoice-stall). Card 1080x1080 PIL $0, hosted 200/46911B. Checker PASS -> approved. Surfaces: fb_feed, ig_feed.
+2026-09-26T13:15:00-04:00 2026-09-26-first-hire: Sat FEED (solo-op-to-first-hire / first solo week). Card 1080x1080 PIL $0, hosted 200/60130B. Checker PASS -> approved. Surfaces: fb_feed, ig_feed.

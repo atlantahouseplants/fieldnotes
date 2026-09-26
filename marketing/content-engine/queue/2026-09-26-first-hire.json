@@ -16,6 +16,7 @@
     "model": "fieldnotes_card.py (PIL)",
     "cost_usd": 0.0
   },
-  "status": "draft",
-  "created_at": "2026-09-26T13:05:00-04:00"
+  "status": "approved",
+  "created_at": "2026-09-26T13:05:00-04:00",
+  "approved_at": "2026-09-26T13:15:00-04:00"
 }
